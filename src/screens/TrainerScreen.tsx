@@ -163,9 +163,6 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
     }
   };
 
-  const currentImageUrl = showAnnotations
-    ? currentSlide.image_annotated_url
-    : currentSlide.image_clean_url;
 
   return (
     <div className="min-h-screen bg-[#F2F4F7] flex flex-col pb-36 safe-pt">
@@ -298,11 +295,41 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
                     wrapperClass="!w-full !h-full"
                     contentClass="!w-full !h-full flex items-center justify-center"
                   >
-                    <img
-                      src={currentImageUrl}
-                      alt={currentSlide.title}
-                      className="w-full h-full object-contain pointer-events-none transition-opacity duration-300"
-                    />
+                    <div className="relative inline-block max-w-full max-h-full">
+                      <img
+                        src={currentSlide.image_clean_url}
+                        alt={currentSlide.title}
+                        className="max-h-[46vh] max-w-full object-contain pointer-events-none select-none transition-opacity duration-300"
+                      />
+
+                      {/* Interactive Layer Pin Overlays */}
+                      {showAnnotations &&
+                        currentSlide.layer_annotations &&
+                        currentSlide.layer_annotations.map((layer) => (
+                          <div
+                            key={layer.id}
+                            style={{
+                              left: `${layer.pin_x}%`,
+                              top: `${layer.pin_y}%`,
+                            }}
+                            className="absolute -translate-x-1/2 -translate-y-1/2 pointer-events-auto z-30"
+                          >
+                            <span
+                              className="absolute -inset-1 rounded-full animate-ping opacity-35"
+                              style={{ backgroundColor: layer.color }}
+                            />
+                            <div
+                              className="w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-black text-white shadow-md ring-2 ring-white/90"
+                              style={{ backgroundColor: layer.color }}
+                            >
+                              {layer.number}
+                            </div>
+                            <div className="absolute top-6.5 left-1/2 -translate-x-1/2 bg-black/80 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full whitespace-nowrap shadow-sm">
+                              {layer.short_name}
+                            </div>
+                          </div>
+                        ))}
+                    </div>
                   </TransformComponent>
                 </div>
               </>

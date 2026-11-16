@@ -12,6 +12,17 @@ export interface ExamChecklist {
   killer_feature: string;
 }
 
+export interface LayerAnnotation {
+  id: string;
+  number: number;
+  name: string;
+  short_name: string;
+  color: string;
+  description: string;
+  pin_x: number; // percentage 0-100
+  pin_y: number; // percentage 0-100
+}
+
 export interface Slide {
   id: string;
   module_id: string;
@@ -23,6 +34,7 @@ export interface Slide {
   exam_checklist: ExamChecklist;
   quiz_distractors: string[];
   order_index?: number;
+  layer_annotations?: LayerAnnotation[];
 }
 
 export type ReviewRating = 'again' | 'doubt' | 'know';

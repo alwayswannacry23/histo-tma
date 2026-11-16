@@ -1,7 +1,16 @@
 import React, { useState, useMemo } from 'react';
-import { Search, ChevronDown, ChevronUp, Sparkles, Microscope, X } from 'lucide-react';
+import {
+  Search,
+  ChevronDown,
+  ChevronUp,
+  Sparkles,
+  Microscope,
+  X,
+  GraduationCap,
+} from 'lucide-react';
 import { Slide, Module } from '../types';
 import { useTelegram } from '../telegram/TelegramContext';
+import { MicroscopeViewerModal } from '../components/MicroscopeViewerModal';
 
 interface CheatSheetsScreenProps {
   slides: Slide[];
@@ -18,6 +27,7 @@ export const CheatSheetsScreen: React.FC<CheatSheetsScreenProps> = ({
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedModuleId, setSelectedModuleId] = useState<string | null>(null);
   const [expandedSlideId, setExpandedSlideId] = useState<string | null>(slides[0]?.id || null);
+  const [ocularSlide, setOcularSlide] = useState<Slide | null>(null);
 
   const filteredSlides = useMemo(() => {
     const q = searchQuery.toLowerCase().trim();
@@ -39,6 +49,11 @@ export const CheatSheetsScreen: React.FC<CheatSheetsScreenProps> = ({
   const toggleExpand = (id: string) => {
     hapticFeedback.selectionChanged();
     setExpandedSlideId((prev) => (prev === id ? null : id));
+  };
+
+  const handleOpenOcular = (slide: Slide) => {
+    hapticFeedback.impactOccurred('medium');
+    setOcularSlide(slide);
   };
 
   const handleOpenTrainer = (slideId: string) => {
@@ -176,20 +191,40 @@ export const CheatSheetsScreen: React.FC<CheatSheetsScreenProps> = ({
                 {/* Expanded Content */}
                 {isExpanded && (
                   <div className="px-4 pb-4 pt-1 space-y-3.5 border-t border-slate-100">
-                    {/* Image Preview & Quick Launch Button */}
-                    <div className="relative rounded-2xl overflow-hidden bg-[#090D16] h-44 flex items-center justify-center">
+                    {/* Image Preview & Dual Action Buttons */}
+                    <div className="relative rounded-2xl overflow-hidden bg-[#090D16] h-48 flex items-center justify-center group">
                       <img
                         src={slide.image_clean_url}
                         alt={slide.title}
-                        className="w-full h-full object-contain"
+                        className="w-full h-full object-contain cursor-pointer"
+                        onClick={() => handleOpenOcular(slide)}
                       />
-                      <button
-                        onClick={() => handleOpenTrainer(slide.id)}
-                        className="absolute bottom-2.5 right-2.5 px-3.5 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full text-xs font-bold shadow-md flex items-center gap-1.5 active:scale-95 transition-all"
-                      >
-                        <Microscope className="w-3.5 h-3.5" />
-                        <span>Открыть в окуляре</span>
-                      </button>
+
+                      {/* Floating Buttons on Image */}
+                      <div className="absolute bottom-2.5 right-2.5 flex items-center gap-2">
+                        {/* Open Pure Microscope */}
+                        <button
+                          onClick={() => handleOpenOcular(slide)}
+                          className="px-3.5 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full text-xs font-bold shadow-lg shadow-indigo-600/30 flex items-center gap-1.5 active:scale-95 transition-all"
+                        >
+                          <Microscope className="w-3.5 h-3.5" />
+                          <span>В микроскоп</span>
+                        </button>
+
+                        {/* Open Quiz / Test */}
+                        <button
+                          onClick={() => handleOpenTrainer(slide.id)}
+                          className="px-3 py-1.5 bg-white/90 hover:bg-white text-slate-900 rounded-full text-xs font-bold shadow-md flex items-center gap-1.5 active:scale-95 transition-all"
+                        >
+                          <GraduationCap className="w-3.5 h-3.5 text-indigo-600" />
+                          <span>Тест</span>
+                        </button>
+                      </div>
+
+                      {/* Top-left Hint */}
+                      <div className="absolute top-2.5 left-2.5 bg-black/40 backdrop-blur-md px-2.5 py-1 rounded-full text-[10px] text-white/70 font-medium">
+                        Нажмите для просмотра в окуляре
+                      </div>
                     </div>
 
                     {/* Главный отличительный признак */}
@@ -229,6 +264,14 @@ export const CheatSheetsScreen: React.FC<CheatSheetsScreenProps> = ({
           })
         )}
       </main>
+
+      {/* Pure Virtual Microscope Ocular Modal */}
+      <MicroscopeViewerModal
+        slide={ocularSlide}
+        isOpen={ocularSlide !== null}
+        onClose={() => setOcularSlide(null)}
+        onStartQuiz={onSelectSlideForTraining}
+      />
     </div>
   );
 };
