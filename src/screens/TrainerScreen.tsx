@@ -13,10 +13,14 @@ import {
   AlertCircle,
   BookOpen,
   ArrowRight,
+  Stethoscope,
+  Compass,
+  PlayCircle,
 } from 'lucide-react';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import { Slide, ReviewRating } from '../types';
 import { useTelegram } from '../telegram/TelegramContext';
+import { createHistologyFallbackSvg } from '../data/mockSlides';
 
 interface TrainerScreenProps {
   slides: Slide[];
@@ -33,7 +37,7 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
   onRecordReview,
   onClose,
 }) => {
-  const { hapticFeedback } = useTelegram();
+  const { isTelegram, hapticFeedback } = useTelegram();
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showAnnotations, setShowAnnotations] = useState(false);
@@ -50,13 +54,37 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
 
   const currentSlide = slides[currentIndex];
 
+  // Helper fallbacks for enriched fields
+  const killerFeature =
+    currentSlide?.exam_checklist?.killer_feature || currentSlide?.killerFeature || '';
+  const layersText =
+    currentSlide?.exam_checklist?.layers || currentSlide?.layers || '';
+  const keyCellsText =
+    currentSlide?.exam_checklist?.key_cells || currentSlide?.keyCells || '';
+  const diffDiag =
+    currentSlide?.differential_diagnosis ||
+    currentSlide?.differentialDiagnosis ||
+    currentSlide?.exam_checklist?.differential_diagnosis ||
+    '';
+  const clinical =
+    currentSlide?.clinical_note ||
+    currentSlide?.clinicalNote ||
+    currentSlide?.exam_checklist?.clinical_note ||
+    '';
+  const videoQuery =
+    currentSlide?.video_hint_query ||
+    currentSlide?.videoHintQuery ||
+    `${currentSlide?.title || ''} гистология препарат разбор`;
+
   // Generate 4 randomized quiz distractors
   const quizOptions = useMemo(() => {
     if (!currentSlide) return [];
     const pool = new Set<string>();
     pool.add(currentSlide.title);
 
-    currentSlide.quiz_distractors.forEach((d) => pool.add(d));
+    const distractors =
+      currentSlide.quiz_distractors || currentSlide.distractors || [];
+    distractors.forEach((d) => pool.add(d));
 
     if (pool.size < 4) {
       allSlides
@@ -84,7 +112,7 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
 
   if (!currentSlide || sessionCompleted) {
     return (
-      <div className="min-h-screen bg-[#F2F4F7] flex flex-col items-center justify-center p-6 text-center safe-pt pb-24">
+      <div className="min-h-screen bg-[#F2F4F7] flex flex-col items-center justify-center p-6 text-center safe-pt pb-28">
         <div className="bg-white rounded-[24px] p-6 max-w-sm w-full shadow-[0_2px_12px_rgba(15,23,42,0.04)] border-0 space-y-5">
           <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto shadow-sm">
             <CheckCircle2 className="w-8 h-8" />
@@ -163,21 +191,32 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
     }
   };
 
+  const handleOpenYoutube = () => {
+    hapticFeedback.impactOccurred('medium');
+    const url = `https://www.youtube.com/results?search_query=${encodeURIComponent(videoQuery)}`;
+    window.open(url, '_blank');
+  };
+
+  const imageSrc = currentSlide.image_clean_url || currentSlide.imageUrl || '';
 
   return (
-    <div className="min-h-screen bg-[#F2F4F7] flex flex-col pb-36 safe-pt">
-      {/* Top Header Bar */}
-      <header className="px-5 py-3 flex items-center justify-between sticky top-0 z-30 bg-[#F2F4F7]/95 backdrop-blur-md">
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => {
-              hapticFeedback.impactOccurred('light');
-              onClose();
-            }}
-            className="w-9 h-9 rounded-full bg-white shadow-xs flex items-center justify-center text-slate-500 hover:text-slate-900 transition-all active:scale-95"
-          >
-            <X strokeWidth={2} className="w-4 h-4" />
-          </button>
+    <div className="min-h-screen bg-[#F2F4F7] flex flex-col safe-pt">
+      {/* Top Header Bar (Safe area aware, avoiding native Telegram iOS button collision) */}
+      <header className="px-4 pt-1 pb-2 flex items-center justify-between sticky top-0 z-30 bg-[#F2F4F7]/95 backdrop-blur-md">
+        <div className="flex items-center gap-2.5">
+          {/* Hide internal close button inside Telegram to avoid native pill collision */}
+          {!isTelegram && (
+            <button
+              onClick={() => {
+                hapticFeedback.impactOccurred('light');
+                onClose();
+              }}
+              className="w-8 h-8 rounded-full bg-white shadow-xs flex items-center justify-center text-slate-500 hover:text-slate-900 transition-all active:scale-95 shrink-0"
+              title="Закрыть"
+            >
+              <X strokeWidth={2} className="w-4 h-4" />
+            </button>
+          )}
 
           <div>
             <div className="text-xs font-bold text-slate-900 leading-tight">
@@ -220,10 +259,10 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
         </div>
       </header>
 
-      {/* Main Study Container */}
-      <div className="px-4 py-2 space-y-3.5 max-w-lg mx-auto w-full flex-1">
-        {/* Microscope Stage Viewport (46vh, rounded-24, deep dark lens #090D16) */}
-        <div className="rounded-[24px] bg-[#090D16] overflow-hidden shadow-lg relative flex flex-col h-[46vh] min-h-[300px] border-0">
+      {/* Main Study Container: Adjusted height so 4 answers fit on phone screens */}
+      <div className="px-4 py-1 space-y-3 max-w-lg mx-auto w-full flex-1 pb-44">
+        {/* Microscope Stage Viewport (Compact 34vh, dark lens #090D16, no white bars) */}
+        <div className="rounded-[22px] bg-[#090D16] overflow-hidden shadow-lg relative flex flex-col h-[34vh] min-h-[220px] max-h-[300px] border-0">
           <TransformWrapper
             initialScale={1}
             minScale={0.8}
@@ -233,43 +272,43 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
           >
             {({ zoomIn, zoomOut, resetTransform }) => (
               <>
-                {/* Floating Translucent Zoom Controls (top-right over photo) */}
-                <div className="absolute top-3 right-3 z-20 flex items-center gap-1 bg-black/40 backdrop-blur-md p-1 rounded-full border border-white/10 shadow-md">
+                {/* Floating Translucent Zoom Controls */}
+                <div className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1 bg-black/45 backdrop-blur-md p-1 rounded-full border border-white/10 shadow-md">
                   <button
                     onClick={() => zoomIn(0.3)}
-                    className="w-8 h-8 flex items-center justify-center text-white/90 hover:text-white rounded-full hover:bg-white/20 active:scale-95 transition-all"
+                    className="w-7 h-7 flex items-center justify-center text-white/90 hover:text-white rounded-full hover:bg-white/20 active:scale-95 transition-all"
                     title="Приблизить"
                   >
-                    <ZoomIn strokeWidth={1.75} className="w-4 h-4" />
+                    <ZoomIn strokeWidth={1.75} className="w-3.5 h-3.5" />
                   </button>
                   <button
                     onClick={() => zoomOut(0.3)}
-                    className="w-8 h-8 flex items-center justify-center text-white/90 hover:text-white rounded-full hover:bg-white/20 active:scale-95 transition-all"
+                    className="w-7 h-7 flex items-center justify-center text-white/90 hover:text-white rounded-full hover:bg-white/20 active:scale-95 transition-all"
                     title="Отдалить"
                   >
-                    <ZoomOut strokeWidth={1.75} className="w-4 h-4" />
+                    <ZoomOut strokeWidth={1.75} className="w-3.5 h-3.5" />
                   </button>
                   <button
                     onClick={() => resetTransform()}
-                    className="w-8 h-8 flex items-center justify-center text-white/90 hover:text-white rounded-full hover:bg-white/20 active:scale-95 transition-all"
+                    className="w-7 h-7 flex items-center justify-center text-white/90 hover:text-white rounded-full hover:bg-white/20 active:scale-95 transition-all"
                     title="Сброс"
                   >
-                    <RotateCcw strokeWidth={1.75} className="w-4 h-4" />
+                    <RotateCcw strokeWidth={1.75} className="w-3.5 h-3.5" />
                   </button>
                 </div>
 
-                {/* Top-left stain & magnification badge over photo */}
-                <div className="absolute top-3 left-3 z-20 flex items-center gap-1.5 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 text-white text-[11px] font-medium shadow-md">
+                {/* Top-left stain & magnification badge */}
+                <div className="absolute top-2.5 left-2.5 z-20 flex items-center gap-1.5 bg-black/45 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10 text-white text-[10px] font-medium shadow-md">
                   <span>{currentSlide.stain}</span>
                   <span className="text-white/40">•</span>
                   <span>{currentSlide.magnification}</span>
                 </div>
 
                 {/* Floating Pill Toggle Button at bottom center of photo */}
-                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20">
+                <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 z-20">
                   <button
                     onClick={handleToggleAnnotations}
-                    className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold transition-all shadow-lg active:scale-95 border-0 backdrop-blur-md ${
+                    className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold transition-all shadow-lg active:scale-95 border-0 backdrop-blur-md ${
                       showAnnotations
                         ? 'bg-indigo-600 text-white shadow-indigo-600/40'
                         : 'bg-white/90 text-slate-800 hover:bg-white'
@@ -297,9 +336,15 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
                   >
                     <div className="relative inline-block max-w-full max-h-full">
                       <img
-                        src={currentSlide.image_clean_url}
+                        src={imageSrc}
                         alt={currentSlide.title}
-                        className="max-h-[46vh] max-w-full object-contain pointer-events-none select-none transition-opacity duration-300"
+                        onError={(e) => {
+                          e.currentTarget.src = createHistologyFallbackSvg(
+                            currentSlide.title,
+                            currentSlide.stain
+                          );
+                        }}
+                        className="max-h-[34vh] max-w-full object-contain pointer-events-none select-none transition-opacity duration-300"
                       />
 
                       {/* Interactive Layer Pin Overlays */}
@@ -324,7 +369,7 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
                             >
                               {layer.number}
                             </div>
-                            <div className="absolute top-6.5 left-1/2 -translate-x-1/2 bg-black/80 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full whitespace-nowrap shadow-sm">
+                            <div className="absolute top-6.5 left-1/2 -translate-x-1/2 bg-black/85 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full whitespace-nowrap shadow-sm">
                               {layer.short_name}
                             </div>
                           </div>
@@ -340,35 +385,35 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
         {/* Question & Duolingo-style Answer Cards */}
         {!isAnswerRevealed ? (
           trainerMode === 'flashcard' ? (
-            <div className="bg-white p-5 rounded-[24px] shadow-[0_2px_12px_rgba(15,23,42,0.04)] border-0 text-center space-y-3.5">
+            <div className="bg-white p-5 rounded-[22px] shadow-[0_2px_12px_rgba(15,23,42,0.04)] border-0 text-center space-y-3">
               <p className="text-xs text-slate-500 leading-relaxed font-medium">
-                Изучите препарат в окуляре, сопоставьте слои стенки и назовите орган
+                Изучите срез ткани, обратите внимание на окраску и назовите препарат
               </p>
               <button
                 onClick={handleRevealAnswer}
-                className="w-full py-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-[22px] text-sm font-bold transition-all flex items-center justify-center gap-2 active:scale-[0.98] shadow-lg shadow-indigo-600/20"
+                className="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-[20px] text-sm font-bold transition-all flex items-center justify-center gap-2 active:scale-[0.98] shadow-lg shadow-indigo-600/20"
               >
                 <BookOpen strokeWidth={1.75} className="w-4 h-4" />
                 <span>Показать ответ и разбор</span>
               </button>
             </div>
           ) : (
-            <div className="space-y-2.5">
+            <div className="space-y-2">
               <div className="text-xs font-bold text-slate-500 px-1">
                 Выберите диагноз микропрепарата:
               </div>
-              <div className="grid grid-cols-1 gap-2.5">
+              <div className="grid grid-cols-1 gap-2">
                 {quizOptions.map((opt, i) => (
                   <button
                     key={i}
                     onClick={() => handleSelectQuizOption(opt)}
-                    className="w-full rounded-2xl bg-white py-3.5 px-4 shadow-[0_2px_10px_rgba(15,23,42,0.03)] border-2 border-transparent active:scale-[0.98] hover:shadow-md transition-all text-left flex items-center justify-between gap-3 group"
+                    className="w-full rounded-2xl bg-white py-3 px-4 shadow-[0_2px_10px_rgba(15,23,42,0.03)] border-2 border-transparent active:scale-[0.98] hover:shadow-md transition-all text-left flex items-center justify-between gap-3 group"
                   >
                     <div className="flex items-center gap-3 min-w-0">
                       <span className="w-7 h-7 rounded-full bg-slate-100 group-hover:bg-indigo-50 group-hover:text-indigo-600 flex items-center justify-center text-xs font-bold text-slate-600 shrink-0 transition-colors">
                         {String.fromCharCode(65 + i)}
                       </span>
-                      <span className="text-sm font-semibold text-slate-900 leading-snug truncate">
+                      <span className="text-xs sm:text-sm font-semibold text-slate-900 leading-snug truncate">
                         {opt}
                       </span>
                     </div>
@@ -390,12 +435,10 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
                 let badgeStyle = 'bg-slate-100 text-slate-400';
 
                 if (isCorrect) {
-                  // Duolingo-style smooth emerald green flood
                   cardStyle =
                     'bg-emerald-500 text-white font-bold border-2 border-emerald-500 shadow-lg shadow-emerald-500/20';
                   badgeStyle = 'bg-white/20 text-white';
                 } else if (isSelected && !isCorrect) {
-                  // Duolingo-style smooth coral red flood
                   cardStyle =
                     'bg-rose-500 text-white font-bold border-2 border-rose-500 shadow-lg shadow-rose-500/20';
                   badgeStyle = 'bg-white/20 text-white';
@@ -404,7 +447,7 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
                 return (
                   <div
                     key={i}
-                    className={`w-full rounded-2xl py-3.5 px-4 transition-all duration-300 flex items-center justify-between gap-3 ${cardStyle}`}
+                    className={`w-full rounded-2xl py-3 px-4 transition-all duration-300 flex items-center justify-between gap-3 ${cardStyle}`}
                   >
                     <div className="flex items-center gap-3 min-w-0">
                       <span
@@ -412,7 +455,7 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
                       >
                         {String.fromCharCode(65 + i)}
                       </span>
-                      <span className="text-sm leading-snug truncate">{opt}</span>
+                      <span className="text-xs sm:text-sm leading-snug truncate">{opt}</span>
                     </div>
                     {isCorrect ? (
                       <CheckCircle2 strokeWidth={2} className="w-5 h-5 text-white shrink-0" />
@@ -426,7 +469,7 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
           )
         )}
 
-        {/* Explanatory Breakdown Card */}
+        {/* Enriched Diagnostic Breakdown Card */}
         {isAnswerRevealed && (
           <div className="bg-white rounded-[24px] p-5 shadow-[0_2px_12px_rgba(15,23,42,0.04)] border-0 space-y-4">
             <div className="flex items-center justify-between">
@@ -458,36 +501,75 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
                 <span>Главный отличительный признак</span>
               </div>
               <p className="text-xs text-slate-800 leading-relaxed font-medium">
-                {currentSlide.exam_checklist.killer_feature}
+                {killerFeature}
               </p>
             </div>
+
+            {/* Дифференциальный диагноз (за 3 секунды) */}
+            {diffDiag && (
+              <div className="bg-amber-50/70 p-4 rounded-2xl space-y-1">
+                <div className="flex items-center gap-1.5 text-amber-900 text-xs font-bold">
+                  <Compass strokeWidth={1.75} className="w-4 h-4 text-amber-600" />
+                  <span>Дифференциальная диагностика на зачете</span>
+                </div>
+                <p className="text-xs text-slate-800 leading-relaxed font-medium">
+                  {diffDiag}
+                </p>
+              </div>
+            )}
+
+            {/* Клиническая значимость */}
+            {clinical && (
+              <div className="bg-emerald-50/70 p-4 rounded-2xl space-y-1">
+                <div className="flex items-center gap-1.5 text-emerald-900 text-xs font-bold">
+                  <Stethoscope strokeWidth={1.75} className="w-4 h-4 text-emerald-600" />
+                  <span>Клиническая значимость</span>
+                </div>
+                <p className="text-xs text-slate-800 leading-relaxed font-medium">
+                  {clinical}
+                </p>
+              </div>
+            )}
 
             {/* Слои и оболочки */}
-            <div className="space-y-1">
-              <div className="flex items-center gap-1.5 text-slate-500 text-xs font-bold px-0.5">
-                <Layers strokeWidth={1.75} className="w-3.5 h-3.5" />
-                <span>Оболочки и слои препарата:</span>
+            {layersText && (
+              <div className="space-y-1">
+                <div className="flex items-center gap-1.5 text-slate-500 text-xs font-bold px-0.5">
+                  <Layers strokeWidth={1.75} className="w-3.5 h-3.5" />
+                  <span>Оболочки и слои препарата:</span>
+                </div>
+                <p className="text-xs text-slate-700 leading-relaxed bg-[#F8FAFC] p-3.5 rounded-2xl">
+                  {layersText}
+                </p>
               </div>
-              <p className="text-xs text-slate-700 leading-relaxed bg-[#F8FAFC] p-3.5 rounded-2xl">
-                {currentSlide.exam_checklist.layers}
-              </p>
-            </div>
+            )}
 
             {/* Ключевые клетки */}
-            <div className="space-y-1">
-              <div className="flex items-center gap-1.5 text-slate-500 text-xs font-bold px-0.5">
-                <HelpCircle strokeWidth={1.75} className="w-3.5 h-3.5" />
-                <span>Ключевые клетки:</span>
+            {keyCellsText && (
+              <div className="space-y-1">
+                <div className="flex items-center gap-1.5 text-slate-500 text-xs font-bold px-0.5">
+                  <HelpCircle strokeWidth={1.75} className="w-3.5 h-3.5" />
+                  <span>Ключевые клетки:</span>
+                </div>
+                <p className="text-xs text-slate-700 leading-relaxed bg-[#F8FAFC] p-3.5 rounded-2xl">
+                  {keyCellsText}
+                </p>
               </div>
-              <p className="text-xs text-slate-700 leading-relaxed bg-[#F8FAFC] p-3.5 rounded-2xl">
-                {currentSlide.exam_checklist.key_cells}
-              </p>
-            </div>
+            )}
+
+            {/* Кнопка «Смотреть разбор на YouTube» */}
+            <button
+              onClick={handleOpenYoutube}
+              className="w-full py-3 px-4 rounded-2xl bg-red-50 hover:bg-red-100 text-red-700 text-xs font-bold transition-all flex items-center justify-center gap-2 active:scale-98"
+            >
+              <PlayCircle className="w-4 h-4 text-red-600" />
+              <span>Смотреть видеоразбор на YouTube</span>
+            </button>
           </div>
         )}
       </div>
 
-      {/* Docked Spaced Repetition Panel (Duolingo style 3 ratings) */}
+      {/* Docked Spaced Repetition Panel */}
       {isAnswerRevealed && (
         <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-xl border-t border-slate-100 p-4 safe-pb shadow-lg">
           <div className="max-w-md mx-auto space-y-2">

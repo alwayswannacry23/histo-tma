@@ -70,10 +70,18 @@ export const TelegramProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       tg.ready();
       tg.expand();
 
+      if (typeof tg.disableVerticalSwipes === 'function') {
+        try {
+          tg.disableVerticalSwipes();
+        } catch (e) {
+          console.warn('Could not disable vertical swipes', e);
+        }
+      }
+
       // Configure Telegram header and background if available
       try {
-        tg.setHeaderColor?.('#FFFFFF');
-        tg.setBackgroundColor?.('#FFFFFF');
+        tg.setHeaderColor?.('#F2F4F7');
+        tg.setBackgroundColor?.('#F2F4F7');
       } catch (e) {
         console.warn('Could not set TG header color', e);
       }

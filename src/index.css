@@ -8,6 +8,8 @@
   --tg-color-text: #0F172A;
   --tg-color-hint: #64748B;
   --tg-color-link: #4F46E5;
+  --tg-content-safe-area-inset-top: 0px;
+  --tg-safe-area-inset-top: 0px;
 }
 
 html, body {
@@ -34,10 +36,29 @@ html, body {
   scrollbar-width: none;  /* Firefox */
 }
 
-/* iOS Safe Areas */
+/* iOS & Telegram Mini App Safe Areas (prevents header clipping by native pills) */
 .safe-pb {
-  padding-bottom: max(env(safe-area-inset-bottom), 16px);
+  padding-bottom: max(
+    var(--tg-safe-area-inset-bottom, 0px),
+    env(safe-area-inset-bottom, 0px),
+    16px
+  );
 }
+
 .safe-pt {
-  padding-top: max(env(safe-area-inset-top), 12px);
+  padding-top: max(
+    var(--tg-content-safe-area-inset-top, 0px),
+    var(--tg-safe-area-inset-top, 0px),
+    env(safe-area-inset-top, 0px),
+    54px
+  );
+}
+
+.safe-pt-modal {
+  padding-top: max(
+    var(--tg-content-safe-area-inset-top, 0px),
+    var(--tg-safe-area-inset-top, 0px),
+    env(safe-area-inset-top, 0px),
+    48px
+  );
 }

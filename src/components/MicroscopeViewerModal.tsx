@@ -15,10 +15,17 @@ import {
   Crosshair,
   Move,
   Settings2,
+  Info,
+  Sparkles,
+  Compass,
+  Stethoscope,
+  PlayCircle,
+  HelpCircle,
 } from 'lucide-react';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import { Slide, LayerAnnotation } from '../types';
 import { useTelegram } from '../telegram/TelegramContext';
+import { createHistologyFallbackSvg } from '../data/mockSlides';
 
 interface MicroscopeViewerModalProps {
   slide: Slide | null;
@@ -48,6 +55,7 @@ export const MicroscopeViewerModal: React.FC<MicroscopeViewerModalProps> = ({
   const [annotations, setAnnotations] = useState<LayerAnnotation[]>([]);
   const [showAnnotations, setShowAnnotations] = useState(true);
   const [selectedLayer, setSelectedLayer] = useState<LayerAnnotation | null>(null);
+  const [showSlideInfo, setShowSlideInfo] = useState(false);
 
   // Admin Mode state
   const [isAdminMode, setIsAdminMode] = useState(false);
@@ -300,6 +308,12 @@ export const MicroscopeViewerModal: React.FC<MicroscopeViewerModalProps> = ({
     }
   };
 
+  const killerFeature = slide.killerFeature || slide.exam_checklist?.killer_feature || '';
+  const diffDiag = slide.differential_diagnosis || slide.differentialDiagnosis || slide.exam_checklist?.differential_diagnosis || '';
+  const clinical = slide.clinical_note || slide.clinicalNote || slide.exam_checklist?.clinical_note || '';
+  const layersText = slide.layers || slide.exam_checklist?.layers || '';
+  const keyCellsText = slide.keyCells || slide.exam_checklist?.key_cells || '';
+
   return (
     <div className="fixed inset-0 z-50 bg-[#07090E] text-white flex flex-col select-none overflow-hidden safe-pt">
       {/* Toast Notification */}
@@ -347,6 +361,22 @@ export const MicroscopeViewerModal: React.FC<MicroscopeViewerModalProps> = ({
 
         {/* Action Controls */}
         <div className="flex items-center gap-2 shrink-0">
+          <button
+            onClick={() => {
+              hapticFeedback.impactOccurred('light');
+              setShowSlideInfo((prev) => !prev);
+            }}
+            className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95 ${
+              showSlideInfo
+                ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/40'
+                : 'bg-white/10 text-white/80 hover:bg-white/20'
+            }`}
+            title="Разбор и дифдиагноз"
+          >
+            <Info strokeWidth={1.8} className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Разбор</span>
+          </button>
+
           <button
             onClick={handleToggleAnnotations}
             className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95 ${
@@ -477,6 +507,9 @@ export const MicroscopeViewerModal: React.FC<MicroscopeViewerModalProps> = ({
                     <img
                       src={slide.image_clean_url}
                       alt={slide.title}
+                      onError={(e) => {
+                        e.currentTarget.src = createHistologyFallbackSvg(slide.title, slide.stain);
+                      }}
                       className="max-h-[82vh] max-w-[96vw] object-contain pointer-events-none select-none rounded-lg"
                     />
 
@@ -558,6 +591,121 @@ export const MicroscopeViewerModal: React.FC<MicroscopeViewerModalProps> = ({
               <p className="text-xs text-white/80 leading-relaxed font-normal">
                 {selectedLayer.description}
               </p>
+            </div>
+          </div>
+        )}
+
+        {/* Regular Mode: Slide Breakdown & Diagnostic Guide Sheet */}
+        {showSlideInfo && (
+          <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-3 bg-black/75 backdrop-blur-md animate-in fade-in duration-200">
+            <div className="bg-slate-900 border border-white/15 w-full max-w-lg max-h-[85vh] overflow-y-auto rounded-[28px] p-5 shadow-2xl space-y-4 text-white animate-in zoom-in-95 no-scrollbar">
+              <div className="flex items-center justify-between border-b border-white/10 pb-3">
+                <div className="flex items-center gap-2">
+                  <span className="text-[11px] font-extrabold uppercase tracking-wider text-indigo-400 bg-indigo-500/20 px-2.5 py-1 rounded-full border border-indigo-500/30">
+                    Препарат №{slide.exam_number || slide.examNumber || '—'}
+                  </span>
+                  <span className="text-xs text-white/60 font-medium">
+                    {slide.stain} • {slide.magnification}
+                  </span>
+                </div>
+                <button
+                  onClick={() => setShowSlideInfo(false)}
+                  className="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 flex items-center justify-center text-white/70 hover:text-white transition-colors"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+
+              <div>
+                <h3 className="text-base font-extrabold text-white tracking-tight">
+                  {slide.title}
+                </h3>
+              </div>
+
+              {/* Главный отличительный признак */}
+              {killerFeature && (
+                <div className="bg-indigo-950/70 border border-indigo-500/30 p-3.5 rounded-2xl space-y-1">
+                  <div className="flex items-center gap-1.5 text-indigo-300 text-xs font-bold">
+                    <Sparkles strokeWidth={1.8} className="w-4 h-4 text-indigo-400" />
+                    <span>Главный отличительный признак</span>
+                  </div>
+                  <p className="text-xs text-white/90 leading-relaxed font-normal">
+                    {killerFeature}
+                  </p>
+                </div>
+              )}
+
+              {/* Дифференциальный диагноз на экзамене */}
+              {diffDiag && (
+                <div className="bg-amber-950/60 border border-amber-500/30 p-3.5 rounded-2xl space-y-1">
+                  <div className="flex items-center gap-1.5 text-amber-300 text-xs font-bold">
+                    <Compass strokeWidth={1.8} className="w-4 h-4 text-amber-400" />
+                    <span>Дифференциальная диагностика за 3 секунды</span>
+                  </div>
+                  <p className="text-xs text-white/90 leading-relaxed font-normal">
+                    {diffDiag}
+                  </p>
+                </div>
+              )}
+
+              {/* Клиническая значимость */}
+              {clinical && (
+                <div className="bg-emerald-950/60 border border-emerald-500/30 p-3.5 rounded-2xl space-y-1">
+                  <div className="flex items-center gap-1.5 text-emerald-300 text-xs font-bold">
+                    <Stethoscope strokeWidth={1.8} className="w-4 h-4 text-emerald-400" />
+                    <span>Клиническая значимость</span>
+                  </div>
+                  <p className="text-xs text-white/90 leading-relaxed font-normal">
+                    {clinical}
+                  </p>
+                </div>
+              )}
+
+              {/* Слои и оболочки */}
+              {layersText && (
+                <div className="space-y-1">
+                  <div className="flex items-center gap-1.5 text-white/60 text-xs font-bold px-0.5">
+                    <Layers strokeWidth={1.8} className="w-3.5 h-3.5" />
+                    <span>Слои и структуры:</span>
+                  </div>
+                  <p className="text-xs text-white/80 leading-relaxed bg-white/5 p-3 rounded-2xl border border-white/5">
+                    {layersText}
+                  </p>
+                </div>
+              )}
+
+              {/* Ключевые клетки */}
+              {keyCellsText && (
+                <div className="space-y-1">
+                  <div className="flex items-center gap-1.5 text-white/60 text-xs font-bold px-0.5">
+                    <HelpCircle strokeWidth={1.8} className="w-3.5 h-3.5" />
+                    <span>Ключевые клетки:</span>
+                  </div>
+                  <p className="text-xs text-white/80 leading-relaxed bg-white/5 p-3 rounded-2xl border border-white/5">
+                    {keyCellsText}
+                  </p>
+                </div>
+              )}
+
+              {/* YouTube video review button */}
+              <button
+                onClick={() => {
+                  hapticFeedback.impactOccurred('light');
+                  const query =
+                    slide.video_hint_query ||
+                    slide.videoHintQuery ||
+                    `${slide.title} гистология микропрепарат`;
+                  window.open(
+                    `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`,
+                    '_blank',
+                    'noopener,noreferrer'
+                  );
+                }}
+                className="w-full py-3 px-4 rounded-2xl bg-red-600 hover:bg-red-700 active:scale-98 text-white text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-red-600/30"
+              >
+                <PlayCircle className="w-4 h-4 text-white" />
+                <span>Смотреть видеоразбор на YouTube</span>
+              </button>
             </div>
           </div>
         )}

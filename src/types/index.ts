@@ -10,6 +10,9 @@ export interface ExamChecklist {
   layers: string;
   key_cells: string;
   killer_feature: string;
+  clinical_note?: string;
+  differential_diagnosis?: string;
+  video_hint_query?: string;
 }
 
 export interface LayerAnnotation {
@@ -26,15 +29,30 @@ export interface LayerAnnotation {
 export interface Slide {
   id: string;
   module_id: string;
+  exam_number?: number;
   title: string;
   stain: string;
   magnification: string;
   image_clean_url: string;
-  image_annotated_url: string;
+  image_annotated_url?: string;
   exam_checklist: ExamChecklist;
   quiz_distractors: string[];
   order_index?: number;
   layer_annotations?: LayerAnnotation[];
+  clinical_note?: string;
+  differential_diagnosis?: string;
+  video_hint_query?: string;
+  // Optional convenience aliases
+  examNumber?: number;
+  moduleId?: string;
+  imageUrl?: string;
+  layers?: string;
+  keyCells?: string;
+  killerFeature?: string;
+  distractors?: string[];
+  clinicalNote?: string;
+  differentialDiagnosis?: string;
+  videoHintQuery?: string;
 }
 
 export type ReviewRating = 'again' | 'doubt' | 'know';

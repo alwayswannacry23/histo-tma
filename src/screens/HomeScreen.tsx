@@ -10,6 +10,8 @@ import {
   Flame,
   CheckCircle2,
   Sparkles,
+  Brain,
+  HeartPulse,
 } from 'lucide-react';
 import { Module, Slide, UserProgress } from '../types';
 import { useTelegram } from '../telegram/TelegramContext';
@@ -61,6 +63,16 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         return {
           icon: Activity,
           boxClass: 'bg-rose-50 text-rose-600',
+        };
+      case 'mod_nervous':
+        return {
+          icon: Brain,
+          boxClass: 'bg-purple-50 text-purple-600',
+        };
+      case 'mod_cardio_immune':
+        return {
+          icon: HeartPulse,
+          boxClass: 'bg-red-50 text-red-600',
         };
       default:
         return {

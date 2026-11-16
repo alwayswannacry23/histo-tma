@@ -7,10 +7,14 @@ import {
   Microscope,
   X,
   GraduationCap,
+  PlayCircle,
+  Compass,
+  Stethoscope,
 } from 'lucide-react';
 import { Slide, Module } from '../types';
 import { useTelegram } from '../telegram/TelegramContext';
 import { MicroscopeViewerModal } from '../components/MicroscopeViewerModal';
+import { createHistologyFallbackSvg } from '../data/mockSlides';
 
 interface CheatSheetsScreenProps {
   slides: Slide[];
@@ -32,16 +36,26 @@ export const CheatSheetsScreen: React.FC<CheatSheetsScreenProps> = ({
   const filteredSlides = useMemo(() => {
     const q = searchQuery.toLowerCase().trim();
     return slides.filter((slide) => {
-      if (selectedModuleId && slide.module_id !== selectedModuleId) {
+      const modId = slide.module_id || slide.moduleId;
+      if (selectedModuleId && modId !== selectedModuleId) {
         return false;
       }
       if (!q) return true;
+
+      const layers = slide.exam_checklist?.layers || slide.layers || '';
+      const cells = slide.exam_checklist?.key_cells || slide.keyCells || '';
+      const killer = slide.exam_checklist?.killer_feature || slide.killerFeature || '';
+      const diff = slide.differential_diagnosis || slide.differentialDiagnosis || '';
+      const clin = slide.clinical_note || slide.clinicalNote || '';
+
       return (
         slide.title.toLowerCase().includes(q) ||
         slide.stain.toLowerCase().includes(q) ||
-        slide.exam_checklist.layers.toLowerCase().includes(q) ||
-        slide.exam_checklist.key_cells.toLowerCase().includes(q) ||
-        slide.exam_checklist.killer_feature.toLowerCase().includes(q)
+        layers.toLowerCase().includes(q) ||
+        cells.toLowerCase().includes(q) ||
+        killer.toLowerCase().includes(q) ||
+        diff.toLowerCase().includes(q) ||
+        clin.toLowerCase().includes(q)
       );
     });
   }, [slides, searchQuery, selectedModuleId]);
@@ -64,13 +78,13 @@ export const CheatSheetsScreen: React.FC<CheatSheetsScreenProps> = ({
   return (
     <div className="min-h-screen bg-[#F2F4F7] pb-28 safe-pt">
       {/* Header */}
-      <header className="px-5 pt-4 pb-3 sticky top-0 bg-[#F2F4F7]/95 backdrop-blur-md z-30 space-y-3">
+      <header className="px-5 pt-1 pb-3 sticky top-0 bg-[#F2F4F7]/95 backdrop-blur-md z-30 space-y-3">
         <div>
           <h1 className="text-[28px] font-extrabold tracking-tight text-slate-900 leading-tight">
             Атлас и шпаргалки
           </h1>
           <p className="text-xs text-slate-500 font-medium mt-0.5">
-            Дифференциальная диагностика препаратов к экзамену
+            Дифференциальная диагностика препаратов к экзамену ({slides.length} препаратов)
           </p>
         </div>
 
@@ -84,7 +98,7 @@ export const CheatSheetsScreen: React.FC<CheatSheetsScreenProps> = ({
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Поиск по названию, клеткам, слоям..."
+            placeholder="Поиск по названию, клеткам, диагнозу..."
             className="w-full pl-10 pr-10 py-3 bg-white border-0 shadow-[0_2px_10px_rgba(15,23,42,0.03)] rounded-full text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-600/30 transition-all"
           />
           {searchQuery && (
@@ -113,7 +127,9 @@ export const CheatSheetsScreen: React.FC<CheatSheetsScreenProps> = ({
             Все ({slides.length})
           </button>
           {modules.map((m) => {
-            const count = slides.filter((s) => s.module_id === m.id).length;
+            const count = slides.filter(
+              (s) => (s.module_id || s.moduleId) === m.id
+            ).length;
             if (count === 0) return null;
             const isSelected = selectedModuleId === m.id;
             return (
@@ -145,6 +161,25 @@ export const CheatSheetsScreen: React.FC<CheatSheetsScreenProps> = ({
         ) : (
           filteredSlides.map((slide) => {
             const isExpanded = expandedSlideId === slide.id;
+            const imgSrc = slide.image_clean_url || slide.imageUrl || '';
+            const killer = slide.exam_checklist?.killer_feature || slide.killerFeature || '';
+            const layers = slide.exam_checklist?.layers || slide.layers || '';
+            const cells = slide.exam_checklist?.key_cells || slide.keyCells || '';
+            const diff =
+              slide.differential_diagnosis ||
+              slide.differentialDiagnosis ||
+              slide.exam_checklist?.differential_diagnosis ||
+              '';
+            const clin =
+              slide.clinical_note ||
+              slide.clinicalNote ||
+              slide.exam_checklist?.clinical_note ||
+              '';
+            const videoQuery =
+              slide.video_hint_query ||
+              slide.videoHintQuery ||
+              `${slide.title} гистология препарат разбор`;
+
             return (
               <div
                 key={slide.id}
@@ -158,15 +193,25 @@ export const CheatSheetsScreen: React.FC<CheatSheetsScreenProps> = ({
                   <div className="flex items-center gap-3.5 min-w-0">
                     <div className="w-12 h-12 rounded-2xl overflow-hidden bg-slate-900 shrink-0">
                       <img
-                        src={slide.image_clean_url}
+                        src={imgSrc}
                         alt={slide.title}
+                        onError={(e) => {
+                          e.currentTarget.src = createHistologyFallbackSvg(slide.title, slide.stain);
+                        }}
                         className="w-full h-full object-cover"
                       />
                     </div>
                     <div className="min-w-0">
-                      <h3 className="font-bold text-sm text-slate-900 leading-snug truncate">
-                        {slide.title}
-                      </h3>
+                      <div className="flex items-center gap-1.5">
+                        {slide.exam_number && (
+                          <span className="text-[10px] font-black text-indigo-600 bg-indigo-50 px-1.5 py-0.5 rounded-md">
+                            №{slide.exam_number}
+                          </span>
+                        )}
+                        <h3 className="font-bold text-sm text-slate-900 leading-snug truncate">
+                          {slide.title}
+                        </h3>
+                      </div>
                       <div className="flex items-center gap-2 mt-0.5">
                         <span className="text-xs text-slate-400">
                           {slide.stain}
@@ -194,8 +239,11 @@ export const CheatSheetsScreen: React.FC<CheatSheetsScreenProps> = ({
                     {/* Image Preview & Dual Action Buttons */}
                     <div className="relative rounded-2xl overflow-hidden bg-[#090D16] h-48 flex items-center justify-center group">
                       <img
-                        src={slide.image_clean_url}
+                        src={imgSrc}
                         alt={slide.title}
+                        onError={(e) => {
+                          e.currentTarget.src = createHistologyFallbackSvg(slide.title, slide.stain);
+                        }}
                         className="w-full h-full object-contain cursor-pointer"
                         onClick={() => handleOpenOcular(slide)}
                       />
@@ -228,35 +276,84 @@ export const CheatSheetsScreen: React.FC<CheatSheetsScreenProps> = ({
                     </div>
 
                     {/* Главный отличительный признак */}
-                    <div className="bg-indigo-50/80 p-3.5 rounded-2xl space-y-1">
-                      <div className="flex items-center gap-1.5 text-indigo-900 text-xs font-bold">
-                        <Sparkles strokeWidth={1.75} className="w-4 h-4 text-indigo-600" />
-                        <span>Главный отличительный признак</span>
+                    {killer && (
+                      <div className="bg-indigo-50/80 p-3.5 rounded-2xl space-y-1">
+                        <div className="flex items-center gap-1.5 text-indigo-900 text-xs font-bold">
+                          <Sparkles strokeWidth={1.75} className="w-4 h-4 text-indigo-600" />
+                          <span>Главный отличительный признак</span>
+                        </div>
+                        <p className="text-xs text-slate-800 leading-relaxed font-medium">
+                          {killer}
+                        </p>
                       </div>
-                      <p className="text-xs text-slate-800 leading-relaxed font-medium">
-                        {slide.exam_checklist.killer_feature}
-                      </p>
-                    </div>
+                    )}
+
+                    {/* Дифференциальный диагноз (за 3 секунды) */}
+                    {diff && (
+                      <div className="bg-amber-50/80 p-3.5 rounded-2xl space-y-1">
+                        <div className="flex items-center gap-1.5 text-amber-900 text-xs font-bold">
+                          <Compass strokeWidth={1.75} className="w-4 h-4 text-amber-600" />
+                          <span>Дифференциальный диагноз на зачете</span>
+                        </div>
+                        <p className="text-xs text-slate-800 leading-relaxed font-medium">
+                          {diff}
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Клиническая значимость */}
+                    {clin && (
+                      <div className="bg-emerald-50/80 p-3.5 rounded-2xl space-y-1">
+                        <div className="flex items-center gap-1.5 text-emerald-900 text-xs font-bold">
+                          <Stethoscope strokeWidth={1.75} className="w-4 h-4 text-emerald-600" />
+                          <span>Клиническая значимость</span>
+                        </div>
+                        <p className="text-xs text-slate-800 leading-relaxed font-medium">
+                          {clin}
+                        </p>
+                      </div>
+                    )}
 
                     {/* Layers Checklist */}
-                    <div className="space-y-1">
-                      <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block px-1">
-                        Оболочки и слои
-                      </span>
-                      <p className="text-xs text-slate-700 leading-relaxed bg-[#F8FAFC] p-3.5 rounded-2xl font-normal">
-                        {slide.exam_checklist.layers}
-                      </p>
-                    </div>
+                    {layers && (
+                      <div className="space-y-1">
+                        <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block px-1">
+                          Оболочки и слои
+                        </span>
+                        <p className="text-xs text-slate-700 leading-relaxed bg-[#F8FAFC] p-3.5 rounded-2xl font-normal">
+                          {layers}
+                        </p>
+                      </div>
+                    )}
 
                     {/* Key Cells */}
-                    <div className="space-y-1">
-                      <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block px-1">
-                        Ключевые клетки
-                      </span>
-                      <p className="text-xs text-slate-700 leading-relaxed bg-[#F8FAFC] p-3.5 rounded-2xl font-normal">
-                        {slide.exam_checklist.key_cells}
-                      </p>
-                    </div>
+                    {cells && (
+                      <div className="space-y-1">
+                        <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block px-1">
+                          Ключевые клетки
+                        </span>
+                        <p className="text-xs text-slate-700 leading-relaxed bg-[#F8FAFC] p-3.5 rounded-2xl font-normal">
+                          {cells}
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Video breakdown button */}
+                    <button
+                      onClick={() => {
+                        hapticFeedback.impactOccurred('medium');
+                        window.open(
+                          `https://www.youtube.com/results?search_query=${encodeURIComponent(
+                            videoQuery
+                          )}`,
+                          '_blank'
+                        );
+                      }}
+                      className="w-full py-2.5 px-3.5 rounded-xl bg-red-50 hover:bg-red-100 text-red-700 text-xs font-bold transition-all flex items-center justify-center gap-2 active:scale-98"
+                    >
+                      <PlayCircle className="w-4 h-4 text-red-600" />
+                      <span>Смотреть разбор на YouTube</span>
+                    </button>
                   </div>
                 )}
               </div>
