@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --tg-color-bg: #FFFFFF;
+  --tg-color-secondary-bg: #F8FAFC;
+  --tg-color-text: #0F172A;
+  --tg-color-hint: #64748B;
+  --tg-color-link: #2563EB;
+  --tg-color-button: #0F172A;
+  --tg-color-button-text: #FFFFFF;
+}
+
+/* Telegram Mini App Safe Areas & iOS polish */
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--tg-color-bg);
+  color: var(--tg-color-text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Custom scrollbars - subtle clinical scroll */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Telegram viewport padding */
+.safe-pb {
+  padding-bottom: max(env(safe-area-inset-bottom), 16px);
+}
+.safe-pt {
+  padding-top: max(env(safe-area-inset-top), 12px);
+}
