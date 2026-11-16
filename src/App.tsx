@@ -116,7 +116,7 @@ export const App: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-slate-200">
+    <div className="min-h-screen bg-[var(--bg-page)] text-[var(--text-primary)] font-sans selection:bg-slate-200 transition-colors duration-200">
       {/* Screen Views */}
       {currentTab === 'home' && (
         <HomeScreen

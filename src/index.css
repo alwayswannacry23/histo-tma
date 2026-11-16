@@ -3,6 +3,19 @@
 @tailwind utilities;
 
 :root {
+  --accent-primary: #4F46E5;
+  --accent-hover: #4338CA;
+  --accent-soft: #EEF2FF;
+  --accent-text: #4F46E5;
+  --accent-shadow: rgba(79, 70, 229, 0.25);
+  --bg-page: #F2F4F7;
+  --bg-card: #FFFFFF;
+  --bg-card-secondary: #F8FAFC;
+  --text-primary: #0F172A;
+  --text-muted: #64748B;
+  --border-subtle: rgba(0, 0, 0, 0.05);
+  --nav-bg: rgba(255, 255, 255, 0.92);
+
   --tg-color-bg: #F2F4F7;
   --tg-color-secondary-bg: #FFFFFF;
   --tg-color-text: #0F172A;
@@ -12,11 +25,21 @@
   --tg-safe-area-inset-top: 0px;
 }
 
+.dark {
+  --bg-page: #0B0F17;
+  --bg-card: #161D2A;
+  --bg-card-secondary: #1E293B;
+  --text-primary: #F8FAFC;
+  --text-muted: #94A3B8;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --nav-bg: rgba(22, 29, 42, 0.92);
+}
+
 html, body {
   margin: 0;
   padding: 0;
-  background-color: #F2F4F7;
-  color: #0F172A;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -24,6 +47,7 @@ html, body {
   user-select: none;
   -webkit-user-select: none;
   overflow-x: hidden;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */

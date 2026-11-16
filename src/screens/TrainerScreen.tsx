@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import {
-  X,
   Eye,
   EyeOff,
   ZoomIn,
@@ -13,6 +12,7 @@ import {
   AlertCircle,
   BookOpen,
   ArrowRight,
+  ArrowLeft,
   Stethoscope,
   Compass,
   PlayCircle,
@@ -37,7 +37,7 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
   onRecordReview,
   onClose,
 }) => {
-  const { isTelegram, hapticFeedback } = useTelegram();
+  const { hapticFeedback } = useTelegram();
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showAnnotations, setShowAnnotations] = useState(false);
@@ -112,39 +112,39 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
 
   if (!currentSlide || sessionCompleted) {
     return (
-      <div className="min-h-screen bg-[#F2F4F7] flex flex-col items-center justify-center p-6 text-center safe-pt pb-28">
-        <div className="bg-white rounded-[24px] p-6 max-w-sm w-full shadow-[0_2px_12px_rgba(15,23,42,0.04)] border-0 space-y-5">
-          <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto shadow-sm">
+      <div className="min-h-screen bg-[var(--bg-page)] text-[var(--text-primary)] flex flex-col items-center justify-center p-6 text-center safe-pt pb-28 transition-colors duration-200">
+        <div className="bg-[var(--bg-card)] rounded-[24px] p-6 max-w-sm w-full shadow-[0_2px_12px_rgba(15,23,42,0.06)] border border-[var(--border-subtle)] space-y-5">
+          <div className="w-16 h-16 rounded-full bg-emerald-500/15 text-emerald-500 flex items-center justify-center mx-auto shadow-sm">
             <CheckCircle2 className="w-8 h-8" />
           </div>
 
           <div>
-            <h2 className="text-2xl font-extrabold text-slate-900 tracking-tight">
+            <h2 className="text-2xl font-extrabold text-[var(--text-primary)] tracking-tight">
               Тренировка завершена!
             </h2>
-            <p className="text-xs text-slate-500 mt-1">
+            <p className="text-xs text-[var(--text-muted)] mt-1">
               {sessionTitle} — все препараты пройдены
             </p>
           </div>
 
           <div className="grid grid-cols-3 gap-2.5">
-            <div className="bg-emerald-50 p-3 rounded-2xl text-center">
-              <div className="text-lg font-black text-emerald-700">{sessionStats.know}</div>
-              <div className="text-[11px] text-emerald-600/90 font-medium mt-0.5">Знаю</div>
+            <div className="bg-emerald-500/10 p-3 rounded-2xl text-center">
+              <div className="text-lg font-black text-emerald-600 dark:text-emerald-400">{sessionStats.know}</div>
+              <div className="text-[11px] text-emerald-600/90 dark:text-emerald-400/90 font-medium mt-0.5">Знаю</div>
             </div>
-            <div className="bg-amber-50 p-3 rounded-2xl text-center">
-              <div className="text-lg font-black text-amber-700">{sessionStats.doubt}</div>
-              <div className="text-[11px] text-amber-600/90 font-medium mt-0.5">Сомнение</div>
+            <div className="bg-amber-500/10 p-3 rounded-2xl text-center">
+              <div className="text-lg font-black text-amber-600 dark:text-amber-400">{sessionStats.doubt}</div>
+              <div className="text-[11px] text-amber-600/90 dark:text-amber-400/90 font-medium mt-0.5">Сомнение</div>
             </div>
-            <div className="bg-rose-50 p-3 rounded-2xl text-center">
-              <div className="text-lg font-black text-rose-700">{sessionStats.again}</div>
-              <div className="text-[11px] text-rose-600/90 font-medium mt-0.5">Повторить</div>
+            <div className="bg-rose-500/10 p-3 rounded-2xl text-center">
+              <div className="text-lg font-black text-rose-600 dark:text-rose-400">{sessionStats.again}</div>
+              <div className="text-[11px] text-rose-600/90 dark:text-rose-400/90 font-medium mt-0.5">Повторить</div>
             </div>
           </div>
 
           <button
             onClick={onClose}
-            className="w-full py-4 bg-indigo-600 text-white rounded-[22px] font-bold text-sm hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-600/20 active:scale-[0.98]"
+            className="w-full py-4 bg-[var(--accent-primary)] hover:bg-[var(--accent-hover)] text-white rounded-[22px] font-bold text-sm transition-all shadow-lg shadow-[var(--accent-shadow)] active:scale-[0.98]"
           >
             Вернуться к разделам
           </button>
@@ -200,45 +200,44 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
   const imageSrc = currentSlide.image_clean_url || currentSlide.imageUrl || '';
 
   return (
-    <div className="min-h-screen bg-[#F2F4F7] flex flex-col safe-pt">
+    <div className="min-h-screen bg-[var(--bg-page)] text-[var(--text-primary)] flex flex-col safe-pt transition-colors duration-200">
       {/* Top Header Bar (Safe area aware, avoiding native Telegram iOS button collision) */}
-      <header className="px-4 pt-1 pb-2 flex items-center justify-between sticky top-0 z-30 bg-[#F2F4F7]/95 backdrop-blur-md">
+      <header className="px-4 pt-1 pb-2 flex items-center justify-between sticky top-0 z-30 bg-[var(--bg-page)]/95 backdrop-blur-md">
         <div className="flex items-center gap-2.5">
-          {/* Hide internal close button inside Telegram to avoid native pill collision */}
-          {!isTelegram && (
-            <button
-              onClick={() => {
-                hapticFeedback.impactOccurred('light');
-                onClose();
-              }}
-              className="w-8 h-8 rounded-full bg-white shadow-xs flex items-center justify-center text-slate-500 hover:text-slate-900 transition-all active:scale-95 shrink-0"
-              title="Закрыть"
-            >
-              <X strokeWidth={2} className="w-4 h-4" />
-            </button>
-          )}
+          {/* Always visible Exit button back to Home */}
+          <button
+            onClick={() => {
+              hapticFeedback.impactOccurred('light');
+              onClose();
+            }}
+            className="h-8 px-2.5 rounded-full bg-[var(--bg-card)] text-[var(--text-primary)] shadow-xs flex items-center gap-1.5 text-xs font-bold transition-all active:scale-95 shrink-0 border border-[var(--border-subtle)]"
+            title="Выйти в меню"
+          >
+            <ArrowLeft strokeWidth={2.2} className="w-3.5 h-3.5" />
+            <span>Выйти</span>
+          </button>
 
           <div>
-            <div className="text-xs font-bold text-slate-900 leading-tight">
+            <div className="text-xs font-bold text-[var(--text-primary)] leading-tight">
               Срез {currentIndex + 1} из {slides.length}
             </div>
-            <div className="text-[11px] text-slate-400 font-medium truncate max-w-[150px]">
+            <div className="text-[11px] text-[var(--text-muted)] font-medium truncate max-w-[130px] sm:max-w-[200px]">
               {sessionTitle}
             </div>
           </div>
         </div>
 
         {/* Mode Switcher Pill */}
-        <div className="flex items-center bg-white shadow-xs p-1 rounded-full text-xs">
+        <div className="flex items-center bg-[var(--bg-card)] shadow-xs p-1 rounded-full text-xs border border-[var(--border-subtle)]">
           <button
             onClick={() => {
               hapticFeedback.selectionChanged();
               setTrainerMode('quiz');
             }}
-            className={`px-3 py-1 rounded-full transition-all font-semibold ${
+            className={`px-3 py-1 rounded-full transition-all font-bold ${
               trainerMode === 'quiz'
-                ? 'bg-indigo-600 text-white shadow-xs'
-                : 'text-slate-500 hover:text-slate-800'
+                ? 'bg-[var(--accent-primary)] text-white shadow-xs'
+                : 'text-[var(--text-muted)] hover:text-[var(--text-primary)]'
             }`}
           >
             Тест
@@ -248,10 +247,10 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
               hapticFeedback.selectionChanged();
               setTrainerMode('flashcard');
             }}
-            className={`px-3 py-1 rounded-full transition-all font-semibold ${
+            className={`px-3 py-1 rounded-full transition-all font-bold ${
               trainerMode === 'flashcard'
-                ? 'bg-indigo-600 text-white shadow-xs'
-                : 'text-slate-500 hover:text-slate-800'
+                ? 'bg-[var(--accent-primary)] text-white shadow-xs'
+                : 'text-[var(--text-muted)] hover:text-[var(--text-primary)]'
             }`}
           >
             Карточка
@@ -385,13 +384,13 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
         {/* Question & Duolingo-style Answer Cards */}
         {!isAnswerRevealed ? (
           trainerMode === 'flashcard' ? (
-            <div className="bg-white p-5 rounded-[22px] shadow-[0_2px_12px_rgba(15,23,42,0.04)] border-0 text-center space-y-3">
-              <p className="text-xs text-slate-500 leading-relaxed font-medium">
+            <div className="bg-[var(--bg-card)] p-5 rounded-[22px] shadow-[0_2px_12px_rgba(15,23,42,0.06)] border border-[var(--border-subtle)] text-center space-y-3">
+              <p className="text-xs text-[var(--text-muted)] leading-relaxed font-medium">
                 Изучите срез ткани, обратите внимание на окраску и назовите препарат
               </p>
               <button
                 onClick={handleRevealAnswer}
-                className="w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-[20px] text-sm font-bold transition-all flex items-center justify-center gap-2 active:scale-[0.98] shadow-lg shadow-indigo-600/20"
+                className="w-full py-3.5 bg-[var(--accent-primary)] hover:bg-[var(--accent-hover)] text-white rounded-[20px] text-sm font-bold transition-all flex items-center justify-center gap-2 active:scale-[0.98] shadow-lg shadow-[var(--accent-shadow)]"
               >
                 <BookOpen strokeWidth={1.75} className="w-4 h-4" />
                 <span>Показать ответ и разбор</span>
@@ -399,7 +398,7 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
             </div>
           ) : (
             <div className="space-y-2">
-              <div className="text-xs font-bold text-slate-500 px-1">
+              <div className="text-xs font-bold text-[var(--text-muted)] px-1">
                 Выберите диагноз микропрепарата:
               </div>
               <div className="grid grid-cols-1 gap-2">
@@ -407,13 +406,13 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
                   <button
                     key={i}
                     onClick={() => handleSelectQuizOption(opt)}
-                    className="w-full rounded-2xl bg-white py-3 px-4 shadow-[0_2px_10px_rgba(15,23,42,0.03)] border-2 border-transparent active:scale-[0.98] hover:shadow-md transition-all text-left flex items-center justify-between gap-3 group"
+                    className="w-full rounded-2xl bg-[var(--bg-card)] py-3 px-4 shadow-[0_2px_10px_rgba(15,23,42,0.04)] border border-[var(--border-subtle)] active:scale-[0.98] hover:shadow-md transition-all text-left flex items-center justify-between gap-3 group"
                   >
                     <div className="flex items-center gap-3 min-w-0">
-                      <span className="w-7 h-7 rounded-full bg-slate-100 group-hover:bg-indigo-50 group-hover:text-indigo-600 flex items-center justify-center text-xs font-bold text-slate-600 shrink-0 transition-colors">
+                      <span className="w-7 h-7 rounded-full bg-slate-100 dark:bg-slate-800 group-hover:bg-[var(--accent-soft)] group-hover:text-[var(--accent-primary)] flex items-center justify-center text-xs font-bold text-slate-600 dark:text-slate-300 shrink-0 transition-colors">
                         {String.fromCharCode(65 + i)}
                       </span>
-                      <span className="text-xs sm:text-sm font-semibold text-slate-900 leading-snug truncate">
+                      <span className="text-xs sm:text-sm font-semibold text-[var(--text-primary)] leading-snug truncate">
                         {opt}
                       </span>
                     </div>
@@ -471,13 +470,13 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
 
         {/* Enriched Diagnostic Breakdown Card */}
         {isAnswerRevealed && (
-          <div className="bg-white rounded-[24px] p-5 shadow-[0_2px_12px_rgba(15,23,42,0.04)] border-0 space-y-4">
+          <div className="bg-[var(--bg-card)] rounded-[24px] p-5 shadow-[0_2px_12px_rgba(15,23,42,0.06)] border border-[var(--border-subtle)] space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <span className="text-[11px] font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-[var(--accent-primary)] bg-[var(--accent-soft)] px-3 py-1 rounded-full">
                   Эталонный разбор
                 </span>
-                <h3 className="text-lg font-extrabold text-slate-900 tracking-tight mt-2">
+                <h3 className="text-lg font-extrabold text-[var(--text-primary)] tracking-tight mt-2">
                   {currentSlide.title}
                 </h3>
               </div>
@@ -485,8 +484,8 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
                 <span
                   className={`text-xs font-bold px-3 py-1 rounded-full ${
                     selectedQuizOption === currentSlide.title
-                      ? 'bg-emerald-50 text-emerald-700'
-                      : 'bg-rose-50 text-rose-700'
+                      ? 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400'
+                      : 'bg-rose-500/15 text-rose-600 dark:text-rose-400'
                   }`}
                 >
                   {selectedQuizOption === currentSlide.title ? 'Верно! 🎉' : 'Ошибка 💡'}
@@ -495,12 +494,12 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
             </div>
 
             {/* Главный отличительный признак */}
-            <div className="bg-indigo-50/70 p-4 rounded-2xl space-y-1">
-              <div className="flex items-center gap-1.5 text-indigo-900 text-xs font-bold">
-                <Sparkles strokeWidth={1.75} className="w-4 h-4 text-indigo-600" />
+            <div className="bg-[var(--accent-soft)] p-4 rounded-2xl space-y-1">
+              <div className="flex items-center gap-1.5 text-[var(--accent-primary)] text-xs font-bold">
+                <Sparkles strokeWidth={1.75} className="w-4 h-4 text-[var(--accent-primary)]" />
                 <span>Главный отличительный признак</span>
               </div>
-              <p className="text-xs text-slate-800 leading-relaxed font-medium">
+              <p className="text-xs text-[var(--text-primary)] leading-relaxed font-medium">
                 {killerFeature}
               </p>
             </div>
@@ -571,9 +570,9 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
 
       {/* Docked Spaced Repetition Panel */}
       {isAnswerRevealed && (
-        <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-xl border-t border-slate-100 p-4 safe-pb shadow-lg">
+        <div className="fixed bottom-0 left-0 right-0 z-40 bg-[var(--bg-card)]/95 backdrop-blur-xl border-t border-[var(--border-subtle)] p-4 safe-pb shadow-lg">
           <div className="max-w-md mx-auto space-y-2">
-            <div className="text-[11px] font-bold text-center text-slate-400">
+            <div className="text-[11px] font-bold text-center text-[var(--text-muted)]">
               Оцените степень запоминания:
             </div>
             <div className="grid grid-cols-3 gap-2.5">
