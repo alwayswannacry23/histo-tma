@@ -1,5 +1,14 @@
 import React from 'react';
-import { Zap, Lock, ChevronRight, CheckCircle2, BookOpen } from 'lucide-react';
+import { motion } from 'framer-motion';
+import {
+  Zap,
+  Lock,
+  Wind,
+  Layers,
+  Utensils,
+  Activity,
+  ArrowRight,
+} from 'lucide-react';
 import { Module, Slide, UserProgress } from '../types';
 import { useTelegram } from '../telegram/TelegramContext';
 
@@ -20,18 +29,47 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   onStartModule,
   onStartSpeedrun,
   onOpenPaywall,
-  onOpenCheatSheets,
 }) => {
   const { user, hapticFeedback } = useTelegram();
 
   // Statistics calculation
-  const totalSlidesCount = slides.length;
-  const masteredSlidesCount = slides.filter(
-    (s) => progress[s.id]?.status === 'mastered'
-  ).length;
-  const progressPercent = totalSlidesCount > 0 
-    ? Math.round((masteredSlidesCount / totalSlidesCount) * 100) 
-    : 0;
+  const totalSlides = slides.length;
+  const masteredCount = slides.filter((s) => progress[s.id]?.status === 'mastered').length;
+  const reviewingCount = slides.filter((s) => progress[s.id]?.status === 'reviewing').length;
+  const progressPercent = totalSlides > 0 ? Math.round((masteredCount / totalSlides) * 100) : 0;
+
+  // SVG Circular Ring Progress parameters
+  const ringSize = 68;
+  const strokeWidth = 6;
+  const radius = (ringSize - strokeWidth) / 2;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference - (progressPercent / 100) * circumference;
+
+  const getModuleIcon = (id: string) => {
+    switch (id) {
+      case 'mod_resp':
+        return <Wind className="w-5 h-5 text-sky-600" strokeWidth={1.5} />;
+      case 'mod_digestive':
+        return <Utensils className="w-5 h-5 text-amber-600" strokeWidth={1.5} />;
+      case 'mod_urinary':
+        return <Activity className="w-5 h-5 text-indigo-600" strokeWidth={1.5} />;
+      default:
+        return <Layers className="w-5 h-5 text-blue-600" strokeWidth={1.5} />;
+    }
+  };
+
+  const getModuleBg = (id: string) => {
+    switch (id) {
+      case 'mod_resp':
+        return 'bg-sky-50 text-sky-700';
+      case 'mod_digestive':
+        return 'bg-amber-50 text-amber-700';
+      case 'mod_urinary':
+        return 'bg-indigo-50 text-indigo-700';
+      default:
+        return 'bg-blue-50 text-blue-700';
+    }
+  };
 
   const handleModuleClick = (mod: Module) => {
     if (mod.is_free) {
@@ -43,158 +81,196 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
     }
   };
 
-  const handleSpeedrunClick = () => {
-    hapticFeedback.impactOccurred('heavy');
+  const handleSpeedrun = () => {
+    hapticFeedback.impactOccurred('medium');
     onStartSpeedrun();
   };
 
   return (
-    <div className="min-h-screen bg-white pb-24 safe-pt">
-      {/* Header */}
-      <header className="px-5 pt-4 pb-3 border-b border-slate-100">
-        <div className="flex items-center justify-between">
-          <div>
-            <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-400">
-              Гистология • Экзамен
-            </span>
-            <h1 className="text-xl font-bold text-slate-900 tracking-tight">
-              {user.first_name ? `Привет, ${user.first_name}` : 'Каталог модулей'}
-            </h1>
-          </div>
-          <button 
-            onClick={onOpenCheatSheets}
-            className="p-2 rounded-xl bg-slate-50 border border-slate-200 text-slate-700 hover:bg-slate-100 transition-colors flex items-center gap-1.5 text-xs font-medium"
-          >
-            <BookOpen strokeWidth={1.5} className="w-4 h-4 text-blue-600" />
-            <span>Атлас</span>
-          </button>
+    <div className="min-h-screen bg-[#F4F5F7] text-slate-900 pb-28 safe-pt">
+      {/* Top Header */}
+      <header className="px-5 pt-3 pb-2 flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl sm:text-[28px] font-bold tracking-tight text-slate-900 leading-tight">
+            {user.first_name ? `Привет, ${user.first_name}` : 'Гистология'}
+          </h1>
+          <p className="text-xs text-slate-400 mt-0.5">
+            Подготовка к практическому зачету
+          </p>
         </div>
       </header>
 
-      <main className="px-5 pt-5 space-y-6">
-        {/* Progress Card */}
-        <section className="bg-slate-50 rounded-2xl p-5 border border-slate-200">
-          <div className="flex items-center justify-between mb-3">
+      <main className="px-5 pt-4 space-y-4 max-w-lg mx-auto">
+        {/* Compact Hero Block with Ring Progress */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-white rounded-3xl p-5 shadow-[0_2px_16px_rgba(0,0,0,0.03)]"
+        >
+          <div className="flex items-center gap-4">
+            {/* SVG Circular Progress Ring */}
+            <div className="relative shrink-0 flex items-center justify-center">
+              <svg width={ringSize} height={ringSize} className="transform -rotate-90">
+                <circle
+                  cx={ringSize / 2}
+                  cy={ringSize / 2}
+                  r={radius}
+                  stroke="#E2E8F0"
+                  strokeWidth={strokeWidth}
+                  fill="transparent"
+                />
+                <circle
+                  cx={ringSize / 2}
+                  cy={ringSize / 2}
+                  r={radius}
+                  stroke="#0F172A"
+                  strokeWidth={strokeWidth}
+                  strokeDasharray={circumference}
+                  strokeDashoffset={strokeDashoffset}
+                  strokeLinecap="round"
+                  fill="transparent"
+                  className="transition-all duration-700 ease-out"
+                />
+              </svg>
+              <div className="absolute inset-0 flex flex-col items-center justify-center">
+                <span className="text-sm font-bold text-slate-900 leading-none">
+                  {progressPercent}%
+                </span>
+              </div>
+            </div>
+
+            {/* Metrics Breakdown */}
+            <div className="flex-1 space-y-1">
+              <div className="text-base font-bold text-slate-900 leading-tight">
+                {masteredCount} из {totalSlides} препаратов
+              </div>
+              <p className="text-xs text-slate-500 leading-snug">
+                {masteredCount === totalSlides && totalSlides > 0
+                  ? 'Все препараты успешно освоены!'
+                  : 'Освоено на отлично для сдачи зачета'}
+              </p>
+              <div className="flex items-center gap-3 pt-1 text-[11px] text-slate-400">
+                <span className="flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                  {masteredCount} выучено
+                </span>
+                <span className="flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+                  {reviewingCount} на повторе
+                </span>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* High-Impact Tactical CTA Button */}
+        <motion.button
+          whileTap={{ scale: 0.98 }}
+          onClick={handleSpeedrun}
+          className="w-full bg-slate-900 text-white rounded-2xl p-4 shadow-[0_4px_20px_rgba(15,23,42,0.15)] flex items-center justify-between text-left transition-all"
+        >
+          <div className="flex items-center gap-3.5">
+            <div className="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center text-amber-300">
+              <Zap strokeWidth={1.5} className="w-5 h-5 fill-amber-300" />
+            </div>
             <div>
-              <div className="text-xs font-medium text-slate-500">Общий прогресс освоения</div>
-              <div className="text-lg font-bold text-slate-900 mt-0.5">
-                {masteredSlidesCount} из {totalSlidesCount} препаратов{' '}
-                <span className="text-sm font-normal text-slate-500">({progressPercent}%)</span>
+              <div className="font-bold text-sm tracking-tight text-white">
+                Быстрая тренировка
+              </div>
+              <div className="text-xs text-slate-300 mt-0.5">
+                Случайная выборка микропрепаратов
               </div>
             </div>
-            <div className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-emerald-600">
-              <CheckCircle2 strokeWidth={1.5} className="w-5 h-5" />
-            </div>
           </div>
-
-          {/* Progress bar */}
-          <div className="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
-            <div
-              className="bg-slate-900 h-full rounded-full transition-all duration-500 ease-out"
-              style={{ width: `${Math.max(5, progressPercent)}%` }}
-            />
+          <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/80">
+            <ArrowRight strokeWidth={1.5} className="w-4 h-4" />
           </div>
+        </motion.button>
 
-          <div className="flex items-center justify-between text-[11px] text-slate-500 mt-3 pt-3 border-t border-slate-200/60">
-            <span>Интервальное повторение: активно</span>
-            <span>Готовы к сдаче: {masteredSlidesCount}</span>
-          </div>
-        </section>
-
-        {/* Speedrun Primary CTA */}
-        <section>
-          <button
-            onClick={handleSpeedrunClick}
-            className="w-full bg-slate-900 hover:bg-slate-800 active:scale-[0.99] text-white p-4 rounded-2xl flex items-center justify-between transition-all shadow-sm group"
-          >
-            <div className="flex items-center gap-3.5 text-left">
-              <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-amber-400">
-                <Zap strokeWidth={1.5} className="w-5 h-5 fill-amber-400" />
-              </div>
-              <div>
-                <div className="font-semibold text-sm tracking-tight text-white">
-                  Спидран (15 случайных препаратов)
-                </div>
-                <div className="text-xs text-slate-300">
-                  Экспресс-диагностика на время к коллоквиуму
-                </div>
-              </div>
-            </div>
-            <ChevronRight strokeWidth={1.5} className="w-5 h-5 text-slate-400 group-hover:translate-x-0.5 transition-transform" />
-          </button>
-        </section>
-
-        {/* Modules List */}
-        <section className="space-y-3">
-          <div className="flex items-center justify-between">
-            <h2 className="text-xs uppercase tracking-wider font-semibold text-slate-400">
-              Учебные модули
+        {/* Modules Section */}
+        <section className="space-y-3 pt-1">
+          <div className="flex items-center justify-between px-1">
+            <h2 className="text-lg font-bold text-slate-900 tracking-tight">
+              Разделы атласа
             </h2>
-            <span className="text-xs text-slate-400">{modules.length} курса</span>
+            <span className="text-xs font-medium text-slate-400">
+              {modules.length} курса
+            </span>
           </div>
 
           <div className="space-y-3">
             {modules.map((mod) => {
-              const moduleSlides = slides.filter((s) => s.module_id === mod.id);
-              const moduleMastered = moduleSlides.filter(
+              const modSlides = slides.filter((s) => s.module_id === mod.id);
+              const modMastered = modSlides.filter(
                 (s) => progress[s.id]?.status === 'mastered'
               ).length;
-              const hasSlides = moduleSlides.length > 0;
+              const hasSlides = modSlides.length > 0;
+              const modPercent = hasSlides
+                ? Math.round((modMastered / modSlides.length) * 100)
+                : 0;
 
               return (
-                <div
+                <motion.div
                   key={mod.id}
+                  whileTap={{ scale: 0.985 }}
                   onClick={() => handleModuleClick(mod)}
-                  className={`p-4 rounded-xl border transition-all cursor-pointer ${
-                    mod.is_free
-                      ? 'bg-white border-slate-200 hover:border-slate-300 hover:shadow-sm active:bg-slate-50'
-                      : 'bg-slate-50/70 border-slate-200 hover:border-slate-300'
-                  }`}
+                  className="bg-white rounded-2xl p-5 shadow-[0_2px_12px_rgba(0,0,0,0.03)] cursor-pointer transition-all space-y-3"
                 >
                   <div className="flex items-start justify-between gap-3">
-                    <div className="space-y-1">
-                      <div className="flex items-center gap-2">
-                        <h3 className="font-semibold text-sm text-slate-900 tracking-tight">
-                          {mod.title}
-                        </h3>
-                        {mod.is_free ? (
-                          <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full">
-                            Бесплатно
-                          </span>
-                        ) : (
-                          <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 bg-slate-200 text-slate-700 rounded-full flex items-center gap-1">
-                            <Lock strokeWidth={1.5} className="w-2.5 h-2.5" /> PRO
-                          </span>
-                        )}
+                    <div className="flex items-start gap-3.5">
+                      {/* System/Organ Icon */}
+                      <div
+                        className={`w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 ${getModuleBg(
+                          mod.id
+                        )}`}
+                      >
+                        {getModuleIcon(mod.id)}
                       </div>
-                      <p className="text-xs text-slate-500 leading-relaxed">
-                        {mod.description}
-                      </p>
+
+                      <div className="space-y-0.5">
+                        <div className="flex items-center gap-2">
+                          <h3 className="font-bold text-sm text-slate-900 leading-snug">
+                            {mod.title}
+                          </h3>
+                        </div>
+                        <p className="text-xs text-slate-400 line-clamp-1 leading-relaxed">
+                          {mod.description}
+                        </p>
+                      </div>
                     </div>
 
-                    <div className="shrink-0 text-slate-400 mt-1">
+                    {/* Status Pill */}
+                    <div className="shrink-0">
                       {mod.is_free ? (
-                        <ChevronRight strokeWidth={1.5} className="w-5 h-5 text-slate-400" />
+                        <span className="inline-flex items-center text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">
+                          Доступно
+                        </span>
                       ) : (
-                        <Lock strokeWidth={1.5} className="w-4 h-4 text-slate-400" />
+                        <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-slate-500 bg-slate-100 px-2 py-0.5 rounded-full">
+                          <Lock strokeWidth={1.5} className="w-3 h-3" /> PRO
+                        </span>
                       )}
                     </div>
                   </div>
 
-                  {/* Progress indicator per module */}
-                  <div className="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                    <span>
-                      {hasSlides
-                        ? `${moduleMastered} из ${moduleSlides.length} препаратов освоено`
-                        : 'Материалы формируются'}
-                    </span>
-                    {hasSlides && (
-                      <span className="font-medium text-slate-700">
-                        {Math.round((moduleMastered / moduleSlides.length) * 100)}%
-                      </span>
-                    )}
-                  </div>
-                </div>
+                  {/* Bottom Module Progress Bar */}
+                  {hasSlides && (
+                    <div className="space-y-1.5 pt-1">
+                      <div className="flex items-center justify-between text-[11px] text-slate-400">
+                        <span>Прогресс изучения</span>
+                        <span className="font-semibold text-slate-700">
+                          {modMastered}/{modSlides.length} ({modPercent}%)
+                        </span>
+                      </div>
+                      <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden">
+                        <div
+                          className="h-full bg-slate-900 rounded-full transition-all duration-500"
+                          style={{ width: `${Math.max(4, modPercent)}%` }}
+                        />
+                      </div>
+                    </div>
+                  )}
+                </motion.div>
               );
             })}
           </div>
