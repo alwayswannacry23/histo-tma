@@ -27,7 +27,7 @@ export const CheatSheetsScreen: React.FC<CheatSheetsScreenProps> = ({
   modules,
   onSelectSlideForTraining,
 }) => {
-  const { hapticFeedback } = useTelegram();
+  const { hapticFeedback, openLink } = useTelegram();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedModuleId, setSelectedModuleId] = useState<string | null>(null);
   const [expandedSlideId, setExpandedSlideId] = useState<string | null>(slides[0]?.id || null);
@@ -342,17 +342,21 @@ export const CheatSheetsScreen: React.FC<CheatSheetsScreenProps> = ({
                     <button
                       onClick={() => {
                         hapticFeedback.impactOccurred('medium');
-                        window.open(
+                        const url =
+                          slide.youtubeTimestampUrl ||
                           `https://www.youtube.com/results?search_query=${encodeURIComponent(
                             videoQuery
-                          )}`,
-                          '_blank'
-                        );
+                          )}`;
+                        openLink(url);
                       }}
-                      className="w-full py-2.5 px-3.5 rounded-xl bg-red-50 hover:bg-red-100 text-red-700 text-xs font-bold transition-all flex items-center justify-center gap-2 active:scale-98"
+                      className="w-full py-2.5 px-3.5 rounded-xl bg-red-500/10 hover:bg-red-500/15 text-red-600 dark:text-red-400 text-xs font-bold transition-all flex items-center justify-center gap-2 active:scale-98 border border-red-500/20"
                     >
-                      <PlayCircle className="w-4 h-4 text-red-600" />
-                      <span>Смотреть разбор на YouTube</span>
+                      <PlayCircle className="w-4 h-4 text-red-600 dark:text-red-400" />
+                      <span>
+                        {slide.youtubeTimestampUrl
+                          ? 'Смотреть разбор на YouTube (с таймкодом)'
+                          : 'Смотреть разбор на YouTube'}
+                      </span>
                     </button>
                   </div>
                 )}

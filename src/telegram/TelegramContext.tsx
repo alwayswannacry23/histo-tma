@@ -20,6 +20,10 @@ interface TelegramContextValue {
     notificationOccurred: (type: 'error' | 'success' | 'warning') => void;
     selectionChanged: () => void;
   };
+  backButton: {
+    show: (callback: () => void) => void;
+    hide: () => void;
+  };
   expand: () => void;
   close: () => void;
   openLink: (url: string) => void;
@@ -85,11 +89,54 @@ export const TelegramProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       } catch (e) {
         console.warn('Could not set TG header color', e);
       }
+
+      // Synchronize Telegram safe areas with CSS variables for iOS devices
+      const updateSafeAreas = () => {
+        if (tg.contentSafeAreaInset?.top !== undefined) {
+          const topInset = Math.max(56, tg.contentSafeAreaInset.top);
+          document.documentElement.style.setProperty(
+            '--tg-content-safe-area-inset-top',
+            `${topInset}px`
+          );
+        }
+        if (tg.safeAreaInset?.top !== undefined) {
+          document.documentElement.style.setProperty(
+            '--tg-safe-area-inset-top',
+            `${tg.safeAreaInset.top}px`
+          );
+        }
+      };
+
+      updateSafeAreas();
+      try {
+        tg.onEvent?.('contentSafeAreaChanged', updateSafeAreas);
+        tg.onEvent?.('safeAreaChanged', updateSafeAreas);
+      } catch {
+        // ignore
+      }
     } else {
       // Browser fallback mode
       console.log('Running in browser development mode with mock Telegram user:', defaultMockUser);
     }
   }, []);
+
+  const backButton = {
+    show: (callback: () => void) => {
+      const tg = (window as unknown as { Telegram?: { WebApp?: any } }).Telegram?.WebApp;
+      if (tg?.BackButton) {
+        tg.BackButton.show();
+        // Remove previous callbacks to prevent stacking
+        tg.BackButton.offClick?.(callback);
+        tg.BackButton.onClick(callback);
+      }
+    },
+    hide: () => {
+      const tg = (window as unknown as { Telegram?: { WebApp?: any } }).Telegram?.WebApp;
+      if (tg?.BackButton) {
+        tg.BackButton.hide();
+      }
+    },
+  };
 
   const hapticFeedback = {
     impactOccurred: (style: 'light' | 'medium' | 'heavy' | 'rigid' | 'soft') => {
@@ -190,6 +237,7 @@ export const TelegramProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         isTelegram,
         themeParams,
         hapticFeedback,
+        backButton,
         expand,
         close,
         openLink,

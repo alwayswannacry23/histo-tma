@@ -21,7 +21,7 @@
   --tg-color-text: #0F172A;
   --tg-color-hint: #64748B;
   --tg-color-link: #4F46E5;
-  --tg-content-safe-area-inset-top: 0px;
+  --tg-content-safe-area-inset-top: 56px;
   --tg-safe-area-inset-top: 0px;
 }
 
@@ -71,18 +71,18 @@ html, body {
 
 .safe-pt {
   padding-top: max(
-    var(--tg-content-safe-area-inset-top, 0px),
+    var(--tg-content-safe-area-inset-top, 56px),
     var(--tg-safe-area-inset-top, 0px),
     env(safe-area-inset-top, 0px),
-    54px
+    56px
   );
 }
 
 .safe-pt-modal {
   padding-top: max(
-    var(--tg-content-safe-area-inset-top, 0px),
+    var(--tg-content-safe-area-inset-top, 56px),
     var(--tg-safe-area-inset-top, 0px),
     env(safe-area-inset-top, 0px),
-    48px
+    56px
   );
 }

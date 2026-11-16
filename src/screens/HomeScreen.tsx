@@ -44,6 +44,16 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   // Custom module style metadata matching prompt requirements
   const getModuleVisuals = (id: string) => {
     switch (id) {
+      case 'mod_general_1':
+        return {
+          icon: Layers,
+          boxClass: 'bg-indigo-500/10 text-indigo-600 dark:text-indigo-400',
+        };
+      case 'mod_general_2':
+        return {
+          icon: Flame,
+          boxClass: 'bg-rose-500/10 text-rose-600 dark:text-rose-400',
+        };
       case 'mod_epithelium':
         return {
           icon: Layers,

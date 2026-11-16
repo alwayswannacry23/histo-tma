@@ -42,6 +42,7 @@ export interface Slide {
   clinical_note?: string;
   differential_diagnosis?: string;
   video_hint_query?: string;
+  youtubeTimestampUrl?: string;
   // Optional convenience aliases
   examNumber?: number;
   moduleId?: string;

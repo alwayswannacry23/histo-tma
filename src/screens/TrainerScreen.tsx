@@ -37,7 +37,7 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
   onRecordReview,
   onClose,
 }) => {
-  const { hapticFeedback } = useTelegram();
+  const { hapticFeedback, backButton, openLink } = useTelegram();
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showAnnotations, setShowAnnotations] = useState(false);
@@ -45,6 +45,18 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
   const [selectedQuizOption, setSelectedQuizOption] = useState<string | null>(null);
   const [sessionCompleted, setSessionCompleted] = useState(false);
   const [trainerMode, setTrainerMode] = useState<'quiz' | 'flashcard'>('quiz');
+  const [currentZoomScale, setCurrentZoomScale] = useState(1);
+
+  useEffect(() => {
+    backButton.show(onClose);
+    return () => {
+      backButton.hide();
+    };
+  }, [onClose]);
+
+  useEffect(() => {
+    setCurrentZoomScale(1);
+  }, [currentIndex]);
 
   const [sessionStats, setSessionStats] = useState({
     know: 0,
@@ -193,8 +205,10 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
 
   const handleOpenYoutube = () => {
     hapticFeedback.impactOccurred('medium');
-    const url = `https://www.youtube.com/results?search_query=${encodeURIComponent(videoQuery)}`;
-    window.open(url, '_blank');
+    const url =
+      currentSlide.youtubeTimestampUrl ||
+      `https://www.youtube.com/results?search_query=${encodeURIComponent(videoQuery)}`;
+    openLink(url);
   };
 
   const imageSrc = currentSlide.image_clean_url || currentSlide.imageUrl || '';
@@ -202,7 +216,7 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
   return (
     <div className="min-h-screen bg-[var(--bg-page)] text-[var(--text-primary)] flex flex-col safe-pt transition-colors duration-200">
       {/* Top Header Bar (Safe area aware, avoiding native Telegram iOS button collision) */}
-      <header className="px-4 pt-1 pb-2 flex items-center justify-between sticky top-0 z-30 bg-[var(--bg-page)]/95 backdrop-blur-md">
+      <header className="px-4 pt-1.5 pb-2 flex items-center justify-between sticky top-0 z-30 bg-[var(--bg-page)]/95 backdrop-blur-md">
         <div className="flex items-center gap-2.5">
           {/* Always visible Exit button back to Home */}
           <button
@@ -210,11 +224,11 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
               hapticFeedback.impactOccurred('light');
               onClose();
             }}
-            className="h-8 px-2.5 rounded-full bg-[var(--bg-card)] text-[var(--text-primary)] shadow-xs flex items-center gap-1.5 text-xs font-bold transition-all active:scale-95 shrink-0 border border-[var(--border-subtle)]"
-            title="Выйти в меню"
+            className="h-9 px-3 rounded-full bg-[var(--bg-card)] hover:bg-[var(--bg-card-secondary)] text-[var(--text-primary)] shadow-xs flex items-center gap-1.5 text-xs font-bold transition-all active:scale-95 shrink-0 border border-[var(--border-subtle)]"
+            title="Назад на главный экран"
           >
-            <ArrowLeft strokeWidth={2.2} className="w-3.5 h-3.5" />
-            <span>Выйти</span>
+            <ArrowLeft strokeWidth={2.4} className="w-4 h-4 text-[var(--accent-primary)]" />
+            <span>Назад</span>
           </button>
 
           <div>
@@ -268,6 +282,9 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
             maxScale={4.5}
             centerOnInit
             wheel={{ step: 0.1 }}
+            onTransformed={(_, state) => {
+              setCurrentZoomScale(state.scale);
+            }}
           >
             {({ zoomIn, zoomOut, resetTransform }) => (
               <>
@@ -309,7 +326,7 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
                     onClick={handleToggleAnnotations}
                     className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold transition-all shadow-lg active:scale-95 border-0 backdrop-blur-md ${
                       showAnnotations
-                        ? 'bg-indigo-600 text-white shadow-indigo-600/40'
+                        ? 'bg-[var(--accent-primary)] text-white shadow-[var(--accent-shadow)]'
                         : 'bg-white/90 text-slate-800 hover:bg-white'
                     }`}
                   >
@@ -355,8 +372,10 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
                             style={{
                               left: `${layer.pin_x}%`,
                               top: `${layer.pin_y}%`,
+                              transform: `translate(-50%, -50%) scale(${1 / Math.max(1, currentZoomScale)})`,
+                              transformOrigin: 'center center',
                             }}
-                            className="absolute -translate-x-1/2 -translate-y-1/2 pointer-events-auto z-30"
+                            className="absolute pointer-events-auto z-30"
                           >
                             <span
                               className="absolute -inset-1 rounded-full animate-ping opacity-35"
@@ -368,7 +387,7 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
                             >
                               {layer.number}
                             </div>
-                            <div className="absolute top-6.5 left-1/2 -translate-x-1/2 bg-black/85 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full whitespace-nowrap shadow-sm">
+                            <div className="absolute top-6.5 left-1/2 -translate-x-1/2 bg-black/85 text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full whitespace-nowrap shadow-sm pointer-events-none">
                               {layer.short_name}
                             </div>
                           </div>

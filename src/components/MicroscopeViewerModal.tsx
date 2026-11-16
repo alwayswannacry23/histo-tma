@@ -49,13 +49,14 @@ export const MicroscopeViewerModal: React.FC<MicroscopeViewerModalProps> = ({
   onClose,
   onStartQuiz,
 }) => {
-  const { hapticFeedback } = useTelegram();
+  const { hapticFeedback, backButton, openLink } = useTelegram();
 
   // Annotations state (can be edited by admin)
   const [annotations, setAnnotations] = useState<LayerAnnotation[]>([]);
   const [showAnnotations, setShowAnnotations] = useState(true);
   const [selectedLayer, setSelectedLayer] = useState<LayerAnnotation | null>(null);
   const [showSlideInfo, setShowSlideInfo] = useState(false);
+  const [currentZoomScale, setCurrentZoomScale] = useState(1);
 
   // Admin Mode state
   const [isAdminMode, setIsAdminMode] = useState(false);
@@ -78,8 +79,19 @@ export const MicroscopeViewerModal: React.FC<MicroscopeViewerModalProps> = ({
   useEffect(() => {
     if (slide) {
       setAnnotations(slide.layer_annotations ? [...slide.layer_annotations] : []);
+      setCurrentZoomScale(1);
     }
   }, [slide]);
+
+  // Hook into Telegram native back button
+  useEffect(() => {
+    if (isOpen) {
+      backButton.show(handleClose);
+      return () => {
+        backButton.hide();
+      };
+    }
+  }, [isOpen]);
 
   useEffect(() => {
     // Check ?admin=1 query param
@@ -360,15 +372,35 @@ export const MicroscopeViewerModal: React.FC<MicroscopeViewerModalProps> = ({
         </div>
 
         {/* Action Controls */}
-        <div className="flex items-center gap-2 shrink-0">
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+          {/* YouTube Video Breakdown Link */}
+          {(slide.youtubeTimestampUrl || slide.videoHintQuery) && (
+            <button
+              onClick={() => {
+                hapticFeedback.impactOccurred('medium');
+                const url =
+                  slide.youtubeTimestampUrl ||
+                  `https://www.youtube.com/results?search_query=${encodeURIComponent(
+                    slide.videoHintQuery || slide.title
+                  )}`;
+                openLink(url);
+              }}
+              className="px-2.5 sm:px-3 py-1.5 rounded-full text-xs font-bold bg-red-600/20 text-red-300 hover:bg-red-600/30 transition-all flex items-center gap-1.5 active:scale-95 border border-red-500/30"
+              title="Смотреть видеоразбор на YouTube"
+            >
+              <PlayCircle strokeWidth={1.8} className="w-3.5 h-3.5 text-red-400" />
+              <span className="hidden sm:inline">Видео</span>
+            </button>
+          )}
+
           <button
             onClick={() => {
               hapticFeedback.impactOccurred('light');
               setShowSlideInfo((prev) => !prev);
             }}
-            className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95 ${
+            className={`px-2.5 sm:px-3 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95 ${
               showSlideInfo
-                ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/40'
+                ? 'bg-[var(--accent-primary)] text-white shadow-lg shadow-[var(--accent-shadow)]'
                 : 'bg-white/10 text-white/80 hover:bg-white/20'
             }`}
             title="Разбор и дифдиагноз"
@@ -379,9 +411,9 @@ export const MicroscopeViewerModal: React.FC<MicroscopeViewerModalProps> = ({
 
           <button
             onClick={handleToggleAnnotations}
-            className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95 ${
+            className={`px-2.5 sm:px-3 py-1.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95 ${
               showAnnotations
-                ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/40'
+                ? 'bg-[var(--accent-primary)] text-white shadow-lg shadow-[var(--accent-shadow)]'
                 : 'bg-white/10 text-white/80 hover:bg-white/20'
             }`}
           >
@@ -424,6 +456,9 @@ export const MicroscopeViewerModal: React.FC<MicroscopeViewerModalProps> = ({
           disabled={isPlacingPin || draggingPinId !== null}
           wheel={{ step: 0.15 }}
           doubleClick={{ mode: 'zoomIn', step: 0.7 }}
+          onTransformed={(_, state) => {
+            setCurrentZoomScale(state.scale);
+          }}
         >
           {({ zoomIn, zoomOut, resetTransform, setTransform }) => (
             <>
@@ -525,10 +560,12 @@ export const MicroscopeViewerModal: React.FC<MicroscopeViewerModalProps> = ({
                             style={{
                               left: `${layer.pin_x}%`,
                               top: `${layer.pin_y}%`,
+                              transform: `translate(-50%, -50%) scale(${1 / Math.max(0.7, currentZoomScale)})`,
+                              transformOrigin: 'center center',
                             }}
                             onPointerDown={(e) => handlePinPointerDown(e, layer)}
                             onClick={(e) => handlePinClick(e, layer)}
-                            className={`absolute -translate-x-1/2 -translate-y-1/2 pointer-events-auto cursor-pointer z-30 group select-none ${
+                            className={`absolute pointer-events-auto cursor-pointer z-30 group select-none ${
                               isDragging ? 'z-40 scale-125' : ''
                             }`}
                           >
@@ -834,7 +871,7 @@ export const MicroscopeViewerModal: React.FC<MicroscopeViewerModalProps> = ({
                   <button
                     type="button"
                     onClick={handleSavePin}
-                    className="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-xs font-bold text-white transition-colors shadow-lg shadow-indigo-600/30"
+                    className="px-5 py-2.5 rounded-xl bg-[var(--accent-primary)] hover:bg-[var(--accent-hover)] text-xs font-bold text-white transition-colors shadow-lg shadow-[var(--accent-shadow)]"
                   >
                     Сохранить
                   </button>
@@ -890,7 +927,7 @@ export const MicroscopeViewerModal: React.FC<MicroscopeViewerModalProps> = ({
               className={`px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 active:scale-95 shadow-lg ${
                 copied
                   ? 'bg-emerald-500 text-white shadow-emerald-500/30'
-                  : 'bg-indigo-600 hover:bg-indigo-700 text-white shadow-indigo-600/30'
+                  : 'bg-[var(--accent-primary)] hover:bg-[var(--accent-hover)] text-white shadow-[var(--accent-shadow)]'
               }`}
             >
               {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}

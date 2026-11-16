@@ -40,7 +40,7 @@ export const storageService = {
       }
     }
     if (moduleId) {
-      return MOCK_SLIDES.filter(s => s.module_id === moduleId);
+      return MOCK_SLIDES.filter((s: Slide) => (s.module_id || s.moduleId) === moduleId);
     }
     return MOCK_SLIDES;
   },
