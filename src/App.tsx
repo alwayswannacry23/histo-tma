@@ -133,6 +133,7 @@ export const App: React.FC = () => {
       {currentTab === 'trainer' && (
         <TrainerScreen
           slides={activeTrainerSlides.length > 0 ? activeTrainerSlides : slides}
+          allSlides={slides}
           sessionTitle={trainerSessionTitle}
           onClose={() => setCurrentTab('home')}
           onRecordReview={handleRecordReview}

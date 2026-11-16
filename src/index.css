@@ -3,17 +3,17 @@
 @tailwind utilities;
 
 :root {
-  --tg-color-bg: #F4F5F7;
+  --tg-color-bg: #F2F4F7;
   --tg-color-secondary-bg: #FFFFFF;
   --tg-color-text: #0F172A;
   --tg-color-hint: #64748B;
-  --tg-color-link: #2563EB;
+  --tg-color-link: #4F46E5;
 }
 
 html, body {
   margin: 0;
   padding: 0;
-  background-color: #F4F5F7;
+  background-color: #F2F4F7;
   color: #0F172A;
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", Roboto, sans-serif;
   -webkit-font-smoothing: antialiased;

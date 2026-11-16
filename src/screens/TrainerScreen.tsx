@@ -1,98 +1,122 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import {
-  TransformWrapper,
-  TransformComponent,
-} from 'react-zoom-pan-pinch';
-import {
   X,
   Eye,
   EyeOff,
   ZoomIn,
   ZoomOut,
   RotateCcw,
+  Sparkles,
+  Layers,
+  HelpCircle,
   CheckCircle2,
   AlertCircle,
-  HelpCircle,
-  Layers,
-  Sparkles,
   BookOpen,
+  ArrowRight,
 } from 'lucide-react';
+import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import { Slide, ReviewRating } from '../types';
 import { useTelegram } from '../telegram/TelegramContext';
 
 interface TrainerScreenProps {
   slides: Slide[];
-  sessionTitle?: string;
-  onClose: () => void;
+  allSlides?: Slide[];
+  sessionTitle: string;
   onRecordReview: (slideId: string, rating: ReviewRating) => Promise<void>;
+  onClose: () => void;
 }
 
 export const TrainerScreen: React.FC<TrainerScreenProps> = ({
   slides,
-  sessionTitle = 'Тренажер препаратов',
-  onClose,
+  allSlides = slides,
+  sessionTitle,
   onRecordReview,
+  onClose,
 }) => {
   const { hapticFeedback } = useTelegram();
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isAnswerRevealed, setIsAnswerRevealed] = useState(false);
   const [showAnnotations, setShowAnnotations] = useState(false);
+  const [isAnswerRevealed, setIsAnswerRevealed] = useState(false);
   const [selectedQuizOption, setSelectedQuizOption] = useState<string | null>(null);
-  const [trainerMode, setTrainerMode] = useState<'quiz' | 'flashcard'>('quiz');
   const [sessionCompleted, setSessionCompleted] = useState(false);
-  const [sessionStats, setSessionStats] = useState({ know: 0, doubt: 0, again: 0 });
+  const [trainerMode, setTrainerMode] = useState<'quiz' | 'flashcard'>('quiz');
+
+  const [sessionStats, setSessionStats] = useState({
+    know: 0,
+    doubt: 0,
+    again: 0,
+  });
 
   const currentSlide = slides[currentIndex];
 
+  // Generate 4 randomized quiz distractors
   const quizOptions = useMemo(() => {
     if (!currentSlide) return [];
-    const options = [currentSlide.title, ...currentSlide.quiz_distractors];
-    for (let i = options.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [options[i], options[j]] = [options[j], options[i]];
-    }
-    return options;
-  }, [currentSlide]);
+    const pool = new Set<string>();
+    pool.add(currentSlide.title);
 
+    currentSlide.quiz_distractors.forEach((d) => pool.add(d));
+
+    if (pool.size < 4) {
+      allSlides
+        .filter((s) => s.id !== currentSlide.id)
+        .forEach((s) => {
+          if (pool.size < 4) pool.add(s.title);
+        });
+    }
+
+    const arr = Array.from(pool).slice(0, 4);
+    // Deterministic shuffle per slide id
+    return arr.sort((a, b) => {
+      const hashA = (a.length * 31 + a.charCodeAt(0)) % 100;
+      const hashB = (b.length * 31 + b.charCodeAt(0)) % 100;
+      return hashA - hashB;
+    });
+  }, [currentSlide, allSlides]);
+
+  // Reset states on slide index change
   useEffect(() => {
-    setIsAnswerRevealed(false);
     setShowAnnotations(false);
+    setIsAnswerRevealed(false);
     setSelectedQuizOption(null);
   }, [currentIndex]);
 
   if (!currentSlide || sessionCompleted) {
     return (
-      <div className="min-h-screen bg-[#F8F9FA] flex flex-col items-center justify-center p-6 text-center safe-pt safe-pb">
-        <div className="w-full max-w-sm bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs flex flex-col items-center">
-          <div className="w-14 h-14 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mb-3">
-            <CheckCircle2 strokeWidth={1.5} className="w-7 h-7" />
+      <div className="min-h-screen bg-[#F2F4F7] flex flex-col items-center justify-center p-6 text-center safe-pt pb-24">
+        <div className="bg-white rounded-[24px] p-6 max-w-sm w-full shadow-[0_2px_12px_rgba(15,23,42,0.04)] border-0 space-y-5">
+          <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto shadow-sm">
+            <CheckCircle2 className="w-8 h-8" />
           </div>
-          <h2 className="text-xl font-bold text-slate-900 tracking-tight mb-1">
-            Сессия завершена
-          </h2>
-          <p className="text-xs text-slate-500 mb-5">
-            Разобрано препаратов: {slides.length}
-          </p>
 
-          <div className="w-full grid grid-cols-3 gap-2 mb-6">
-            <div className="bg-slate-50 p-3 rounded-xl border border-slate-100 text-center">
-              <div className="text-lg font-bold text-emerald-700">{sessionStats.know}</div>
-              <div className="text-[11px] text-slate-500 mt-0.5">Знаю</div>
+          <div>
+            <h2 className="text-2xl font-extrabold text-slate-900 tracking-tight">
+              Тренировка завершена!
+            </h2>
+            <p className="text-xs text-slate-500 mt-1">
+              {sessionTitle} — все препараты пройдены
+            </p>
+          </div>
+
+          <div className="grid grid-cols-3 gap-2.5">
+            <div className="bg-emerald-50 p-3 rounded-2xl text-center">
+              <div className="text-lg font-black text-emerald-700">{sessionStats.know}</div>
+              <div className="text-[11px] text-emerald-600/90 font-medium mt-0.5">Знаю</div>
             </div>
-            <div className="bg-slate-50 p-3 rounded-xl border border-slate-100 text-center">
-              <div className="text-lg font-bold text-amber-700">{sessionStats.doubt}</div>
-              <div className="text-[11px] text-slate-500 mt-0.5">Сомнение</div>
+            <div className="bg-amber-50 p-3 rounded-2xl text-center">
+              <div className="text-lg font-black text-amber-700">{sessionStats.doubt}</div>
+              <div className="text-[11px] text-amber-600/90 font-medium mt-0.5">Сомнение</div>
             </div>
-            <div className="bg-slate-50 p-3 rounded-xl border border-slate-100 text-center">
-              <div className="text-lg font-bold text-rose-700">{sessionStats.again}</div>
-              <div className="text-[11px] text-slate-500 mt-0.5">Повторить</div>
+            <div className="bg-rose-50 p-3 rounded-2xl text-center">
+              <div className="text-lg font-black text-rose-700">{sessionStats.again}</div>
+              <div className="text-[11px] text-rose-600/90 font-medium mt-0.5">Повторить</div>
             </div>
           </div>
 
           <button
             onClick={onClose}
-            className="w-full py-3.5 bg-slate-900 text-white rounded-xl font-semibold text-sm hover:bg-slate-800 transition-colors shadow-xs active:scale-[0.99]"
+            className="w-full py-4 bg-indigo-600 text-white rounded-[22px] font-bold text-sm hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-600/20 active:scale-[0.98]"
           >
             Вернуться к разделам
           </button>
@@ -108,7 +132,6 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
 
   const handleSelectQuizOption = (option: string) => {
     if (selectedQuizOption) return;
-    hapticFeedback.impactOccurred('light');
     setSelectedQuizOption(option);
     setIsAnswerRevealed(true);
 
@@ -145,39 +168,40 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
     : currentSlide.image_clean_url;
 
   return (
-    <div className="min-h-screen bg-[#F8F9FA] flex flex-col pb-36 safe-pt">
+    <div className="min-h-screen bg-[#F2F4F7] flex flex-col pb-36 safe-pt">
       {/* Top Header Bar */}
-      <header className="px-4 py-2.5 flex items-center justify-between sticky top-0 z-30 bg-[#F8F9FA]/95 backdrop-blur-md border-b border-slate-200/60">
-        <div className="flex items-center gap-2.5">
+      <header className="px-5 py-3 flex items-center justify-between sticky top-0 z-30 bg-[#F2F4F7]/95 backdrop-blur-md">
+        <div className="flex items-center gap-3">
           <button
             onClick={() => {
               hapticFeedback.impactOccurred('light');
               onClose();
             }}
-            className="w-8 h-8 rounded-lg bg-white border border-slate-200/80 flex items-center justify-center text-slate-500 hover:text-slate-900 transition-colors active:scale-95"
+            className="w-9 h-9 rounded-full bg-white shadow-xs flex items-center justify-center text-slate-500 hover:text-slate-900 transition-all active:scale-95"
           >
-            <X strokeWidth={1.5} className="w-4 h-4" />
+            <X strokeWidth={2} className="w-4 h-4" />
           </button>
+
           <div>
             <div className="text-xs font-bold text-slate-900 leading-tight">
-              {currentIndex + 1} из {slides.length}
+              Срез {currentIndex + 1} из {slides.length}
             </div>
-            <div className="text-[11px] text-slate-400 truncate max-w-[160px]">
+            <div className="text-[11px] text-slate-400 font-medium truncate max-w-[150px]">
               {sessionTitle}
             </div>
           </div>
         </div>
 
-        {/* Mode Switcher */}
-        <div className="flex items-center bg-white border border-slate-200/80 p-0.5 rounded-lg text-xs">
+        {/* Mode Switcher Pill */}
+        <div className="flex items-center bg-white shadow-xs p-1 rounded-full text-xs">
           <button
             onClick={() => {
               hapticFeedback.selectionChanged();
               setTrainerMode('quiz');
             }}
-            className={`px-2.5 py-1 rounded-md transition-colors ${
+            className={`px-3 py-1 rounded-full transition-all font-semibold ${
               trainerMode === 'quiz'
-                ? 'bg-slate-900 text-white font-semibold'
+                ? 'bg-indigo-600 text-white shadow-xs'
                 : 'text-slate-500 hover:text-slate-800'
             }`}
           >
@@ -188,9 +212,9 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
               hapticFeedback.selectionChanged();
               setTrainerMode('flashcard');
             }}
-            className={`px-2.5 py-1 rounded-md transition-colors ${
+            className={`px-3 py-1 rounded-full transition-all font-semibold ${
               trainerMode === 'flashcard'
-                ? 'bg-slate-900 text-white font-semibold'
+                ? 'bg-indigo-600 text-white shadow-xs'
                 : 'text-slate-500 hover:text-slate-800'
             }`}
           >
@@ -200,130 +224,128 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
       </header>
 
       {/* Main Study Container */}
-      <div className="px-4 py-3 space-y-3.5 max-w-lg mx-auto w-full flex-1">
-        {/* Microscope Stage Viewport */}
-        <div className="rounded-2xl bg-white border border-slate-200/80 overflow-hidden shadow-xs">
-          {/* Top Info Bar of the Stage */}
-          <div className="px-3.5 py-2 border-b border-slate-100 flex items-center justify-between text-xs">
-            <div className="flex items-center gap-2">
-              <span className="font-semibold text-slate-700">{currentSlide.stain}</span>
-              <span className="text-slate-300">•</span>
-              <span className="text-slate-500">{currentSlide.magnification}</span>
-            </div>
+      <div className="px-4 py-2 space-y-3.5 max-w-lg mx-auto w-full flex-1">
+        {/* Microscope Stage Viewport (46vh, rounded-24, deep dark lens #090D16) */}
+        <div className="rounded-[24px] bg-[#090D16] overflow-hidden shadow-lg relative flex flex-col h-[46vh] min-h-[300px] border-0">
+          <TransformWrapper
+            initialScale={1}
+            minScale={0.8}
+            maxScale={4.5}
+            centerOnInit
+            wheel={{ step: 0.1 }}
+          >
+            {({ zoomIn, zoomOut, resetTransform }) => (
+              <>
+                {/* Floating Translucent Zoom Controls (top-right over photo) */}
+                <div className="absolute top-3 right-3 z-20 flex items-center gap-1 bg-black/40 backdrop-blur-md p-1 rounded-full border border-white/10 shadow-md">
+                  <button
+                    onClick={() => zoomIn(0.3)}
+                    className="w-8 h-8 flex items-center justify-center text-white/90 hover:text-white rounded-full hover:bg-white/20 active:scale-95 transition-all"
+                    title="Приблизить"
+                  >
+                    <ZoomIn strokeWidth={1.75} className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={() => zoomOut(0.3)}
+                    className="w-8 h-8 flex items-center justify-center text-white/90 hover:text-white rounded-full hover:bg-white/20 active:scale-95 transition-all"
+                    title="Отдалить"
+                  >
+                    <ZoomOut strokeWidth={1.75} className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={() => resetTransform()}
+                    className="w-8 h-8 flex items-center justify-center text-white/90 hover:text-white rounded-full hover:bg-white/20 active:scale-95 transition-all"
+                    title="Сброс"
+                  >
+                    <RotateCcw strokeWidth={1.75} className="w-4 h-4" />
+                  </button>
+                </div>
 
-            {/* Annotation Switcher Button */}
-            <button
-              onClick={handleToggleAnnotations}
-              className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold transition-colors ${
-                showAnnotations
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
-              }`}
-            >
-              {showAnnotations ? (
-                <>
-                  <EyeOff strokeWidth={1.5} className="w-3.5 h-3.5" />
-                  <span>Скрыть метки</span>
-                </>
-              ) : (
-                <>
-                  <Eye strokeWidth={1.5} className="w-3.5 h-3.5" />
-                  <span>Обозначения</span>
-                </>
-              )}
-            </button>
-          </div>
+                {/* Top-left stain & magnification badge over photo */}
+                <div className="absolute top-3 left-3 z-20 flex items-center gap-1.5 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 text-white text-[11px] font-medium shadow-md">
+                  <span>{currentSlide.stain}</span>
+                  <span className="text-white/40">•</span>
+                  <span>{currentSlide.magnification}</span>
+                </div>
 
-          {/* Interactive Zoomable Slide Container */}
-          <div className="relative bg-[#0F172A] h-64 sm:h-72 w-full flex items-center justify-center select-none overflow-hidden">
-            <TransformWrapper
-              initialScale={1}
-              minScale={0.8}
-              maxScale={4}
-              centerOnInit
-              wheel={{ step: 0.1 }}
-            >
-              {({ zoomIn, zoomOut, resetTransform }) => (
-                <>
-                  {/* Floating Zoom Controls */}
-                  <div className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1 bg-black/60 backdrop-blur-md p-1 rounded-lg border border-white/10">
-                    <button
-                      onClick={() => zoomIn(0.3)}
-                      className="p-1 text-white/80 hover:text-white rounded hover:bg-white/10"
-                      title="Приблизить"
-                    >
-                      <ZoomIn strokeWidth={1.5} className="w-3.5 h-3.5" />
-                    </button>
-                    <button
-                      onClick={() => zoomOut(0.3)}
-                      className="p-1 text-white/80 hover:text-white rounded hover:bg-white/10"
-                      title="Отдалить"
-                    >
-                      <ZoomOut strokeWidth={1.5} className="w-3.5 h-3.5" />
-                    </button>
-                    <button
-                      onClick={() => resetTransform()}
-                      className="p-1 text-white/80 hover:text-white rounded hover:bg-white/10"
-                      title="Сброс"
-                    >
-                      <RotateCcw strokeWidth={1.5} className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
+                {/* Floating Pill Toggle Button at bottom center of photo */}
+                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20">
+                  <button
+                    onClick={handleToggleAnnotations}
+                    className={`inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold transition-all shadow-lg active:scale-95 border-0 backdrop-blur-md ${
+                      showAnnotations
+                        ? 'bg-indigo-600 text-white shadow-indigo-600/40'
+                        : 'bg-white/90 text-slate-800 hover:bg-white'
+                    }`}
+                  >
+                    {showAnnotations ? (
+                      <>
+                        <EyeOff strokeWidth={1.75} className="w-3.5 h-3.5" />
+                        <span>Скрыть разметку</span>
+                      </>
+                    ) : (
+                      <>
+                        <Eye strokeWidth={1.75} className="w-3.5 h-3.5" />
+                        <span>Показать слои</span>
+                      </>
+                    )}
+                  </button>
+                </div>
 
-                  <div className="w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing">
-                    <TransformComponent
-                      wrapperClass="!w-full !h-full"
-                      contentClass="!w-full !h-full flex items-center justify-center"
-                    >
-                      <img
-                        src={currentImageUrl}
-                        alt={currentSlide.title}
-                        className="w-full h-full object-contain pointer-events-none"
-                      />
-                    </TransformComponent>
-                  </div>
-                </>
-              )}
-            </TransformWrapper>
-          </div>
-
-          <div className="px-3.5 py-1.5 bg-slate-50 text-[11px] text-slate-400 flex items-center justify-between">
-            <span>Зум двумя пальцами по экрану</span>
-            <span>Интерактивный срез</span>
-          </div>
+                {/* Slide Viewport Canvas */}
+                <div className="w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing select-none overflow-hidden">
+                  <TransformComponent
+                    wrapperClass="!w-full !h-full"
+                    contentClass="!w-full !h-full flex items-center justify-center"
+                  >
+                    <img
+                      src={currentImageUrl}
+                      alt={currentSlide.title}
+                      className="w-full h-full object-contain pointer-events-none transition-opacity duration-300"
+                    />
+                  </TransformComponent>
+                </div>
+              </>
+            )}
+          </TransformWrapper>
         </div>
 
-        {/* Question & Options Area */}
+        {/* Question & Duolingo-style Answer Cards */}
         {!isAnswerRevealed ? (
           trainerMode === 'flashcard' ? (
-            <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs text-center space-y-3">
-              <p className="text-xs text-slate-500 leading-relaxed">
-                Изучите препарат, определите слои стенки и назовите орган
+            <div className="bg-white p-5 rounded-[24px] shadow-[0_2px_12px_rgba(15,23,42,0.04)] border-0 text-center space-y-3.5">
+              <p className="text-xs text-slate-500 leading-relaxed font-medium">
+                Изучите препарат в окуляре, сопоставьте слои стенки и назовите орган
               </p>
               <button
                 onClick={handleRevealAnswer}
-                className="w-full h-12 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-sm font-semibold transition-colors flex items-center justify-center gap-2 active:scale-[0.99]"
+                className="w-full py-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-[22px] text-sm font-bold transition-all flex items-center justify-center gap-2 active:scale-[0.98] shadow-lg shadow-indigo-600/20"
               >
-                <BookOpen strokeWidth={1.5} className="w-4 h-4" />
+                <BookOpen strokeWidth={1.75} className="w-4 h-4" />
                 <span>Показать ответ и разбор</span>
               </button>
             </div>
           ) : (
-            <div className="space-y-2">
-              <div className="text-xs font-semibold text-slate-600 px-0.5">
-                Выберите диагноз препарата:
+            <div className="space-y-2.5">
+              <div className="text-xs font-bold text-slate-500 px-1">
+                Выберите диагноз микропрепарата:
               </div>
-              <div className="grid grid-cols-1 gap-2">
+              <div className="grid grid-cols-1 gap-2.5">
                 {quizOptions.map((opt, i) => (
                   <button
                     key={i}
                     onClick={() => handleSelectQuizOption(opt)}
-                    className="w-full min-h-[50px] text-left px-4 py-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200/80 active:border-slate-300 transition-colors font-medium text-xs text-slate-800 flex items-center justify-between gap-2"
+                    className="w-full rounded-2xl bg-white py-3.5 px-4 shadow-[0_2px_10px_rgba(15,23,42,0.03)] border-2 border-transparent active:scale-[0.98] hover:shadow-md transition-all text-left flex items-center justify-between gap-3 group"
                   >
-                    <span className="leading-snug">{opt}</span>
-                    <span className="w-5 h-5 rounded-md bg-slate-100 flex items-center justify-center text-[11px] font-semibold text-slate-400 shrink-0">
-                      {String.fromCharCode(65 + i)}
-                    </span>
+                    <div className="flex items-center gap-3 min-w-0">
+                      <span className="w-7 h-7 rounded-full bg-slate-100 group-hover:bg-indigo-50 group-hover:text-indigo-600 flex items-center justify-center text-xs font-bold text-slate-600 shrink-0 transition-colors">
+                        {String.fromCharCode(65 + i)}
+                      </span>
+                      <span className="text-sm font-semibold text-slate-900 leading-snug truncate">
+                        {opt}
+                      </span>
+                    </div>
+                    <ArrowRight className="w-4 h-4 text-slate-300 opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
                   </button>
                 ))}
               </div>
@@ -331,28 +353,44 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
           )
         ) : (
           trainerMode === 'quiz' && (
-            <div className="space-y-1.5">
+            <div className="space-y-2">
               {quizOptions.map((opt, i) => {
                 const isCorrect = opt === currentSlide.title;
                 const isSelected = selectedQuizOption === opt;
-                let cardStyle = 'bg-white border-slate-200/60 text-slate-400 opacity-60';
+
+                let cardStyle =
+                  'bg-white/60 text-slate-400 opacity-50 border-2 border-transparent';
+                let badgeStyle = 'bg-slate-100 text-slate-400';
 
                 if (isCorrect) {
-                  cardStyle = 'bg-emerald-50 border-emerald-300 text-emerald-950 font-semibold';
+                  // Duolingo-style smooth emerald green flood
+                  cardStyle =
+                    'bg-emerald-500 text-white font-bold border-2 border-emerald-500 shadow-lg shadow-emerald-500/20';
+                  badgeStyle = 'bg-white/20 text-white';
                 } else if (isSelected && !isCorrect) {
-                  cardStyle = 'bg-rose-50 border-rose-300 text-rose-950 font-semibold';
+                  // Duolingo-style smooth coral red flood
+                  cardStyle =
+                    'bg-rose-500 text-white font-bold border-2 border-rose-500 shadow-lg shadow-rose-500/20';
+                  badgeStyle = 'bg-white/20 text-white';
                 }
 
                 return (
                   <div
                     key={i}
-                    className={`w-full min-h-[46px] text-left px-4 py-2.5 rounded-xl border transition-colors text-xs flex items-center justify-between gap-2 ${cardStyle}`}
+                    className={`w-full rounded-2xl py-3.5 px-4 transition-all duration-300 flex items-center justify-between gap-3 ${cardStyle}`}
                   >
-                    <span className="leading-snug">{opt}</span>
+                    <div className="flex items-center gap-3 min-w-0">
+                      <span
+                        className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold shrink-0 ${badgeStyle}`}
+                      >
+                        {String.fromCharCode(65 + i)}
+                      </span>
+                      <span className="text-sm leading-snug truncate">{opt}</span>
+                    </div>
                     {isCorrect ? (
-                      <CheckCircle2 strokeWidth={1.5} className="w-4 h-4 text-emerald-600 shrink-0" />
+                      <CheckCircle2 strokeWidth={2} className="w-5 h-5 text-white shrink-0" />
                     ) : isSelected ? (
-                      <AlertCircle strokeWidth={1.5} className="w-4 h-4 text-rose-500 shrink-0" />
+                      <AlertCircle strokeWidth={2} className="w-5 h-5 text-white shrink-0" />
                     ) : null}
                   </div>
                 );
@@ -361,22 +399,35 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
           )
         )}
 
-        {/* Structured Diagnostic Breakdown Card */}
+        {/* Explanatory Breakdown Card */}
         {isAnswerRevealed && (
-          <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs space-y-4">
-            <div>
-              <span className="text-[10px] font-semibold uppercase tracking-wider text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded-md">
-                Эталонный разбор
-              </span>
-              <h3 className="text-base font-bold text-slate-900 tracking-tight mt-1.5">
-                {currentSlide.title}
-              </h3>
+          <div className="bg-white rounded-[24px] p-5 shadow-[0_2px_12px_rgba(15,23,42,0.04)] border-0 space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <span className="text-[11px] font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3 py-1 rounded-full">
+                  Эталонный разбор
+                </span>
+                <h3 className="text-lg font-extrabold text-slate-900 tracking-tight mt-2">
+                  {currentSlide.title}
+                </h3>
+              </div>
+              {selectedQuizOption && (
+                <span
+                  className={`text-xs font-bold px-3 py-1 rounded-full ${
+                    selectedQuizOption === currentSlide.title
+                      ? 'bg-emerald-50 text-emerald-700'
+                      : 'bg-rose-50 text-rose-700'
+                  }`}
+                >
+                  {selectedQuizOption === currentSlide.title ? 'Верно! 🎉' : 'Ошибка 💡'}
+                </span>
+              )}
             </div>
 
             {/* Главный отличительный признак */}
-            <div className="bg-blue-50/70 p-3.5 rounded-xl border border-blue-100 space-y-1">
-              <div className="flex items-center gap-1.5 text-blue-800 text-xs font-bold">
-                <Sparkles strokeWidth={1.5} className="w-3.5 h-3.5 text-blue-600" />
+            <div className="bg-indigo-50/70 p-4 rounded-2xl space-y-1">
+              <div className="flex items-center gap-1.5 text-indigo-900 text-xs font-bold">
+                <Sparkles strokeWidth={1.75} className="w-4 h-4 text-indigo-600" />
                 <span>Главный отличительный признак</span>
               </div>
               <p className="text-xs text-slate-800 leading-relaxed font-medium">
@@ -386,22 +437,22 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
 
             {/* Слои и оболочки */}
             <div className="space-y-1">
-              <div className="flex items-center gap-1.5 text-slate-500 text-xs font-semibold">
-                <Layers strokeWidth={1.5} className="w-3.5 h-3.5" />
+              <div className="flex items-center gap-1.5 text-slate-500 text-xs font-bold px-0.5">
+                <Layers strokeWidth={1.75} className="w-3.5 h-3.5" />
                 <span>Оболочки и слои препарата:</span>
               </div>
-              <p className="text-xs text-slate-700 leading-relaxed bg-slate-50 p-3 rounded-xl">
+              <p className="text-xs text-slate-700 leading-relaxed bg-[#F8FAFC] p-3.5 rounded-2xl">
                 {currentSlide.exam_checklist.layers}
               </p>
             </div>
 
             {/* Ключевые клетки */}
             <div className="space-y-1">
-              <div className="flex items-center gap-1.5 text-slate-500 text-xs font-semibold">
-                <HelpCircle strokeWidth={1.5} className="w-3.5 h-3.5" />
+              <div className="flex items-center gap-1.5 text-slate-500 text-xs font-bold px-0.5">
+                <HelpCircle strokeWidth={1.75} className="w-3.5 h-3.5" />
                 <span>Ключевые клетки:</span>
               </div>
-              <p className="text-xs text-slate-700 leading-relaxed bg-slate-50 p-3 rounded-xl">
+              <p className="text-xs text-slate-700 leading-relaxed bg-[#F8FAFC] p-3.5 rounded-2xl">
                 {currentSlide.exam_checklist.key_cells}
               </p>
             </div>
@@ -409,36 +460,36 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
         )}
       </div>
 
-      {/* Docked Bottom Spaced Repetition Panel */}
+      {/* Docked Spaced Repetition Panel (Duolingo style 3 ratings) */}
       {isAnswerRevealed && (
-        <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200/80 p-3.5 safe-pb shadow-md">
-          <div className="max-w-md mx-auto space-y-1.5">
-            <div className="text-[11px] font-medium text-center text-slate-400">
-              Оцените степень запоминания
+        <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-xl border-t border-slate-100 p-4 safe-pb shadow-lg">
+          <div className="max-w-md mx-auto space-y-2">
+            <div className="text-[11px] font-bold text-center text-slate-400">
+              Оцените степень запоминания:
             </div>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-3 gap-2.5">
               <button
                 onClick={() => handleRating('again')}
-                className="py-3 px-2 rounded-xl bg-rose-50 hover:bg-rose-100 border border-rose-200/60 text-rose-900 text-xs font-semibold transition-colors text-center active:scale-98"
+                className="py-3 px-2 rounded-2xl bg-rose-50 hover:bg-rose-100 text-rose-800 text-xs font-bold transition-all text-center active:scale-95"
               >
                 <div>Не помню</div>
-                <div className="text-[10px] text-rose-600 font-normal">1 день</div>
+                <div className="text-[10px] text-rose-500 font-medium">1 день</div>
               </button>
 
               <button
                 onClick={() => handleRating('doubt')}
-                className="py-3 px-2 rounded-xl bg-amber-50 hover:bg-amber-100 border border-amber-200/60 text-amber-950 text-xs font-semibold transition-colors text-center active:scale-98"
+                className="py-3 px-2 rounded-2xl bg-amber-50 hover:bg-amber-100 text-amber-900 text-xs font-bold transition-all text-center active:scale-95"
               >
                 <div>Сомневаюсь</div>
-                <div className="text-[10px] text-amber-700 font-normal">3 дня</div>
+                <div className="text-[10px] text-amber-600 font-medium">3 дня</div>
               </button>
 
               <button
                 onClick={() => handleRating('know')}
-                className="py-3 px-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-200/60 text-emerald-950 text-xs font-semibold transition-colors text-center active:scale-98"
+                className="py-3 px-2 rounded-2xl bg-emerald-50 hover:bg-emerald-100 text-emerald-900 text-xs font-bold transition-all text-center active:scale-95"
               >
                 <div>Знаю</div>
-                <div className="text-[10px] text-emerald-700 font-normal">7+ дней</div>
+                <div className="text-[10px] text-emerald-600 font-medium">7+ дней</div>
               </button>
             </div>
           </div>

@@ -38,27 +38,27 @@ export const PaywallModal: React.FC<PaywallModalProps> = ({
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: '100%', opacity: 0 }}
           transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-          className="w-full max-w-md bg-white rounded-t-[32px] sm:rounded-3xl p-6 shadow-2xl overflow-hidden relative max-h-[90vh] overflow-y-auto"
+          className="w-full max-w-md bg-white rounded-t-[32px] sm:rounded-[32px] p-6 shadow-2xl overflow-hidden relative max-h-[90vh] overflow-y-auto"
         >
           {/* Close Button */}
           <button
             onClick={handleClose}
             className="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-400 hover:text-slate-700 transition-colors"
           >
-            <X strokeWidth={1.5} className="w-4 h-4" />
+            <X strokeWidth={2} className="w-4 h-4" />
           </button>
 
           {/* Icon Badge */}
-          <div className="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center mb-4">
-            <Lock strokeWidth={1.5} className="w-6 h-6" />
+          <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4">
+            <Lock strokeWidth={2} className="w-6 h-6" />
           </div>
 
           {/* Heading */}
-          <h2 className="text-xl font-bold text-slate-900 tracking-tight mb-1">
+          <h2 className="text-xl font-extrabold text-slate-900 tracking-tight mb-1">
             {title}
           </h2>
           {moduleName && (
-            <p className="text-xs font-semibold text-blue-600 mb-2">
+            <p className="text-xs font-bold text-indigo-600 mb-2">
               Раздел: {moduleName}
             </p>
           )}
@@ -67,63 +67,55 @@ export const PaywallModal: React.FC<PaywallModalProps> = ({
           </p>
 
           {/* Feature List */}
-          <div className="space-y-3 mb-5 bg-[#F4F5F7] p-4 rounded-2xl">
+          <div className="space-y-3 mb-5 bg-[#F8FAFC] p-4 rounded-2xl">
             <div className="flex items-start gap-3">
-              <CheckCircle2 strokeWidth={1.5} className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-              <span className="text-xs text-slate-700 leading-snug">
+              <CheckCircle2 strokeWidth={2} className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+              <span className="text-xs text-slate-700 leading-snug font-medium">
                 Все 50+ микропрепаратов с экзаменационным разбором
               </span>
             </div>
             <div className="flex items-start gap-3">
-              <CheckCircle2 strokeWidth={1.5} className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-              <span className="text-xs text-slate-700 leading-snug">
+              <CheckCircle2 strokeWidth={2} className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+              <span className="text-xs text-slate-700 leading-snug font-medium">
                 Аннотированные схемы с маркерами слоев и ключевых клеток
               </span>
             </div>
             <div className="flex items-start gap-3">
-              <CheckCircle2 strokeWidth={1.5} className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
-              <span className="text-xs text-slate-700 leading-snug">
+              <CheckCircle2 strokeWidth={2} className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+              <span className="text-xs text-slate-700 leading-snug font-medium">
                 Алгоритм интервального повторения и режим симуляции зачета
               </span>
             </div>
             <div className="flex items-start gap-3">
-              <ShieldCheck strokeWidth={1.5} className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
-              <span className="text-xs text-slate-700 leading-snug">
+              <ShieldCheck strokeWidth={2} className="w-4 h-4 text-indigo-600 shrink-0 mt-0.5" />
+              <span className="text-xs text-slate-700 leading-snug font-medium">
                 Бессрочный доступ на весь период сдачи сессии
               </span>
             </div>
           </div>
 
           {/* Price Box */}
-          <div className="bg-slate-900 text-white rounded-2xl p-4 mb-5 flex items-center justify-between shadow-md">
+          <div className="bg-indigo-600 text-white rounded-2xl p-4 mb-5 flex items-center justify-between shadow-lg shadow-indigo-600/20">
             <div>
-              <div className="text-[10px] uppercase font-bold text-amber-400 tracking-wider">
-                Тариф «Сессия PRO»
+              <div className="text-[10px] uppercase font-bold text-indigo-200 tracking-wider">
+                Специальное предложение
               </div>
-              <div className="text-lg font-bold text-white mt-0.5">
-                199 Telegram Stars <span className="text-xs font-normal text-slate-300">/ ~390 ₽</span>
+              <div className="text-xl font-black mt-0.5">
+                150 Telegram Stars <span className="text-xs font-normal text-indigo-200">/ навсегда</span>
               </div>
             </div>
-            <span className="inline-flex items-center gap-1 text-[11px] font-bold text-slate-900 bg-amber-300 px-2.5 py-1 rounded-full shadow-xs">
-              <Sparkles className="w-3 h-3 fill-slate-900" /> PRO
-            </span>
+            <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center">
+              <Sparkles className="w-4 h-4 text-amber-300" />
+            </div>
           </div>
 
-          {/* Action Buttons */}
-          <div className="space-y-2">
-            <button
-              onClick={handlePurchaseStub}
-              className="w-full py-3.5 px-4 bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm rounded-2xl transition-all shadow-md active:scale-[0.98]"
-            >
-              Разблокировать доступ
-            </button>
-            <button
-              onClick={handleClose}
-              className="w-full py-2.5 px-4 text-xs font-medium text-slate-400 hover:text-slate-700 transition-colors"
-            >
-              Вернуться назад
-            </button>
-          </div>
+          {/* CTA */}
+          <button
+            onClick={handlePurchaseStub}
+            className="w-full py-4 bg-indigo-600 hover:bg-indigo-700 active:scale-[0.98] text-white font-bold text-sm rounded-[22px] shadow-lg shadow-indigo-600/25 transition-all flex items-center justify-center gap-2"
+          >
+            <span>Оплатить через Stars</span>
+          </button>
         </motion.div>
       </div>
     </AnimatePresence>

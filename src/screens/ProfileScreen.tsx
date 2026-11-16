@@ -6,8 +6,9 @@ import {
   Sparkles,
   RotateCcw,
   Share2,
-  Lock,
   ChevronRight,
+  Flame,
+  Award,
 } from 'lucide-react';
 import { useTelegram } from '../telegram/TelegramContext';
 import { UserProgress, Slide } from '../types';
@@ -28,19 +29,30 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
   const { user, copyToClipboard, hapticFeedback } = useTelegram();
   const [copied, setCopied] = useState(false);
 
+  const totalSlides = slides.length;
   const masteredCount = slides.filter((s) => progress[s.id]?.status === 'mastered').length;
-  const reviewingCount = slides.filter((s) => progress[s.id]?.status === 'reviewing').length;
-  const learningCount = slides.filter((s) => progress[s.id]?.status === 'learning').length;
 
   const botUsername = import.meta.env.VITE_TELEGRAM_BOT_USERNAME || 'baza_med_bot';
   const referralLink = `https://t.me/${botUsername}?start=ref_${user.id}`;
 
   const handleCopyLink = async () => {
+    hapticFeedback.impactOccurred('light');
     const success = await copyToClipboard(referralLink);
     if (success) {
       setCopied(true);
+      hapticFeedback.notificationOccurred('success');
       setTimeout(() => setCopied(false), 2000);
     }
+  };
+
+  const handleShare = () => {
+    hapticFeedback.impactOccurred('medium');
+    const shareUrl = `https://t.me/share/url?url=${encodeURIComponent(
+      referralLink
+    )}&text=${encodeURIComponent(
+      'Тренажер препаратов по гистологии для медицинского вуза с микропрепаратами!'
+    )}`;
+    window.open(shareUrl, '_blank');
   };
 
   const handleResetClick = () => {
@@ -51,151 +63,136 @@ export const ProfileScreen: React.FC<ProfileScreenProps> = ({
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F9FA] pb-24 safe-pt">
+    <div className="min-h-screen bg-[#F2F4F7] pb-28 safe-pt">
       {/* Header */}
       <header className="px-5 pt-4 pb-2">
-        <h1 className="text-2xl font-bold tracking-tight text-slate-900">
-          Профиль
+        <h1 className="text-[28px] font-extrabold tracking-tight text-slate-900 leading-tight">
+          Профиль студента
         </h1>
-        <p className="text-xs text-slate-500 mt-0.5">
+        <p className="text-xs text-slate-500 font-medium mt-0.5">
           Статистика подготовки и реферальная программа
         </p>
       </header>
 
-      <main className="px-5 pt-3 space-y-4 max-w-lg mx-auto">
+      <main className="px-5 pt-2 space-y-4 max-w-lg mx-auto">
         {/* User Card */}
-        <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs">
-          <div className="flex items-center gap-3.5">
-            <div className="w-12 h-12 rounded-xl bg-slate-900 text-white flex items-center justify-center font-bold text-base">
-              {user.first_name ? user.first_name[0] : <User className="w-5 h-5" />}
+        <div className="bg-white rounded-[24px] p-5 shadow-[0_2px_12px_rgba(15,23,42,0.04)] border-0">
+          <div className="flex items-center gap-4">
+            <div className="w-14 h-14 rounded-2xl bg-indigo-600 text-white flex items-center justify-center font-extrabold text-xl shadow-lg shadow-indigo-600/25">
+              {user.first_name ? user.first_name[0] : <User className="w-6 h-6" />}
             </div>
             <div>
-              <h2 className="text-sm font-bold text-slate-900 leading-tight">
+              <h2 className="text-lg font-bold text-slate-900 leading-tight">
                 {user.first_name} {user.last_name || ''}
               </h2>
-              {user.username && (
-                <div className="text-xs text-slate-500 mt-0.5">@{user.username}</div>
-              )}
-              <div className="text-[11px] text-slate-400 font-mono mt-0.5">
-                ID: {user.id}
+              <div className="flex items-center gap-2 mt-1">
+                <span className="text-xs text-slate-400">
+                  {user.username ? `@${user.username}` : `ID: ${user.id}`}
+                </span>
+                <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
+                  Студент меда
+                </span>
               </div>
-            </div>
-          </div>
-
-          <div className="mt-4 pt-3.5 border-t border-slate-100 flex items-center justify-between">
-            <div>
-              <div className="text-[11px] text-slate-400">Статус аккаунта</div>
-              <div className="text-xs font-semibold text-slate-800 flex items-center gap-1.5 mt-0.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                <span>Базовый доступ</span>
-              </div>
-            </div>
-            <button
-              onClick={onOpenPaywall}
-              className="py-1.5 px-3 bg-slate-900 text-white text-xs font-semibold rounded-lg hover:bg-slate-800 transition-colors flex items-center gap-1.5 active:scale-98"
-            >
-              <Sparkles className="w-3 h-3 text-amber-400" />
-              <span>Сессия PRO</span>
-            </button>
-          </div>
-        </div>
-
-        {/* Study Stats Matrix */}
-        <div className="space-y-2">
-          <h2 className="text-xs font-semibold uppercase tracking-wider text-slate-400 px-0.5">
-            Матрица подготовки
-          </h2>
-          <div className="grid grid-cols-3 gap-2">
-            <div className="bg-white p-3.5 rounded-xl border border-slate-200/80 shadow-xs text-center">
-              <div className="text-xl font-bold text-emerald-600">{masteredCount}</div>
-              <div className="text-[11px] text-slate-500 font-medium mt-0.5">Освоено</div>
-            </div>
-            <div className="bg-white p-3.5 rounded-xl border border-slate-200/80 shadow-xs text-center">
-              <div className="text-xl font-bold text-amber-600">{reviewingCount}</div>
-              <div className="text-[11px] text-slate-500 font-medium mt-0.5">Повторение</div>
-            </div>
-            <div className="bg-white p-3.5 rounded-xl border border-slate-200/80 shadow-xs text-center">
-              <div className="text-xl font-bold text-slate-700">{learningCount}</div>
-              <div className="text-[11px] text-slate-500 font-medium mt-0.5">В процессе</div>
             </div>
           </div>
         </div>
 
-        {/* Referral Program */}
-        <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs space-y-3">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
-              <Share2 strokeWidth={1.5} className="w-4 h-4" />
+        {/* Stats Bento */}
+        <div className="grid grid-cols-2 gap-3">
+          <div className="bg-white rounded-[22px] p-4 shadow-[0_2px_12px_rgba(15,23,42,0.04)] border-0 space-y-1">
+            <div className="flex items-center gap-2 text-indigo-600">
+              <Award className="w-5 h-5" />
+              <span className="text-xs font-semibold text-slate-400">Освоено</span>
             </div>
-            <div>
-              <h3 className="text-xs font-bold text-slate-900">
-                Пригласи одногруппника
+            <div className="text-2xl font-extrabold text-slate-900">
+              {masteredCount} <span className="text-xs font-normal text-slate-400">/ {totalSlides}</span>
+            </div>
+          </div>
+
+          <div className="bg-white rounded-[22px] p-4 shadow-[0_2px_12px_rgba(15,23,42,0.04)] border-0 space-y-1">
+            <div className="flex items-center gap-2 text-orange-500">
+              <Flame className="w-5 h-5 fill-orange-500" />
+              <span className="text-xs font-semibold text-slate-400">Ударный режим</span>
+            </div>
+            <div className="text-2xl font-extrabold text-slate-900">
+              3 дня <span className="text-xs font-normal text-slate-400">подряд</span>
+            </div>
+          </div>
+        </div>
+
+        {/* PRO Banner */}
+        <div
+          onClick={onOpenPaywall}
+          className="bg-gradient-to-r from-indigo-600 to-indigo-800 rounded-[24px] p-5 text-white shadow-lg shadow-indigo-600/20 cursor-pointer active:scale-[0.98] transition-all relative overflow-hidden"
+        >
+          <div className="relative z-10 flex items-center justify-between">
+            <div className="space-y-1">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/20 text-white text-[11px] font-bold">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>Все 4 модуля</span>
+              </div>
+              <h3 className="text-lg font-black tracking-tight mt-1">
+                Полный доступ к Атласу
               </h3>
-              <p className="text-[11px] text-slate-500">
-                Поделитесь ссылкой и получите PRO-доступ
+              <p className="text-xs text-indigo-100/90 max-w-[220px]">
+                Пищеварительная и мочевыделительная системы, тесты ГОС
               </p>
             </div>
-          </div>
-
-          <div className="flex items-center gap-2 bg-slate-50 border border-slate-200/80 rounded-xl p-1.5 pl-3">
-            <input
-              type="text"
-              readOnly
-              value={referralLink}
-              className="bg-transparent text-xs text-slate-700 w-full focus:outline-none font-mono truncate"
-            />
-            <button
-              onClick={handleCopyLink}
-              className="px-3 py-1.5 bg-slate-900 text-white rounded-lg text-xs font-medium hover:bg-slate-800 transition-colors flex items-center gap-1.5 shrink-0"
-            >
-              {copied ? (
-                <>
-                  <Check strokeWidth={1.5} className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>Скопировано</span>
-                </>
-              ) : (
-                <>
-                  <Copy strokeWidth={1.5} className="w-3.5 h-3.5" />
-                  <span>Копия</span>
-                </>
-              )}
-            </button>
+            <div className="w-10 h-10 rounded-full bg-white text-indigo-600 flex items-center justify-center shrink-0 shadow-md">
+              <ChevronRight className="w-5 h-5" />
+            </div>
           </div>
         </div>
 
-        {/* PRO Access Card */}
-        <div className="bg-slate-900 text-white rounded-2xl p-5 space-y-3 shadow-xs">
+        {/* Referral Card */}
+        <div className="bg-white rounded-[24px] p-5 shadow-[0_2px_12px_rgba(15,23,42,0.04)] border-0 space-y-3.5">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] font-semibold uppercase tracking-wider text-amber-300 flex items-center gap-1">
-              <Lock strokeWidth={1.5} className="w-3 h-3" /> Полный тариф
-            </span>
-            <span className="text-xs font-semibold text-slate-300">199 Stars</span>
+            <div className="space-y-0.5">
+              <h3 className="text-sm font-bold text-slate-900">
+                Пригласи одногруппника
+              </h3>
+              <p className="text-xs text-slate-400">
+                Поделись ссылкой на бота и получи +1 модуль бесплатно
+              </p>
+            </div>
+            <div className="w-9 h-9 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
+              <Share2 className="w-4 h-4" />
+            </div>
           </div>
-          <div>
-            <h3 className="text-sm font-bold text-white">
-              Пакет «Сессия Без Пересдач»
-            </h3>
-            <p className="text-xs text-slate-300 mt-1 leading-relaxed">
-              Открывает 50+ препаратов всех систем органов и генератор экзаменационных билетов.
-            </p>
+
+          <div className="flex items-center gap-2">
+            <div className="flex-1 bg-[#F8FAFC] py-2.5 px-3.5 rounded-xl text-xs text-slate-600 font-mono truncate select-all">
+              {referralLink}
+            </div>
+            <button
+              onClick={handleCopyLink}
+              className={`p-2.5 rounded-xl text-xs font-bold transition-all flex items-center justify-center shrink-0 active:scale-95 ${
+                copied
+                  ? 'bg-emerald-500 text-white shadow-sm'
+                  : 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-sm'
+              }`}
+            >
+              {copied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+            </button>
           </div>
+
           <button
-            onClick={onOpenPaywall}
-            className="w-full py-2.5 bg-white text-slate-900 hover:bg-slate-100 rounded-xl text-xs font-bold transition-colors flex items-center justify-center gap-1.5 active:scale-99"
+            onClick={handleShare}
+            className="w-full py-3 bg-[#F2F4F7] hover:bg-slate-200/70 text-slate-800 rounded-xl text-xs font-bold transition-all active:scale-98 flex items-center justify-center gap-1.5"
           >
-            <span>Подробнее о тарифе</span>
-            <ChevronRight strokeWidth={1.5} className="w-3.5 h-3.5" />
+            <Share2 className="w-3.5 h-3.5" />
+            <span>Переслать в чат группы</span>
           </button>
         </div>
 
-        {/* Developer Reset Helper */}
+        {/* Reset Progress */}
         <div className="pt-2 text-center">
           <button
             onClick={handleResetClick}
-            className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-rose-600 transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-rose-600 transition-colors py-2 px-3 rounded-xl active:bg-rose-50"
           >
-            <RotateCcw strokeWidth={1.5} className="w-3.5 h-3.5" />
-            <span>Сбросить прогресс (DEV)</span>
+            <RotateCcw className="w-3.5 h-3.5" />
+            <span>Сбросить прогресс изучения препаратов</span>
           </button>
         </div>
       </main>
