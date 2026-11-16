@@ -74,6 +74,21 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
           icon: HeartPulse,
           boxClass: 'bg-red-50 text-red-600',
         };
+      case 'mod_skin_resp':
+        return {
+          icon: Wind,
+          boxClass: 'bg-teal-500/10 text-teal-600 dark:text-teal-400',
+        };
+      case 'mod_endocrine':
+        return {
+          icon: Sparkles,
+          boxClass: 'bg-amber-500/10 text-amber-600 dark:text-amber-400',
+        };
+      case 'mod_urogenital':
+        return {
+          icon: Activity,
+          boxClass: 'bg-cyan-500/10 text-cyan-600 dark:text-cyan-400',
+        };
       default:
         return {
           icon: Layers,
