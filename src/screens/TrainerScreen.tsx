@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import {
   TransformWrapper,
   TransformComponent,
@@ -46,7 +45,6 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
 
   const currentSlide = slides[currentIndex];
 
-  // Shuffle quiz options (title + 3 distractors) once per slide
   const quizOptions = useMemo(() => {
     if (!currentSlide) return [];
     const options = [currentSlide.title, ...currentSlide.quiz_distractors];
@@ -57,7 +55,6 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
     return options;
   }, [currentSlide]);
 
-  // Reset state on slide index change
   useEffect(() => {
     setIsAnswerRevealed(false);
     setShowAnnotations(false);
@@ -66,44 +63,40 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
 
   if (!currentSlide || sessionCompleted) {
     return (
-      <div className="min-h-screen bg-[#F4F5F7] flex flex-col items-center justify-center p-6 text-center safe-pt safe-pb">
-        <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          className="w-full max-w-sm bg-white rounded-3xl p-8 shadow-[0_8px_32px_rgba(0,0,0,0.06)] flex flex-col items-center"
-        >
-          <div className="w-16 h-16 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4">
-            <CheckCircle2 strokeWidth={1.5} className="w-8 h-8" />
+      <div className="min-h-screen bg-[#F8F9FA] flex flex-col items-center justify-center p-6 text-center safe-pt safe-pb">
+        <div className="w-full max-w-sm bg-white rounded-2xl p-6 border border-slate-200/80 shadow-xs flex flex-col items-center">
+          <div className="w-14 h-14 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mb-3">
+            <CheckCircle2 strokeWidth={1.5} className="w-7 h-7" />
           </div>
-          <h2 className="text-xl font-bold text-slate-900 mb-1 tracking-tight">
+          <h2 className="text-xl font-bold text-slate-900 tracking-tight mb-1">
             Сессия завершена
           </h2>
-          <p className="text-xs text-slate-400 mb-6">
-            Разобрано {slides.length} микропрепаратов
+          <p className="text-xs text-slate-500 mb-5">
+            Разобрано препаратов: {slides.length}
           </p>
 
           <div className="w-full grid grid-cols-3 gap-2 mb-6">
-            <div className="bg-emerald-50/70 p-3 rounded-2xl text-center">
+            <div className="bg-slate-50 p-3 rounded-xl border border-slate-100 text-center">
               <div className="text-lg font-bold text-emerald-700">{sessionStats.know}</div>
-              <div className="text-[10px] text-emerald-600 font-semibold mt-0.5">Знаю</div>
+              <div className="text-[11px] text-slate-500 mt-0.5">Знаю</div>
             </div>
-            <div className="bg-amber-50/70 p-3 rounded-2xl text-center">
+            <div className="bg-slate-50 p-3 rounded-xl border border-slate-100 text-center">
               <div className="text-lg font-bold text-amber-700">{sessionStats.doubt}</div>
-              <div className="text-[10px] text-amber-600 font-semibold mt-0.5">Сомнение</div>
+              <div className="text-[11px] text-slate-500 mt-0.5">Сомнение</div>
             </div>
-            <div className="bg-rose-50/70 p-3 rounded-2xl text-center">
+            <div className="bg-slate-50 p-3 rounded-xl border border-slate-100 text-center">
               <div className="text-lg font-bold text-rose-700">{sessionStats.again}</div>
-              <div className="text-[10px] text-rose-600 font-semibold mt-0.5">Повтор</div>
+              <div className="text-[11px] text-slate-500 mt-0.5">Повторить</div>
             </div>
           </div>
 
           <button
             onClick={onClose}
-            className="w-full py-3.5 bg-slate-900 text-white rounded-2xl font-bold text-sm hover:bg-slate-800 transition-all shadow-md active:scale-[0.98]"
+            className="w-full py-3.5 bg-slate-900 text-white rounded-xl font-semibold text-sm hover:bg-slate-800 transition-colors shadow-xs active:scale-[0.99]"
           >
-            Вернуться к модулям
+            Вернуться к разделам
           </button>
-        </motion.div>
+        </div>
       </div>
     );
   }
@@ -152,40 +145,40 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
     : currentSlide.image_clean_url;
 
   return (
-    <div className="min-h-screen bg-[#F4F5F7] flex flex-col pb-36 safe-pt">
+    <div className="min-h-screen bg-[#F8F9FA] flex flex-col pb-36 safe-pt">
       {/* Top Header Bar */}
-      <header className="px-4 py-3 flex items-center justify-between sticky top-0 z-30 bg-[#F4F5F7]/90 backdrop-blur-md">
-        <div className="flex items-center gap-3">
+      <header className="px-4 py-2.5 flex items-center justify-between sticky top-0 z-30 bg-[#F8F9FA]/95 backdrop-blur-md border-b border-slate-200/60">
+        <div className="flex items-center gap-2.5">
           <button
             onClick={() => {
               hapticFeedback.impactOccurred('light');
               onClose();
             }}
-            className="w-9 h-9 rounded-full bg-white shadow-ios flex items-center justify-center text-slate-500 hover:text-slate-900 transition-all active:scale-95"
+            className="w-8 h-8 rounded-lg bg-white border border-slate-200/80 flex items-center justify-center text-slate-500 hover:text-slate-900 transition-colors active:scale-95"
           >
-            <X strokeWidth={1.5} className="w-5 h-5" />
+            <X strokeWidth={1.5} className="w-4 h-4" />
           </button>
           <div>
             <div className="text-xs font-bold text-slate-900 leading-tight">
               {currentIndex + 1} из {slides.length}
             </div>
-            <div className="text-[11px] text-slate-400 truncate max-w-[150px]">
+            <div className="text-[11px] text-slate-400 truncate max-w-[160px]">
               {sessionTitle}
             </div>
           </div>
         </div>
 
-        {/* Mode Switcher Pill */}
-        <div className="flex items-center bg-white p-1 rounded-full shadow-ios">
+        {/* Mode Switcher */}
+        <div className="flex items-center bg-white border border-slate-200/80 p-0.5 rounded-lg text-xs">
           <button
             onClick={() => {
               hapticFeedback.selectionChanged();
               setTrainerMode('quiz');
             }}
-            className={`text-xs font-medium px-3 py-1 rounded-full transition-all ${
+            className={`px-2.5 py-1 rounded-md transition-colors ${
               trainerMode === 'quiz'
-                ? 'bg-slate-900 text-white font-semibold shadow-xs'
-                : 'text-slate-400 hover:text-slate-700'
+                ? 'bg-slate-900 text-white font-semibold'
+                : 'text-slate-500 hover:text-slate-800'
             }`}
           >
             Тест
@@ -195,10 +188,10 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
               hapticFeedback.selectionChanged();
               setTrainerMode('flashcard');
             }}
-            className={`text-xs font-medium px-3 py-1 rounded-full transition-all ${
+            className={`px-2.5 py-1 rounded-md transition-colors ${
               trainerMode === 'flashcard'
-                ? 'bg-slate-900 text-white font-semibold shadow-xs'
-                : 'text-slate-400 hover:text-slate-700'
+                ? 'bg-slate-900 text-white font-semibold'
+                : 'text-slate-500 hover:text-slate-800'
             }`}
           >
             Карточка
@@ -206,18 +199,43 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
         </div>
       </header>
 
-      {/* Dynamic Slide Container with Transitions */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentSlide.id}
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -20 }}
-          transition={{ duration: 0.25 }}
-          className="px-4 py-2 space-y-4 max-w-lg mx-auto w-full flex-1"
-        >
-          {/* Microscope Photo Viewer - Min 45% Height, Deep Dark Contrast BG */}
-          <div className="relative rounded-3xl bg-[#0F172A] overflow-hidden shadow-[0_8px_30px_rgba(15,23,42,0.16)] flex flex-col h-[46vh] min-h-[330px]">
+      {/* Main Study Container */}
+      <div className="px-4 py-3 space-y-3.5 max-w-lg mx-auto w-full flex-1">
+        {/* Microscope Stage Viewport */}
+        <div className="rounded-2xl bg-white border border-slate-200/80 overflow-hidden shadow-xs">
+          {/* Top Info Bar of the Stage */}
+          <div className="px-3.5 py-2 border-b border-slate-100 flex items-center justify-between text-xs">
+            <div className="flex items-center gap-2">
+              <span className="font-semibold text-slate-700">{currentSlide.stain}</span>
+              <span className="text-slate-300">•</span>
+              <span className="text-slate-500">{currentSlide.magnification}</span>
+            </div>
+
+            {/* Annotation Switcher Button */}
+            <button
+              onClick={handleToggleAnnotations}
+              className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-semibold transition-colors ${
+                showAnnotations
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+              }`}
+            >
+              {showAnnotations ? (
+                <>
+                  <EyeOff strokeWidth={1.5} className="w-3.5 h-3.5" />
+                  <span>Скрыть метки</span>
+                </>
+              ) : (
+                <>
+                  <Eye strokeWidth={1.5} className="w-3.5 h-3.5" />
+                  <span>Обозначения</span>
+                </>
+              )}
+            </button>
+          </div>
+
+          {/* Interactive Zoomable Slide Container */}
+          <div className="relative bg-[#0F172A] h-64 sm:h-72 w-full flex items-center justify-center select-none overflow-hidden">
             <TransformWrapper
               initialScale={1}
               minScale={0.8}
@@ -227,43 +245,32 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
             >
               {({ zoomIn, zoomOut, resetTransform }) => (
                 <>
-                  {/* Top Glassmorphism Badges */}
-                  <div className="absolute top-3 left-3 z-20 flex items-center gap-2 pointer-events-none">
-                    <span className="bg-black/40 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-medium text-white/90 border border-white/10 shadow-xs">
-                      {currentSlide.magnification}
-                    </span>
-                    <span className="bg-black/40 backdrop-blur-md px-3 py-1 rounded-full text-[11px] font-medium text-white/90 border border-white/10 shadow-xs">
-                      {currentSlide.stain}
-                    </span>
-                  </div>
-
-                  {/* Top Right Zoom Controls */}
-                  <div className="absolute top-3 right-3 z-20 flex items-center gap-1 bg-black/40 backdrop-blur-md p-1 rounded-full border border-white/10 shadow-xs">
+                  {/* Floating Zoom Controls */}
+                  <div className="absolute top-2.5 right-2.5 z-20 flex items-center gap-1 bg-black/60 backdrop-blur-md p-1 rounded-lg border border-white/10">
                     <button
                       onClick={() => zoomIn(0.3)}
-                      className="p-1.5 text-white/80 hover:text-white rounded-full hover:bg-white/10 transition-colors"
+                      className="p-1 text-white/80 hover:text-white rounded hover:bg-white/10"
                       title="Приблизить"
                     >
                       <ZoomIn strokeWidth={1.5} className="w-3.5 h-3.5" />
                     </button>
                     <button
                       onClick={() => zoomOut(0.3)}
-                      className="p-1.5 text-white/80 hover:text-white rounded-full hover:bg-white/10 transition-colors"
+                      className="p-1 text-white/80 hover:text-white rounded hover:bg-white/10"
                       title="Отдалить"
                     >
                       <ZoomOut strokeWidth={1.5} className="w-3.5 h-3.5" />
                     </button>
                     <button
                       onClick={() => resetTransform()}
-                      className="p-1.5 text-white/80 hover:text-white rounded-full hover:bg-white/10 transition-colors"
+                      className="p-1 text-white/80 hover:text-white rounded hover:bg-white/10"
                       title="Сброс"
                     >
                       <RotateCcw strokeWidth={1.5} className="w-3.5 h-3.5" />
                     </button>
                   </div>
 
-                  {/* Pan & Zoom Microscopic Section */}
-                  <div className="flex-1 w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing select-none overflow-hidden">
+                  <div className="w-full h-full flex items-center justify-center cursor-grab active:cursor-grabbing">
                     <TransformComponent
                       wrapperClass="!w-full !h-full"
                       contentClass="!w-full !h-full flex items-center justify-center"
@@ -271,203 +278,168 @@ export const TrainerScreen: React.FC<TrainerScreenProps> = ({
                       <img
                         src={currentImageUrl}
                         alt={currentSlide.title}
-                        className="w-full h-full object-contain filter drop-shadow-md pointer-events-none"
+                        className="w-full h-full object-contain pointer-events-none"
                       />
                     </TransformComponent>
-                  </div>
-
-                  {/* Bottom Annotation Switcher Bar */}
-                  <div className="p-3 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex items-center justify-between z-20">
-                    <span className="text-[11px] text-white/60 font-medium tracking-wide">
-                      Жест: 2 пальца для зума
-                    </span>
-
-                    <button
-                      onClick={handleToggleAnnotations}
-                      className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all backdrop-blur-md ${
-                        showAnnotations
-                          ? 'bg-blue-600 text-white shadow-md'
-                          : 'bg-white/20 hover:bg-white/30 text-white'
-                      }`}
-                    >
-                      {showAnnotations ? (
-                        <>
-                          <EyeOff strokeWidth={1.5} className="w-3.5 h-3.5" />
-                          <span>Скрыть метки</span>
-                        </>
-                      ) : (
-                        <>
-                          <Eye strokeWidth={1.5} className="w-3.5 h-3.5" />
-                          <span>Обозначения слоев</span>
-                        </>
-                      )}
-                    </button>
                   </div>
                 </>
               )}
             </TransformWrapper>
           </div>
 
-          {/* Practice Modes */}
-          {!isAnswerRevealed ? (
-            trainerMode === 'flashcard' ? (
-              /* Flashcard Mode */
-              <div className="bg-white p-5 rounded-3xl shadow-ios text-center space-y-4">
-                <p className="text-xs text-slate-500 leading-relaxed max-w-xs mx-auto">
-                  Определите структуру среза, границы слоев и назовите орган
-                </p>
-                <button
-                  onClick={handleRevealAnswer}
-                  className="w-full min-h-[56px] py-4 bg-slate-900 hover:bg-slate-800 text-white rounded-2xl text-sm font-bold transition-all shadow-md active:scale-[0.98] flex items-center justify-center gap-2"
-                >
-                  <BookOpen strokeWidth={1.5} className="w-4 h-4" />
-                  <span>Показать ответ и разбор</span>
-                </button>
-              </div>
-            ) : (
-              /* Quiz Mode (4 tactile options, min 56px height) */
-              <div className="space-y-2.5">
-                <div className="grid grid-cols-1 gap-2.5">
-                  {quizOptions.map((opt, i) => (
-                    <motion.button
-                      key={i}
-                      whileTap={{ scale: 0.98 }}
-                      onClick={() => handleSelectQuizOption(opt)}
-                      className="w-full min-h-[56px] text-left p-4 rounded-2xl bg-white hover:bg-slate-50/80 shadow-ios transition-all font-semibold text-sm text-slate-800 flex items-center justify-between"
-                    >
-                      <span className="leading-snug">{opt}</span>
-                      <span className="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center text-xs font-semibold text-slate-400 shrink-0 ml-2">
-                        {String.fromCharCode(65 + i)}
-                      </span>
-                    </motion.button>
-                  ))}
-                </div>
-              </div>
-            )
+          <div className="px-3.5 py-1.5 bg-slate-50 text-[11px] text-slate-400 flex items-center justify-between">
+            <span>Зум двумя пальцами по экрану</span>
+            <span>Интерактивный срез</span>
+          </div>
+        </div>
+
+        {/* Question & Options Area */}
+        {!isAnswerRevealed ? (
+          trainerMode === 'flashcard' ? (
+            <div className="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs text-center space-y-3">
+              <p className="text-xs text-slate-500 leading-relaxed">
+                Изучите препарат, определите слои стенки и назовите орган
+              </p>
+              <button
+                onClick={handleRevealAnswer}
+                className="w-full h-12 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-sm font-semibold transition-colors flex items-center justify-center gap-2 active:scale-[0.99]"
+              >
+                <BookOpen strokeWidth={1.5} className="w-4 h-4" />
+                <span>Показать ответ и разбор</span>
+              </button>
+            </div>
           ) : (
-            /* Quiz Mode Answer States */
-            trainerMode === 'quiz' && (
-              <div className="space-y-2 mb-2">
-                {quizOptions.map((opt, i) => {
-                  const isCorrect = opt === currentSlide.title;
-                  const isSelected = selectedQuizOption === opt;
-                  let cardStyle = 'bg-white/60 text-slate-400 opacity-60';
-
-                  if (isCorrect) {
-                    cardStyle = 'bg-emerald-50 text-emerald-950 font-bold shadow-sm';
-                  } else if (isSelected && !isCorrect) {
-                    cardStyle = 'bg-rose-50 text-rose-950 font-bold shadow-sm';
-                  }
-
-                  return (
-                    <div
-                      key={i}
-                      className={`w-full min-h-[52px] text-left px-4 py-3 rounded-2xl transition-all text-xs flex items-center justify-between ${cardStyle}`}
-                    >
-                      <span className="leading-snug">{opt}</span>
-                      {isCorrect ? (
-                        <CheckCircle2 strokeWidth={1.5} className="w-4 h-4 text-emerald-600 shrink-0 ml-2" />
-                      ) : isSelected ? (
-                        <AlertCircle strokeWidth={1.5} className="w-4 h-4 text-rose-500 shrink-0 ml-2" />
-                      ) : null}
-                    </div>
-                  );
-                })}
+            <div className="space-y-2">
+              <div className="text-xs font-semibold text-slate-600 px-0.5">
+                Выберите диагноз препарата:
               </div>
-            )
-          )}
-
-          {/* Structured Clinical Breakdown Card */}
-          {isAnswerRevealed && (
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-3xl p-5 shadow-ios space-y-4"
-            >
-              {/* Title Header */}
-              <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-blue-700 bg-blue-50 px-2.5 py-1 rounded-full">
-                  Эталон ответа
-                </span>
-                <h3 className="text-xl font-bold text-slate-900 tracking-tight mt-2 leading-snug">
-                  {currentSlide.title}
-                </h3>
+              <div className="grid grid-cols-1 gap-2">
+                {quizOptions.map((opt, i) => (
+                  <button
+                    key={i}
+                    onClick={() => handleSelectQuizOption(opt)}
+                    className="w-full min-h-[50px] text-left px-4 py-3 rounded-xl bg-white hover:bg-slate-50 border border-slate-200/80 active:border-slate-300 transition-colors font-medium text-xs text-slate-800 flex items-center justify-between gap-2"
+                  >
+                    <span className="leading-snug">{opt}</span>
+                    <span className="w-5 h-5 rounded-md bg-slate-100 flex items-center justify-center text-[11px] font-semibold text-slate-400 shrink-0">
+                      {String.fromCharCode(65 + i)}
+                    </span>
+                  </button>
+                ))}
               </div>
+            </div>
+          )
+        ) : (
+          trainerMode === 'quiz' && (
+            <div className="space-y-1.5">
+              {quizOptions.map((opt, i) => {
+                const isCorrect = opt === currentSlide.title;
+                const isSelected = selectedQuizOption === opt;
+                let cardStyle = 'bg-white border-slate-200/60 text-slate-400 opacity-60';
 
-              {/* Главный отличительный признак */}
-              <div className="bg-blue-50/60 p-4 rounded-2xl space-y-1.5">
-                <div className="flex items-center gap-1.5 text-blue-800 text-xs font-bold">
-                  <Sparkles strokeWidth={1.5} className="w-4 h-4 text-blue-600" />
-                  <span>Главный отличительный признак</span>
-                </div>
-                <p className="text-xs text-slate-800 leading-relaxed font-medium">
-                  {currentSlide.exam_checklist.killer_feature}
-                </p>
+                if (isCorrect) {
+                  cardStyle = 'bg-emerald-50 border-emerald-300 text-emerald-950 font-semibold';
+                } else if (isSelected && !isCorrect) {
+                  cardStyle = 'bg-rose-50 border-rose-300 text-rose-950 font-semibold';
+                }
+
+                return (
+                  <div
+                    key={i}
+                    className={`w-full min-h-[46px] text-left px-4 py-2.5 rounded-xl border transition-colors text-xs flex items-center justify-between gap-2 ${cardStyle}`}
+                  >
+                    <span className="leading-snug">{opt}</span>
+                    {isCorrect ? (
+                      <CheckCircle2 strokeWidth={1.5} className="w-4 h-4 text-emerald-600 shrink-0" />
+                    ) : isSelected ? (
+                      <AlertCircle strokeWidth={1.5} className="w-4 h-4 text-rose-500 shrink-0" />
+                    ) : null}
+                  </div>
+                );
+              })}
+            </div>
+          )
+        )}
+
+        {/* Structured Diagnostic Breakdown Card */}
+        {isAnswerRevealed && (
+          <div className="bg-white rounded-2xl p-5 border border-slate-200/80 shadow-xs space-y-4">
+            <div>
+              <span className="text-[10px] font-semibold uppercase tracking-wider text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded-md">
+                Эталонный разбор
+              </span>
+              <h3 className="text-base font-bold text-slate-900 tracking-tight mt-1.5">
+                {currentSlide.title}
+              </h3>
+            </div>
+
+            {/* Главный отличительный признак */}
+            <div className="bg-blue-50/70 p-3.5 rounded-xl border border-blue-100 space-y-1">
+              <div className="flex items-center gap-1.5 text-blue-800 text-xs font-bold">
+                <Sparkles strokeWidth={1.5} className="w-3.5 h-3.5 text-blue-600" />
+                <span>Главный отличительный признак</span>
               </div>
+              <p className="text-xs text-slate-800 leading-relaxed font-medium">
+                {currentSlide.exam_checklist.killer_feature}
+              </p>
+            </div>
 
-              {/* Слои и оболочки */}
-              <div className="space-y-1">
-                <div className="flex items-center gap-1.5 text-slate-400 text-xs font-semibold">
-                  <Layers strokeWidth={1.5} className="w-3.5 h-3.5" />
-                  <span>Оболочки и слои препарата:</span>
-                </div>
-                <p className="text-xs text-slate-700 leading-relaxed pl-5">
-                  {currentSlide.exam_checklist.layers}
-                </p>
+            {/* Слои и оболочки */}
+            <div className="space-y-1">
+              <div className="flex items-center gap-1.5 text-slate-500 text-xs font-semibold">
+                <Layers strokeWidth={1.5} className="w-3.5 h-3.5" />
+                <span>Оболочки и слои препарата:</span>
               </div>
+              <p className="text-xs text-slate-700 leading-relaxed bg-slate-50 p-3 rounded-xl">
+                {currentSlide.exam_checklist.layers}
+              </p>
+            </div>
 
-              {/* Ключевые клетки */}
-              <div className="space-y-1">
-                <div className="flex items-center gap-1.5 text-slate-400 text-xs font-semibold">
-                  <HelpCircle strokeWidth={1.5} className="w-3.5 h-3.5" />
-                  <span>Ключевые клетки:</span>
-                </div>
-                <p className="text-xs text-slate-700 leading-relaxed pl-5">
-                  {currentSlide.exam_checklist.key_cells}
-                </p>
+            {/* Ключевые клетки */}
+            <div className="space-y-1">
+              <div className="flex items-center gap-1.5 text-slate-500 text-xs font-semibold">
+                <HelpCircle strokeWidth={1.5} className="w-3.5 h-3.5" />
+                <span>Ключевые клетки:</span>
               </div>
-            </motion.div>
-          )}
-        </motion.div>
-      </AnimatePresence>
+              <p className="text-xs text-slate-700 leading-relaxed bg-slate-50 p-3 rounded-xl">
+                {currentSlide.exam_checklist.key_cells}
+              </p>
+            </div>
+          </div>
+        )}
+      </div>
 
-      {/* Fixed Bottom Spaced Repetition Panel */}
+      {/* Docked Bottom Spaced Repetition Panel */}
       {isAnswerRevealed && (
-        <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-xl p-4 safe-pb shadow-[0_-8px_32px_rgba(0,0,0,0.06)]">
-          <div className="max-w-md mx-auto space-y-2">
+        <div className="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200/80 p-3.5 safe-pb shadow-md">
+          <div className="max-w-md mx-auto space-y-1.5">
             <div className="text-[11px] font-medium text-center text-slate-400">
               Оцените степень запоминания
             </div>
-            <div className="grid grid-cols-3 gap-2.5">
-              {/* Again */}
-              <motion.button
-                whileTap={{ scale: 0.96 }}
+            <div className="grid grid-cols-3 gap-2">
+              <button
                 onClick={() => handleRating('again')}
-                className="py-3.5 px-2 rounded-2xl bg-rose-50 hover:bg-rose-100 text-rose-900 text-xs font-bold transition-all text-center"
+                className="py-3 px-2 rounded-xl bg-rose-50 hover:bg-rose-100 border border-rose-200/60 text-rose-900 text-xs font-semibold transition-colors text-center active:scale-98"
               >
                 <div>Не помню</div>
-                <div className="text-[10px] font-normal text-rose-600 mt-0.5">Повтор: 1 д</div>
-              </motion.button>
+                <div className="text-[10px] text-rose-600 font-normal">1 день</div>
+              </button>
 
-              {/* Doubt */}
-              <motion.button
-                whileTap={{ scale: 0.96 }}
+              <button
                 onClick={() => handleRating('doubt')}
-                className="py-3.5 px-2 rounded-2xl bg-amber-50 hover:bg-amber-100 text-amber-950 text-xs font-bold transition-all text-center"
+                className="py-3 px-2 rounded-xl bg-amber-50 hover:bg-amber-100 border border-amber-200/60 text-amber-950 text-xs font-semibold transition-colors text-center active:scale-98"
               >
                 <div>Сомневаюсь</div>
-                <div className="text-[10px] font-normal text-amber-700 mt-0.5">Повтор: 3 д</div>
-              </motion.button>
+                <div className="text-[10px] text-amber-700 font-normal">3 дня</div>
+              </button>
 
-              {/* Know */}
-              <motion.button
-                whileTap={{ scale: 0.96 }}
+              <button
                 onClick={() => handleRating('know')}
-                className="py-3.5 px-2 rounded-2xl bg-emerald-50 hover:bg-emerald-100 text-emerald-950 text-xs font-bold transition-all text-center"
+                className="py-3 px-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-200/60 text-emerald-950 text-xs font-semibold transition-colors text-center active:scale-98"
               >
                 <div>Знаю</div>
-                <div className="text-[10px] font-normal text-emerald-700 mt-0.5">Повтор: 7+ д</div>
-              </motion.button>
+                <div className="text-[10px] text-emerald-700 font-normal">7+ дней</div>
+              </button>
             </div>
           </div>
         </div>
