@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import {
-  X,
   ZoomIn,
   ZoomOut,
   RotateCcw,
@@ -13,6 +12,7 @@ import {
   Trash2,
   Check,
   Info,
+  X,
 } from 'lucide-react';
 import { HistSlide, SlideLayer } from '../data/histoData';
 
@@ -44,6 +44,18 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
 
   const [editingPin, setEditingPin] = useState<SlideLayer | null>(null);
   const [copiedJson, setCopiedJson] = useState(false);
+
+  // Wire Telegram native BackButton for seamless back navigation on iOS/Android
+  useEffect(() => {
+    const tg = (window as any).Telegram?.WebApp;
+    if (tg?.BackButton) {
+      tg.BackButton.show();
+      tg.BackButton.onClick(onClose);
+      return () => {
+        tg.BackButton.offClick(onClose);
+      };
+    }
+  }, [onClose]);
 
   const handleHeaderTap = () => {
     const next = tapCount + 1;
@@ -101,40 +113,45 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
     setTimeout(() => setCopiedJson(false), 2000);
   };
 
-  const safeTop: React.CSSProperties = {
-    paddingTop:
-      'calc(var(--tg-content-safe-area-inset-top, var(--tg-safe-area-inset-top, 52px)) + 8px)',
+  // Safe area padding matching Telegram iOS native top buttons
+  const safeTopStyle: React.CSSProperties = {
+    paddingTop: 'calc(var(--tg-content-safe-area-inset-top, 52px) + var(--tg-safe-area-inset-top, 48px) + 12px)',
   };
 
   return (
     <div className="fixed inset-0 z-50 bg-[#07090E] text-white flex flex-col select-none">
-      {/* Верхняя панель окуляра */}
+      {/* Верхняя панель окуляра с безопасным отступом под системные кнопки iOS */}
       <div
-        style={safeTop}
-        className="px-4 pb-3 bg-gradient-to-b from-black/90 via-black/60 to-transparent flex items-center justify-between gap-2 z-20"
+        style={safeTopStyle}
+        className="px-4 pb-3 bg-gradient-to-b from-black/95 via-black/70 to-transparent flex items-center justify-between gap-3 z-20"
       >
-        <button
-          onClick={onClose}
-          className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center active:scale-95 transition shrink-0"
-          aria-label="Закрыть микроскоп"
-        >
-          <X className="w-5 h-5 text-white" />
-        </button>
-
-        <div onClick={handleHeaderTap} className="min-w-0 flex-1 text-center cursor-pointer px-2">
-          <div className="text-[11px] font-bold text-indigo-400 tracking-wide">
+        <div onClick={handleHeaderTap} className="min-w-0 flex-1 cursor-pointer">
+          <div className="text-[11px] font-bold text-indigo-400 tracking-wide uppercase">
             Препарат №{slide.examNumber} {isAdmin && '· РЕЖИМ РАЗМЕТКИ'}
           </div>
-          <h2 className="text-[14px] font-bold text-white truncate">{slide.title}</h2>
+          <h2 className="text-[15px] font-extrabold text-white truncate leading-tight mt-0.5">
+            {slide.title}
+          </h2>
         </div>
 
-        <button
-          onClick={() => onStartTest(slide)}
-          className="px-3.5 h-10 rounded-full bg-indigo-600 text-white font-bold text-[12px] flex items-center gap-1.5 shadow active:scale-95 transition shrink-0"
-        >
-          <Zap className="w-3.5 h-3.5" />
-          Тест
-        </button>
+        <div className="flex items-center gap-2 shrink-0">
+          <button
+            onClick={() => onStartTest(slide)}
+            className="px-3.5 h-9 rounded-full bg-indigo-600 text-white font-bold text-[12px] flex items-center gap-1.5 shadow active:scale-95 transition"
+          >
+            <Zap className="w-3.5 h-3.5" />
+            Тест
+          </button>
+
+          <button
+            onClick={onClose}
+            className="px-3 h-9 rounded-full bg-white/15 text-white/90 font-bold text-[12px] flex items-center gap-1 active:scale-95 transition"
+            aria-label="Закрыть микроскоп"
+          >
+            <X className="w-3.5 h-3.5" />
+            Закрыть
+          </button>
+        </div>
       </div>
 
       {/* Оптическое поле с синхронными пинами */}
@@ -148,6 +165,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
         >
           {({ zoomIn, zoomOut, resetTransform }) => (
             <>
+              {/* Кнопки зума */}
               <div className="absolute right-3 top-3 z-20 flex flex-col gap-2">
                 <button
                   onClick={() => zoomIn(0.5)}
@@ -169,6 +187,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
                 </button>
               </div>
 
+              {/* Метки и Разбор */}
               <div className="absolute left-3 top-3 z-20 flex items-center gap-2">
                 {layers.length > 0 && (
                   <button
@@ -369,7 +388,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
         </div>
       )}
 
-      {/* Шторка полного разбора препарата */}
+      {/* Шторка полного разбора препарата по 5 пунктам экзаменационного плана */}
       {showInfoSheet && (
         <div
           onClick={() => setShowInfoSheet(false)}
@@ -377,12 +396,12 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="w-full max-w-md bg-[#141926] border-t border-white/15 rounded-t-[28px] p-5 pb-8 space-y-3.5 max-h-[80vh] overflow-y-auto"
+            className="w-full max-w-md bg-[#141926] border-t border-white/15 rounded-t-[28px] p-5 pb-8 space-y-3.5 max-h-[85vh] overflow-y-auto"
           >
             <div className="flex items-start justify-between gap-2">
               <div>
-                <span className="text-[11px] font-bold text-indigo-400">
-                  Препарат №{slide.examNumber} · {slide.stain}
+                <span className="text-[11px] font-bold text-indigo-400 uppercase tracking-wide">
+                  Экзаменационный план · №{slide.examNumber}
                 </span>
                 <h3 className="text-[17px] font-extrabold text-white mt-0.5">{slide.title}</h3>
               </div>
@@ -394,18 +413,65 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
               </button>
             </div>
 
-            <div className="bg-white/5 rounded-2xl p-3.5 space-y-2 text-[13px]">
-              <div>
-                <span className="text-slate-400 font-semibold">Слои и структуры: </span>
-                <span className="text-slate-100">{slide.layersText}</span>
+            <div className="space-y-2.5 text-[13px]">
+              {/* 1. Паспорт и окраска */}
+              <div className="bg-white/5 rounded-2xl p-3 border border-white/10 space-y-1">
+                <div className="text-[11px] font-bold text-indigo-400 uppercase">
+                  1. Паспорт и окраска
+                </div>
+                <div className="text-slate-200">
+                  <span className="font-semibold text-slate-400">Окраска: </span>
+                  {slide.stain}
+                </div>
+                <div className="text-slate-200">
+                  <span className="font-semibold text-slate-400">Увеличение: </span>
+                  {slide.magnification}
+                </div>
               </div>
-              <div>
-                <span className="text-slate-400 font-semibold">Ключевые клетки: </span>
-                <span className="text-slate-100">{slide.keyCells}</span>
+
+              {/* 2. Источник развития */}
+              {slide.embryoOrigin && (
+                <div className="bg-white/5 rounded-2xl p-3 border border-white/10 space-y-1">
+                  <div className="text-[11px] font-bold text-indigo-400 uppercase">
+                    2. Источник развития (эмбриогенез)
+                  </div>
+                  <div className="text-slate-200 leading-snug">{slide.embryoOrigin}</div>
+                </div>
+              )}
+
+              {/* 3. Строение и слои */}
+              <div className="bg-white/5 rounded-2xl p-3 border border-white/10 space-y-1.5">
+                <div className="text-[11px] font-bold text-indigo-400 uppercase">
+                  3. Строение, слои и клетки
+                </div>
+                <div>
+                  <span className="font-semibold text-slate-400">Слои и структуры: </span>
+                  <span className="text-slate-200">{slide.layersText}</span>
+                </div>
+                <div>
+                  <span className="font-semibold text-slate-400">Ключевые клетки: </span>
+                  <span className="text-slate-200">{slide.keyCells}</span>
+                </div>
               </div>
-              <div>
-                <span className="text-indigo-400 font-semibold">Как узнать за 3 секунды: </span>
-                <span className="text-white font-medium">{slide.killerFeature}</span>
+
+              {/* 4. Функции */}
+              {slide.functionText && (
+                <div className="bg-white/5 rounded-2xl p-3 border border-white/10 space-y-1">
+                  <div className="text-[11px] font-bold text-indigo-400 uppercase">
+                    4. Функции органа / ткани
+                  </div>
+                  <div className="text-slate-200 leading-snug">{slide.functionText}</div>
+                </div>
+              )}
+
+              {/* 5. Главный признак на экзамене */}
+              <div className="bg-indigo-950/40 rounded-2xl p-3 border border-indigo-500/30 space-y-1">
+                <div className="text-[11px] font-bold text-indigo-400 uppercase">
+                  5. Главный признак на экзамене
+                </div>
+                <div className="text-white font-medium leading-snug">
+                  {slide.killerFeature}
+                </div>
               </div>
             </div>
 
@@ -414,7 +480,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
                 href={slide.youtubeTimestampUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3 rounded-2xl bg-rose-600 text-white font-bold text-[13px] flex items-center justify-center gap-2"
+                className="w-full py-3 rounded-2xl bg-rose-600 text-white font-bold text-[13px] flex items-center justify-center gap-2 shadow"
               >
                 <Play className="w-4 h-4 fill-current" />
                 Смотреть разбор на таймкоде YouTube
