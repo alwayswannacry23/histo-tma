@@ -33,6 +33,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
   const [showPins, setShowPins] = useState(true);
   const [showInfoSheet, setShowInfoSheet] = useState(false);
   const [currentScale, setCurrentScale] = useState(1);
+  const [activeSliceIndex, setActiveSliceIndex] = useState(0);
 
   const [isAdmin, setIsAdmin] = useState(() => window.location.search.includes('admin=1'));
   const [tapCount, setTapCount] = useState(0);
@@ -44,6 +45,17 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
 
   const [editingPin, setEditingPin] = useState<SlideLayer | null>(null);
   const [copiedJson, setCopiedJson] = useState(false);
+
+  useEffect(() => {
+    setActiveSliceIndex(0);
+    setLayers(slide.layers || []);
+    setActiveLayer(slide.layers && slide.layers.length > 0 ? slide.layers[0] : null);
+  }, [slide.id]);
+
+  const activeImageUrl =
+    slide.imageUrls && slide.imageUrls.length > activeSliceIndex
+      ? slide.imageUrls[activeSliceIndex]
+      : slide.imageUrl;
 
   // Wire Telegram native BackButton for seamless back navigation on iOS/Android
   useEffect(() => {
@@ -211,6 +223,25 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
                 </button>
               </div>
 
+              {/* Переключатель срезов (Кафедра / Атлас / Доп. срезы) */}
+              {slide.imageUrls && slide.imageUrls.length > 1 && (
+                <div className="absolute top-14 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 px-3 py-1 bg-black/75 backdrop-blur-md rounded-full border border-white/15 shadow-xl max-w-[90vw] overflow-x-auto no-scrollbar">
+                  {slide.imageUrls.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setActiveSliceIndex(idx)}
+                      className={`px-3 py-1 rounded-full text-[11px] font-bold transition whitespace-nowrap ${
+                        activeSliceIndex === idx
+                          ? 'bg-indigo-600 text-white shadow'
+                          : 'text-white/60 hover:text-white'
+                      }`}
+                    >
+                      {slide.imageLabels?.[idx] || `Срез ${idx + 1}`}
+                    </button>
+                  ))}
+                </div>
+              )}
+
               <TransformComponent
                 contentClass="relative flex items-center justify-center"
                 wrapperClass="!w-full !h-full flex items-center justify-center"
@@ -220,7 +251,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
                   className={`relative inline-block ${isAdmin ? 'cursor-crosshair' : ''}`}
                 >
                   <img
-                    src={slide.imageUrl}
+                    src={activeImageUrl}
                     alt={slide.title}
                     className="max-h-[70vh] w-auto max-w-[94vw] object-contain rounded-2xl select-none pointer-events-none"
                     draggable={false}
@@ -388,7 +419,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
         </div>
       )}
 
-      {/* Шторка полного разбора препарата по 5 пунктам экзаменационного плана */}
+      {/* Шторка полного разбора препарата по 6 пунктам экзаменационного плана */}
       {showInfoSheet && (
         <div
           onClick={() => setShowInfoSheet(false)}
@@ -420,57 +451,78 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
                   1. Паспорт и окраска
                 </div>
                 <div className="text-slate-200">
-                  <span className="font-semibold text-slate-400">Окраска: </span>
-                  {slide.stain}
+                  <span className="font-semibold text-slate-400">Препарат: </span>
+                  {slide.title}
                 </div>
                 <div className="text-slate-200">
-                  <span className="font-semibold text-slate-400">Увеличение: </span>
-                  {slide.magnification}
+                  <span className="font-semibold text-slate-400">Окраска: </span>
+                  {slide.examPlan?.stainAndType || slide.stain}
                 </div>
+                {slide.magnification && (
+                  <div className="text-slate-200">
+                    <span className="font-semibold text-slate-400">Увеличение: </span>
+                    {slide.magnification}
+                  </div>
+                )}
               </div>
 
               {/* 2. Источник развития */}
-              {slide.embryoOrigin && (
+              {(slide.examPlan?.origin || slide.embryoOrigin) && (
                 <div className="bg-white/5 rounded-2xl p-3 border border-white/10 space-y-1">
                   <div className="text-[11px] font-bold text-indigo-400 uppercase">
                     2. Источник развития (эмбриогенез)
                   </div>
-                  <div className="text-slate-200 leading-snug">{slide.embryoOrigin}</div>
+                  <div className="text-slate-200 leading-snug">
+                    {slide.examPlan?.origin || slide.embryoOrigin}
+                  </div>
                 </div>
               )}
 
               {/* 3. Строение и слои */}
               <div className="bg-white/5 rounded-2xl p-3 border border-white/10 space-y-1.5">
                 <div className="text-[11px] font-bold text-indigo-400 uppercase">
-                  3. Строение, слои и клетки
+                  3. Микроскопическое строение и слои
                 </div>
-                <div>
-                  <span className="font-semibold text-slate-400">Слои и структуры: </span>
-                  <span className="text-slate-200">{slide.layersText}</span>
+                <div className="text-slate-200 leading-snug">
+                  {slide.examPlan?.structure || slide.layersText}
                 </div>
-                <div>
-                  <span className="font-semibold text-slate-400">Ключевые клетки: </span>
-                  <span className="text-slate-200">{slide.keyCells}</span>
-                </div>
+                {slide.keyCells && (
+                  <div className="pt-1 border-t border-white/5">
+                    <span className="font-semibold text-slate-400">Ключевые клетки: </span>
+                    <span className="text-slate-200">{slide.keyCells}</span>
+                  </div>
+                )}
               </div>
 
-              {/* 4. Функции */}
-              {slide.functionText && (
+              {/* 4. Локализация и топография */}
+              {slide.examPlan?.location && (
                 <div className="bg-white/5 rounded-2xl p-3 border border-white/10 space-y-1">
                   <div className="text-[11px] font-bold text-indigo-400 uppercase">
-                    4. Функции органа / ткани
+                    4. Топография и локализация
                   </div>
-                  <div className="text-slate-200 leading-snug">{slide.functionText}</div>
+                  <div className="text-slate-200 leading-snug">{slide.examPlan.location}</div>
                 </div>
               )}
 
-              {/* 5. Главный признак на экзамене */}
+              {/* 5. Функции */}
+              {(slide.examPlan?.functionText || slide.functionText) && (
+                <div className="bg-white/5 rounded-2xl p-3 border border-white/10 space-y-1">
+                  <div className="text-[11px] font-bold text-indigo-400 uppercase">
+                    5. Функции органа / ткани
+                  </div>
+                  <div className="text-slate-200 leading-snug">
+                    {slide.examPlan?.functionText || slide.functionText}
+                  </div>
+                </div>
+              )}
+
+              {/* 6. Главный диагностический признак (Киллер-фича) */}
               <div className="bg-indigo-950/40 rounded-2xl p-3 border border-indigo-500/30 space-y-1">
                 <div className="text-[11px] font-bold text-indigo-400 uppercase">
-                  5. Главный признак на экзамене
+                  6. Главный диагностический признак на экзамене
                 </div>
                 <div className="text-white font-medium leading-snug">
-                  {slide.killerFeature}
+                  {slide.examPlan?.killerFeature || slide.killerFeature}
                 </div>
               </div>
             </div>
