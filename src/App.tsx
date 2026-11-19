@@ -15,34 +15,53 @@ import {
   Palette,
   Moon,
   Sun,
+  Smartphone,
   Award,
   BookMarked,
   Play,
   Info,
+  Bookmark,
+  AlertCircle,
+  Shuffle,
+  Pipette,
+  FileText,
 } from 'lucide-react';
 import { MODULES, EXAM_SLIDES, THEORY_BLOCKS, HistSlide } from './data/histoData';
 import { GLOSSARY_TERMS, GlossaryTerm, RichGlossaryText } from './data/glossaryData';
+import { ELECTRONOGRAMS, EXAM_TICKETS } from './data/examContent';
 import { MicroscopeViewerModal } from './components/MicroscopeViewerModal';
 
 const getTg = () => (window as any).Telegram?.WebApp;
 
-const ACCENTS = [
-  { id: 'teal', name: 'Бирюза', hex: '#2DD4BF', textOnAccent: '#042F2E' },
-  { id: 'eosin', name: 'Эозин', hex: '#EC4899', textOnAccent: '#FFFFFF' },
-  { id: 'indigo', name: 'Индиго', hex: '#6366F1', textOnAccent: '#FFFFFF' },
-  { id: 'hematoxylin', name: 'Гематоксилин', hex: '#A855F7', textOnAccent: '#FFFFFF' },
-  { id: 'emerald', name: 'Изумруд', hex: '#10B981', textOnAccent: '#052E16' },
-];
-
-type TabId = 'home' | 'search' | 'glossary' | 'appearance' | 'profile';
+type ThemeMode = 'dark' | 'light' | 'system';
+type AccentId = 'mono' | 'mint' | 'blue' | 'pink' | 'violet' | 'custom';
+type TabId = 'home' | 'em' | 'tickets' | 'glossary' | 'profile';
 
 const DOCK_TABS: { id: TabId; label: string; icon: React.ElementType }[] = [
   { id: 'home', label: 'Главная', icon: Home },
-  { id: 'search', label: 'Поиск', icon: Search },
+  { id: 'em', label: 'ЭМ-схемы', icon: Layers },
+  { id: 'tickets', label: 'Билеты', icon: FileText },
   { id: 'glossary', label: 'Словарь', icon: BookMarked },
-  { id: 'appearance', label: 'Темы', icon: Palette },
   { id: 'profile', label: 'Профиль', icon: User },
 ];
+
+const PRESET_ACCENTS: { id: Exclude<AccentId, 'custom'>; label: string; darkHex: string; lightHex: string }[] = [
+  { id: 'mono', label: 'Монохром', darkHex: '#FFFFFF', lightHex: '#18181B' },
+  { id: 'mint', label: 'Мята', darkHex: '#2DD4BF', lightHex: '#0D9488' },
+  { id: 'blue', label: 'Синий', darkHex: '#3B82F6', lightHex: '#2563EB' },
+  { id: 'pink', label: 'Розовый', darkHex: '#EC4899', lightHex: '#DB2777' },
+  { id: 'violet', label: 'Фиолетовый', darkHex: '#8B5CF6', lightHex: '#7C3AED' },
+];
+
+function getContrastText(hex: string): string {
+  const clean = hex.replace('#', '');
+  if (clean.length !== 6) return '#FFFFFF';
+  const r = parseInt(clean.slice(0, 2), 16);
+  const g = parseInt(clean.slice(2, 4), 16);
+  const b = parseInt(clean.slice(4, 6), 16);
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  return luminance > 0.62 ? '#09090B' : '#FFFFFF';
+}
 
 function shuffleArray<T>(arr: T[]): T[] {
   const copy = [...arr];
@@ -80,41 +99,64 @@ function getSlideImage(slide: any): string {
   return slide?.imageUrl || slide?.image_clean_url || '';
 }
 
+function readStoredIds(key: string): string[] {
+  try {
+    const parsed = JSON.parse(localStorage.getItem(key) || '[]');
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
 export function App() {
   const [activeTab, setActiveTab] = useState<TabId>('home');
 
-  // Иерархическое раскрытие разделов и внутренних вкладок на Главной
+  // Глобальные оверлеи и шторки
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [showAppearanceSheet, setShowAppearanceSheet] = useState(false);
+  const [showFavoritesSheet, setShowFavoritesSheet] = useState(false);
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
+
+  // Иерархическое раскрытие разделов, ЭМ и билетов
   const [expandedModuleId, setExpandedModuleId] = useState<string | null>(
     () => MODULES[0]?.id || null
   );
   const [moduleInnerTab, setModuleInnerTab] = useState<Record<string, 'theory' | 'slides'>>({});
   const [expandedSlideId, setExpandedSlideId] = useState<string | null>(null);
+  const [expandedEmId, setExpandedEmId] = useState<string | null>(null);
+  const [expandedTicketId, setExpandedTicketId] = useState<string | null>(null);
+  const [ticketBlockFilter, setTicketBlockFilter] = useState<string>('Все');
 
-  // Оформление: 'dark' (OLED по умолчанию) или 'light'
-  const [colorMode, setColorMode] = useState<'dark' | 'light'>(
-    () => (localStorage.getItem('baza_color_mode') as 'dark' | 'light') || 'dark'
+  // Тема и акцент
+  const [themeMode, setThemeMode] = useState<ThemeMode>(
+    () => (localStorage.getItem('baza_theme_mode') as ThemeMode) || 'dark'
   );
-  const [accentId, setAccentId] = useState<string>(
-    () => localStorage.getItem('baza_accent') || 'teal'
-  );
-
-  // Прогресс изучения
-  const [masteredIds, setMasteredIds] = useState<string[]>(() => {
-    try {
-      const parsed = JSON.parse(localStorage.getItem('baza_mastered') || '[]');
-      return Array.isArray(parsed) ? parsed : [];
-    } catch {
-      return [];
-    }
+  const [systemPrefersDark, setSystemPrefersDark] = useState<boolean>(() => {
+    const tgScheme = getTg()?.colorScheme;
+    if (tgScheme === 'light') return false;
+    if (tgScheme === 'dark') return true;
+    return typeof window !== 'undefined' && window.matchMedia
+      ? window.matchMedia('(prefers-color-scheme: dark)').matches
+      : true;
   });
+  const [accentId, setAccentId] = useState<AccentId>(
+    () => (localStorage.getItem('baza_accent_v2') as AccentId) || 'mint'
+  );
+  const [customHex, setCustomHex] = useState<string>(
+    () => localStorage.getItem('baza_custom_hex') || '#F59E0B'
+  );
 
-  // Состояния поиска, словаря, сброса, микроскопа и тренажёра
+  // Прогресс, избранное, ошибки
+  const [masteredIds, setMasteredIds] = useState<string[]>(() => readStoredIds('baza_mastered'));
+  const [favoriteIds, setFavoriteIds] = useState<string[]>(() => readStoredIds('baza_favorites'));
+  const [mistakeIds, setMistakeIds] = useState<string[]>(() => readStoredIds('baza_mistakes'));
+
+  // Поиск, словарь, сброс, микроскоп, квиз
   const [searchQuery, setSearchQuery] = useState('');
   const [glossaryQuery, setGlossaryQuery] = useState('');
   const [selectedTerm, setSelectedTerm] = useState<GlossaryTerm | null>(null);
   const [confirmReset, setConfirmReset] = useState(false);
   const [activeMicroscopeSlide, setActiveMicroscopeSlide] = useState<HistSlide | null>(null);
-
   const [quizState, setQuizState] = useState<{
     slides: HistSlide[];
     title: string;
@@ -126,50 +168,95 @@ export function App() {
   // Безопасный отступ сверху под системные кнопки Telegram iOS / Desktop
   const [topInsetPx, setTopInsetPx] = useState<number>(14);
 
-  const accent = ACCENTS.find((a) => a.id === accentId) || ACCENTS[0];
-  const isDark = colorMode === 'dark';
+  const isDark = themeMode === 'system' ? systemPrefersDark : themeMode === 'dark';
+
+  const activeAccentHex = useMemo(() => {
+    if (accentId === 'custom') return customHex;
+    const found = PRESET_ACCENTS.find((p) => p.id === accentId) || PRESET_ACCENTS[1];
+    return isDark ? found.darkHex : found.lightHex;
+  }, [accentId, customHex, isDark]);
+
+  const accentTextColor = useMemo(() => getContrastText(activeAccentHex), [activeAccentHex]);
 
   const tgUser = getTg()?.initDataUnsafe?.user;
   const userName = tgUser?.first_name || 'Студент';
   const userHandle = tgUser?.username ? `@${tgUser.username}` : 'Учебный профиль';
   const userInitial = (userName?.[0] || 'Б').toUpperCase();
 
-  useEffect(() => {
-    localStorage.setItem('baza_color_mode', colorMode);
-    const tg = getTg();
-    if (tg?.setHeaderColor) {
-      tg.setHeaderColor(colorMode === 'dark' ? '#09090B' : '#F3F4F6');
-    }
-    if (tg?.setBackgroundColor) {
-      tg.setBackgroundColor(colorMode === 'dark' ? '#09090B' : '#F3F4F6');
-    }
-  }, [colorMode]);
+  const showToast = (msg: string) => {
+    setToastMessage(msg);
+  };
 
   useEffect(() => {
-    localStorage.setItem('baza_accent', accentId);
+    if (!toastMessage) return;
+    const t = setTimeout(() => setToastMessage(null), 2400);
+    return () => clearTimeout(t);
+  }, [toastMessage]);
+
+  // Отслеживание системной темы
+  useEffect(() => {
+    const mq = window.matchMedia?.('(prefers-color-scheme: dark)');
+    const onMqChange = (e: MediaQueryListEvent) => setSystemPrefersDark(e.matches);
+    mq?.addEventListener?.('change', onMqChange);
+
+    const tg = getTg();
+    const onTgTheme = () => {
+      if (tg?.colorScheme === 'dark') setSystemPrefersDark(true);
+      if (tg?.colorScheme === 'light') setSystemPrefersDark(false);
+    };
+    tg?.onEvent?.('themeChanged', onTgTheme);
+
+    return () => {
+      mq?.removeEventListener?.('change', onMqChange);
+      tg?.offEvent?.('themeChanged', onTgTheme);
+    };
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('baza_theme_mode', themeMode);
+    const tg = getTg();
+    const bgHex = isDark ? '#09090B' : '#F3F4F6';
+    tg?.setHeaderColor?.(bgHex);
+    tg?.setBackgroundColor?.(bgHex);
+  }, [themeMode, isDark]);
+
+  useEffect(() => {
+    localStorage.setItem('baza_accent_v2', accentId);
   }, [accentId]);
+
+  useEffect(() => {
+    localStorage.setItem('baza_custom_hex', customHex);
+  }, [customHex]);
 
   useEffect(() => {
     localStorage.setItem('baza_mastered', JSON.stringify(masteredIds));
   }, [masteredIds]);
 
-  // Сброс скролла вверх при переключении вкладок
+  useEffect(() => {
+    localStorage.setItem('baza_favorites', JSON.stringify(favoriteIds));
+  }, [favoriteIds]);
+
+  useEffect(() => {
+    localStorage.setItem('baza_mistakes', JSON.stringify(mistakeIds));
+  }, [mistakeIds]);
+
   useEffect(() => {
     window.scrollTo({ top: 0 });
     setConfirmReset(false);
   }, [activeTab]);
 
-  // Блокировка скролла фона при открытом bottom sheet словарика
+  // Блокировка фонового скролла при открытых шторках
   useEffect(() => {
-    if (!selectedTerm) return;
+    const hasSheet = Boolean(selectedTerm || showAppearanceSheet || showFavoritesSheet || isSearchOpen);
+    if (!hasSheet) return;
     const prev = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     return () => {
       document.body.style.overflow = prev;
     };
-  }, [selectedTerm]);
+  }, [selectedTerm, showAppearanceSheet, showFavoritesSheet, isSearchOpen]);
 
-  // Инициализация Telegram WebApp и safe-area
+  // Safe area Telegram WebApp
   useEffect(() => {
     const tg = getTg();
     if (!tg) return;
@@ -200,19 +287,20 @@ export function App() {
     if (!tg) return;
 
     const onBack = () => {
-      if (selectedTerm) {
-        setSelectedTerm(null);
-      } else if (activeMicroscopeSlide) {
-        setActiveMicroscopeSlide(null);
-      } else if (quizState) {
-        setQuizState(null);
-      } else if (activeTab !== 'home') {
-        setActiveTab('home');
-      }
+      if (selectedTerm) setSelectedTerm(null);
+      else if (showAppearanceSheet) setShowAppearanceSheet(false);
+      else if (showFavoritesSheet) setShowFavoritesSheet(false);
+      else if (isSearchOpen) setIsSearchOpen(false);
+      else if (activeMicroscopeSlide) setActiveMicroscopeSlide(null);
+      else if (quizState) setQuizState(null);
+      else if (activeTab !== 'home') setActiveTab('home');
     };
 
     const showBack =
       Boolean(selectedTerm) ||
+      showAppearanceSheet ||
+      showFavoritesSheet ||
+      isSearchOpen ||
       Boolean(activeMicroscopeSlide) ||
       Boolean(quizState) ||
       activeTab !== 'home';
@@ -227,7 +315,15 @@ export function App() {
     return () => {
       tg.BackButton?.offClick(onBack);
     };
-  }, [activeTab, quizState, activeMicroscopeSlide, selectedTerm]);
+  }, [
+    activeTab,
+    quizState,
+    activeMicroscopeSlide,
+    selectedTerm,
+    showAppearanceSheet,
+    showFavoritesSheet,
+    isSearchOpen,
+  ]);
 
   const haptic = (type: 'light' | 'medium' | 'success' | 'error') => {
     const tg = getTg();
@@ -237,6 +333,13 @@ export function App() {
     } else {
       tg.HapticFeedback.impactOccurred(type);
     }
+  };
+
+  const toggleFavorite = (slideId: string) => {
+    haptic('light');
+    setFavoriteIds((prev) =>
+      prev.includes(slideId) ? prev.filter((id) => id !== slideId) : [...prev, slideId]
+    );
   };
 
   const buildOptions = (slide: HistSlide): string[] => {
@@ -284,9 +387,19 @@ export function App() {
     const isCorrect = option === current.title;
     haptic(isCorrect ? 'success' : 'error');
 
-    if (isCorrect && !masteredIds.includes(current.id)) {
-      setMasteredIds((prev) => [...prev, current.id]);
+    if (isCorrect) {
+      if (!masteredIds.includes(current.id)) {
+        setMasteredIds((prev) => [...prev, current.id]);
+      }
+      if (mistakeIds.includes(current.id)) {
+        setMistakeIds((prev) => prev.filter((id) => id !== current.id));
+      }
+    } else {
+      if (!mistakeIds.includes(current.id)) {
+        setMistakeIds((prev) => [...prev, current.id]);
+      }
     }
+
     setQuizState({ ...quizState, selected: option });
   };
 
@@ -309,10 +422,11 @@ export function App() {
   const handleResetProgress = () => {
     const tg = getTg();
     if (tg?.showConfirm) {
-      tg.showConfirm('Сбросить прогресс изученных препаратов?', (confirmed: boolean) => {
+      tg.showConfirm('Сбросить прогресс изучения и список ошибок?', (confirmed: boolean) => {
         if (confirmed) {
           haptic('medium');
           setMasteredIds([]);
+          setMistakeIds([]);
         }
       });
       return;
@@ -324,20 +438,71 @@ export function App() {
     } else {
       haptic('medium');
       setMasteredIds([]);
+      setMistakeIds([]);
       setConfirmReset(false);
     }
   };
 
-  const filteredSlides = useMemo(() => {
+  const openTicketOfTheDay = () => {
+    haptic('light');
+    if (!EXAM_TICKETS.length) {
+      showToast('База билетов скоро пополнится');
+      return;
+    }
+    const randomTicket = EXAM_TICKETS[Math.floor(Math.random() * EXAM_TICKETS.length)];
+    setTicketBlockFilter('Все');
+    setExpandedTicketId(randomTicket.id);
+    setActiveTab('tickets');
+  };
+
+  const startMistakesQuiz = () => {
+    const mistakeSlides = EXAM_SLIDES.filter((s) => mistakeIds.includes(s.id));
+    if (!mistakeSlides.length) {
+      haptic('light');
+      showToast('Ошибок пока нет — пройдите Спидран');
+      return;
+    }
+    startQuiz(shuffleArray(mistakeSlides), `Работа над ошибками (${mistakeSlides.length})`);
+  };
+
+  // Глобальный поиск по препаратам, ЭМ, билетам и словарю
+  const globalSearchResults = useMemo(() => {
     const q = searchQuery.trim().toLowerCase();
-    if (!q) return EXAM_SLIDES;
-    return EXAM_SLIDES.filter((s) => {
-      const title = (s.title || '').toLowerCase();
-      const stain = (s.stain || '').toLowerCase();
-      const killer = (s.killerFeature || '').toLowerCase();
-      const num = String((s as any).examNumber ?? '');
-      return title.includes(q) || stain.includes(q) || killer.includes(q) || num === q;
-    });
+    if (!q) {
+      return {
+        slides: EXAM_SLIDES.slice(0, 8),
+        ems: [],
+        tickets: [],
+        terms: [],
+      };
+    }
+
+    return {
+      slides: EXAM_SLIDES.filter((s) => {
+        const num = String((s as any).examNumber ?? '');
+        return (
+          (s.title || '').toLowerCase().includes(q) ||
+          (s.stain || '').toLowerCase().includes(q) ||
+          (s.killerFeature || '').toLowerCase().includes(q) ||
+          num === q
+        );
+      }),
+      ems: ELECTRONOGRAMS.filter(
+        (em) =>
+          em.title.toLowerCase().includes(q) ||
+          em.topic.toLowerCase().includes(q) ||
+          em.description.toLowerCase().includes(q)
+      ),
+      tickets: EXAM_TICKETS.filter(
+        (t) =>
+          t.question.toLowerCase().includes(q) ||
+          t.answer.toLowerCase().includes(q) ||
+          String(t.number) === q
+      ),
+      terms: GLOSSARY_TERMS.filter(
+        (t) => t.term.toLowerCase().includes(q) || t.definition.toLowerCase().includes(q)
+      ),
+    };
   }, [searchQuery]);
 
   const filteredGlossary = useMemo(() => {
@@ -351,6 +516,21 @@ export function App() {
     );
   }, [glossaryQuery]);
 
+  const ticketBlocks = useMemo(() => {
+    const unique = Array.from(new Set(EXAM_TICKETS.map((t) => t.block)));
+    return ['Все', ...unique];
+  }, []);
+
+  const filteredTickets = useMemo(() => {
+    if (ticketBlockFilter === 'Все') return EXAM_TICKETS;
+    return EXAM_TICKETS.filter((t) => t.block === ticketBlockFilter);
+  }, [ticketBlockFilter]);
+
+  const favoriteSlides = useMemo(
+    () => EXAM_SLIDES.filter((s) => favoriteIds.includes(s.id)),
+    [favoriteIds]
+  );
+
   const hasExplicitModuleIds = useMemo(
     () => THEORY_BLOCKS.some((t: any) => Boolean(t?.moduleId)),
     []
@@ -363,6 +543,9 @@ export function App() {
     0,
     DOCK_TABS.findIndex((t) => t.id === activeTab)
   );
+
+  const themeModeLabel =
+    themeMode === 'dark' ? 'Тёмная' : themeMode === 'light' ? 'Светлая' : 'Системная';
 
   const ui = {
     bg: isDark ? 'bg-[#09090B] text-white' : 'bg-[#F3F4F6] text-zinc-900',
@@ -407,7 +590,7 @@ export function App() {
                 className="h-full rounded-full transition-all duration-500 ease-out"
                 style={{
                   width: `${((quizState.index + 1) / quizState.slides.length) * 100}%`,
-                  backgroundColor: accent.hex,
+                  backgroundColor: activeAccentHex,
                 }}
               />
             </div>
@@ -419,6 +602,7 @@ export function App() {
           {(() => {
             const slide = quizState.slides[quizState.index];
             const imgSrc = getSlideImage(slide);
+            const isFav = favoriteIds.includes(slide.id);
             return (
               <>
                 <div className="relative w-full h-[35vh] rounded-[26px] overflow-hidden bg-black border border-white/10 mb-4 shadow-lg">
@@ -429,10 +613,20 @@ export function App() {
                     {slide.stain}
                   </div>
                   <button
+                    onClick={() => toggleFavorite(slide.id)}
+                    className="absolute top-3 right-3 w-9 h-9 rounded-full bg-black/65 backdrop-blur-md text-white flex items-center justify-center border border-white/10 active:scale-95 transition"
+                    aria-label="В избранное"
+                  >
+                    <Bookmark
+                      className="w-4 h-4"
+                      style={isFav ? { fill: activeAccentHex, color: activeAccentHex } : undefined}
+                    />
+                  </button>
+                  <button
                     onClick={() => setActiveMicroscopeSlide(slide)}
                     className="absolute bottom-3 right-3 px-3.5 py-1.5 rounded-full bg-black/75 backdrop-blur-md text-white text-[12px] font-bold flex items-center gap-1.5 border border-white/15 active:scale-95 transition"
                   >
-                    <Layers className="w-3.5 h-3.5" style={{ color: accent.hex }} />
+                    <Layers className="w-3.5 h-3.5" style={{ color: activeAccentHex }} />
                     Слои и зум
                   </button>
                 </div>
@@ -478,12 +672,12 @@ export function App() {
                       <RichGlossaryText
                         text={slide.killerFeature}
                         onSelectTerm={setSelectedTerm}
-                        accentHex={accent.hex}
+                        accentHex={activeAccentHex}
                       />
                     </div>
                     <button
                       onClick={nextQuizSlide}
-                      style={{ backgroundColor: accent.hex, color: accent.textOnAccent }}
+                      style={{ backgroundColor: activeAccentHex, color: accentTextColor }}
                       className="w-full py-3.5 rounded-[16px] font-bold text-[14px] active:scale-[0.98] transition"
                     >
                       {quizState.index + 1 < quizState.slides.length
@@ -502,14 +696,14 @@ export function App() {
           {/* 1. ГЛАВНАЯ */}
           {activeTab === 'home' && (
             <div className="space-y-5 animate-fadeIn">
-              {/* Верхняя шапка */}
+              {/* Верхняя шапка: Аватар | БАЗА | Поиск */}
               <div className="flex items-center justify-between pt-1">
                 <button
                   onClick={() => {
                     haptic('light');
                     setActiveTab('profile');
                   }}
-                  style={{ backgroundColor: accent.hex, color: accent.textOnAccent }}
+                  style={{ backgroundColor: activeAccentHex, color: accentTextColor }}
                   className="w-9 h-9 rounded-full font-extrabold text-[14px] flex items-center justify-center shadow-sm active:scale-95 transition"
                   aria-label="Профиль"
                 >
@@ -523,12 +717,12 @@ export function App() {
                 <button
                   onClick={() => {
                     haptic('light');
-                    setActiveTab('appearance');
+                    setIsSearchOpen(true);
                   }}
                   className={`w-9 h-9 rounded-full flex items-center justify-center ${ui.cardInteractive} active:scale-95 transition`}
-                  aria-label="Оформление"
+                  aria-label="Поиск по приложению"
                 >
-                  <Palette className="w-4 h-4" style={{ color: accent.hex }} />
+                  <Search className="w-4 h-4" />
                 </button>
               </div>
 
@@ -546,17 +740,13 @@ export function App() {
                 </p>
               </div>
 
-              {/* 4 уникальные быстрые плитки */}
+              {/* 4 полезные плитки без дубликатов */}
               <div className="grid grid-cols-4 gap-2.5">
                 {[
                   {
-                    label: 'Поиск',
-                    icon: Search,
-                    onClick: () => setActiveTab('search'),
-                  },
-                  {
                     label: 'Теория',
                     icon: BookOpen,
+                    badge: null as number | null,
                     onClick: () => {
                       const firstId = MODULES[0]?.id;
                       if (firstId) {
@@ -569,14 +759,22 @@ export function App() {
                     },
                   },
                   {
-                    label: 'Словарь',
-                    icon: BookMarked,
-                    onClick: () => setActiveTab('glossary'),
+                    label: 'Избранное',
+                    icon: Bookmark,
+                    badge: favoriteIds.length || null,
+                    onClick: () => setShowFavoritesSheet(true),
                   },
                   {
-                    label: 'Темы',
-                    icon: Palette,
-                    onClick: () => setActiveTab('appearance'),
+                    label: 'Ошибки',
+                    icon: AlertCircle,
+                    badge: mistakeIds.length || null,
+                    onClick: startMistakesQuiz,
+                  },
+                  {
+                    label: 'Билет дня',
+                    icon: Shuffle,
+                    badge: null as number | null,
+                    onClick: openTicketOfTheDay,
                   },
                 ].map((item) => {
                   const Icon = item.icon;
@@ -587,10 +785,20 @@ export function App() {
                         haptic('light');
                         item.onClick();
                       }}
-                      className={`rounded-[20px] py-3.5 px-2 flex flex-col items-center justify-center gap-2 transition duration-200 active:scale-95 ${ui.cardInteractive}`}
+                      className={`relative rounded-[20px] py-3.5 px-1.5 flex flex-col items-center justify-center gap-2 transition duration-200 active:scale-95 ${ui.cardInteractive}`}
                     >
+                      {item.badge !== null && (
+                        <span
+                          style={{ backgroundColor: activeAccentHex, color: accentTextColor }}
+                          className="absolute top-2 right-2 min-w-[16px] h-[16px] px-1 rounded-full text-[9px] font-extrabold flex items-center justify-center"
+                        >
+                          {item.badge}
+                        </span>
+                      )}
                       <Icon className="w-5 h-5 stroke-[1.8]" />
-                      <span className="text-[12px] font-bold">{item.label}</span>
+                      <span className="text-[11px] font-bold tracking-tight truncate max-w-full">
+                        {item.label}
+                      </span>
                     </button>
                   );
                 })}
@@ -601,18 +809,18 @@ export function App() {
                 className={`rounded-[24px] p-4 space-y-3.5 relative overflow-hidden ${ui.card}`}
                 style={{
                   backgroundImage: isDark
-                    ? `radial-gradient(circle at 85% 20%, ${accent.hex}1F 0%, transparent 60%)`
-                    : `radial-gradient(circle at 85% 20%, ${accent.hex}16 0%, transparent 60%)`,
+                    ? `radial-gradient(circle at 85% 20%, ${activeAccentHex}1F 0%, transparent 60%)`
+                    : `radial-gradient(circle at 85% 20%, ${activeAccentHex}14 0%, transparent 60%)`,
                 }}
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <Zap className="w-4 h-4" style={{ color: accent.hex }} />
+                    <Zap className="w-4 h-4" style={{ color: activeAccentHex }} />
                     <span className="font-extrabold text-[16px]">Спидран по препаратам</span>
                   </div>
                   <span
                     className="text-[11px] font-bold px-2.5 py-0.5 rounded-full"
-                    style={{ backgroundColor: `${accent.hex}20`, color: accent.hex }}
+                    style={{ backgroundColor: `${activeAccentHex}20`, color: activeAccentHex }}
                   >
                     15 стекол
                   </span>
@@ -666,8 +874,8 @@ export function App() {
                           <div
                             className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 font-extrabold text-[13px]"
                             style={{
-                              backgroundColor: isOpen ? accent.hex : `${accent.hex}1A`,
-                              color: isOpen ? accent.textOnAccent : accent.hex,
+                              backgroundColor: isOpen ? activeAccentHex : `${activeAccentHex}1A`,
+                              color: isOpen ? accentTextColor : activeAccentHex,
                             }}
                           >
                             {mIdx + 1}
@@ -715,7 +923,7 @@ export function App() {
                             </button>
                           </div>
 
-                          {/* ВКЛАДКА 1: КОНСПЕКТ ТЕОРИИ */}
+                          {/* ВКЛАДКА 1: ТЕОРИЯ */}
                           {currentSubTab === 'theory' && (
                             <div className="space-y-3">
                               {modTheory.length > 0 ? (
@@ -731,21 +939,24 @@ export function App() {
                                       <RichGlossaryText
                                         text={block.summary}
                                         onSelectTerm={setSelectedTerm}
-                                        accentHex={accent.hex}
+                                        accentHex={activeAccentHex}
                                       />
                                     </div>
                                     {block.examTip && (
                                       <div
                                         className="p-2.5 rounded-[12px] text-[12px] leading-snug"
-                                        style={{ backgroundColor: `${accent.hex}14` }}
+                                        style={{ backgroundColor: `${activeAccentHex}14` }}
                                       >
-                                        <span className="font-bold" style={{ color: accent.hex }}>
+                                        <span
+                                          className="font-bold"
+                                          style={{ color: activeAccentHex }}
+                                        >
                                           На экзамене:{' '}
                                         </span>
                                         <RichGlossaryText
                                           text={block.examTip}
                                           onSelectTerm={setSelectedTerm}
-                                          accentHex={accent.hex}
+                                          accentHex={activeAccentHex}
                                         />
                                       </div>
                                     )}
@@ -756,9 +967,9 @@ export function App() {
                                   className={`rounded-[18px] p-3.5 text-[13px] leading-relaxed ${ui.subCard} ${ui.muted}`}
                                 >
                                   <RichGlossaryText
-                                    text={`Раздел «${mod.title}» включает изучение структурной организации тканей, их клеток и взаимодействия с базальной мембраной или тинкториальных свойств (оксифилия и базофилия). Нажмите на любой подсвеченный термин, чтобы открыть его определение, или перейдите во вкладку «Препараты».`}
+                                    text={`Раздел «${mod.title}»: изучите организацию тканей и клеток, их связь с базальной мембраной и тинкториальные свойства (оксифилия или базофилия). Нажмите на любой подсвеченный термин или откройте вкладку «Препараты».`}
                                     onSelectTerm={setSelectedTerm}
-                                    accentHex={accent.hex}
+                                    accentHex={activeAccentHex}
                                   />
                                 </div>
                               )}
@@ -768,7 +979,10 @@ export function App() {
                                   haptic('light');
                                   setModuleInnerTab((prev) => ({ ...prev, [mod.id]: 'slides' }));
                                 }}
-                                style={{ backgroundColor: `${accent.hex}1A`, color: accent.hex }}
+                                style={{
+                                  backgroundColor: `${activeAccentHex}1A`,
+                                  color: activeAccentHex,
+                                }}
                                 className="w-full py-2.5 rounded-[14px] font-bold text-[13px] flex items-center justify-center gap-1.5 active:scale-[0.99] transition"
                               >
                                 Перейти к препаратам раздела ({modSlides.length}) →
@@ -782,6 +996,7 @@ export function App() {
                               {modSlides.map((slide) => {
                                 const isSlideOpen = expandedSlideId === slide.id;
                                 const isDone = masteredIds.includes(slide.id);
+                                const isFav = favoriteIds.includes(slide.id);
                                 const imgSrc = getSlideImage(slide);
                                 const layersSummary = formatSlideLayers(slide);
 
@@ -816,8 +1031,8 @@ export function App() {
                                             <span
                                               className="text-[10px] font-extrabold px-1.5 py-0.5 rounded"
                                               style={{
-                                                backgroundColor: `${accent.hex}20`,
-                                                color: accent.hex,
+                                                backgroundColor: `${activeAccentHex}20`,
+                                                color: activeAccentHex,
                                               }}
                                             >
                                               №{(slide as any).examNumber}
@@ -852,7 +1067,7 @@ export function App() {
                                             <RichGlossaryText
                                               text={layersSummary}
                                               onSelectTerm={setSelectedTerm}
-                                              accentHex={accent.hex}
+                                              accentHex={activeAccentHex}
                                             />
                                           </div>
                                         )}
@@ -864,7 +1079,7 @@ export function App() {
                                             <RichGlossaryText
                                               text={slide.keyCells}
                                               onSelectTerm={setSelectedTerm}
-                                              accentHex={accent.hex}
+                                              accentHex={activeAccentHex}
                                             />
                                           </div>
                                         )}
@@ -872,14 +1087,14 @@ export function App() {
                                           <div>
                                             <span
                                               className="font-bold"
-                                              style={{ color: accent.hex }}
+                                              style={{ color: activeAccentHex }}
                                             >
                                               Главный признак:{' '}
                                             </span>
                                             <RichGlossaryText
                                               text={slide.killerFeature}
                                               onSelectTerm={setSelectedTerm}
-                                              accentHex={accent.hex}
+                                              accentHex={activeAccentHex}
                                             />
                                           </div>
                                         )}
@@ -888,13 +1103,23 @@ export function App() {
                                           <button
                                             onClick={() => setActiveMicroscopeSlide(slide)}
                                             style={{
-                                              backgroundColor: accent.hex,
-                                              color: accent.textOnAccent,
+                                              backgroundColor: activeAccentHex,
+                                              color: accentTextColor,
                                             }}
                                             className="flex-1 py-2.5 rounded-[12px] font-bold text-[12px] flex items-center justify-center gap-1.5 active:scale-95 transition"
                                           >
                                             <Microscope className="w-3.5 h-3.5" />
                                             В микроскоп
+                                          </button>
+                                          <button
+                                            onClick={() => toggleFavorite(slide.id)}
+                                            className={`py-2.5 px-3 rounded-[12px] flex items-center justify-center transition active:scale-95 ${ui.card}`}
+                                            aria-label="В избранное"
+                                          >
+                                            <Bookmark
+                                              className="w-4 h-4"
+                                              style={isFav ? { fill: activeAccentHex, color: activeAccentHex } : undefined}
+                                            />
                                           </button>
                                           {(slide as any).youtubeTimestampUrl && (
                                             <a
@@ -904,7 +1129,7 @@ export function App() {
                                               className="py-2.5 px-3 rounded-[12px] bg-rose-500/15 text-rose-400 font-bold text-[12px] flex items-center gap-1"
                                             >
                                               <Play className="w-3.5 h-3.5 fill-current" />
-                                              Разбор
+                                              Видео
                                             </a>
                                           )}
                                         </div>
@@ -933,83 +1158,221 @@ export function App() {
             </div>
           )}
 
-          {/* 2. ПОИСК */}
-          {activeTab === 'search' && (
+          {/* 2. ЭЛЕКТРОННОГРАММЫ */}
+          {activeTab === 'em' && (
             <div className="space-y-4 animate-fadeIn">
               <div className="pt-1">
-                <h1 className="text-[30px] font-extrabold tracking-tight leading-none">Поиск</h1>
+                <h1 className="text-[28px] font-extrabold tracking-tight leading-none">
+                  Электроннограммы
+                </h1>
                 <p className={`text-[13px] ${ui.muted} mt-1.5`}>
-                  Номер билета, препарат, окраска или признак
+                  Ультраструктура клеток, барьеров и органелл
                 </p>
               </div>
 
-              <div className={`rounded-[20px] px-4 py-3 flex items-center gap-3 ${ui.card}`}>
-                <Search className={`w-4 h-4 ${ui.muted}`} />
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Например: трахея, мезотелий, 15..."
-                  className="w-full bg-transparent text-[14px] outline-none placeholder:text-zinc-500"
-                />
-                {searchQuery && (
-                  <button onClick={() => setSearchQuery('')} aria-label="Очистить поиск">
-                    <X className={`w-4 h-4 ${ui.muted}`} />
-                  </button>
-                )}
-              </div>
-
-              <div className={`rounded-[24px] overflow-hidden divide-y ${ui.card} ${ui.divider}`}>
-                {filteredSlides.length > 0 ? (
-                  filteredSlides.map((slide) => (
-                    <div key={slide.id} className="p-4 space-y-2">
-                      <div
-                        onClick={() => setActiveMicroscopeSlide(slide)}
-                        className="flex items-start justify-between gap-3 cursor-pointer"
+              <div className="space-y-3">
+                {ELECTRONOGRAMS.map((em) => {
+                  const isOpen = expandedEmId === em.id;
+                  return (
+                    <div
+                      key={em.id}
+                      className={`rounded-[24px] overflow-hidden transition-all ${ui.card}`}
+                    >
+                      <button
+                        onClick={() => {
+                          haptic('light');
+                          setExpandedEmId(isOpen ? null : em.id);
+                        }}
+                        className="w-full p-4 flex items-center justify-between gap-3 text-left"
                       >
-                        <div className="space-y-1 min-w-0 flex-1">
+                        <div className="min-w-0 flex-1">
                           <div className="flex items-center gap-2">
-                            {(slide as any).examNumber !== undefined && (
-                              <span
-                                className="text-[11px] font-bold px-2 py-0.5 rounded-md"
-                                style={{ backgroundColor: `${accent.hex}20`, color: accent.hex }}
-                              >
-                                №{(slide as any).examNumber}
-                              </span>
-                            )}
-                            <span className={`text-[11px] ${ui.muted}`}>{slide.stain}</span>
+                            <span
+                              className="text-[11px] font-extrabold px-2 py-0.5 rounded-md"
+                              style={{
+                                backgroundColor: `${activeAccentHex}20`,
+                                color: activeAccentHex,
+                              }}
+                            >
+                              ЭМ №{em.number}
+                            </span>
+                            <span className={`text-[11px] ${ui.muted}`}>{em.topic}</span>
                           </div>
-                          <div className="font-bold text-[15px]">{slide.title}</div>
+                          <div className="font-extrabold text-[15px] mt-1 leading-snug">
+                            {em.title}
+                          </div>
                         </div>
-                        <ChevronRight className={`w-4 h-4 mt-1 shrink-0 ${ui.subtle}`} />
-                      </div>
-                      {slide.killerFeature && (
-                        <div className={`text-[12px] leading-relaxed ${ui.muted}`}>
-                          <RichGlossaryText
-                            text={slide.killerFeature}
-                            onSelectTerm={setSelectedTerm}
-                            accentHex={accent.hex}
-                          />
+                        <ChevronDown
+                          className={`w-5 h-5 shrink-0 transition-transform duration-300 ${
+                            isOpen ? 'rotate-180' : ''
+                          } ${ui.subtle}`}
+                        />
+                      </button>
+
+                      {isOpen && (
+                        <div className="px-4 pb-4 pt-1 space-y-3 border-t border-white/[0.05] animate-fadeIn">
+                          {em.imageUrl && (
+                            <img
+                              src={em.imageUrl}
+                              alt={em.title}
+                              className="w-full h-44 rounded-[18px] object-cover bg-black border border-white/10"
+                            />
+                          )}
+                          <div className={`text-[13px] leading-relaxed ${ui.muted}`}>
+                            <RichGlossaryText
+                              text={em.description}
+                              onSelectTerm={setSelectedTerm}
+                              accentHex={activeAccentHex}
+                            />
+                          </div>
+                          {em.markers.length > 0 && (
+                            <div className="space-y-1.5">
+                              <div className="text-[12px] font-bold">Что показывать на схеме:</div>
+                              <div className="flex flex-wrap gap-1.5">
+                                {em.markers.map((marker, idx) => (
+                                  <span
+                                    key={marker}
+                                    className={`text-[11px] font-medium px-2.5 py-1 rounded-full ${ui.subCard}`}
+                                  >
+                                    {idx + 1}. {marker}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                          )}
                         </div>
                       )}
                     </div>
-                  ))
-                ) : (
-                  <div className={`p-6 text-center text-[13px] ${ui.muted}`}>
-                    По запросу «{searchQuery}» ничего не найдено
-                  </div>
-                )}
+                  );
+                })}
               </div>
             </div>
           )}
 
-          {/* 3. СЛОВАРЬ ТЕРМИНОВ */}
+          {/* 3. БИЛЕТЫ К ЭКЗАМЕНУ */}
+          {activeTab === 'tickets' && (
+            <div className="space-y-4 animate-fadeIn">
+              <div className="pt-1 flex items-center justify-between gap-2">
+                <div>
+                  <h1 className="text-[30px] font-extrabold tracking-tight leading-none">Билеты</h1>
+                  <p className={`text-[13px] ${ui.muted} mt-1.5`}>
+                    Вопросы к экзамену с интерактивными терминами
+                  </p>
+                </div>
+                <button
+                  onClick={openTicketOfTheDay}
+                  className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${ui.cardInteractive} active:scale-95 transition`}
+                  aria-label="Случайный билет"
+                >
+                  <Shuffle className="w-4 h-4" style={{ color: activeAccentHex }} />
+                </button>
+              </div>
+
+              {/* Фильтр по блокам программы */}
+              <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar">
+                {ticketBlocks.map((block) => {
+                  const active = ticketBlockFilter === block;
+                  return (
+                    <button
+                      key={block}
+                      onClick={() => {
+                        haptic('light');
+                        setTicketBlockFilter(block);
+                      }}
+                      style={
+                        active
+                          ? { backgroundColor: activeAccentHex, color: accentTextColor }
+                          : undefined
+                      }
+                      className={`px-3.5 py-2 rounded-full text-[12px] font-bold whitespace-nowrap transition active:scale-95 ${
+                        active ? '' : `${ui.card} ${ui.muted}`
+                      }`}
+                    >
+                      {block}
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="space-y-3">
+                {filteredTickets.map((ticket) => {
+                  const isOpen = expandedTicketId === ticket.id;
+                  return (
+                    <div
+                      key={ticket.id}
+                      className={`rounded-[24px] overflow-hidden transition-all ${ui.card}`}
+                    >
+                      <button
+                        onClick={() => {
+                          haptic('light');
+                          setExpandedTicketId(isOpen ? null : ticket.id);
+                        }}
+                        className="w-full p-4 flex items-start justify-between gap-3 text-left"
+                      >
+                        <div className="min-w-0 flex-1 space-y-1">
+                          <div className="flex items-center gap-2">
+                            <span
+                              className="text-[11px] font-extrabold px-2 py-0.5 rounded-md"
+                              style={{
+                                backgroundColor: `${activeAccentHex}20`,
+                                color: activeAccentHex,
+                              }}
+                            >
+                              Вопрос №{ticket.number}
+                            </span>
+                            <span className={`text-[11px] ${ui.muted}`}>{ticket.block}</span>
+                          </div>
+                          <div className="font-bold text-[14px] leading-snug">
+                            {ticket.question}
+                          </div>
+                        </div>
+                        <ChevronDown
+                          className={`w-5 h-5 mt-0.5 shrink-0 transition-transform duration-300 ${
+                            isOpen ? 'rotate-180' : ''
+                          } ${ui.subtle}`}
+                        />
+                      </button>
+
+                      {isOpen && (
+                        <div className="px-4 pb-4 pt-2 space-y-3 border-t border-white/[0.05] animate-fadeIn">
+                          <div className={`text-[13px] leading-relaxed whitespace-pre-line ${ui.muted}`}>
+                            <RichGlossaryText
+                              text={ticket.answer}
+                              onSelectTerm={setSelectedTerm}
+                              accentHex={activeAccentHex}
+                            />
+                          </div>
+                          {ticket.keyTip && (
+                            <div
+                              className="p-3 rounded-[16px] text-[12px] leading-snug"
+                              style={{ backgroundColor: `${activeAccentHex}14` }}
+                            >
+                              <span className="font-bold" style={{ color: activeAccentHex }}>
+                                На что смотрит препод:{' '}
+                              </span>
+                              <RichGlossaryText
+                                text={ticket.keyTip}
+                                onSelectTerm={setSelectedTerm}
+                                accentHex={activeAccentHex}
+                              />
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* 4. СЛОВАРЬ ТЕРМИНОВ */}
           {activeTab === 'glossary' && (
             <div className="space-y-4 animate-fadeIn">
               <div className="pt-1">
                 <h1 className="text-[30px] font-extrabold tracking-tight leading-none">Словарь</h1>
                 <p className={`text-[13px] ${ui.muted} mt-1.5`}>
-                  Термины гистологии — нажимайте на подсвеченные слова в конспектах
+                  Нажимайте на подсвеченные термины в любых конспектах
                 </p>
               </div>
 
@@ -1019,7 +1382,7 @@ export function App() {
                   type="text"
                   value={glossaryQuery}
                   onChange={(e) => setGlossaryQuery(e.target.value)}
-                  placeholder="Найти термин (остеон, уротелий, метахромазия...)"
+                  placeholder="Остеон, уротелий, метахромазия..."
                   className="w-full bg-transparent text-[14px] outline-none placeholder:text-zinc-500"
                 />
                 {glossaryQuery && (
@@ -1040,7 +1403,10 @@ export function App() {
                     className={`w-full rounded-[22px] p-4 text-left space-y-1.5 transition active:scale-[0.99] ${ui.cardInteractive}`}
                   >
                     <div className="flex items-center justify-between gap-2">
-                      <span className="font-extrabold text-[15px]" style={{ color: accent.hex }}>
+                      <span
+                        className="font-extrabold text-[15px]"
+                        style={{ color: activeAccentHex }}
+                      >
                         {item.term}
                       </span>
                       <span className={`text-[11px] font-medium ${ui.subtle}`}>
@@ -1056,100 +1422,7 @@ export function App() {
             </div>
           )}
 
-          {/* 4. ОТДЕЛЬНАЯ ВКЛАДКА «ОФОРМЛЕНИЕ» */}
-          {activeTab === 'appearance' && (
-            <div className="space-y-5 animate-fadeIn">
-              <div className="pt-1">
-                <h1 className="text-[30px] font-extrabold tracking-tight leading-none">
-                  Оформление
-                </h1>
-                <p className={`text-[13px] ${ui.muted} mt-1.5`}>
-                  Настройте тему и акцент приложения под себя
-                </p>
-              </div>
-
-              <div className="space-y-2.5">
-                <div className="px-1 font-bold text-[14px]">Тема экрана</div>
-                <div className="grid grid-cols-2 gap-3">
-                  <button
-                    onClick={() => {
-                      haptic('light');
-                      setColorMode('dark');
-                    }}
-                    className={`rounded-[22px] p-4 text-left space-y-3 transition active:scale-[0.98] ${
-                      isDark
-                        ? 'bg-[#141417] border-2'
-                        : 'bg-zinc-900 text-white border border-black/10 opacity-85'
-                    }`}
-                    style={isDark ? { borderColor: accent.hex } : undefined}
-                  >
-                    <div className="flex items-center justify-between">
-                      <Moon className="w-5 h-5 text-zinc-200" />
-                      {isDark && <CheckCircle2 className="w-4 h-4" style={{ color: accent.hex }} />}
-                    </div>
-                    <div>
-                      <div className="font-bold text-[14px] text-white">Тёмная</div>
-                      <div className="text-[11px] text-zinc-400">OLED Dark</div>
-                    </div>
-                  </button>
-
-                  <button
-                    onClick={() => {
-                      haptic('light');
-                      setColorMode('light');
-                    }}
-                    className={`rounded-[22px] p-4 text-left space-y-3 transition active:scale-[0.98] ${
-                      !isDark
-                        ? 'bg-white text-zinc-900 border-2 shadow-sm'
-                        : 'bg-white text-zinc-900 border border-white/10 opacity-85'
-                    }`}
-                    style={!isDark ? { borderColor: accent.hex } : undefined}
-                  >
-                    <div className="flex items-center justify-between">
-                      <Sun className="w-5 h-5 text-amber-500" />
-                      {!isDark && (
-                        <CheckCircle2 className="w-4 h-4" style={{ color: accent.hex }} />
-                      )}
-                    </div>
-                    <div>
-                      <div className="font-bold text-[14px] text-zinc-900">Светлая</div>
-                      <div className="text-[11px] text-zinc-500">iOS Light</div>
-                    </div>
-                  </button>
-                </div>
-              </div>
-
-              <div className="space-y-2.5">
-                <div className="px-1 font-bold text-[14px]">Акцентный цвет</div>
-                <div className={`rounded-[24px] overflow-hidden divide-y ${ui.card} ${ui.divider}`}>
-                  {ACCENTS.map((item) => {
-                    const active = item.id === accentId;
-                    return (
-                      <button
-                        key={item.id}
-                        onClick={() => {
-                          haptic('light');
-                          setAccentId(item.id);
-                        }}
-                        className="w-full p-4 flex items-center justify-between text-left transition active:opacity-75"
-                      >
-                        <div className="flex items-center gap-3.5">
-                          <span
-                            style={{ backgroundColor: item.hex }}
-                            className="w-7 h-7 rounded-full shadow-sm shrink-0"
-                          />
-                          <span className="font-bold text-[14px]">{item.name}</span>
-                        </div>
-                        {active && <CheckCircle2 className="w-5 h-5" style={{ color: item.hex }} />}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* 5. ПРОФИЛЬ (ТОЛЬКО ЧИСТЫЙ ЗАГОЛОВОК) */}
+          {/* 5. ПРОФИЛЬ (ЧИСТЫЙ ЗАГОЛОВОК + ОФОРМЛЕНИЕ ВНУТРИ МЕНЮ) */}
           {activeTab === 'profile' && (
             <div className="space-y-6 animate-fadeIn">
               <div className="pt-1">
@@ -1158,7 +1431,7 @@ export function App() {
 
               <div className="flex flex-col items-center text-center py-2">
                 <div
-                  style={{ backgroundColor: accent.hex, color: accent.textOnAccent }}
+                  style={{ backgroundColor: activeAccentHex, color: accentTextColor }}
                   className="w-20 h-20 rounded-full font-extrabold text-[30px] flex items-center justify-center shadow-lg"
                 >
                   {userInitial}
@@ -1167,7 +1440,36 @@ export function App() {
                 <div className={`text-[13px] ${ui.muted}`}>{userHandle}</div>
               </div>
 
+              {/* Основной блок меню и статистики */}
               <div className={`rounded-[24px] overflow-hidden divide-y ${ui.card} ${ui.divider}`}>
+                {/* Строка Оформление -> открывает компактную шторку */}
+                <button
+                  onClick={() => {
+                    haptic('light');
+                    setShowAppearanceSheet(true);
+                  }}
+                  className="w-full p-4 flex items-center justify-between gap-3 text-left transition active:opacity-75"
+                >
+                  <div className="flex items-center gap-3.5">
+                    <div
+                      className={`w-10 h-10 rounded-full flex items-center justify-center ${ui.iconCircle}`}
+                    >
+                      <Palette className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <div className="font-bold text-[14px]">Оформление</div>
+                      <div className={`text-[12px] ${ui.muted}`}>{themeModeLabel}</div>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2.5">
+                    <span
+                      style={{ backgroundColor: activeAccentHex }}
+                      className="w-4 h-4 rounded-full border border-white/20"
+                    />
+                    <ChevronRight className={`w-4 h-4 ${ui.subtle}`} />
+                  </div>
+                </button>
+
                 <div className="p-4 flex items-center justify-between gap-3">
                   <div className="flex items-center gap-3.5">
                     <div
@@ -1185,22 +1487,32 @@ export function App() {
                   </div>
                 </div>
 
-                <div className="p-4 flex items-center justify-between gap-3">
+                <button
+                  onClick={() => {
+                    haptic('light');
+                    setShowFavoritesSheet(true);
+                  }}
+                  className="w-full p-4 flex items-center justify-between gap-3 text-left transition active:opacity-75"
+                >
                   <div className="flex items-center gap-3.5">
                     <div
                       className={`w-10 h-10 rounded-full flex items-center justify-center ${ui.iconCircle}`}
                     >
-                      <BookMarked className="w-4 h-4" />
+                      <Bookmark className="w-4 h-4" />
                     </div>
                     <div>
-                      <div className="font-bold text-[14px]">Терминов в словаре</div>
-                      <div className={`text-[12px] ${ui.muted}`}>Интерактивные подсказки</div>
+                      <div className="font-bold text-[14px]">Избранные стекла</div>
+                      <div className={`text-[12px] ${ui.muted}`}>Закладки для повторения</div>
                     </div>
                   </div>
-                  <div className="font-extrabold text-[14px]">{GLOSSARY_TERMS.length}</div>
-                </div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-extrabold text-[14px]">{favoriteIds.length}</span>
+                    <ChevronRight className={`w-4 h-4 ${ui.subtle}`} />
+                  </div>
+                </button>
               </div>
 
+              {/* Сброс прогресса */}
               <div className={`rounded-[24px] overflow-hidden ${ui.card}`}>
                 <button
                   onClick={handleResetProgress}
@@ -1235,7 +1547,6 @@ export function App() {
               isDark ? 'liquid-glass-dark' : 'liquid-glass-light'
             }`}
           >
-            {/* Плавно скользящая капсула активной вкладки */}
             <div
               aria-hidden="true"
               style={{
@@ -1269,13 +1580,393 @@ export function App() {
                   }`}
                 >
                   <Icon className="w-4 h-4 stroke-[2]" />
-                  <span className="text-[10px] font-semibold tracking-tight truncate max-w-full">
+                  <span className="text-[9.5px] font-semibold tracking-tight truncate max-w-full">
                     {tab.label}
                   </span>
                 </button>
               );
             })}
           </nav>
+        </div>
+      )}
+
+      {/* ==================== КОМПАКТНАЯ ШТОРКА «ОФОРМЛЕНИЕ» ==================== */}
+      {showAppearanceSheet && (
+        <div
+          onClick={() => setShowAppearanceSheet(false)}
+          className="fixed inset-0 z-50 bg-black/55 backdrop-blur-sm flex items-end justify-center animate-fadeIn"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className={`w-full max-w-md rounded-t-[30px] p-5 pb-9 space-y-5 animate-slideUp ${
+              isDark
+                ? 'bg-[#16161A]/95 backdrop-blur-2xl border-t border-white/15 text-white'
+                : 'bg-white/95 backdrop-blur-2xl border-t border-black/10 text-zinc-900'
+            }`}
+          >
+            <div className="w-10 h-1 rounded-full bg-zinc-500/30 mx-auto" />
+            <div className="flex items-center justify-between">
+              <h3 className="text-[20px] font-extrabold">Оформление</h3>
+              <button
+                onClick={() => setShowAppearanceSheet(false)}
+                className={`w-8 h-8 rounded-full flex items-center justify-center ${ui.iconCircle}`}
+                aria-label="Закрыть оформление"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Переключатель: Тёмная / Светлая / Системная */}
+            <div className="space-y-2">
+              <div className={`text-[12px] font-bold ${ui.muted}`}>Тема</div>
+              <div className={`grid grid-cols-3 p-1 rounded-[18px] ${ui.pillBg}`}>
+                {(
+                  [
+                    { id: 'dark', label: 'Тёмная', icon: Moon },
+                    { id: 'light', label: 'Светлая', icon: Sun },
+                    { id: 'system', label: 'Системная', icon: Smartphone },
+                  ] as const
+                ).map((item) => {
+                  const Icon = item.icon;
+                  const active = themeMode === item.id;
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => {
+                        haptic('light');
+                        setThemeMode(item.id);
+                      }}
+                      className={`py-2.5 rounded-[14px] text-[12px] font-bold flex items-center justify-center gap-1.5 transition-all ${
+                        active ? ui.pillActive : ui.muted
+                      }`}
+                    >
+                      <Icon className="w-3.5 h-3.5" />
+                      <span>{item.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Компактная строка акцентных кружков + пипетка */}
+            <div className="space-y-2.5">
+              <div className={`text-[12px] font-bold ${ui.muted}`}>Акцент</div>
+              <div className="flex items-center justify-between gap-2 pt-1">
+                {PRESET_ACCENTS.map((preset) => {
+                  const dotHex = isDark ? preset.darkHex : preset.lightHex;
+                  const active = accentId === preset.id;
+                  return (
+                    <button
+                      key={preset.id}
+                      onClick={() => {
+                        haptic('light');
+                        setAccentId(preset.id);
+                      }}
+                      aria-label={preset.label}
+                      className={`w-11 h-11 rounded-full flex items-center justify-center transition-transform active:scale-90 ${
+                        active
+                          ? isDark
+                            ? 'ring-2 ring-white ring-offset-2 ring-offset-[#16161A] scale-105'
+                            : 'ring-2 ring-zinc-900 ring-offset-2 ring-offset-white scale-105'
+                          : 'opacity-85'
+                      }`}
+                      style={{
+                        backgroundColor: dotHex,
+                        border:
+                          preset.id === 'mono' && isDark
+                            ? '1px solid rgba(255,255,255,0.2)'
+                            : undefined,
+                      }}
+                    >
+                      {active && (
+                        <CheckCircle2 className="w-5 h-5" style={{ color: getContrastText(dotHex) }} />
+                      )}
+                    </button>
+                  );
+                })}
+
+                {/* Свой цвет (пипетка) */}
+                <label
+                  aria-label="Выбрать свой цвет"
+                  className={`relative w-11 h-11 rounded-full flex items-center justify-center cursor-pointer transition-transform active:scale-90 ${
+                    accentId === 'custom'
+                      ? isDark
+                        ? 'ring-2 ring-white ring-offset-2 ring-offset-[#16161A] scale-105'
+                        : 'ring-2 ring-zinc-900 ring-offset-2 ring-offset-white scale-105'
+                      : 'opacity-90'
+                  }`}
+                  style={{
+                    background:
+                      accentId === 'custom'
+                        ? customHex
+                        : 'conic-gradient(from 90deg, #EC4899, #8B5CF6, #3B82F6, #2DD4BF, #F59E0B, #EC4899)',
+                  }}
+                >
+                  <Pipette
+                    className="w-4 h-4"
+                    style={{ color: accentId === 'custom' ? getContrastText(customHex) : '#FFFFFF' }}
+                  />
+                  <input
+                    type="color"
+                    value={customHex}
+                    onChange={(e) => {
+                      setCustomHex(e.target.value);
+                      setAccentId('custom');
+                    }}
+                    className="sr-only"
+                  />
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ==================== ОВЕРЛЕЙ ГЛОБАЛЬНОГО ПОИСКА ==================== */}
+      {isSearchOpen && (
+        <div
+          style={{ paddingTop: `${topInsetPx}px` }}
+          className={`fixed inset-0 z-50 ${ui.bg} overflow-y-auto px-4 pb-10 animate-fadeIn`}
+        >
+          <div className="max-w-md mx-auto space-y-4">
+            <div className="flex items-center gap-2.5">
+              <div className={`flex-1 rounded-[20px] px-4 py-3 flex items-center gap-3 ${ui.card}`}>
+                <Search className={`w-4 h-4 ${ui.muted}`} />
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Препарат, ЭМ, билет или термин..."
+                  className="w-full bg-transparent text-[14px] outline-none placeholder:text-zinc-500"
+                />
+                {searchQuery && (
+                  <button onClick={() => setSearchQuery('')} aria-label="Очистить">
+                    <X className={`w-4 h-4 ${ui.muted}`} />
+                  </button>
+                )}
+              </div>
+              <button
+                onClick={() => setIsSearchOpen(false)}
+                className={`w-11 h-11 rounded-full flex items-center justify-center shrink-0 ${ui.card}`}
+                aria-label="Закрыть поиск"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Результаты: Препараты */}
+            {globalSearchResults.slides.length > 0 && (
+              <div className="space-y-2">
+                <div className={`px-1 text-[12px] font-bold uppercase tracking-wider ${ui.muted}`}>
+                  Препараты ({globalSearchResults.slides.length})
+                </div>
+                <div className={`rounded-[24px] overflow-hidden divide-y ${ui.card} ${ui.divider}`}>
+                  {globalSearchResults.slides.map((slide) => (
+                    <button
+                      key={slide.id}
+                      onClick={() => {
+                        setIsSearchOpen(false);
+                        setActiveMicroscopeSlide(slide);
+                      }}
+                      className="w-full p-4 flex items-center justify-between gap-3 text-left"
+                    >
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center gap-2">
+                          {(slide as any).examNumber !== undefined && (
+                            <span
+                              className="text-[11px] font-bold px-2 py-0.5 rounded-md"
+                              style={{
+                                backgroundColor: `${activeAccentHex}20`,
+                                color: activeAccentHex,
+                              }}
+                            >
+                              №{(slide as any).examNumber}
+                            </span>
+                          )}
+                          <span className={`text-[11px] truncate ${ui.muted}`}>{slide.stain}</span>
+                        </div>
+                        <div className="font-bold text-[14px] mt-1">{slide.title}</div>
+                      </div>
+                      <ChevronRight className={`w-4 h-4 ${ui.subtle} shrink-0`} />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Результаты: ЭМ-схемы */}
+            {globalSearchResults.ems.length > 0 && (
+              <div className="space-y-2">
+                <div className={`px-1 text-[12px] font-bold uppercase tracking-wider ${ui.muted}`}>
+                  Электроннограммы ({globalSearchResults.ems.length})
+                </div>
+                <div className={`rounded-[24px] overflow-hidden divide-y ${ui.card} ${ui.divider}`}>
+                  {globalSearchResults.ems.map((em) => (
+                    <button
+                      key={em.id}
+                      onClick={() => {
+                        setIsSearchOpen(false);
+                        setExpandedEmId(em.id);
+                        setActiveTab('em');
+                      }}
+                      className="w-full p-4 flex items-center justify-between gap-3 text-left"
+                    >
+                      <div className="min-w-0">
+                        <div className="font-bold text-[14px]">{em.title}</div>
+                        <div className={`text-[12px] ${ui.muted}`}>{em.topic}</div>
+                      </div>
+                      <ChevronRight className={`w-4 h-4 ${ui.subtle} shrink-0`} />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Результаты: Билеты */}
+            {globalSearchResults.tickets.length > 0 && (
+              <div className="space-y-2">
+                <div className={`px-1 text-[12px] font-bold uppercase tracking-wider ${ui.muted}`}>
+                  Билеты ({globalSearchResults.tickets.length})
+                </div>
+                <div className={`rounded-[24px] overflow-hidden divide-y ${ui.card} ${ui.divider}`}>
+                  {globalSearchResults.tickets.map((ticket) => (
+                    <button
+                      key={ticket.id}
+                      onClick={() => {
+                        setIsSearchOpen(false);
+                        setExpandedTicketId(ticket.id);
+                        setActiveTab('tickets');
+                      }}
+                      className="w-full p-4 flex items-center justify-between gap-3 text-left"
+                    >
+                      <div className="min-w-0">
+                        <div className="font-bold text-[14px] line-clamp-2">
+                          №{ticket.number}. {ticket.question}
+                        </div>
+                      </div>
+                      <ChevronRight className={`w-4 h-4 ${ui.subtle} shrink-0`} />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Результаты: Термины */}
+            {globalSearchResults.terms.length > 0 && (
+              <div className="space-y-2">
+                <div className={`px-1 text-[12px] font-bold uppercase tracking-wider ${ui.muted}`}>
+                  Словарь ({globalSearchResults.terms.length})
+                </div>
+                <div className={`rounded-[24px] overflow-hidden divide-y ${ui.card} ${ui.divider}`}>
+                  {globalSearchResults.terms.map((term) => (
+                    <button
+                      key={term.id}
+                      onClick={() => {
+                        setIsSearchOpen(false);
+                        setSelectedTerm(term);
+                      }}
+                      className="w-full p-4 flex items-center justify-between gap-3 text-left"
+                    >
+                      <div className="min-w-0">
+                        <div className="font-bold text-[14px]" style={{ color: activeAccentHex }}>
+                          {term.term}
+                        </div>
+                        <div className={`text-[12px] line-clamp-1 ${ui.muted}`}>
+                          {term.definition}
+                        </div>
+                      </div>
+                      <ChevronRight className={`w-4 h-4 ${ui.subtle} shrink-0`} />
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {searchQuery.trim() &&
+              !globalSearchResults.slides.length &&
+              !globalSearchResults.ems.length &&
+              !globalSearchResults.tickets.length &&
+              !globalSearchResults.terms.length && (
+                <div className={`rounded-[24px] p-8 text-center text-[13px] ${ui.card} ${ui.muted}`}>
+                  По запросу «{searchQuery}» ничего не найдено
+                </div>
+              )}
+          </div>
+        </div>
+      )}
+
+      {/* ==================== ШТОРКА «ИЗБРАННОЕ» ==================== */}
+      {showFavoritesSheet && (
+        <div
+          onClick={() => setShowFavoritesSheet(false)}
+          className="fixed inset-0 z-50 bg-black/55 backdrop-blur-sm flex items-end justify-center animate-fadeIn"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className={`w-full max-w-md max-h-[75vh] flex flex-col rounded-t-[30px] p-5 pb-8 space-y-4 animate-slideUp ${
+              isDark
+                ? 'bg-[#16161A]/95 backdrop-blur-2xl border-t border-white/15 text-white'
+                : 'bg-white/95 backdrop-blur-2xl border-t border-black/10 text-zinc-900'
+            }`}
+          >
+            <div className="w-10 h-1 rounded-full bg-zinc-500/30 mx-auto shrink-0" />
+            <div className="flex items-center justify-between shrink-0">
+              <h3 className="text-[20px] font-extrabold">Избранные стекла</h3>
+              <button
+                onClick={() => setShowFavoritesSheet(false)}
+                className={`w-8 h-8 rounded-full flex items-center justify-center ${ui.iconCircle}`}
+                aria-label="Закрыть избранное"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            {favoriteSlides.length > 0 ? (
+              <>
+                <div className="overflow-y-auto space-y-2 pr-0.5">
+                  {favoriteSlides.map((slide) => (
+                    <div
+                      key={slide.id}
+                      className={`rounded-[18px] p-3 flex items-center justify-between gap-3 ${ui.subCard}`}
+                    >
+                      <button
+                        onClick={() => {
+                          setShowFavoritesSheet(false);
+                          setActiveMicroscopeSlide(slide);
+                        }}
+                        className="flex-1 text-left min-w-0"
+                      >
+                        <div className="font-bold text-[13px] truncate">{slide.title}</div>
+                        <div className={`text-[11px] ${ui.muted}`}>{slide.stain}</div>
+                      </button>
+                      <button
+                        onClick={() => toggleFavorite(slide.id)}
+                        className="p-2 text-rose-400 shrink-0"
+                        aria-label="Удалить из избранного"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+                <button
+                  onClick={() => {
+                    setShowFavoritesSheet(false);
+                    startQuiz(shuffleArray(favoriteSlides), 'Избранные препараты');
+                  }}
+                  style={{ backgroundColor: activeAccentHex, color: accentTextColor }}
+                  className="w-full py-3.5 rounded-[16px] font-bold text-[14px] shrink-0 active:scale-[0.98] transition"
+                >
+                  Тренировать избранное ({favoriteSlides.length})
+                </button>
+              </>
+            ) : (
+              <p className={`text-[13px] text-center py-6 ${ui.muted}`}>
+                Нажимайте на значок закладки в карточке препарата или во время теста, чтобы
+                откладывать сложные стекла сюда.
+              </p>
+            )}
+          </div>
         </div>
       )}
 
@@ -1298,7 +1989,7 @@ export function App() {
               <div>
                 <span
                   className="text-[11px] font-bold px-2.5 py-0.5 rounded-full"
-                  style={{ backgroundColor: `${accent.hex}20`, color: accent.hex }}
+                  style={{ backgroundColor: `${activeAccentHex}20`, color: activeAccentHex }}
                 >
                   {selectedTerm.category}
                 </span>
@@ -1319,17 +2010,24 @@ export function App() {
 
             <div
               className="p-3.5 rounded-[18px] text-[13px] leading-snug flex items-start gap-2.5"
-              style={{ backgroundColor: `${accent.hex}14` }}
+              style={{ backgroundColor: `${activeAccentHex}14` }}
             >
-              <Info className="w-4 h-4 shrink-0 mt-0.5" style={{ color: accent.hex }} />
+              <Info className="w-4 h-4 shrink-0 mt-0.5" style={{ color: activeAccentHex }} />
               <div>
-                <span className="font-bold" style={{ color: accent.hex }}>
+                <span className="font-bold" style={{ color: activeAccentHex }}>
                   Важно на экзамене:{' '}
                 </span>
                 <span>{selectedTerm.examNote}</span>
               </div>
             </div>
           </div>
+        </div>
+      )}
+
+      {/* ==================== ТОСТ-УВЕДОМЛЕНИЕ ==================== */}
+      {toastMessage && (
+        <div className="fixed top-20 left-1/2 -translate-x-1/2 z-50 px-4 py-2.5 rounded-full bg-zinc-900/95 text-white text-[12px] font-semibold border border-white/15 shadow-xl whitespace-nowrap animate-fadeIn">
+          {toastMessage}
         </div>
       )}
 
