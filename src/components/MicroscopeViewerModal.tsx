@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
+import React, { useState, useEffect, useRef } from 'react';
+import { TransformWrapper, TransformComponent, ReactZoomPanPinchRef } from 'react-zoom-pan-pinch';
 import {
   ZoomIn,
   ZoomOut,
@@ -13,6 +13,7 @@ import {
   Check,
   Info,
   X,
+  Microscope,
 } from 'lucide-react';
 import { HistSlide, SlideLayer } from '../data/histoData';
 
@@ -20,6 +21,9 @@ interface Props {
   slide: HistSlide;
   onClose: () => void;
   onStartTest: (slide: HistSlide) => void;
+  accentHex?: string;
+  accentTextColor?: string;
+  topInsetPx?: number;
 }
 
 const PIN_COLORS = [
@@ -29,11 +33,19 @@ const PIN_COLORS = [
   { label: 'Янтарь', hex: '#F59E0B' },
 ];
 
-export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStartTest }) => {
+export const MicroscopeViewerModal: React.FC<Props> = ({
+  slide,
+  onClose,
+  onStartTest,
+  accentHex = '#6366F1',
+  accentTextColor = '#818CF8',
+  topInsetPx = 16,
+}) => {
   const [showPins, setShowPins] = useState(true);
   const [showInfoSheet, setShowInfoSheet] = useState(false);
   const [currentScale, setCurrentScale] = useState(1);
   const [activeSliceIndex, setActiveSliceIndex] = useState(0);
+  const [imageError, setImageError] = useState(false);
 
   const [isAdmin, setIsAdmin] = useState(() => window.location.search.includes('admin=1'));
   const [tapCount, setTapCount] = useState(0);
@@ -46,8 +58,11 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
   const [editingPin, setEditingPin] = useState<SlideLayer | null>(null);
   const [copiedJson, setCopiedJson] = useState(false);
 
+  const transformRef = useRef<ReactZoomPanPinchRef>(null);
+
   useEffect(() => {
     setActiveSliceIndex(0);
+    setImageError(false);
     setLayers(slide.layers || []);
     setActiveLayer(slide.layers && slide.layers.length > 0 ? slide.layers[0] : null);
   }, [slide.id]);
@@ -57,17 +72,15 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
       ? slide.imageUrls[activeSliceIndex]
       : slide.imageUrl;
 
-  // Wire Telegram native BackButton for seamless back navigation on iOS/Android
   useEffect(() => {
-    const tg = (window as any).Telegram?.WebApp;
-    if (tg?.BackButton) {
-      tg.BackButton.show();
-      tg.BackButton.onClick(onClose);
-      return () => {
-        tg.BackButton.offClick(onClose);
-      };
-    }
-  }, [onClose]);
+    setImageError(false);
+  }, [activeImageUrl]);
+
+  const handleSliceChange = (idx: number) => {
+    setActiveSliceIndex(idx);
+    setImageError(false);
+    transformRef.current?.resetTransform();
+  };
 
   const handleHeaderTap = () => {
     const next = tapCount + 1;
@@ -81,7 +94,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
   };
 
   const handleImageClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isAdmin) return;
+    if (!isAdmin || activeSliceIndex > 0) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const x = Number((((e.clientX - rect.left) / rect.width) * 100).toFixed(1));
     const y = Number((((e.clientY - rect.top) / rect.height) * 100).toFixed(1));
@@ -118,27 +131,29 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
     setEditingPin(null);
   };
 
-  const copyLayersJson = () => {
-    const payload = JSON.stringify(layers, null, 2);
-    navigator.clipboard.writeText(payload);
-    setCopiedJson(true);
-    setTimeout(() => setCopiedJson(false), 2000);
-  };
-
-  // Safe area padding matching Telegram iOS native top buttons
-  const safeTopStyle: React.CSSProperties = {
-    paddingTop: 'calc(var(--tg-content-safe-area-inset-top, 52px) + var(--tg-safe-area-inset-top, 48px) + 12px)',
+  const copyLayersJson = async () => {
+    try {
+      const payload = JSON.stringify(layers, null, 2);
+      await navigator.clipboard.writeText(payload);
+      setCopiedJson(true);
+      setTimeout(() => setCopiedJson(false), 2000);
+    } catch (err) {
+      console.warn('Failed to copy to clipboard', err);
+    }
   };
 
   return (
     <div className="fixed inset-0 z-50 bg-[#07090E] text-white flex flex-col select-none">
-      {/* Верхняя панель окуляра с безопасным отступом под системные кнопки iOS */}
+      {/* Верхняя панель окуляра с адаптивным отступом topInsetPx */}
       <div
-        style={safeTopStyle}
+        style={{ paddingTop: `${topInsetPx}px` }}
         className="px-4 pb-3 bg-gradient-to-b from-black/95 via-black/70 to-transparent flex items-center justify-between gap-3 z-20"
       >
         <div onClick={handleHeaderTap} className="min-w-0 flex-1 cursor-pointer">
-          <div className="text-[11px] font-bold text-indigo-400 tracking-wide uppercase">
+          <div
+            style={{ color: accentTextColor }}
+            className="text-[11px] font-bold tracking-wide uppercase"
+          >
             Препарат №{slide.examNumber} {isAdmin && '· РЕЖИМ РАЗМЕТКИ'}
           </div>
           <h2 className="text-[15px] font-extrabold text-white truncate leading-tight mt-0.5">
@@ -149,7 +164,8 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
         <div className="flex items-center gap-2 shrink-0">
           <button
             onClick={() => onStartTest(slide)}
-            className="px-3.5 h-9 rounded-full bg-indigo-600 text-white font-bold text-[12px] flex items-center gap-1.5 shadow active:scale-95 transition"
+            style={{ backgroundColor: accentHex }}
+            className="px-3.5 h-9 rounded-full text-white font-bold text-[12px] flex items-center gap-1.5 shadow active:scale-95 transition"
           >
             <Zap className="w-3.5 h-3.5" />
             Тест
@@ -169,6 +185,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
       {/* Оптическое поле с синхронными пинами */}
       <div className="relative flex-1 overflow-hidden flex items-center justify-center">
         <TransformWrapper
+          ref={transformRef}
           centerOnInit
           initialScale={1}
           maxScale={6}
@@ -201,12 +218,17 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
 
               {/* Метки и Разбор */}
               <div className="absolute left-3 top-3 z-20 flex items-center gap-2">
-                {layers.length > 0 && (
+                {layers.length > 0 && activeSliceIndex === 0 && (
                   <button
                     onClick={() => setShowPins((v) => !v)}
+                    style={
+                      showPins
+                        ? { backgroundColor: accentHex, borderColor: `${accentHex}60` }
+                        : undefined
+                    }
                     className={`px-3 py-2 rounded-2xl backdrop-blur-md border text-[12px] font-bold flex items-center gap-1.5 transition ${
                       showPins
-                        ? 'bg-indigo-600/90 border-indigo-400/40 text-white'
+                        ? 'text-white'
                         : 'bg-black/65 border-white/10 text-white/80'
                     }`}
                   >
@@ -218,21 +240,30 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
                   onClick={() => setShowInfoSheet(true)}
                   className="px-3 py-2 rounded-2xl bg-black/65 backdrop-blur-md border border-white/10 text-[12px] font-bold flex items-center gap-1.5 text-white/90"
                 >
-                  <Info className="w-3.5 h-3.5 text-indigo-400" />
+                  <Info style={{ color: accentTextColor }} className="w-3.5 h-3.5" />
                   Разбор
                 </button>
               </div>
 
+              {/* Индикатор среза без разметки */}
+              {activeSliceIndex > 0 && (
+                <div className="absolute top-16 left-1/2 -translate-x-1/2 z-20 px-3.5 py-1.5 bg-black/80 backdrop-blur-md border border-white/15 rounded-full text-[11px] font-semibold text-white/80 shadow-lg flex items-center gap-1.5">
+                  <Info className="w-3.5 h-3.5 text-amber-400" />
+                  Метки доступны на Срезе 1
+                </div>
+              )}
+
               {/* Переключатель срезов (Кафедра / Атлас / Доп. срезы) */}
               {slide.imageUrls && slide.imageUrls.length > 1 && (
-                <div className="absolute top-14 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 px-3 py-1 bg-black/75 backdrop-blur-md rounded-full border border-white/15 shadow-xl max-w-[90vw] overflow-x-auto no-scrollbar">
+                <div className="absolute top-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 px-3 py-1 bg-black/75 backdrop-blur-md rounded-full border border-white/15 shadow-xl max-w-[90vw] overflow-x-auto no-scrollbar">
                   {slide.imageUrls.map((_, idx) => (
                     <button
                       key={idx}
-                      onClick={() => setActiveSliceIndex(idx)}
+                      onClick={() => handleSliceChange(idx)}
+                      style={activeSliceIndex === idx ? { backgroundColor: accentHex } : undefined}
                       className={`px-3 py-1 rounded-full text-[11px] font-bold transition whitespace-nowrap ${
                         activeSliceIndex === idx
-                          ? 'bg-indigo-600 text-white shadow'
+                          ? 'text-white shadow'
                           : 'text-white/60 hover:text-white'
                       }`}
                     >
@@ -248,16 +279,33 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
               >
                 <div
                   onClick={handleImageClick}
-                  className={`relative inline-block ${isAdmin ? 'cursor-crosshair' : ''}`}
+                  className={`relative inline-block ${isAdmin && activeSliceIndex === 0 ? 'cursor-crosshair' : ''}`}
                 >
-                  <img
-                    src={activeImageUrl}
-                    alt={slide.title}
-                    className="max-h-[70vh] w-auto max-w-[94vw] object-contain rounded-2xl select-none pointer-events-none"
-                    draggable={false}
-                  />
+                  {imageError ? (
+                    <div className="w-[85vw] max-w-[390px] h-64 rounded-3xl bg-white/[0.04] border border-white/10 flex flex-col items-center justify-center gap-3 p-6 text-center select-none">
+                      <div className="w-14 h-14 rounded-2xl bg-white/[0.06] flex items-center justify-center text-white/40">
+                        <Microscope className="w-7 h-7" />
+                      </div>
+                      <div>
+                        <div className="text-[14px] font-bold text-white/80">Фото недоступно</div>
+                        <div className="text-[12px] text-white/40 mt-1 max-w-[260px] leading-snug">
+                          Изображение микропрепарата временно не загружено
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <img
+                      src={activeImageUrl}
+                      alt={slide.title}
+                      onError={() => setImageError(true)}
+                      className="max-h-[70vh] w-auto max-w-[94vw] object-contain rounded-2xl select-none pointer-events-none"
+                      draggable={false}
+                    />
+                  )}
 
                   {showPins &&
+                    activeSliceIndex === 0 &&
+                    !imageError &&
                     layers.map((layer) => {
                       const isSelected = activeLayer?.number === layer.number;
                       const invScale = Math.max(0.35, Math.min(1.15, 1 / currentScale));
@@ -275,7 +323,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
                             left: `${layer.pin_x}%`,
                             top: `${layer.pin_y}%`,
                             transform: `translate(-50%, -50%) scale(${invScale})`,
-                            backgroundColor: layer.color || '#6366F1',
+                            backgroundColor: layer.color || accentHex,
                           }}
                           className={`absolute z-10 w-7 h-7 rounded-full text-white font-extrabold text-[12px] flex items-center justify-center shadow-lg transition-shadow ${
                             isSelected ? 'ring-4 ring-white' : 'ring-2 ring-black/50 opacity-90'
@@ -294,7 +342,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
 
       {/* Нижняя панель слоёв и разбора */}
       <div className="bg-[#111520] border-t border-white/10 px-4 pt-3 pb-7 space-y-3 z-20">
-        {layers.length > 0 && (
+        {layers.length > 0 && activeSliceIndex === 0 && (
           <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
             {layers.map((l) => {
               const active = activeLayer?.number === l.number;
@@ -319,7 +367,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
           </div>
         )}
 
-        {activeLayer ? (
+        {activeLayer && activeSliceIndex === 0 ? (
           <div className="bg-white/5 rounded-2xl p-3 border border-white/10">
             <div className="text-[13px] font-bold text-white">{activeLayer.name}</div>
             <div className="text-[12px] text-slate-300 mt-0.5 leading-snug">
@@ -328,7 +376,10 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
           </div>
         ) : (
           <div className="bg-white/5 rounded-2xl p-3 border border-white/10">
-            <div className="text-[11px] font-bold text-indigo-400 uppercase">
+            <div
+              style={{ color: accentTextColor }}
+              className="text-[11px] font-bold uppercase"
+            >
               Главный отличительный признак
             </div>
             <div className="text-[12px] text-slate-200 mt-0.5 leading-snug">
@@ -337,7 +388,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
           </div>
         )}
 
-        {isAdmin && (
+        {isAdmin && activeSliceIndex === 0 && (
           <div className="flex items-center gap-2 pt-1">
             <button
               onClick={copyLayersJson}
@@ -410,7 +461,8 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
               </button>
               <button
                 onClick={saveEditedPin}
-                className="flex-1 py-2.5 rounded-xl bg-indigo-600 text-white font-bold text-[13px]"
+                style={{ backgroundColor: accentHex }}
+                className="flex-1 py-2.5 rounded-xl text-white font-bold text-[13px]"
               >
                 Сохранить метку
               </button>
@@ -431,7 +483,10 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
           >
             <div className="flex items-start justify-between gap-2">
               <div>
-                <span className="text-[11px] font-bold text-indigo-400 uppercase tracking-wide">
+                <span
+                  style={{ color: accentTextColor }}
+                  className="text-[11px] font-bold uppercase tracking-wide"
+                >
                   Экзаменационный план · №{slide.examNumber}
                 </span>
                 <h3 className="text-[17px] font-extrabold text-white mt-0.5">{slide.title}</h3>
@@ -447,7 +502,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
             <div className="space-y-2.5 text-[13px]">
               {/* 1. Паспорт и окраска */}
               <div className="bg-white/5 rounded-2xl p-3 border border-white/10 space-y-1">
-                <div className="text-[11px] font-bold text-indigo-400 uppercase">
+                <div style={{ color: accentTextColor }} className="text-[11px] font-bold uppercase">
                   1. Паспорт и окраска
                 </div>
                 <div className="text-slate-200">
@@ -469,7 +524,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
               {/* 2. Источник развития */}
               {(slide.examPlan?.origin || slide.embryoOrigin) && (
                 <div className="bg-white/5 rounded-2xl p-3 border border-white/10 space-y-1">
-                  <div className="text-[11px] font-bold text-indigo-400 uppercase">
+                  <div style={{ color: accentTextColor }} className="text-[11px] font-bold uppercase">
                     2. Источник развития (эмбриогенез)
                   </div>
                   <div className="text-slate-200 leading-snug">
@@ -480,7 +535,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
 
               {/* 3. Строение и слои */}
               <div className="bg-white/5 rounded-2xl p-3 border border-white/10 space-y-1.5">
-                <div className="text-[11px] font-bold text-indigo-400 uppercase">
+                <div style={{ color: accentTextColor }} className="text-[11px] font-bold uppercase">
                   3. Микроскопическое строение и слои
                 </div>
                 <div className="text-slate-200 leading-snug">
@@ -497,7 +552,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
               {/* 4. Локализация и топография */}
               {slide.examPlan?.location && (
                 <div className="bg-white/5 rounded-2xl p-3 border border-white/10 space-y-1">
-                  <div className="text-[11px] font-bold text-indigo-400 uppercase">
+                  <div style={{ color: accentTextColor }} className="text-[11px] font-bold uppercase">
                     4. Топография и локализация
                   </div>
                   <div className="text-slate-200 leading-snug">{slide.examPlan.location}</div>
@@ -507,7 +562,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
               {/* 5. Функции */}
               {(slide.examPlan?.functionText || slide.functionText) && (
                 <div className="bg-white/5 rounded-2xl p-3 border border-white/10 space-y-1">
-                  <div className="text-[11px] font-bold text-indigo-400 uppercase">
+                  <div style={{ color: accentTextColor }} className="text-[11px] font-bold uppercase">
                     5. Функции органа / ткани
                   </div>
                   <div className="text-slate-200 leading-snug">
@@ -517,8 +572,14 @@ export const MicroscopeViewerModal: React.FC<Props> = ({ slide, onClose, onStart
               )}
 
               {/* 6. Главный диагностический признак (Киллер-фича) */}
-              <div className="bg-indigo-950/40 rounded-2xl p-3 border border-indigo-500/30 space-y-1">
-                <div className="text-[11px] font-bold text-indigo-400 uppercase">
+              <div
+                style={{
+                  backgroundColor: `${accentHex}1A`,
+                  borderColor: `${accentHex}40`,
+                }}
+                className="rounded-2xl p-3 border space-y-1"
+              >
+                <div style={{ color: accentTextColor }} className="text-[11px] font-bold uppercase">
                   6. Главный диагностический признак на экзамене
                 </div>
                 <div className="text-white font-medium leading-snug">

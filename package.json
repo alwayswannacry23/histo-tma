@@ -10,15 +10,10 @@
     "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.46.1",
-    "@telegram-apps/sdk-react": "^2.0.16",
-    "clsx": "^2.1.1",
-    "framer-motion": "^14.14.0",
     "lucide-react": "^0.460.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-zoom-pan-pinch": "^3.6.1",
-    "tailwind-merge": "^2.5.4"
+    "react-zoom-pan-pinch": "^3.6.1"
   },
   "devDependencies": {
     "@types/react": "^18.3.12",

@@ -29,7 +29,53 @@ import {
 import { MODULES, EXAM_SLIDES, THEORY_BLOCKS, HistSlide } from './data/histoData';
 import { GLOSSARY_TERMS, GlossaryTerm, RichGlossaryText } from './data/glossaryData';
 import { ELECTRONOGRAMS, EXAM_TICKETS } from './data/examContent';
-import { MicroscopeViewerModal } from './components/MicroscopeViewerModal';
+const MicroscopeViewerModal = React.lazy(() => import('./components/MicroscopeViewerModal'));
+
+
+const safeSetItem = (key: string, value: string) => {
+  try {
+    safeSetItem(key, value);
+  } catch (e) {
+    console.warn('localStorage access failed:', e);
+  }
+};
+
+const ImageWithFallback: React.FC<{
+  src?: string;
+  alt: string;
+  className?: string;
+  fallbackIcon?: React.ReactNode;
+  fallbackText?: string;
+}> = ({ src, alt, className = '', fallbackIcon, fallbackText = 'Фото недоступно' }) => {
+  const [error, setError] = React.useState(false);
+
+  React.useEffect(() => {
+    setError(false);
+  }, [src]);
+
+  if (!src || error) {
+    return (
+      <div
+        className={`flex flex-col items-center justify-center gap-1.5 bg-black/40 border border-white/10 text-center select-none ${className}`}
+      >
+        {fallbackIcon || <Microscope className="w-5 h-5 opacity-40 text-white" />}
+        {fallbackText ? (
+          <span className="text-[11px] font-medium text-white/50">{fallbackText}</span>
+        ) : null}
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      onError={() => setError(true)}
+      className={className}
+      loading="lazy"
+    />
+  );
+};
 
 const getTg = () => (window as any).Telegram?.WebApp;
 
@@ -213,7 +259,7 @@ export function App() {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('baza_theme_mode', themeMode);
+    safeSetItem('baza_theme_mode', themeMode);
     const tg = getTg();
     const bgHex = isDark ? '#09090B' : '#F3F4F6';
     tg?.setHeaderColor?.(bgHex);
@@ -221,23 +267,23 @@ export function App() {
   }, [themeMode, isDark]);
 
   useEffect(() => {
-    localStorage.setItem('baza_accent_v2', accentId);
+    safeSetItem('baza_accent_v2', accentId);
   }, [accentId]);
 
   useEffect(() => {
-    localStorage.setItem('baza_custom_hex', customHex);
+    safeSetItem('baza_custom_hex', customHex);
   }, [customHex]);
 
   useEffect(() => {
-    localStorage.setItem('baza_mastered', JSON.stringify(masteredIds));
+    safeSetItem('baza_mastered', JSON.stringify(masteredIds));
   }, [masteredIds]);
 
   useEffect(() => {
-    localStorage.setItem('baza_favorites', JSON.stringify(favoriteIds));
+    safeSetItem('baza_favorites', JSON.stringify(favoriteIds));
   }, [favoriteIds]);
 
   useEffect(() => {
-    localStorage.setItem('baza_mistakes', JSON.stringify(mistakeIds));
+    safeSetItem('baza_mistakes', JSON.stringify(mistakeIds));
   }, [mistakeIds]);
 
   useEffect(() => {
@@ -606,9 +652,13 @@ export function App() {
             return (
               <>
                 <div className="relative w-full h-[35vh] rounded-[26px] overflow-hidden bg-black border border-white/10 mb-4 shadow-lg">
-                  {imgSrc && (
-                    <img src={imgSrc} alt={slide.title} className="w-full h-full object-cover" />
-                  )}
+                  <ImageWithFallback
+                    src={imgSrc}
+                    alt={slide.title}
+                    className="w-full h-full object-cover"
+                    fallbackIcon={<Microscope className="w-8 h-8 text-white/40 mb-1" />}
+                    fallbackText="Фото препарата временно недоступно"
+                  />
                   <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/65 backdrop-blur-md text-white text-[11px] font-semibold border border-white/10">
                     {slide.stain}
                   </div>
@@ -1012,19 +1062,13 @@ export function App() {
                                       }}
                                       className="w-full p-3 flex items-center gap-3 text-left"
                                     >
-                                      {imgSrc ? (
-                                        <img
-                                          src={imgSrc}
-                                          alt={slide.title}
-                                          className="w-12 h-12 rounded-[12px] object-cover bg-black shrink-0 border border-white/10"
-                                        />
-                                      ) : (
-                                        <div
-                                          className={`w-12 h-12 rounded-[12px] flex items-center justify-center shrink-0 ${ui.iconCircle}`}
-                                        >
-                                          <Microscope className="w-5 h-5" />
-                                        </div>
-                                      )}
+                                      <ImageWithFallback
+                                        src={imgSrc}
+                                        alt={slide.title}
+                                        className="w-12 h-12 rounded-[12px] object-cover bg-black shrink-0 border border-white/10"
+                                        fallbackIcon={<Microscope className="w-5 h-5 text-white/40" />}
+                                        fallbackText=""
+                                      />
                                       <div className="min-w-0 flex-1">
                                         <div className="flex items-center gap-1.5">
                                           {(slide as any).examNumber !== undefined && (
@@ -1058,7 +1102,7 @@ export function App() {
                                     </button>
 
                                     {isSlideOpen && (
-                                      <div className="px-3.5 pb-3.5 pt-2 space-y-2.5 border-t border-white/[0.05] text-[12px] leading-relaxed animate-fadeIn">
+                                      <div className="px-3.5 pb-3.5 pt-2 space-y-2.5 border-t ${isDark ? 'border-white/[0.06]' : 'border-black/[0.06]'} text-[12px] leading-relaxed animate-fadeIn">
                                         {layersSummary && (
                                           <div>
                                             <span className={`font-bold ${ui.muted}`}>
@@ -1210,13 +1254,38 @@ export function App() {
                       </button>
 
                       {isOpen && (
-                        <div className="px-4 pb-4 pt-1 space-y-3 border-t border-white/[0.05] animate-fadeIn">
+                        <div className="px-4 pb-4 pt-1 space-y-3 border-t ${isDark ? 'border-white/[0.06]' : 'border-black/[0.06]'} animate-fadeIn">
                           {em.imageUrl && (
-                            <img
+                            <ImageWithFallback
                               src={em.imageUrl}
                               alt={em.title}
                               className="w-full h-44 rounded-[18px] object-cover bg-black border border-white/10"
+                              fallbackIcon={<Microscope className="w-7 h-7 text-white/40" />}
+                              fallbackText="Схема временно недоступна"
                             />
+                          )}
+                          {em.keyFeature && (
+                            <div
+                              style={{
+                                backgroundColor: `${activeAccentHex}14`,
+                                borderColor: `${activeAccentHex}30`,
+                              }}
+                              className="p-3.5 rounded-[18px] border space-y-1"
+                            >
+                              <div
+                                style={{ color: accentTextColor }}
+                                className="text-[11px] font-extrabold uppercase tracking-wide"
+                              >
+                                Главный признак на ЭМ
+                              </div>
+                              <div className={`text-[13px] leading-relaxed font-medium ${isDark ? 'text-white/95' : 'text-zinc-900'}`}>
+                                <RichGlossaryText
+                                  text={em.keyFeature}
+                                  onSelectTerm={setSelectedTerm}
+                                  accentHex={activeAccentHex}
+                                />
+                              </div>
+                            </div>
                           )}
                           <div className={`text-[13px] leading-relaxed ${ui.muted}`}>
                             <RichGlossaryText
@@ -1334,7 +1403,7 @@ export function App() {
                       </button>
 
                       {isOpen && (
-                        <div className="px-4 pb-4 pt-2 space-y-3 border-t border-white/[0.05] animate-fadeIn">
+                        <div className="px-4 pb-4 pt-2 space-y-3 border-t ${isDark ? 'border-white/[0.06]' : 'border-black/[0.06]'} animate-fadeIn">
                           <div className={`text-[13px] leading-relaxed whitespace-pre-line ${ui.muted}`}>
                             <RichGlossaryText
                               text={ticket.answer}
@@ -1402,14 +1471,21 @@ export function App() {
                     }}
                     className={`w-full rounded-[22px] p-4 text-left space-y-1.5 transition active:scale-[0.99] ${ui.cardInteractive}`}
                   >
-                    <div className="flex items-center justify-between gap-2">
-                      <span
-                        className="font-extrabold text-[15px]"
-                        style={{ color: activeAccentHex }}
-                      >
-                        {item.term}
-                      </span>
-                      <span className={`text-[11px] font-medium ${ui.subtle}`}>
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="min-w-0 flex-1">
+                        <span
+                          className="font-extrabold text-[15px] block leading-tight"
+                          style={{ color: activeAccentHex }}
+                        >
+                          {item.term}
+                        </span>
+                        {item.latin && (
+                          <span className={`text-[12px] italic block mt-0.5 ${ui.subtle}`}>
+                            {item.latin}
+                          </span>
+                        )}
+                      </div>
+                      <span className={`text-[11px] font-medium shrink-0 ${ui.subtle}`}>
                         {item.category}
                       </span>
                     </div>
@@ -1996,6 +2072,11 @@ export function App() {
                 <h3 className="text-[20px] font-extrabold mt-1.5 leading-tight">
                   {selectedTerm.term}
                 </h3>
+                {selectedTerm.latin && (
+                  <div className={`text-[13px] italic mt-0.5 ${ui.muted}`}>
+                    {selectedTerm.latin}
+                  </div>
+                )}
               </div>
               <button
                 onClick={() => setSelectedTerm(null)}
@@ -2033,14 +2114,19 @@ export function App() {
 
       {/* ==================== ВИРТУАЛЬНЫЙ МИКРОСКОП ==================== */}
       {activeMicroscopeSlide && (
-        <MicroscopeViewerModal
-          slide={activeMicroscopeSlide}
-          onClose={() => setActiveMicroscopeSlide(null)}
-          onStartTest={(slide) => {
-            setActiveMicroscopeSlide(null);
-            startQuiz([slide], slide.title);
-          }}
-        />
+        <React.Suspense fallback={null}>
+            <MicroscopeViewerModal
+              slide={activeMicroscopeSlide}
+              onClose={() => setActiveMicroscopeSlide(null)}
+              onStartTest={(s) => {
+                setActiveMicroscopeSlide(null);
+                startQuiz([s], s.title);
+              }}
+              accentHex={activeAccentHex}
+              accentTextColor={accentTextColor}
+              topInsetPx={topInsetPx}
+            />
+          </React.Suspense>
       )}
     </div>
   );

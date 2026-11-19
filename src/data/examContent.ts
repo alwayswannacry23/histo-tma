@@ -12,6 +12,7 @@ export interface ElectronogramItem {
   imageUrl?: string;
   markers: string[];
   description: string;
+  keyFeature?: string;
 }
 
 export interface ExamTicketItem {
@@ -28,7 +29,9 @@ export const ELECTRONOGRAMS: ElectronogramItem[] = RAW_ELECTRONOGRAMS.map((em) =
   number: em.number,
   title: em.title,
   topic: em.sectionName || 'Гистология',
+  imageUrl: (em as any).imageUrl,
   markers: em.markers || [],
+  keyFeature: em.keyFeature,
   description: [
     em.description,
     em.functionText ? `Функции: ${em.functionText}` : null,
