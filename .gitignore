@@ -34,3 +34,7 @@ dist-ssr
 
 # Vercel
 .vercel
+
+# Raw cafedra materials
+raw_cafedra/
+
