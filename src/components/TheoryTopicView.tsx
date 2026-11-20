@@ -1,5 +1,5 @@
-import React from 'react';
-import { AlertTriangle, BookOpen, CheckCircle2, FileText } from 'lucide-react';
+import React, { useState } from 'react';
+import { AlertTriangle, BookOpen, CheckCircle2, ChevronDown, FileText, HelpCircle } from 'lucide-react';
 import { ContentBlock, TheoryTopic } from '../data/curriculumTypes';
 import { GlossaryTerm, RichGlossaryText } from '../data/glossaryData';
 
@@ -25,6 +25,10 @@ export const TheoryTopicView: React.FC<TheoryTopicViewProps> = ({
     : 'bg-zinc-50 border border-black/[0.05]';
   const muted = isDark ? 'text-zinc-400' : 'text-zinc-600';
   const borderCol = isDark ? 'border-white/[0.08]' : 'border-black/[0.08]';
+
+  const [openQaKeys, setOpenQaKeys] = useState<Record<string, boolean>>({});
+  const toggleQa = (key: string) =>
+    setOpenQaKeys((prev) => ({ ...prev, [key]: !prev[key] }));
 
   const renderBlock = (block: ContentBlock, idx: number) => {
     switch (block.type) {
@@ -113,12 +117,63 @@ export const TheoryTopicView: React.FC<TheoryTopicViewProps> = ({
         return (
           <div
             key={idx}
+            data-block-id={block.id || undefined}
             className="rounded-[18px] p-3.5 bg-amber-500/10 border border-amber-500/25 flex items-start gap-2.5 text-[12.5px] leading-relaxed"
           >
             <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
             <div>
               <span className="font-bold text-amber-400">{block.title || 'На чём валят на экзамене'}: </span>
               <RichGlossaryText accentHex={accentHex} onSelectTerm={onSelectTerm} text={block.text} />
+            </div>
+          </div>
+        );
+
+      case 'qa':
+        return (
+          <div
+            key={idx}
+            data-block-id={block.id || undefined}
+            className={`rounded-[18px] p-3.5 space-y-2 ${subCard}`}
+          >
+            <div className="flex items-center gap-1.5 font-bold text-[14px]">
+              <HelpCircle className="w-4 h-4 shrink-0" style={{ color: accentHex }} />
+              <span>{block.title || 'Дополнительные вопросы на экзамене'}</span>
+            </div>
+            <div className="space-y-1.5">
+              {block.items.map((item, i) => {
+                const qaKey = `${idx}_${i}`;
+                const isOpen = !!openQaKeys[qaKey];
+                return (
+                  <div
+                    key={qaKey}
+                    className={`rounded-[14px] overflow-hidden border ${
+                      isDark ? 'bg-white/[0.02] border-white/[0.06]' : 'bg-white border-black/[0.05]'
+                    }`}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => toggleQa(qaKey)}
+                      className="w-full px-3 py-2.5 text-left flex items-start justify-between gap-2 text-[13px] font-semibold leading-snug"
+                    >
+                      <span>{item.q}</span>
+                      <ChevronDown
+                        className={`w-4 h-4 mt-0.5 shrink-0 transition-transform duration-200 ${
+                          isOpen ? 'rotate-180' : ''
+                        } ${muted}`}
+                      />
+                    </button>
+                    {isOpen && (
+                      <div
+                        className={`px-3 pb-3 pt-2 text-[12.5px] leading-relaxed border-t ${
+                          isDark ? 'border-white/[0.06]' : 'border-black/[0.06]'
+                        } ${muted}`}
+                      >
+                        <RichGlossaryText accentHex={accentHex} onSelectTerm={onSelectTerm} text={item.a} />
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
         );

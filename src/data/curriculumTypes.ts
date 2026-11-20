@@ -10,11 +10,12 @@ export type CurriculumSectionId =
   | 'sec_5_special_histo';
 
 export type ContentBlock =
-  | { type: 'summary'; title?: string; text: string }
-  | { type: 'text'; title?: string; text: string }
-  | { type: 'list'; title?: string; ordered?: boolean; items: string[] }
-  | { type: 'table'; title?: string; headers: string[]; rows: string[][] }
-  | { type: 'examTrap'; title?: string; text: string };
+  | { id?: string; type: 'summary'; title?: string; text: string }
+  | { id?: string; type: 'text'; title?: string; text: string }
+  | { id?: string; type: 'list'; title?: string; ordered?: boolean; items: string[] }
+  | { id?: string; type: 'table'; title?: string; headers: string[]; rows: string[][] }
+  | { id?: string; type: 'examTrap'; title?: string; text: string }
+  | { id?: string; type: 'qa'; title?: string; items: { q: string; a: string }[] };
 
 export interface TheoryTopic {
   id: string;
