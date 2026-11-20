@@ -221,8 +221,12 @@ export const ExamSimulatorModal: React.FC<ExamSimulatorModalProps> = ({
               const imgSrc = slide?.imageUrl || slide?.image_clean_url || '';
               return (
                 <div key={sKey} className={`rounded-[16px] overflow-hidden ${isDark ? 'bg-white/[0.03]' : 'bg-zinc-50'}`}>
-                  <div className="h-24 bg-black relative">
-                    {imgSrc && <img src={imgSrc} alt="Слепой препарат" className="w-full h-full object-cover" />}
+                  <div className={`h-24 relative flex items-center justify-center ${isDark ? 'bg-white/[0.04]' : 'bg-zinc-100'}`}>
+                    {imgSrc ? (
+                      <img src={imgSrc} alt="Слепой препарат" className="w-full h-full object-cover" />
+                    ) : (
+                      <Microscope className="w-6 h-6 opacity-40 text-zinc-400" />
+                    )}
                     <button
                       type="button"
                       onClick={() => onOpenSlide(slide)}

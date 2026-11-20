@@ -3,7 +3,7 @@ import { TheorySection } from '../curriculumTypes';
 export const SECTION_HISTOTECHNIQUE: TheorySection = {
   id: 'sec_1_histotechnique',
   order: 1,
-  title: 'Гистологическая техника и методы',
+  title: 'Гистологическая техника',
   shortTitle: 'Гистотехника',
   semesterLabel: '2 семестр · Темы 1–2',
   topics: [

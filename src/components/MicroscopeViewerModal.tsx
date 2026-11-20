@@ -45,7 +45,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
   const [showInfoSheet, setShowInfoSheet] = useState(false);
   const [currentScale, setCurrentScale] = useState(1);
   const [activeSliceIndex, setActiveSliceIndex] = useState(0);
-  const [imageError, setImageError] = useState(false);
+  const [imageFailed, setImageFailed] = useState(false);
 
   const [isAdmin, setIsAdmin] = useState(() => window.location.search.includes('admin=1'));
   const [tapCount, setTapCount] = useState(0);
@@ -62,7 +62,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
 
   useEffect(() => {
     setActiveSliceIndex(0);
-    setImageError(false);
+    setImageFailed(false);
     setLayers(slide.layers || []);
     setActiveLayer(slide.layers && slide.layers.length > 0 ? slide.layers[0] : null);
   }, [slide.id]);
@@ -73,14 +73,16 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
       : slide.imageUrl;
 
   useEffect(() => {
-    setImageError(false);
+    setImageFailed(false);
   }, [activeImageUrl]);
 
   const handleSliceChange = (idx: number) => {
     setActiveSliceIndex(idx);
-    setImageError(false);
+    setImageFailed(false);
     transformRef.current?.resetTransform();
   };
+
+  const hasImage = Boolean(activeImageUrl && activeImageUrl.trim()) && !imageFailed;
 
   const handleHeaderTap = () => {
     const next = tapCount + 1;
@@ -195,30 +197,32 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
           {({ zoomIn, zoomOut, resetTransform }) => (
             <>
               {/* Кнопки зума */}
-              <div className="absolute right-3 top-3 z-20 flex flex-col gap-2">
-                <button
-                  onClick={() => zoomIn(0.5)}
-                  className="w-10 h-10 rounded-2xl bg-black/65 backdrop-blur-md border border-white/10 flex items-center justify-center active:scale-95"
-                >
-                  <ZoomIn className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={() => zoomOut(0.5)}
-                  className="w-10 h-10 rounded-2xl bg-black/65 backdrop-blur-md border border-white/10 flex items-center justify-center active:scale-95"
-                >
-                  <ZoomOut className="w-4 h-4" />
-                </button>
-                <button
-                  onClick={() => resetTransform()}
-                  className="w-10 h-10 rounded-2xl bg-black/65 backdrop-blur-md border border-white/10 flex items-center justify-center active:scale-95"
-                >
-                  <RotateCcw className="w-4 h-4" />
-                </button>
-              </div>
+              {hasImage && (
+                <div className="absolute right-3 top-3 z-20 flex flex-col gap-2">
+                  <button
+                    onClick={() => zoomIn(0.5)}
+                    className="w-10 h-10 rounded-2xl bg-black/65 backdrop-blur-md border border-white/10 flex items-center justify-center active:scale-95"
+                  >
+                    <ZoomIn className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={() => zoomOut(0.5)}
+                    className="w-10 h-10 rounded-2xl bg-black/65 backdrop-blur-md border border-white/10 flex items-center justify-center active:scale-95"
+                  >
+                    <ZoomOut className="w-4 h-4" />
+                  </button>
+                  <button
+                    onClick={() => resetTransform()}
+                    className="w-10 h-10 rounded-2xl bg-black/65 backdrop-blur-md border border-white/10 flex items-center justify-center active:scale-95"
+                  >
+                    <RotateCcw className="w-4 h-4" />
+                  </button>
+                </div>
+              )}
 
               {/* Метки и Разбор */}
               <div className="absolute left-3 top-3 z-20 flex items-center gap-2">
-                {layers.length > 0 && activeSliceIndex === 0 && (
+                {hasImage && layers.length > 0 && activeSliceIndex === 0 && (
                   <button
                     onClick={() => setShowPins((v) => !v)}
                     style={
@@ -246,7 +250,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
               </div>
 
               {/* Индикатор среза без разметки */}
-              {activeSliceIndex > 0 && (
+              {hasImage && activeSliceIndex > 0 && (
                 <div className="absolute top-16 left-1/2 -translate-x-1/2 z-20 px-3.5 py-1.5 bg-black/80 backdrop-blur-md border border-white/15 rounded-full text-[11px] font-semibold text-white/80 shadow-lg flex items-center gap-1.5">
                   <Info className="w-3.5 h-3.5 text-amber-400" />
                   Метки доступны на Срезе 1
@@ -254,7 +258,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
               )}
 
               {/* Переключатель срезов (Кафедра / Атлас / Доп. срезы) */}
-              {slide.imageUrls && slide.imageUrls.length > 1 && (
+              {hasImage && slide.imageUrls && slide.imageUrls.length > 1 && (
                 <div className="absolute top-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 px-3 py-1 bg-black/75 backdrop-blur-md rounded-full border border-white/15 shadow-xl max-w-[90vw] overflow-x-auto no-scrollbar">
                   {slide.imageUrls.map((_, idx) => (
                     <button
@@ -277,63 +281,62 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
                 contentClass="relative flex items-center justify-center"
                 wrapperClass="!w-full !h-full flex items-center justify-center"
               >
-                <div
-                  onClick={handleImageClick}
-                  className={`relative inline-block ${isAdmin && activeSliceIndex === 0 ? 'cursor-crosshair' : ''}`}
-                >
-                  {imageError ? (
-                    <div className="w-[85vw] max-w-[390px] h-64 rounded-3xl bg-white/[0.04] border border-white/10 flex flex-col items-center justify-center gap-3 p-6 text-center select-none">
-                      <div className="w-14 h-14 rounded-2xl bg-white/[0.06] flex items-center justify-center text-white/40">
-                        <Microscope className="w-7 h-7" />
-                      </div>
-                      <div>
-                        <div className="text-[14px] font-bold text-white/80">Фото недоступно</div>
-                        <div className="text-[12px] text-white/40 mt-1 max-w-[260px] leading-snug">
-                          Изображение микропрепарата временно не загружено
-                        </div>
+                {!hasImage ? (
+                  <div className="w-[85vw] max-w-[390px] h-64 rounded-3xl bg-white/[0.03] border border-white/10 flex flex-col items-center justify-center gap-3 p-6 text-center select-none">
+                    <div className="w-14 h-14 rounded-2xl bg-white/[0.05] flex items-center justify-center text-white/40">
+                      <Microscope className="w-8 h-8 opacity-40 text-white" />
+                    </div>
+                    <div>
+                      <div className="text-[15px] font-bold text-zinc-200">Фото препарата пока не добавлено</div>
+                      <div className="text-[12.5px] text-zinc-400 mt-1 max-w-[260px] leading-snug">
+                        Текстовый разбор доступен по кнопке «Разбор»
                       </div>
                     </div>
-                  ) : (
+                  </div>
+                ) : (
+                  <div
+                    onClick={handleImageClick}
+                    className={`relative inline-block ${isAdmin && activeSliceIndex === 0 ? 'cursor-crosshair' : ''}`}
+                  >
                     <img
                       src={activeImageUrl}
                       alt={slide.title}
-                      onError={() => setImageError(true)}
+                      onError={() => setImageFailed(true)}
                       className="max-h-[70vh] w-auto max-w-[94vw] object-contain rounded-2xl select-none pointer-events-none"
                       draggable={false}
                     />
-                  )}
 
-                  {showPins &&
-                    activeSliceIndex === 0 &&
-                    !imageError &&
-                    layers.map((layer) => {
-                      const isSelected = activeLayer?.number === layer.number;
-                      const invScale = Math.max(0.35, Math.min(1.15, 1 / currentScale));
+                    {showPins &&
+                      activeSliceIndex === 0 &&
+                      layers.map((layer) => {
+                        const isSelected = activeLayer?.number === layer.number;
+                        const invScale = Math.max(0.35, Math.min(1.15, 1 / currentScale));
 
-                      return (
-                        <button
-                          key={layer.number}
-                          type="button"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            setActiveLayer(layer);
-                            if (isAdmin) setEditingPin(layer);
-                          }}
-                          style={{
-                            left: `${layer.pin_x}%`,
-                            top: `${layer.pin_y}%`,
-                            transform: `translate(-50%, -50%) scale(${invScale})`,
-                            backgroundColor: layer.color || accentHex,
-                          }}
-                          className={`absolute z-10 w-7 h-7 rounded-full text-white font-extrabold text-[12px] flex items-center justify-center shadow-lg transition-shadow ${
-                            isSelected ? 'ring-4 ring-white' : 'ring-2 ring-black/50 opacity-90'
-                          }`}
-                        >
-                          {layer.number}
-                        </button>
-                      );
-                    })}
-                </div>
+                        return (
+                          <button
+                            key={layer.number}
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setActiveLayer(layer);
+                              if (isAdmin) setEditingPin(layer);
+                            }}
+                            style={{
+                              left: `${layer.pin_x}%`,
+                              top: `${layer.pin_y}%`,
+                              transform: `translate(-50%, -50%) scale(${invScale})`,
+                              backgroundColor: layer.color || accentHex,
+                            }}
+                            className={`absolute z-10 w-7 h-7 rounded-full text-white font-extrabold text-[12px] flex items-center justify-center shadow-lg transition-shadow ${
+                              isSelected ? 'ring-4 ring-white' : 'ring-2 ring-black/50 opacity-90'
+                            }`}
+                          >
+                            {layer.number}
+                          </button>
+                        );
+                      })}
+                  </div>
+                )}
               </TransformComponent>
             </>
           )}
@@ -342,7 +345,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
 
       {/* Нижняя панель слоёв и разбора */}
       <div className="bg-[#111520] border-t border-white/10 px-4 pt-3 pb-7 space-y-3 z-20">
-        {layers.length > 0 && activeSliceIndex === 0 && (
+        {hasImage && layers.length > 0 && activeSliceIndex === 0 && (
           <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
             {layers.map((l) => {
               const active = activeLayer?.number === l.number;
@@ -367,7 +370,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
           </div>
         )}
 
-        {activeLayer && activeSliceIndex === 0 ? (
+        {hasImage && activeLayer && activeSliceIndex === 0 ? (
           <div className="bg-white/5 rounded-2xl p-3 border border-white/10">
             <div className="text-[13px] font-bold text-white">{activeLayer.name}</div>
             <div className="text-[12px] text-slate-300 mt-0.5 leading-snug">
@@ -383,7 +386,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
               Главный отличительный признак
             </div>
             <div className="text-[12px] text-slate-200 mt-0.5 leading-snug">
-              {slide.killerFeature}
+              {slide.killerFeature || slide.layersText || 'Нажмите «Разбор» для детального описания препарата.'}
             </div>
           </div>
         )}

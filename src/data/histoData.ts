@@ -219,4086 +219,3832 @@ export const THEORY_BLOCKS: TheoryBlock[] = [
 ];
 
 export const EXAM_SLIDES: HistSlide[] = [
-
-  {
-    "id": "slide_01",
-    "examNumber": 1,
-    "moduleId": "mod_epithelium_conn",
-    "title": "Однослойный плоский эпителий (мезотелий)",
-    "stain": "Импрегнация серебром + гематоксилин",
-    "magnification": "x400",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Simple_squamous_epithelium_40x.jpg/800px-Simple_squamous_epithelium_40x.jpg",
-    "layersText": "Пласт плоских полигональных клеток на базальной мембране.",
-    "keyCells": "Мезотелиоциты с извилистыми краями и светлыми ядрами.",
-    "killerFeature": "Четкие черные извилистые границы («пазлы») при серебрении.",
-    "distractors": [
-      "Эндотелий",
-      "Многослойный эпителий",
-      "Кубический эпителий"
-    ],
-    "youtubeTimestampUrl": "https://youtu.be/axja21H8i9I?t=0",
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Границы",
-        "name": "Границы мезотелиоцитов (серебрение)",
-        "description": "Извилистые черные границы клеток, импрегнированные серебром.",
-        "color": "#6366F1",
-        "pin_x": 48,
-        "pin_y": 35
-      },
-      {
-        "number": 2,
-        "short_name": "Ядро",
-        "name": "Ядро мезотелиоцита",
-        "description": "Крупное светлое овальное ядро с ядрышками.",
-        "color": "#EC4899",
-        "pin_x": 55,
-        "pin_y": 52
-      },
-      {
-        "number": 3,
-        "short_name": "Мембрана",
-        "name": "Базальная мембрана",
-        "description": "Тонкая бесклеточная пластинка, на которой лежит пласт мезотелия.",
-        "color": "#10B981",
-        "pin_x": 35,
-        "pin_y": 70
-      }
-    ],
-    "embryoOrigin": "Мезодерма (целомический эпителий париетального и висцерального листков спланхнотома)",
+{
+  "id": "slide_01",
+  "examNumber": 1,
+  "moduleId": "mod_epithelium_conn",
+  "title": "Однослойный плоский эпителий (мезотелий)",
+  "stain": "Импрегнация серебром + гематоксилин",
+  "magnification": "x400",
+  "imageUrl": "",
+  "layersText": "Пласт плоских полигональных клеток на базальной мембране.",
+  "keyCells": "Мезотелиоциты с извилистыми краями и светлыми ядрами.",
+  "killerFeature": "Четкие черные извилистые границы («пазлы») при серебрении.",
+  "distractors": [
+    "Эндотелий",
+    "Многослойный эпителий",
+    "Кубический эпителий"
+  ],
+  "youtubeTimestampUrl": "https://youtu.be/axja21H8i9I?t=0",
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Границы",
+      "name": "Границы мезотелиоцитов (серебрение)",
+      "description": "Извилистые черные границы клеток, импрегнированные серебром.",
+      "color": "#6366F1",
+      "pin_x": 48,
+      "pin_y": 35
+    },
+    {
+      "number": 2,
+      "short_name": "Ядро",
+      "name": "Ядро мезотелиоцита",
+      "description": "Крупное светлое овальное ядро с ядрышками.",
+      "color": "#EC4899",
+      "pin_x": 55,
+      "pin_y": 52
+    },
+    {
+      "number": 3,
+      "short_name": "Мембрана",
+      "name": "Базальная мембрана",
+      "description": "Тонкая бесклеточная пластинка, на которой лежит пласт мезотелия.",
+      "color": "#10B981",
+      "pin_x": 35,
+      "pin_y": 70
+    }
+  ],
+  "embryoOrigin": "Мезодерма (целомический эпителий париетального и висцерального листков спланхнотома)",
+  "functionText": "Выстилка серозных полостей, секреция серозной смазки, обеспечение скольжения органов",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Однослойный плоский эпителий (мезотелий) (Импрегнация серебром + гематоксилин)",
+    "origin": "Мезодерма (целомический эпителий париетального и висцерального листков спланхнотома)",
+    "structure": "Пласт плоских полигональных клеток на базальной мембране.",
+    "location": "Мезотелиоциты с извилистыми краями и светлыми ядрами.",
     "functionText": "Выстилка серозных полостей, секреция серозной смазки, обеспечение скольжения органов",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Simple_squamous_epithelium_40x.jpg/800px-Simple_squamous_epithelium_40x.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)"
-    ],
-    "examPlan": {
-      "stainAndType": "Однослойный плоский эпителий (мезотелий) (Импрегнация серебром + гематоксилин)",
-      "origin": "Мезодерма (целомический эпителий париетального и висцерального листков спланхнотома)",
-      "structure": "Пласт плоских полигональных клеток на базальной мембране.",
-      "location": "Мезотелиоциты с извилистыми краями и светлыми ядрами.",
-      "functionText": "Выстилка серозных полостей, секреция серозной смазки, обеспечение скольжения органов",
-      "killerFeature": "Четкие черные извилистые границы («пазлы») при серебрении."
-    }
-  },
-  {
-    "id": "slide_02",
-    "examNumber": 2,
-    "moduleId": "mod_epithelium_conn",
-    "title": "Однослойный столбчатый каемчатый эпителий",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x400",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Duodenum_histology_40x.jpg/800px-Duodenum_histology_40x.jpg",
-    "layersText": "Однорядный пласт высоких призматических клеток с полоской щеточной каемки.",
-    "keyCells": "Каемчатые энтероциты, бокаловидные клетки.",
-    "killerFeature": "Четкая розовая щеточная каемка на апикальном крае высоких клеток.",
-    "distractors": [
-      "Многорядный эпителий",
-      "Многослойный эпителий",
-      "Переходный эпителий"
-    ],
-    "youtubeTimestampUrl": "https://youtu.be/axja21H8i9I?t=364",
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Каемка",
-        "name": "Щеточная каемка (микроворсинки)",
-        "description": "Плотный слой микроворсинок с гликокаликсом на апикальном крае.",
-        "color": "#EC4899",
-        "pin_x": 50,
-        "pin_y": 25
-      },
-      {
-        "number": 2,
-        "short_name": "Энтероцит",
-        "name": "Призматический энтероцит",
-        "description": "Высокая клетка цилиндрической формы с базальным ядром.",
-        "color": "#6366F1",
-        "pin_x": 45,
-        "pin_y": 50
-      },
-      {
-        "number": 3,
-        "short_name": "Бокал. кл.",
-        "name": "Бокаловидная клетка",
-        "description": "Светлая одноклеточная эндоэпителиальная железа со слизью.",
-        "color": "#10B981",
-        "pin_x": 62,
-        "pin_y": 42
-      }
-    ],
-    "embryoOrigin": "Энтодерма кишечной трубки",
-    "functionText": "Пристеночное пищеварение и полостное всасывание питательных веществ, секреция слизи",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Duodenum_histology_40x.jpg/800px-Duodenum_histology_40x.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)"
-    ],
-    "examPlan": {
-      "stainAndType": "Однослойный столбчатый каемчатый эпителий (Гематоксилин и эозин)",
-      "origin": "Энтодерма кишечной трубки",
-      "structure": "Однорядный пласт высоких призматических клеток с полоской щеточной каемки.",
-      "location": "Каемчатые энтероциты, бокаловидные клетки.",
-      "functionText": "Пристеночное пищеварение и полостное всасывание питательных веществ, секреция слизи",
-      "killerFeature": "Четкая розовая щеточная каемка на апикальном крае высоких клеток."
-    }
-  },
-  {
-    "id": "slide_03",
-    "examNumber": 3,
-    "moduleId": "mod_epithelium_conn",
-    "title": "Однослойный многорядный реснитчатый эпителий (трахея)",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x400",
-    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/2304_Pseudostratified_Epithelium.jpg/1280px-2304_Pseudostratified_Epithelium.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "layersText": "Все клетки на базальной мембране, но ядра на разной высоте (многорядность).",
-    "keyCells": "Реснитчатые, бокаловидные, вставочные базальные клетки.",
-    "killerFeature": "Многоядерные ряды и реснички на поверхности без бокаловидных разрывов.",
-    "distractors": [
-      "Однослойный эпителий",
-      "Многослойный плоский",
-      "Каемчатый эпителий"
-    ],
-    "youtubeTimestampUrl": "https://youtu.be/axja21H8i9I?t=634",
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Реснички",
-        "name": "Мерцательные реснички",
-        "description": "Подвижные выросты цитоплазмы с аксонемой 9х2 + 2 микротрубочек.",
-        "color": "#6366F1",
-        "pin_x": 50,
-        "pin_y": 20
-      },
-      {
-        "number": 2,
-        "short_name": "Ядра",
-        "name": "Ряды ядер вставочных клеток",
-        "description": "Разноуровневое положение ядер создает эффект многослойности.",
-        "color": "#EC4899",
-        "pin_x": 48,
-        "pin_y": 55
-      },
-      {
-        "number": 3,
-        "short_name": "Мембрана",
-        "name": "Базальная мембрана",
-        "description": "Толстая четко очерченная базальная мембрана дыхательных путей.",
-        "color": "#10B981",
-        "pin_x": 50,
-        "pin_y": 78
-      }
-    ],
-    "embryoOrigin": "Прехордальная пластинка / энтодерма передней кишки",
-    "functionText": "Мукоцилиарный клиренс: очищение, согревание и увлажнение вдыхаемого воздуха",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Trachea_histology_40x.jpg/800px-Trachea_histology_40x.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/2304_Pseudostratified_Epithelium.jpg/1280px-2304_Pseudostratified_Epithelium.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/Ciliated_epithelium_from_the_human_windpipe._Wellcome_M0011238.jpg/1280px-Ciliated_epithelium_from_the_human_windpipe._Wellcome_M0011238.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)",
-      "Срез 2 (Атлас)",
-      "Срез 3 (Атлас)"
-    ],
-    "examPlan": {
-      "stainAndType": "Однослойный многорядный реснитчатый эпителий (трахея) (Гематоксилин и эозин)",
-      "origin": "Прехордальная пластинка / энтодерма передней кишки",
-      "structure": "Все клетки на базальной мембране, но ядра на разной высоте (многорядность).",
-      "location": "Реснитчатые, бокаловидные, вставочные базальные клетки.",
-      "functionText": "Мукоцилиарный клиренс: очищение, согревание и увлажнение вдыхаемого воздуха",
-      "killerFeature": "Многоядерные ряды и реснички на поверхности без бокаловидных разрывов."
-    }
-  },
-  {
-    "id": "slide_04",
-    "examNumber": 4,
-    "moduleId": "mod_epithelium_conn",
-    "title": "Многослойный плоский неороговевающий эпителий (пищевод / роговица)",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x200",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Esophagus_histology_40x.jpg/800px-Esophagus_histology_40x.jpg",
-    "layersText": "Базальный, шиповатый и плоский поверхностный слои (живые ядра доверху).",
-    "keyCells": "Кератиноциты разных слоев.",
-    "killerFeature": "Много рядов клеток, поверхностные клетки уплощены, но сохраняют ядра.",
-    "distractors": [
-      "Ороговевающий эпителий",
-      "Переходный эпителий",
-      "Многорядный эпителий"
-    ],
-    "youtubeTimestampUrl": "https://youtu.be/axja21H8i9I?t=892",
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Поверхн. слой",
-        "name": "Поверхностный слой плоских клеток с ядрами",
-        "description": "Уплощенные живые клетки с четко видимыми ядрами.",
-        "color": "#EC4899",
-        "pin_x": 50,
-        "pin_y": 22
-      },
-      {
-        "number": 2,
-        "short_name": "Шиповатый",
-        "name": "Шиповатый промежуточный слой",
-        "description": "Полигональные клетки с десмосомальными контактами.",
-        "color": "#6366F1",
-        "pin_x": 50,
-        "pin_y": 48
-      },
-      {
-        "number": 3,
-        "short_name": "Базальный",
-        "name": "Базальный камбиальный слой",
-        "description": "Призматические делящиеся клетки на базальной мембране.",
-        "color": "#10B981",
-        "pin_x": 50,
-        "pin_y": 75
-      }
-    ],
-    "embryoOrigin": "Эктодерма (передний отдел пищеварительной трубки)",
-    "functionText": "Механическая защита подлежащих тканей от грубого пищевого комка",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Esophagus_histology_40x.jpg/800px-Esophagus_histology_40x.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)"
-    ],
-    "examPlan": {
-      "stainAndType": "Многослойный плоский неороговевающий эпителий (пищевод / роговица) (Гематоксилин и эозин)",
-      "origin": "Эктодерма (передний отдел пищеварительной трубки)",
-      "structure": "Базальный, шиповатый и плоский поверхностный слои (живые ядра доверху).",
-      "location": "Кератиноциты разных слоев.",
-      "functionText": "Механическая защита подлежащих тканей от грубого пищевого комка",
-      "killerFeature": "Много рядов клеток, поверхностные клетки уплощены, но сохраняют ядра."
-    }
-  },
-  {
-    "id": "slide_05",
-    "examNumber": 5,
-    "moduleId": "mod_epithelium_conn",
-    "title": "Многослойный переходный эпителий (уротелий — мочевой пузырь)",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x400",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Urinary_bladder_histology_40x.jpg/800px-Urinary_bladder_histology_40x.jpg",
-    "layersText": "Базальный, промежуточный и поверхностный слои с куполообразными клетками.",
-    "keyCells": "Зонтичные (поверхностные) крупные клетки, часто двуядерные.",
-    "killerFeature": "Крупные куполообразные поверхностные клетки («зонтичные»), меняющие форму при растяжении.",
-    "distractors": [
-      "Многослойный неороговевающий",
-      "Многорядный эпителий",
-      "Однослойный кубический"
-    ],
-    "youtubeTimestampUrl": "https://youtu.be/axja21H8i9I?t=1166",
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Зонтичные кл.",
-        "name": "Крупные зонтичные клетки",
-        "description": "Куполообразные клетки, покрывающие несколько промежуточных.",
-        "color": "#EC4899",
-        "pin_x": 48,
-        "pin_y": 28
-      },
-      {
-        "number": 2,
-        "short_name": "Промежуточный",
-        "name": "Промежуточный грушевидный слой",
-        "description": "Клетки с вытянутыми ножками, скользящие друг по другу при растяжении.",
-        "color": "#6366F1",
-        "pin_x": 50,
-        "pin_y": 52
-      },
-      {
-        "number": 3,
-        "short_name": "Базальный",
-        "name": "Базальный слой",
-        "description": "Мелкие округлые камбиальные клетки.",
-        "color": "#10B981",
-        "pin_x": 52,
-        "pin_y": 75
-      }
-    ],
-    "embryoOrigin": "Мезодерма (промежуточная мезодерма / нефрогонотом)",
-    "functionText": "Защита от агрессивных компонентов мочи, растяжимость при наполнении мочевыводящих путей",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Urinary_bladder_histology_40x.jpg/800px-Urinary_bladder_histology_40x.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)"
-    ],
-    "examPlan": {
-      "stainAndType": "Многослойный переходный эпителий (уротелий — мочевой пузырь) (Гематоксилин и эозин)",
-      "origin": "Мезодерма (промежуточная мезодерма / нефрогонотом)",
-      "structure": "Базальный, промежуточный и поверхностный слои с куполообразными клетками.",
-      "location": "Зонтичные (поверхностные) крупные клетки, часто двуядерные.",
-      "functionText": "Защита от агрессивных компонентов мочи, растяжимость при наполнении мочевыводящих путей",
-      "killerFeature": "Крупные куполообразные поверхностные клетки («зонтичные»), меняющие форму при растяжении."
-    }
-  },
-  {
-    "id": "slide_06",
-    "examNumber": 6,
-    "moduleId": "mod_epithelium_conn",
-    "title": "Многослойный плоский ороговевающий эпителий (кожа пальца)",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x200",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Thick_skin_histology_40x.jpg/800px-Thick_skin_histology_40x.jpg",
-    "layersText": "Базальный, шиповатый, зернистый, блестящий и мощный роговой слои.",
-    "keyCells": "Кератиноциты, корнеоциты без ядер в роговом слое.",
-    "killerFeature": "Наличие бесструктурного розового рогового слоя из омертвевших чешуек сверху.",
-    "distractors": [
-      "Неороговевающий эпителий",
-      "Переходный эпителий",
-      "Многорядный реснитчатый"
-    ],
-    "youtubeTimestampUrl": "https://youtu.be/axja21H8i9I?t=1521",
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Роговой",
-        "name": "Роговой слой (корнеоциты)",
-        "description": "Многослойные пласты безъядерных кератиновых чешуек.",
-        "color": "#EC4899",
-        "pin_x": 50,
-        "pin_y": 18
-      },
-      {
-        "number": 2,
-        "short_name": "Зернистый",
-        "name": "Зернистый слой",
-        "description": "Темные гранулы кератогиалина в цитоплазме.",
-        "color": "#7C3AED",
-        "pin_x": 50,
-        "pin_y": 38
-      },
-      {
-        "number": 3,
-        "short_name": "Шиповатый",
-        "name": "Шиповатый слой",
-        "description": "Много рядов полигональных кератиноцитов с десмосомами.",
-        "color": "#6366F1",
-        "pin_x": 50,
-        "pin_y": 58
-      }
-    ],
-    "embryoOrigin": "Кожная эктодерма",
-    "functionText": "Барьерная функция, защита от механических повреждений, высыхания и проникновения микроорганизмов",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Thick_skin_histology_40x.jpg/800px-Thick_skin_histology_40x.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)"
-    ],
-    "examPlan": {
-      "stainAndType": "Многослойный плоский ороговевающий эпителий (кожа пальца) (Гематоксилин и эозин)",
-      "origin": "Кожная эктодерма",
-      "structure": "Базальный, шиповатый, зернистый, блестящий и мощный роговой слои.",
-      "location": "Кератиноциты, корнеоциты без ядер в роговом слое.",
-      "functionText": "Барьерная функция, защита от механических повреждений, высыхания и проникновения микроорганизмов",
-      "killerFeature": "Наличие бесструктурного розового рогового слоя из омертвевших чешуек сверху."
-    }
-  },
-  {
-    "id": "slide_07",
-    "examNumber": 7,
-    "moduleId": "mod_epithelium_conn",
-    "title": "Простая разветвленная альвеолярная железа (сальная железа кожи)",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x200",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Thin_skin_hair_follicle_40x.jpg/800px-Thin_skin_hair_follicle_40x.jpg",
-    "layersText": "Мешковидные концевые отделы (альвеолы), открывающиеся в волосяной фолликул.",
-    "keyCells": "Себоциты (с накоплением капель жира — голокриновый тип секреции).",
-    "killerFeature": "Светлые ячеистые клетки с пенистой цитоплазмой, распадающиеся при выделении секрета.",
-    "distractors": [
-      "Потовые железы",
-      "Слюнные железы",
-      "Щитовидная железа"
-    ],
-    "youtubeTimestampUrl": "https://youtu.be/axja21H8i9I?t=2159",
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Альвеола",
-        "name": "Концевой альвеолярный отдел",
-        "description": "Группа клеток, окруженная соединительнотканной капсулой.",
-        "color": "#6366F1",
-        "pin_x": 48,
-        "pin_y": 40
-      },
-      {
-        "number": 2,
-        "short_name": "Себоциты",
-        "name": "Себоциты с каплями липидов",
-        "description": "Светлые ячеистые клетки на разных стадиях накопления жира.",
-        "color": "#EC4899",
-        "pin_x": 55,
-        "pin_y": 55
-      },
-      {
-        "number": 3,
-        "short_name": "Фолликул",
-        "name": "Волосяной фолликул",
-        "description": "Устье железы открывается в шейку волосяного фолликула.",
-        "color": "#10B981",
-        "pin_x": 35,
-        "pin_y": 30
-      }
-    ],
-    "embryoOrigin": "Кожная эктодерма",
-    "functionText": "Голокриновая секреция кожного сала, смягчение кожи и бактерицидная защита",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Thin_skin_hair_follicle_40x.jpg/800px-Thin_skin_hair_follicle_40x.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)"
-    ],
-    "examPlan": {
-      "stainAndType": "Простая разветвленная альвеолярная железа (сальная железа кожи) (Гематоксилин и эозин)",
-      "origin": "Кожная эктодерма",
-      "structure": "Мешковидные концевые отделы (альвеолы), открывающиеся в волосяной фолликул.",
-      "location": "Себоциты (с накоплением капель жира — голокриновый тип секреции).",
-      "functionText": "Голокриновая секреция кожного сала, смягчение кожи и бактерицидная защита",
-      "killerFeature": "Светлые ячеистые клетки с пенистой цитоплазмой, распадающиеся при выделении секрета."
-    }
-  },
-  {
-    "id": "slide_08",
-    "examNumber": 8,
-    "moduleId": "mod_cartilage_bone_muscle",
-    "title": "Кровь человека (мазок)",
-    "stain": "По Романовскому-Гимза",
-    "magnification": "x900",
-    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Connective_Tissue_Hyaline_Cartilage_%2840958872915%29.jpg/1280px-Connective_Tissue_Hyaline_Cartilage_%2840958872915%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "layersText": "Форменные элементы в жидкой плазме.",
-    "keyCells": "Эритроциты, нейтрофилы, лимфоциты, моноциты, эозинофилы, тромбоциты.",
-    "killerFeature": "Масса розовых безъядерных дисков-эритроцитов и редкие ядра лейкоцитов.",
-    "distractors": [
-      "Красный костный мозг",
-      "Лимфа",
-      "Селезенка"
-    ],
-    "youtubeTimestampUrl": "https://youtu.be/axja21H8i9I?t=2706",
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Эритроциты",
-        "name": "Эритроциты (нормоциты)",
-        "description": "Безъядерные двояковогнутые диски диаметром 7.5 мкм.",
-        "color": "#EC4899",
-        "pin_x": 40,
-        "pin_y": 40
-      },
-      {
-        "number": 2,
-        "short_name": "Нейтрофил",
-        "name": "Сегментоядерный нейтрофил",
-        "description": "Лейкоцит с ядром из 3-5 сегментов и мелкой зернистостью.",
-        "color": "#7C3AED",
-        "pin_x": 58,
-        "pin_y": 48
-      },
-      {
-        "number": 3,
-        "short_name": "Тромбоциты",
-        "name": "Кровяные пластинки (тромбоциты)",
-        "description": "Мелкие безъядерные фиолетовые осколки мегакариоцитов.",
-        "color": "#6366F1",
-        "pin_x": 68,
-        "pin_y": 60
-      }
-    ],
-    "embryoOrigin": "Мезенхима красного костного мозга (стволовые клетки крови)",
-    "functionText": "Транспорт газов (эритроциты), иммунный надзор (лейкоциты), гемостаз (тромбоциты)",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Blood_smear_40x.jpg/800px-Blood_smear_40x.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Connective_Tissue_Hyaline_Cartilage_%2840958872915%29.jpg/1280px-Connective_Tissue_Hyaline_Cartilage_%2840958872915%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/46/Connective_Tissue_Hyaline_Cartilage_%2826989335717%29.jpg/1280px-Connective_Tissue_Hyaline_Cartilage_%2826989335717%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)",
-      "Срез 2 (Атлас)",
-      "Срез 3 (Атлас)"
-    ],
-    "examPlan": {
-      "stainAndType": "Кровь человека (мазок) (По Романовскому-Гимза)",
-      "origin": "Мезенхима красного костного мозга (стволовые клетки крови)",
-      "structure": "Форменные элементы в жидкой плазме.",
-      "location": "Эритроциты, нейтрофилы, лимфоциты, моноциты, эозинофилы, тромбоциты.",
-      "functionText": "Транспорт газов (эритроциты), иммунный надзор (лейкоциты), гемостаз (тромбоциты)",
-      "killerFeature": "Масса розовых безъядерных дисков-эритроцитов и редкие ядра лейкоцитов."
-    }
-  },
-  {
-    "id": "slide_09",
-    "examNumber": 9,
-    "moduleId": "mod_cartilage_bone_muscle",
-    "title": "Рыхлая волокнистая соединительная ткань (РВСТ, пленочный препарат)",
-    "stain": "Железный гематоксилин",
-    "magnification": "x400",
-    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/Connective_Tissue_Elastic_Cartilage_%2841812803082%29.jpg/1280px-Connective_Tissue_Elastic_Cartilage_%2841812803082%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "layersText": "Переплетающиеся пучки коллагеновых и тонкие сети эластических волокон.",
-    "keyCells": "Фибробласты, макрофаги, тучные клетки, плазмоциты.",
-    "killerFeature": "Два типа волокон (толстые коллагеновые и тонкие эластические) в аморфном матриксе.",
-    "distractors": [
-      "Плотная волокнистая ткань",
-      "Мезенхима",
-      "Ретикулярная ткань"
-    ],
-    "youtubeTimestampUrl": "https://youtu.be/axja21H8i9I?t=3532",
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Коллаген",
-        "name": "Пучки коллагеновых волокон",
-        "description": "Широкие розовые волнистые ленты неветвящихся волокон.",
-        "color": "#EC4899",
-        "pin_x": 45,
-        "pin_y": 35
-      },
-      {
-        "number": 2,
-        "short_name": "Эластин",
-        "name": "Эластические волокна",
-        "description": "Тонкие темные ветвящиеся нити, анастомозирующие в сеть.",
-        "color": "#0F172A",
-        "pin_x": 60,
-        "pin_y": 50
-      },
-      {
-        "number": 3,
-        "short_name": "Фибробласт",
-        "name": "Фибробласт",
-        "description": "Крупная отростчатая клетка со светлым овальным ядром.",
-        "color": "#6366F1",
-        "pin_x": 35,
-        "pin_y": 65
-      }
-    ],
-    "embryoOrigin": "Мезенхима",
-    "functionText": "Трофическая, опорная, защитная (фагоцитоз, иммуногенез), пластическая (регенерация)",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Areolar_connective_tissue_40x.jpg/800px-Areolar_connective_tissue_40x.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/Connective_Tissue_Elastic_Cartilage_%2841812803082%29.jpg/1280px-Connective_Tissue_Elastic_Cartilage_%2841812803082%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4c/Connective_Tissue_Elastic_Cartilage_%2841855667361%29.jpg/1280px-Connective_Tissue_Elastic_Cartilage_%2841855667361%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)",
-      "Срез 2 (Атлас)",
-      "Срез 3 (Атлас)"
-    ],
-    "examPlan": {
-      "stainAndType": "Рыхлая волокнистая соединительная ткань (РВСТ, пленочный препарат) (Железный гематоксилин)",
-      "origin": "Мезенхима",
-      "structure": "Переплетающиеся пучки коллагеновых и тонкие сети эластических волокон.",
-      "location": "Фибробласты, макрофаги, тучные клетки, плазмоциты.",
-      "functionText": "Трофическая, опорная, защитная (фагоцитоз, иммуногенез), пластическая (регенерация)",
-      "killerFeature": "Два типа волокон (толстые коллагеновые и тонкие эластические) в аморфном матриксе."
-    }
-  },
-  {
-    "id": "slide_10",
-    "examNumber": 10,
-    "moduleId": "mod_cartilage_bone_muscle",
-    "title": "Плотная оформленная соединительная ткань (сухожилие, продольный срез)",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x200",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/47/Microscopic_Image_of_Mammal_Fibrocartilage_Tissue.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-    "layersText": "Параллельные толстые пучки коллагеновых волокон 1-го и 2-го порядка.",
-    "keyCells": "Тендиноциты (фиброциты) с вытянутыми темными ядрами в виде цепочек.",
-    "killerFeature": "Строго параллельные волнистые розовые пучки волокон и ровные ряды ядер между ними.",
-    "distractors": [
-      "Скелетная мышца",
-      "Плотная неоформленная ткань",
-      "Гладкая мышца"
-    ],
-    "youtubeTimestampUrl": "https://youtu.be/axja21H8i9I?t=4106",
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Коллаген",
-        "name": "Параллельные коллагеновые пучки",
-        "description": "Плотные пучки волокон I порядка, ориентированные строго вдоль оси.",
-        "color": "#EC4899",
-        "pin_x": 50,
-        "pin_y": 35
-      },
-      {
-        "number": 2,
-        "short_name": "Тендиноциты",
-        "name": "Ряды ядер сухожильных клеток (тендиноцитов)",
-        "description": "Вытянутые уплощенные темные ядра фиброцитов в виде цепочек.",
-        "color": "#7C3AED",
-        "pin_x": 48,
-        "pin_y": 55
-      },
-      {
-        "number": 3,
-        "short_name": "Эндотеноний",
-        "name": "Эндотеноний",
-        "description": "Прослойки РВСТ с капиллярами между пучками II порядка.",
-        "color": "#10B981",
-        "pin_x": 55,
-        "pin_y": 80
-      }
-    ],
-    "embryoOrigin": "Мезенхима (склеротом)",
-    "functionText": "Передача механической тяги от скелетной мышцы к кости, высокая прочность на разрыв",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Dense_regular_connective_tissue_40x.jpg/800px-Dense_regular_connective_tissue_40x.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/4/47/Microscopic_Image_of_Mammal_Fibrocartilage_Tissue.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/Connective_Tissue_Fibrocartilage_%2827988651538%29.jpg/1280px-Connective_Tissue_Fibrocartilage_%2827988651538%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)",
-      "Срез 2 (Атлас)",
-      "Срез 3 (Атлас)"
-    ],
-    "examPlan": {
-      "stainAndType": "Плотная оформленная соединительная ткань (сухожилие, продольный срез) (Гематоксилин и эозин)",
-      "origin": "Мезенхима (склеротом)",
-      "structure": "Параллельные толстые пучки коллагеновых волокон 1-го и 2-го порядка.",
-      "location": "Тендиноциты (фиброциты) с вытянутыми темными ядрами в виде цепочек.",
-      "functionText": "Передача механической тяги от скелетной мышцы к кости, высокая прочность на разрыв",
-      "killerFeature": "Строго параллельные волнистые розовые пучки волокон и ровные ряды ядер между ними."
-    }
-  },
-  {
-    "id": "slide_11",
-    "examNumber": 11,
-    "moduleId": "mod_cartilage_bone_muscle",
-    "title": "Гиалиновый хрящ (ребро)",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x200",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Gray73.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-    "layersText": "Надхрящница и глубокая зона с изогенными группами хондроцитов.",
-    "keyCells": "Хондроциты в лакунах по 2–5 штук (изогенные группы).",
-    "killerFeature": "Однородное стекловидное (базофильное) межклеточное вещество без видимых волокон.",
-    "distractors": [
-      "Эластический хрящ",
-      "Костная ткань",
-      "Волокнистый хрящ"
-    ],
-    "youtubeTimestampUrl": "https://youtu.be/axja21H8i9I?t=5152",
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Изогенная гр.",
-        "name": "Изогенная группа хондроцитов",
-        "description": "Группа из 2-4 клеток-потомков одного хондробласта в общей лакуне.",
-        "color": "#7C3AED",
-        "pin_x": 52,
-        "pin_y": 48
-      },
-      {
-        "number": 2,
-        "short_name": "Матрикс",
-        "name": "Базофильный матрикс",
-        "description": "Аморфное стекловидное вещество, богатое хондроитинсульфатами.",
-        "color": "#6366F1",
-        "pin_x": 38,
-        "pin_y": 60
-      },
-      {
-        "number": 3,
-        "short_name": "Надхрящница",
-        "name": "Надхрящница (перихондрий)",
-        "description": "Волокнистый слой с сосудами и камбиальными хондробластами.",
-        "color": "#EC4899",
-        "pin_x": 50,
-        "pin_y": 18
-      }
-    ],
-    "embryoOrigin": "Мезенхима (склеротом сомитов)",
-    "functionText": "Опорная и формообразующая функция скелета, обеспечение подвижности ребер и суставов",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Hyaline_cartilage_40x.jpg/800px-Hyaline_cartilage_40x.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/c/cc/Gray73.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/58/624_Diagram_of_Compact_Bone-new.jpg/1280px-624_Diagram_of_Compact_Bone-new.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)",
-      "Срез 2 (Атлас)",
-      "Срез 3 (Атлас)"
-    ],
-    "examPlan": {
-      "stainAndType": "Гиалиновый хрящ (ребро) (Гематоксилин и эозин)",
-      "origin": "Мезенхима (склеротом сомитов)",
-      "structure": "Надхрящница и глубокая зона с изогенными группами хондроцитов.",
-      "location": "Хондроциты в лакунах по 2–5 штук (изогенные группы).",
-      "functionText": "Опорная и формообразующая функция скелета, обеспечение подвижности ребер и суставов",
-      "killerFeature": "Однородное стекловидное (базофильное) межклеточное вещество без видимых волокон."
-    }
-  },
-  {
-    "id": "slide_12",
-    "examNumber": 12,
-    "moduleId": "mod_cartilage_bone_muscle",
-    "title": "Эластический хрящ (ушная раковина)",
-    "stain": "Орсеин",
-    "magnification": "x200",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Gray79.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-    "layersText": "Матрикс, пронизанный густой сетью эластических волокон.",
-    "keyCells": "Хондроциты в капсулах.",
-    "killerFeature": "Темно-коричневая или вишневая густая сеть эластических волокон при окраске орсеином.",
-    "distractors": [
-      "Гиалиновый хрящ",
-      "Волокнистый хрящ",
-      "Костная ткань"
-    ],
-    "youtubeTimestampUrl": "https://youtu.be/axja21H8i9I?t=5758",
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Эластин",
-        "name": "Сеть эластических волокон",
-        "description": "Густая сеть волокон, избирательно прокрашенная орсеином.",
-        "color": "#991B1B",
-        "pin_x": 52,
-        "pin_y": 40
-      },
-      {
-        "number": 2,
-        "short_name": "Хондроциты",
-        "name": "Хондроциты в лакунах",
-        "description": "Клетки хряща, лежащие поодиночке или мелкими парами.",
-        "color": "#7C3AED",
-        "pin_x": 42,
-        "pin_y": 55
-      },
-      {
-        "number": 3,
-        "short_name": "Перихондрий",
-        "name": "Перихондрий",
-        "description": "Соединительнотканная оболочка хряща.",
-        "color": "#EC4899",
-        "pin_x": 50,
-        "pin_y": 20
-      }
-    ],
-    "embryoOrigin": "Мезенхима головной части (жаберные дуги)",
-    "functionText": "Упругость и поддержание формы наружного уха и надгортанника, обратимая деформация",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Elastic_cartilage_40x.jpg/800px-Elastic_cartilage_40x.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/f/fd/Gray79.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/Ossification_endochondrale_chez_le_chat.jpg/1280px-Ossification_endochondrale_chez_le_chat.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)",
-      "Срез 2 (Атлас)",
-      "Срез 3 (Атлас)"
-    ],
-    "examPlan": {
-      "stainAndType": "Эластический хрящ (ушная раковина) (Орсеин)",
-      "origin": "Мезенхима головной части (жаберные дуги)",
-      "structure": "Матрикс, пронизанный густой сетью эластических волокон.",
-      "location": "Хондроциты в капсулах.",
-      "functionText": "Упругость и поддержание формы наружного уха и надгортанника, обратимая деформация",
-      "killerFeature": "Темно-коричневая или вишневая густая сеть эластических волокон при окраске орсеином."
-    }
-  },
-  {
-    "id": "slide_13",
-    "examNumber": 13,
-    "moduleId": "mod_cartilage_bone_muscle",
-    "title": "Пластинчатая костная ткань (диафиз, поперечный срез по Шморлю)",
-    "stain": "По Шморлю",
-    "magnification": "x100",
-    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/Muscle_Tissue_Cross_Section_Whole_Skeletal_Muscle_%2828089115068%29.jpg/1280px-Muscle_Tissue_Cross_Section_Whole_Skeletal_Muscle_%2828089115068%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "layersText": "Остеоны с концентрическими пластинками вокруг центральных каналов.",
-    "keyCells": "Остеоциты с паукообразными отростками в лакунах.",
-    "killerFeature": "Системы колец остеонов вокруг темных каналов Гаверса.",
-    "distractors": [
-      "Продольный срез кости",
-      "Непрямой остеогенез",
-      "Гиалиновый хрящ"
-    ],
-    "youtubeTimestampUrl": "https://youtu.be/axja21H8i9I?t=6193",
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Гаверсов канал",
-        "name": "Канал остеона (канал Гаверса)",
-        "description": "Центральный канал с кровеносными сосудами и нервными волокнами.",
-        "color": "#0F172A",
-        "pin_x": 50,
-        "pin_y": 50
-      },
-      {
-        "number": 2,
-        "short_name": "Пластинки",
-        "name": "Концентрические костные пластинки",
-        "description": "Цилиндрические слои минерализованного костного матрикса.",
-        "color": "#F59E0B",
-        "pin_x": 40,
-        "pin_y": 38
-      },
-      {
-        "number": 3,
-        "short_name": "Остеоциты",
-        "name": "Лакуны с остеоцитами",
-        "description": "Паукообразные темные щели с костными клетками и канальцами.",
-        "color": "#7C3AED",
-        "pin_x": 62,
-        "pin_y": 45
-      }
-    ],
-    "embryoOrigin": "Мезенхима (склеротом)",
-    "functionText": "Опорно-механическая функция, защита внутренних органов, минеральное депо кальция и фосфора",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Compact_bone_40x.jpg/800px-Compact_bone_40x.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/c/c3/Skeletal_muscle_-_cross_section%2C_nerve_bundle.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/Muscle_Tissue_Cross_Section_Whole_Skeletal_Muscle_%2828089115068%29.jpg/1280px-Muscle_Tissue_Cross_Section_Whole_Skeletal_Muscle_%2828089115068%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)",
-      "Срез 2 (Атлас)",
-      "Срез 3 (Атлас)"
-    ],
-    "examPlan": {
-      "stainAndType": "Пластинчатая костная ткань (диафиз, поперечный срез по Шморлю) (По Шморлю)",
-      "origin": "Мезенхима (склеротом)",
-      "structure": "Остеоны с концентрическими пластинками вокруг центральных каналов.",
-      "location": "Остеоциты с паукообразными отростками в лакунах.",
-      "functionText": "Опорно-механическая функция, защита внутренних органов, минеральное депо кальция и фосфора",
-      "killerFeature": "Системы колец остеонов вокруг темных каналов Гаверса."
-    }
-  },
-  {
-    "id": "slide_14",
-    "examNumber": 14,
-    "moduleId": "mod_cartilage_bone_muscle",
-    "title": "Поперечно-полосатая скелетная мышечная ткань (язык)",
-    "stain": "Железный гематоксилин",
-    "magnification": "x400",
-    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fe/Muscle_Tissue_Intercalated_Discs_in_Cardiac_Muscle_%2827061943807%29.jpg/1280px-Muscle_Tissue_Intercalated_Discs_in_Cardiac_Muscle_%2827061943807%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "layersText": "Длинные цилиндрические симпласты с поперечной исчерченностью.",
-    "keyCells": "Мышечные симпласты, множество плоских ядер на периферии.",
-    "killerFeature": "Четкие полоски дисков (A и I) и периферическое положение ядер, волокна не ветвятся.",
-    "distractors": [
-      "Сердечная мышечная ткань",
-      "Гладкая мышца",
-      "Сухожилие"
-    ],
-    "youtubeTimestampUrl": "https://youtu.be/axja21H8i9I?t=7335",
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Исчерченность",
-        "name": "Поперечная исчерченность (диски A и I)",
-        "description": "Чередование темных анизотропных и светлых изотропных дисков саркомеров.",
-        "color": "#6366F1",
-        "pin_x": 50,
-        "pin_y": 40
-      },
-      {
-        "number": 2,
-        "short_name": "Ядра под сарколеммой",
-        "name": "Периферические ядра симпласта",
-        "description": "Сплющенные ядра, оттесненные миофибриллами под оболочку волокна.",
-        "color": "#7C3AED",
-        "pin_x": 35,
-        "pin_y": 52
-      },
-      {
-        "number": 3,
-        "short_name": "Эндомизий",
-        "name": "Эндомизий",
-        "description": "Тончайшая прослойка РВСТ с капиллярами вокруг каждого волокна.",
-        "color": "#EC4899",
-        "pin_x": 65,
-        "pin_y": 60
-      }
-    ],
-    "embryoOrigin": "Миотом сомитов мезодермы",
-    "functionText": "Произвольные сокращения, перемещение тела в пространстве, поддержание позы",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/Skeletal_muscle_40x.jpg/800px-Skeletal_muscle_40x.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fe/Muscle_Tissue_Intercalated_Discs_in_Cardiac_Muscle_%2827061943807%29.jpg/1280px-Muscle_Tissue_Intercalated_Discs_in_Cardiac_Muscle_%2827061943807%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c0/Muscle_Tissue_Intercalated_Discs_in_Cardiac_Muscle_%2827061945057%29.jpg/1280px-Muscle_Tissue_Intercalated_Discs_in_Cardiac_Muscle_%2827061945057%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)",
-      "Срез 2 (Атлас)",
-      "Срез 3 (Атлас)"
-    ],
-    "examPlan": {
-      "stainAndType": "Поперечно-полосатая скелетная мышечная ткань (язык) (Железный гематоксилин)",
-      "origin": "Миотом сомитов мезодермы",
-      "structure": "Длинные цилиндрические симпласты с поперечной исчерченностью.",
-      "location": "Мышечные симпласты, множество плоских ядер на периферии.",
-      "functionText": "Произвольные сокращения, перемещение тела в пространстве, поддержание позы",
-      "killerFeature": "Четкие полоски дисков (A и I) и периферическое положение ядер, волокна не ветвятся."
-    }
-  },
-  {
-    "id": "slide_15",
-    "examNumber": 15,
-    "moduleId": "mod_cartilage_bone_muscle",
-    "title": "Поперечно-полосатая сердечная мышечная ткань (миокард)",
-    "stain": "Железный гематоксилин / Г-Э",
-    "magnification": "x400",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3e/1021_Smooth_Muscle_new.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-    "layersText": "Взаимосвязанная сеть кардиомиоцитов с анастомозами.",
-    "keyCells": "Кардиомиоциты с центральным расположением ядра и вставочными дисками.",
-    "killerFeature": "Ветвление волокон (анастомозы), центральные ядра и темные черточки — вставочные диски.",
-    "distractors": [
-      "Скелетная мускулатура",
-      "Гладкая мышца",
-      "Нерв"
-    ],
-    "youtubeTimestampUrl": "https://youtu.be/axja21H8i9I?t=7673",
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Вставочный диск",
-        "name": "Вставочный диск",
-        "description": "Граница между соседними кардиомиоцитами с десмосомами и нексусами.",
-        "color": "#991B1B",
-        "pin_x": 48,
-        "pin_y": 35
-      },
-      {
-        "number": 2,
-        "short_name": "Центр. ядро",
-        "name": "Центральное ядро кардиомиоцита",
-        "description": "Овальное ядро строго в центре волокна в околоядерной зоне.",
-        "color": "#7C3AED",
-        "pin_x": 40,
-        "pin_y": 52
-      },
-      {
-        "number": 3,
-        "short_name": "Анастомоз",
-        "name": "Анастомоз между волокнами",
-        "description": "Y-образное ветвление кардиомиоцитов в трехмерную сеть.",
-        "color": "#6366F1",
-        "pin_x": 65,
-        "pin_y": 45
-      }
-    ],
-    "embryoOrigin": "Миоэпикардиальная пластинка висцерального листка спланхнотома",
-    "functionText": "Автоматические ритмичные непроизвольные сокращения стенок полостей сердца",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Cardiac_muscle_40x.jpg/800px-Cardiac_muscle_40x.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/3/3e/1021_Smooth_Muscle_new.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/Smooth_muscle_%28251_08%29_Smooth_muscle.jpg/1280px-Smooth_muscle_%28251_08%29_Smooth_muscle.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)",
-      "Срез 2 (Атлас)",
-      "Срез 3 (Атлас)"
-    ],
-    "examPlan": {
-      "stainAndType": "Поперечно-полосатая сердечная мышечная ткань (миокард) (Железный гематоксилин / Г-Э)",
-      "origin": "Миоэпикардиальная пластинка висцерального листка спланхнотома",
-      "structure": "Взаимосвязанная сеть кардиомиоцитов с анастомозами.",
-      "location": "Кардиомиоциты с центральным расположением ядра и вставочными дисками.",
-      "functionText": "Автоматические ритмичные непроизвольные сокращения стенок полостей сердца",
-      "killerFeature": "Ветвление волокон (анастомозы), центральные ядра и темные черточки — вставочные диски."
-    }
-  },
-  {
-    "id": "slide_16",
-    "examNumber": 16,
-    "moduleId": "mod_cartilage_bone_muscle",
-    "title": "Гладкая мышечная ткань",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x400",
-    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Some_erythrocytic_morphologies_and_intraerythrocytic_inclusions_found_in_peripheral_blood_smears_of_quokkas_on_Rottnest_Island_%28also_found_in_quokkas_on_mainland_Western_Australia%29.png/1280px-thumbnail.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "layersText": "Плотные пласты веретенообразных клеток.",
-    "keyCells": "Гладкие миоциты с палочковидными ядрами в центре.",
-    "killerFeature": "Веретенообразная форма клеток и палочковидные ядра, изгибающиеся при сокращении.",
-    "distractors": [
-      "Плотная соединительная ткань",
-      "Скелетная мышца",
-      "Сухожилие"
-    ],
-    "youtubeTimestampUrl": "https://youtu.be/axja21H8i9I?t=7944",
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Ядро миоцита",
-        "name": "Палочковидное центральное ядро миоцита",
-        "description": "Вытянутое сигарообразное ядро в широкой центральной части клетки.",
-        "color": "#7C3AED",
-        "pin_x": 50,
-        "pin_y": 45
-      },
-      {
-        "number": 2,
-        "short_name": "Цитоплазма",
-        "name": "Оксифильная цитоплазма гладкого миоцита",
-        "description": "Розовая гомогенная цитоплазма без поперечной исчерченности.",
-        "color": "#EC4899",
-        "pin_x": 42,
-        "pin_y": 60
-      },
-      {
-        "number": 3,
-        "short_name": "Эндомизий",
-        "name": "Прослойка эндомизия",
-        "description": "Тонкая базальная пластинка и ретикулярные волокна вокруг миоцита.",
-        "color": "#10B981",
-        "pin_x": 65,
-        "pin_y": 35
-      }
-    ],
-    "embryoOrigin": "Мезенхима внутренних органов",
-    "functionText": "Медленные длительные непроизвольные тонические сокращения стенок полых органов и сосудов",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Smooth_muscle_40x.jpg/800px-Smooth_muscle_40x.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Some_erythrocytic_morphologies_and_intraerythrocytic_inclusions_found_in_peripheral_blood_smears_of_quokkas_on_Rottnest_Island_%28also_found_in_quokkas_on_mainland_Western_Australia%29.png/1280px-thumbnail.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)",
-      "Срез 2 (Атлас)"
-    ],
-    "examPlan": {
-      "stainAndType": "Гладкая мышечная ткань (Гематоксилин и эозин)",
-      "origin": "Мезенхима внутренних органов",
-      "structure": "Плотные пласты веретенообразных клеток.",
-      "location": "Гладкие миоциты с палочковидными ядрами в центре.",
-      "functionText": "Медленные длительные непроизвольные тонические сокращения стенок полых органов и сосудов",
-      "killerFeature": "Веретенообразная форма клеток и палочковидные ядра, изгибающиеся при сокращении."
-    }
-  },
-  {
-    "id": "slide_17",
-    "examNumber": 17,
-    "moduleId": "mod_nervous_sensory",
-    "title": "Миелиновые нервные волокна (расщипанный препарат)",
-    "stain": "Осмиевая кислота",
-    "magnification": "x400",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Myelinated_nerve_fibers_osmium.jpg/800px-Myelinated_nerve_fibers_osmium.jpg",
-    "layersText": "В центре — светлый осевой цилиндр, снаружи — толстая черная миелиновая оболочка (липиды окрашены осмием), поверх нее — тонкая неврилемма.",
-    "keyCells": "Шванновские клетки (леммоциты), образующие миелиновую муфту вокруг одного осевого цилиндра.",
-    "killerFeature": "Толстые черные цилиндры с регулярными перетяжками — перехватами Ранвье, и косыми светлыми линиями — насечками миелина (Шмидта-Лантермана).",
-    "distractors": [
-      "Безмиелиновые нервные волокна",
-      "Скелетная мышечная ткань",
-      "Плотная оформленная ткань сухожилия"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Осевой цил.",
-        "name": "Светлый осевой цилиндр",
-        "description": "Центральный отросток нейрона (аксон), содержащий нейрофиламенты и микротрубочки.",
-        "color": "#6366F1",
-        "pin_x": 50,
-        "pin_y": 50
-      },
-      {
-        "number": 2,
-        "short_name": "Миелин",
-        "name": "Черная миелиновая оболочка",
-        "description": "Многослойно закрученная мембрана шванновской клетки, липиды которой окислены осмием в черный цвет.",
-        "color": "#0F172A",
-        "pin_x": 56,
-        "pin_y": 42
-      },
-      {
-        "number": 3,
-        "short_name": "Ранвье",
-        "name": "Перехват Ранвье",
-        "description": "Участок аксона, лишенный миелина, на стыке двух соседних леммоцитов. Обеспечивает сальтаторное проведение импульса.",
-        "color": "#EF4444",
-        "pin_x": 68,
-        "pin_y": 50
-      }
-    ],
-    "embryoOrigin": "Нервный гребень (леммоциты) и нервная трубка (аксоны)",
-    "functionText": "Быстрое сальтаторное проведение нервного импульса (до 120 м/с)",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Myelinated_nerve_fibers_osmium.jpg/800px-Myelinated_nerve_fibers_osmium.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)"
-    ],
-    "examPlan": {
-      "stainAndType": "Миелиновые нервные волокна (расщипанный препарат) (Осмиевая кислота)",
-      "origin": "Нервный гребень (леммоциты) и нервная трубка (аксоны)",
-      "structure": "В центре — светлый осевой цилиндр, снаружи — толстая черная миелиновая оболочка (липиды окрашены осмием), поверх нее — тонкая неврилемма.",
-      "location": "Шванновские клетки (леммоциты), образующие миелиновую муфту вокруг одного осевого цилиндра.",
-      "functionText": "Быстрое сальтаторное проведение нервного импульса (до 120 м/с)",
-      "killerFeature": "Толстые черные цилиндры с регулярными перетяжками — перехватами Ранвье, и косыми светлыми линиями — насечками миелина (Шмидта-Лантермана)."
-    }
-  },
-  {
-    "id": "slide_18",
-    "examNumber": 18,
-    "moduleId": "mod_nervous_sensory",
-    "title": "Безмиелиновые нервные волокна (поперечный/продольный срез)",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x400",
-    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b3/%D0%9C%D0%BE%D0%B7%D0%B6%D0%B5%D1%87%D0%BA%D0%BE%D0%B2%D0%B0%D1%8F_%D0%BA%D0%BE%D1%80%D0%B0_%D0%BA%D0%BE%D1%88%D0%BA%D0%B8._%D0%9E%D0%BA%D1%80%D0%B0%D1%81%D0%BA%D0%B0_%D0%B3%D0%B5%D0%BC%D0%B0%D1%82%D0%BE%D0%BA%D1%81%D0%B8%D0%BB%D0%B8%D0%BD-%D1%8D%D0%BE%D0%B7%D0%B8%D0%BD._%D0%A3%D0%B2%D0%B5%D0%BB%D0%B8%D1%87%D0%B5%D0%BD%D0%B8%D0%B5_x100.jpg/1280px-%D0%9C%D0%BE%D0%B7%D0%B6%D0%B5%D1%87%D0%BA%D0%BE%D0%B2%D0%B0%D1%8F_%D0%BA%D0%BE%D1%80%D0%B0_%D0%BA%D0%BE%D1%88%D0%BA%D0%B8._%D0%9E%D0%BA%D1%80%D0%B0%D1%81%D0%BA%D0%B0_%D0%B3%D0%B5%D0%BC%D0%B0%D1%82%D0%BE%D0%BA%D1%81%D0%B8%D0%BB%D0%B8%D0%BD-%D1%8D%D0%BE%D0%B7%D0%B8%D0%BD._%D0%A3%D0%B2%D0%B5%D0%BB%D0%B8%D1%87%D0%B5%D0%BD%D0%B8%D0%B5_x100.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "layersText": "Пучки нервных волокон кабельного типа (несколько осевых цилиндров погружены в тяж леммоцитов), окруженные эндонефрием и периневрием.",
-    "keyCells": "Леммоциты (шванновские клетки) — многочисленные овальные/вытянутые ядра, лежащие цепочками вдоль розовых цитоплазматических тяжей.",
-    "killerFeature": "Отсутствует черная миелиновая оболочка и перехваты Ранвье; видны нежно-розовые тяжи с множеством овальных ядер шванновских клеток.",
-    "distractors": [
-      "Миелиновые нервные волокна",
-      "Гладкая мышечная ткань",
-      "Рыхлая волокнистая соединительная ткань"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Тяжи",
-        "name": "Тяжи леммоцитов с аксонами (кабельный тип)",
-        "description": "Цитоплазматические розовые тяжи шванновских клеток, в которые погружены 5-20 осевых цилиндров.",
-        "color": "#EC4899",
-        "pin_x": 48,
-        "pin_y": 45
-      },
-      {
-        "number": 2,
-        "short_name": "Ядра",
-        "name": "Вытянутые ядра леммоцитов",
-        "description": "Овальные базофильные ядра, расположенные цепочками вдоль нервного волокна.",
-        "color": "#6366F1",
-        "pin_x": 62,
-        "pin_y": 55
-      }
-    ],
-    "embryoOrigin": "Нервный гребень и нервная трубка",
-    "functionText": "Кабельное непрерывное проведение импульса низкой скорости (0.5–2 м/с)",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Unmyelinated_nerve_fibers.jpg/800px-Unmyelinated_nerve_fibers.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b3/%D0%9C%D0%BE%D0%B7%D0%B6%D0%B5%D1%87%D0%BA%D0%BE%D0%B2%D0%B0%D1%8F_%D0%BA%D0%BE%D1%80%D0%B0_%D0%BA%D0%BE%D1%88%D0%BA%D0%B8._%D0%9E%D0%BA%D1%80%D0%B0%D1%81%D0%BA%D0%B0_%D0%B3%D0%B5%D0%BC%D0%B0%D1%82%D0%BE%D0%BA%D1%81%D0%B8%D0%BB%D0%B8%D0%BD-%D1%8D%D0%BE%D0%B7%D0%B8%D0%BD._%D0%A3%D0%B2%D0%B5%D0%BB%D0%B8%D1%87%D0%B5%D0%BD%D0%B8%D0%B5_x100.jpg/1280px-%D0%9C%D0%BE%D0%B7%D0%B6%D0%B5%D1%87%D0%BA%D0%BE%D0%B2%D0%B0%D1%8F_%D0%BA%D0%BE%D1%80%D0%B0_%D0%BA%D0%BE%D1%88%D0%BA%D0%B8._%D0%9E%D0%BA%D1%80%D0%B0%D1%81%D0%BA%D0%B0_%D0%B3%D0%B5%D0%BC%D0%B0%D1%82%D0%BE%D0%BA%D1%81%D0%B8%D0%BB%D0%B8%D0%BD-%D1%8D%D0%BE%D0%B7%D0%B8%D0%BD._%D0%A3%D0%B2%D0%B5%D0%BB%D0%B8%D1%87%D0%B5%D0%BD%D0%B8%D0%B5_x100.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)",
-      "Срез 2 (Атлас)"
-    ],
-    "examPlan": {
-      "stainAndType": "Безмиелиновые нервные волокна (поперечный/продольный срез) (Гематоксилин и эозин)",
-      "origin": "Нервный гребень и нервная трубка",
-      "structure": "Пучки нервных волокон кабельного типа (несколько осевых цилиндров погружены в тяж леммоцитов), окруженные эндонефрием и периневрием.",
-      "location": "Леммоциты (шванновские клетки) — многочисленные овальные/вытянутые ядра, лежащие цепочками вдоль розовых цитоплазматических тяжей.",
-      "functionText": "Кабельное непрерывное проведение импульса низкой скорости (0.5–2 м/с)",
-      "killerFeature": "Отсутствует черная миелиновая оболочка и перехваты Ранвье; видны нежно-розовые тяжи с множеством овальных ядер шванновских клеток."
-    }
-  },
-  {
-    "id": "slide_19",
-    "examNumber": 19,
-    "moduleId": "mod_nervous_sensory",
-    "title": "Спинномозговой узел (чувствительный ганглий)",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x100 / x400",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Dorsal_root_ganglion_40x.jpg/800px-Dorsal_root_ganglion_40x.jpg",
-    "layersText": "Снаружи — соединительнотканная капсула; по периферии узла группами лежат тела нейронов, в центре проходят пучки нервных волокон.",
-    "keyCells": "Псевдоуниполярные нейроны (крупные округлые тела со светлым пузырьковидным ядром и четким ядрышком), глиальные клетки-сателлиты (мантийные глиоциты).",
-    "killerFeature": "Крупные округлые псевдоуниполярные нейроны лежат плотными группами по периферии узла, а каждый нейрон окружен венчиком мелких ядер клеток-сателлитов.",
-    "distractors": [
-      "Вегетативный ганглий",
-      "Спинной мозг (окр. по Нисслю)",
-      "Кора мозжечка"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Нейрон",
-        "name": "Псевдоуниполярный нейрон",
-        "description": "Крупное сферическое тело со светлым пузырьковидным ядром и темно-фиолетовым ядрышком в центре.",
-        "color": "#8B5CF6",
-        "pin_x": 35,
-        "pin_y": 40
-      },
-      {
-        "number": 2,
-        "short_name": "Сателлиты",
-        "name": "Мантийные глиоциты (клетки-сателлиты)",
-        "description": "Венчик мелких круглых ядер глиальных клеток, плотно облегающих перикарион каждого нейрона.",
-        "color": "#6366F1",
-        "pin_x": 42,
-        "pin_y": 45
-      },
-      {
-        "number": 3,
-        "short_name": "Волокна",
-        "name": "Пучки нервных волокон в центре",
-        "description": "Аксоны и дендриты псевдоуниполярных нейронов, формирующие задний корешок спинного мозга.",
-        "color": "#EC4899",
-        "pin_x": 65,
-        "pin_y": 60
-      }
-    ],
-    "embryoOrigin": "Нервный гребень (ганглиозная пластинка)",
-    "functionText": "Рецепция и первичная передача всех видов чувствительности в спинной и головной мозг",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Dorsal_root_ganglion_40x.jpg/800px-Dorsal_root_ganglion_40x.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)"
-    ],
-    "examPlan": {
-      "stainAndType": "Спинномозговой узел (чувствительный ганглий) (Гематоксилин и эозин)",
-      "origin": "Нервный гребень (ганглиозная пластинка)",
-      "structure": "Снаружи — соединительнотканная капсула; по периферии узла группами лежат тела нейронов, в центре проходят пучки нервных волокон.",
-      "location": "Псевдоуниполярные нейроны (крупные округлые тела со светлым пузырьковидным ядром и четким ядрышком), глиальные клетки-сателлиты (мантийные глиоциты).",
-      "functionText": "Рецепция и первичная передача всех видов чувствительности в спинной и головной мозг",
-      "killerFeature": "Крупные округлые псевдоуниполярные нейроны лежат плотными группами по периферии узла, а каждый нейрон окружен венчиком мелких ядер клеток-сателлитов."
-    }
-  },
-  {
-    "id": "slide_20",
-    "examNumber": 20,
-    "moduleId": "mod_nervous_sensory",
-    "title": "Мультиполярные двигательные нейроны спинного мозга (нейрофибриллы)",
-    "stain": "Импрегнация серебром",
-    "magnification": "x40 / x400",
-    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/DRG_Chicken_e7.jpg/1280px-DRG_Chicken_e7.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "layersText": "В центре — темное серое вещество в форме «бабочки» (передние, задние и боковые рога) со спинномозговым каналом; по периферии — белое вещество.",
-    "keyCells": "Мультиполярные нейроны (особенно крупные мотонейроны в передних рогах с множеством отростков), нейроглия, эпендимоциты центрального канала.",
-    "killerFeature": "Серое вещество в виде «бабочки» в центре; при импрегнации серебром в телах и отростках мультиполярных нейронов четко видны черные нейрофибриллы.",
-    "distractors": [
-      "Спинной мозг (окр. по Нисслю)",
-      "Кора больших полушарий головного мозга",
-      "Спинномозговой узел"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Серое в-во",
-        "name": "Серое вещество («бабочка»)",
-        "description": "Тела мультиполярных нейронов, дендриты и глиоциты в центре спинного мозга.",
-        "color": "#475569",
-        "pin_x": 48,
-        "pin_y": 48
-      },
-      {
-        "number": 2,
-        "short_name": "Мотонейрон",
-        "name": "Мотонейроны передних рогов",
-        "description": "Крупные полигональные клетки с отростками и темными нейрофибриллами.",
-        "color": "#0F172A",
-        "pin_x": 36,
-        "pin_y": 62
-      },
-      {
-        "number": 3,
-        "short_name": "Белое в-во",
-        "name": "Белое вещество (канатики)",
-        "description": "Миелиновые нервные волокна восходящих и нисходящих проводящих путей.",
-        "color": "#94A3B8",
-        "pin_x": 22,
-        "pin_y": 35
-      }
-    ],
-    "embryoOrigin": "Нервная трубка",
-    "functionText": "Двигательная иннервация скелетной мускулатуры, замыкание рефлекторных дуг",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Spinal_cord_silver_stain.jpg/800px-Spinal_cord_silver_stain.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/DRG_Chicken_e7.jpg/1280px-DRG_Chicken_e7.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/58/Spinal_ganglion.jpg/1280px-Spinal_ganglion.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)",
-      "Срез 2 (Атлас)",
-      "Срез 3 (Атлас)"
-    ],
-    "examPlan": {
-      "stainAndType": "Мультиполярные двигательные нейроны спинного мозга (нейрофибриллы) (Импрегнация серебром)",
-      "origin": "Нервная трубка",
-      "structure": "В центре — темное серое вещество в форме «бабочки» (передние, задние и боковые рога) со спинномозговым каналом; по периферии — белое вещество.",
-      "location": "Мультиполярные нейроны (особенно крупные мотонейроны в передних рогах с множеством отростков), нейроглия, эпендимоциты центрального канала.",
-      "functionText": "Двигательная иннервация скелетной мускулатуры, замыкание рефлекторных дуг",
-      "killerFeature": "Серое вещество в виде «бабочки» в центре; при импрегнации серебром в телах и отростках мультиполярных нейронов четко видны черные нейрофибриллы."
-    }
-  },
-  {
-    "id": "slide_21",
-    "examNumber": 21,
-    "moduleId": "mod_nervous_sensory",
-    "title": "Спинной мозг (хроматофильная субстанция по Нисслю)",
-    "stain": "По Нисслю (толуидиновый синий / тионин)",
-    "magnification": "x100 / x400",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/08/Myelinated_nerve_fibers%2C_Ranvier_nodes.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-    "layersText": "Серое вещество в центре («бабочка») и белое вещество по периферии.",
-    "keyCells": "Крупные мультиполярные мотонейроны передних рогов со светлым ядром и темным ядрышком («совиный глаз»).",
-    "killerFeature": "Сине-фиолетовая окраска: в цитоплазме и дендритах нейронов видны базофильные глыбки хроматофильной субстанции (тельца Ниссля — грЭПС), а аксональный холмик остается светлым.",
-    "distractors": [
-      "Спинной мозг (импрегнация серебром)",
-      "Кора больших полушарий",
-      "Спинномозговой узел"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Мотонейрон",
-        "name": "Мотонейрон переднего рога с тельцами Ниссля",
-        "description": "Базофильные синие глыбки хроматофильной субстанции (тигроид / грЭПС) в цитоплазме и дендритах.",
-        "color": "#4338CA",
-        "pin_x": 52,
-        "pin_y": 50
-      },
-      {
-        "number": 2,
-        "short_name": "Холмик",
-        "name": "Аксональный холмик (светлый участок)",
-        "description": "Участок отхождения аксона, полностью свободный от гранулярной ЭПС (не окрашивается основным красителем).",
-        "color": "#818CF8",
-        "pin_x": 60,
-        "pin_y": 58
-      }
-    ],
-    "embryoOrigin": "Нервная трубка",
-    "functionText": "Обеспечение белкового синтеза для поддержания отростков и синаптической передачи нейрона",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Spinal_cord_Nissl.jpg/800px-Spinal_cord_Nissl.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/0/08/Myelinated_nerve_fibers%2C_Ranvier_nodes.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)",
-      "Срез 2 (Атлас)"
-    ],
-    "examPlan": {
-      "stainAndType": "Спинной мозг (хроматофильная субстанция по Нисслю) (По Нисслю (толуидиновый синий / тионин))",
-      "origin": "Нервная трубка",
-      "structure": "Серое вещество в центре («бабочка») и белое вещество по периферии.",
-      "location": "Крупные мультиполярные мотонейроны передних рогов со светлым ядром и темным ядрышком («совиный глаз»).",
-      "functionText": "Обеспечение белкового синтеза для поддержания отростков и синаптической передачи нейрона",
-      "killerFeature": "Сине-фиолетовая окраска: в цитоплазме и дендритах нейронов видны базофильные глыбки хроматофильной субстанции (тельца Ниссля — грЭПС), а аксональный холмик остается светлым."
-    }
-  },
-  {
-    "id": "slide_22",
-    "examNumber": 22,
-    "moduleId": "mod_nervous_sensory",
-    "title": "Кора больших полушарий головного мозга",
-    "stain": "Импрегнация серебром",
-    "magnification": "x100 / x400",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Cajal_Retina.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-    "layersText": "6 слоев (снаружи внутрь): 1. Молекулярный 2. Наружный зернистый 3. Пирамидный 4. Внутренний зернистый 5. Ганглионарный (гигантские пирамиды Беца) 6. Полиморфный.",
-    "keyCells": "Пирамидные нейроны разного калибра (от мелких до гигантских клеток Беца с апикальным дендритом, направленным к поверхности коры), звездчатые клетки.",
-    "killerFeature": "Характерные треугольные (пирамидные) тела черных нейронов, верхушки которых ориентированы к поверхности коры; 6-слойное строение.",
-    "distractors": [
-      "Кора мозжечка",
-      "Спинной мозг (импрегнация серебром)",
-      "Спинномозговой узел"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "I Молекулярный",
-        "name": "Молекулярный слой (I слой)",
-        "description": "Мало клеток, сплетение тангенциальных нервных волокон.",
-        "color": "#64748B",
-        "pin_x": 50,
-        "pin_y": 12
-      },
-      {
-        "number": 2,
-        "short_name": "III Пирамидный",
-        "name": "Пирамидный слой (III слой)",
-        "description": "Средние пирамидные клетки, от верхушек отходят апикальные дендриты к поверхности.",
-        "color": "#475569",
-        "pin_x": 50,
-        "pin_y": 42
-      },
-      {
-        "number": 3,
-        "short_name": "V Клетки Беца",
-        "name": "Ганглионарный слой (V слой, клетки Беца)",
-        "description": "Гигантские пирамидные нейроны, аксоны которых образуют кортико-спинальный пирамидный тракт.",
-        "color": "#0F172A",
-        "pin_x": 50,
-        "pin_y": 72
-      }
-    ],
-    "embryoOrigin": "Нервная трубка (краниальный конец)",
-    "functionText": "Высшая интегративная деятельность, сознание, память, произвольные движения",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Cerebral_cortex_silver.jpg/800px-Cerebral_cortex_silver.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/b/b6/Cajal_Retina.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-      "https://upload.wikimedia.org/wikipedia/commons/3/3f/Compendium_of_histology_%281876%29_%2820644816646%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)",
-      "Срез 2 (Атлас)",
-      "Срез 3 (Атлас)"
-    ],
-    "examPlan": {
-      "stainAndType": "Кора больших полушарий головного мозга (Импрегнация серебром)",
-      "origin": "Нервная трубка (краниальный конец)",
-      "structure": "6 слоев (снаружи внутрь): 1. Молекулярный 2. Наружный зернистый 3. Пирамидный 4. Внутренний зернистый 5. Ганглионарный (гигантские пирамиды Беца) 6. Полиморфный.",
-      "location": "Пирамидные нейроны разного калибра (от мелких до гигантских клеток Беца с апикальным дендритом, направленным к поверхности коры), звездчатые клетки.",
-      "functionText": "Высшая интегративная деятельность, сознание, память, произвольные движения",
-      "killerFeature": "Характерные треугольные (пирамидные) тела черных нейронов, верхушки которых ориентированы к поверхности коры; 6-слойное строение."
-    }
-  },
-  {
-    "id": "slide_23",
-    "examNumber": 23,
-    "moduleId": "mod_nervous_sensory",
-    "title": "Мозжечок (кора и белое вещество)",
-    "stain": "Импрегнация серебром",
-    "magnification": "x100 / x400",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cerebellum_silver_stain.jpg/800px-Cerebellum_silver_stain.jpg",
-    "layersText": "Характерные извилины с 3 слоями коры: 1. Молекулярный (наружный, светлый) 2. Ганглионарный (1 ряд крупных клеток Пуркинье) 3. Зернистый (внутренний, густоклеточный) + в центре белое вещество.",
-    "keyCells": "Грушевидные нейроны (клетки Пуркинье) с мощно ветвящимися в молекулярном слое дендритами, клетки-зерна, корзинчатые и звездчатые нейроны.",
-    "killerFeature": "Древовидное ветвление извилин и один строгий ряд крупных грушевидных клеток Пуркинье на границе светлого молекулярного и темного зернистого слоев.",
-    "distractors": [
-      "Кора больших полушарий головного мозга",
-      "Спинной мозг",
-      "Лимфатический узел"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Молекулярный",
-        "name": "Молекулярный слой (наружный)",
-        "description": "Светлый наружный слой, содержит корзинчатые и звездчатые нейроны, дендриты клеток Пуркинье.",
-        "color": "#94A3B8",
-        "pin_x": 50,
-        "pin_y": 25
-      },
-      {
-        "number": 2,
-        "short_name": "Пуркинье",
-        "name": "Грушевидные нейроны (клетки Пуркинье)",
-        "description": "Один строгий ряд крупных грушевидных нейронов с мощно ветвящимися дендритами.",
-        "color": "#0F172A",
-        "pin_x": 50,
-        "pin_y": 48
-      },
-      {
-        "number": 3,
-        "short_name": "Зернистый",
-        "name": "Зернистый слой (внутренний)",
-        "description": "Густоклеточный темный слой, заполненный мелкими клетками-зернами и клубочками мозжечка.",
-        "color": "#475569",
-        "pin_x": 50,
-        "pin_y": 75
-      }
-    ],
-    "embryoOrigin": "Нервная трубка (дорсальная часть ромбовидного мозга)",
-    "functionText": "Координация движений, поддержание равновесия и мышечного тонуса",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cerebellum_silver_stain.jpg/800px-Cerebellum_silver_stain.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/b/b5/Cortis_organ_stor.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-      "https://upload.wikimedia.org/wikipedia/commons/e/ea/Textbook_of_normal_histology-_including_an_account_of_the_development_of_the_tissues_and_of_the_organs_%281897%29_%2814779781711%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)",
-      "Срез 2 (Атлас)",
-      "Срез 3 (Атлас)"
-    ],
-    "examPlan": {
-      "stainAndType": "Мозжечок (кора и белое вещество) (Импрегнация серебром)",
-      "origin": "Нервная трубка (дорсальная часть ромбовидного мозга)",
-      "structure": "Характерные извилины с 3 слоями коры: 1. Молекулярный (наружный, светлый) 2. Ганглионарный (1 ряд крупных клеток Пуркинье) 3. Зернистый (внутренний, густоклеточный) + в центре белое вещество.",
-      "location": "Грушевидные нейроны (клетки Пуркинье) с мощно ветвящимися в молекулярном слое дендритами, клетки-зерна, корзинчатые и звездчатые нейроны.",
-      "functionText": "Координация движений, поддержание равновесия и мышечного тонуса",
-      "killerFeature": "Древовидное ветвление извилин и один строгий ряд крупных грушевидных клеток Пуркинье на границе светлого молекулярного и темного зернистого слоев."
-    }
-  },
-  {
-    "id": "slide_24",
-    "examNumber": 24,
-    "moduleId": "mod_nervous_sensory",
-    "title": "Роговица глаза",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x100 / x400",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Cornea_histology_40x.jpg/800px-Cornea_histology_40x.jpg",
-    "layersText": "5 слоев: 1. Передний многослойный плоский неороговевающий эпителий 2. Передняя пограничная мембрана (Боуменова) 3. Собственное вещество роговицы 4. Задняя пограничная мембрана (Десцеметова) 5. Задний однослойный плоский эпителий (эндотелий).",
-    "keyCells": "Эпителиоциты переднего эпителия, уплощенные фиброциты (кератоциты) между коллагеновыми пластинками собственного вещества, клетки заднего эпителия.",
-    "killerFeature": "Полное отсутствие кровеносных сосудов; с одной стороны толстый многослойный плоский неороговевающий эпителий, с другой — однослойный плоский на толстой розовой Десцеметовой мембране.",
-    "distractors": [
-      "Пищевод (слизистая)",
-      "Кожа пальца человека",
-      "Белочная оболочка семенника"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Передний эпит.",
-        "name": "Передний эпителий роговицы",
-        "description": "Многослойный плоский неороговевающий эпителий с высокой способностью к регенерации.",
-        "color": "#6366F1",
-        "pin_x": 50,
-        "pin_y": 16
-      },
-      {
-        "number": 2,
-        "short_name": "Строма",
-        "name": "Собственное вещество (строма)",
-        "description": "Параллельные коллагеновые пластинки с кератоцитами, отсутствие кровеносных сосудов.",
-        "color": "#EC4899",
-        "pin_x": 50,
-        "pin_y": 50
-      },
-      {
-        "number": 3,
-        "short_name": "Задний эпит.",
-        "name": "Задний эпителий (эндотелий)",
-        "description": "Однослойный плоский эпителий на толстой Десцеметовой мембране, откачивает влагу из стромы.",
-        "color": "#10B981",
-        "pin_x": 50,
-        "pin_y": 86
-      }
-    ],
-    "embryoOrigin": "Кожная эктодерма (эпителий) и мезенхима (строма)",
-    "functionText": "Преломление света (главная оптическая линза глаза, 43 дптр), защита глазного яблока",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d8/Cornea_histology_40x.jpg/800px-Cornea_histology_40x.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)"
-    ],
-    "examPlan": {
-      "stainAndType": "Роговица глаза (Гематоксилин и эозин)",
-      "origin": "Кожная эктодерма (эпителий) и мезенхима (строма)",
-      "structure": "5 слоев: 1. Передний многослойный плоский неороговевающий эпителий 2. Передняя пограничная мембрана (Боуменова) 3. Собственное вещество роговицы 4. Задняя пограничная мембрана (Десцеметова) 5. Задний однослойный плоский эпителий (эндотелий).",
-      "location": "Эпителиоциты переднего эпителия, уплощенные фиброциты (кератоциты) между коллагеновыми пластинками собственного вещества, клетки заднего эпителия.",
-      "functionText": "Преломление света (главная оптическая линза глаза, 43 дптр), защита глазного яблока",
-      "killerFeature": "Полное отсутствие кровеносных сосудов; с одной стороны толстый многослойный плоский неороговевающий эпителий, с другой — однослойный плоский на толстой розовой Десцеметовой мембране."
-    }
-  },
-  {
-    "id": "slide_25",
-    "examNumber": 25,
-    "moduleId": "mod_nervous_sensory",
-    "title": "Задняя стенка глаза (сетчатка, сосудистая и склера)",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x200",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Retina_histology_40x.jpg/800px-Retina_histology_40x.jpg",
-    "layersText": "3 оболочки: 1. Склера (плотная соед. ткань) 2. Сосудистая оболочка (пигмент и сосуды) 3. Сетчатка (10 слоев, включая пигментный эпителий, слой палочек и колбочек, наружный и внутренний ядерные слои, ганглионарный слой).",
-    "keyCells": "Пигментоциты, фоторецепторы (палочки и колбочки), биполярные нейроны, ганглиозные мультиполярные нейроны, глиоциты Мюллера.",
-    "killerFeature": "Характерная «слоистость» сетчатки с тремя четкими рядами фиолетовых ядер (наружный ядерный, внутренний ядерный, ганглионарный) и черной полосой пигментного эпителия на границе с сосудистой оболочкой.",
-    "distractors": [
-      "Кора больших полушарий",
-      "Роговица глаза",
-      "Кожа с волосом"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Склера",
-        "name": "Склера (наружная оболочка)",
-        "description": "Плотная оформленная соединительная ткань белого цвета.",
-        "color": "#94A3B8",
-        "pin_x": 50,
-        "pin_y": 12
-      },
-      {
-        "number": 2,
-        "short_name": "Сосудистая",
-        "name": "Сосудистая оболочка с пигментом",
-        "description": "Множество сосудов и темно-коричневых пигментоцитов.",
-        "color": "#78350F",
-        "pin_x": 50,
-        "pin_y": 30
-      },
-      {
-        "number": 3,
-        "short_name": "Сетчатка",
-        "name": "Сетчатка (10 слоев, 3 ядерных ряда)",
-        "description": "Наружный ядерный (фоторецепторы), внутренний ядерный (биполяры) и ганглионарный слои.",
-        "color": "#6366F1",
-        "pin_x": 50,
-        "pin_y": 65
-      }
-    ],
-    "embryoOrigin": "Нервная трубка (глазной пузырь — сетчатка) и мезенхима",
-    "functionText": "Фоторецепция, трансдукция светового сигнала в нервный импульс, трофика глаза",
-    "imageUrls": [
-      "./slides/tg/slide_4294968168_0.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Кафедра)"
-    ],
-    "examPlan": {
-      "stainAndType": "Задняя стенка глаза (сетчатка, сосудистая и склера) (Гематоксилин и эозин)",
-      "origin": "Нервная трубка (глазной пузырь — сетчатка) и мезенхима",
-      "structure": "На препарате видна многослойн...\nI. Склера (наружная фиброзная оболочка)\n\n· 1.1 — Фиброциты: Клетки соединительной ткани, расположенные между волокнами. Они уплощены и синтезируют межклеточное вещество.\n· 1.2 — Пучки коллагеновых волокон: Главный структурный компонент. Волокна образуют толстые пучки, идущие в разных направлениях, что обеспечивает прочность и защиту глазного яблока.\n\nII. Сосудистая оболочка (средняя оболочка, хориоидея)\n\n· Образование: Рыхлая соединительная ткань с большим количеством кровеносных сосудов (питают наружные слои сетчатки) и пигментных клеток (меланоцитов). Между ней и сетчаткой находится мембрана Бруха (стекловидная пластинка).\n\nIII. Сетчатка (внутренняя нервная оболочка)\n\n· 1 — Пигментный слой (пигментный эпителий): Один слой клеток с меланином. Поглощает свет и участвует в обмене веществ с фоторецепторами.\n· 2 — Слой палочек и колбочек (фотосенсорный): Наружные сегменты фоторецепторов (палочки — сумеречное зрение, колбочки — цветное).\n· 3 — Наружная пограничная (глиальная) мембрана: Тонкая структура из концевых отростков глиальных клеток Мюллера.\n· 4 — Наружный ядерный слой: Ядра тел фоторецепторов (палочек и колбочек).\n· 5 — Наружный сетчатый слой: Синапсы между фоторецепторами и биполярными клетками.\n· 6 — Внутренний ядерный слой: Ядра биполярных, горизонтальных, амакриновых нейронов и клеток Мюллера.\n· 7 — Внутренний сетчатый слой: Синапсы между биполярными и ганглиозными клетками.\n· 8 — Ганглиозный слой: Тела ганглиозных клеток (их аксоны образуют зрительный нерв).\n· 9 — Слой нервных волокон: Безмиелиновые аксоны ганглиозных клеток, идущие к зрительному нерву.\n· 10 — Внутренняя пограничная (глиальная) мембрана: Граница со стекловидным телом (отростки клеток Мюллера).",
-      "location": "Пигментоциты, фоторецепторы (палочки и колбочки), биполярные нейроны, ганглиозные мультиполярные нейроны, глиоциты Мюллера.",
-      "functionText": "Фоторецепция, трансдукция светового сигнала в нервный импульс, трофика глаза",
-      "killerFeature": "Характерная «слоистость» сетчатки с тремя четкими рядами фиолетовых ядер (наружный ядерный, внутренний ядерный, ганглионарный) и черной полосой пигментного эпителия на границе с сосудистой оболочкой."
-    }
-  },
-  {
-    "id": "slide_26",
-    "examNumber": 26,
-    "moduleId": "mod_nervous_sensory",
-    "title": "Кортиев (спиральный) орган. Срез улитки внутреннего уха",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x100 / x400",
-    "imageUrl": "./slides/tg/slide_4294968048_0.jpg",
-    "layersText": "Склера (фиброциты, плотные пучки коллагена) -> Сосудистая оболочка (пигментные клетки, капилляры, мембрана Бруха) -> Сетчатка (10 слоев: пигментный, палочки/колбочки, пограничные мембраны, ядерные, сетчатые, ганглиозный, нервные волокна)",
-    "keyCells": "Внутренние и наружные волосковые сенсорные клетки, поддерживающие клетки-столбы (внутренний туннель), фаланговые клетки Дейтерса.",
-    "killerFeature": "10 слоев сетчатки на срезе задней стенки глазного яблока, пигментный эпителий и пучки склеры.",
-    "distractors": [
-      "Непрямой остеогенез",
-      "Развитие зуба (2-я стадия)",
-      "Трахея"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Канал улитки",
-        "name": "Перепончатый канал улитки",
-        "description": "Треугольный просвет, заполненный эндолимфой, ограниченный вестибулярной мембраной и сосудистой полоской.",
-        "color": "#6366F1",
-        "pin_x": 50,
-        "pin_y": 35
-      },
-      {
-        "number": 2,
-        "short_name": "Орган Корти",
-        "name": "Спиральный орган на базилярной пластинке",
-        "description": "Сенсорные волосковые клетки и поддерживающие клетки-столбы, образующие треугольный туннель Корти.",
-        "color": "#EC4899",
-        "pin_x": 55,
-        "pin_y": 65
-      },
-      {
-        "number": 3,
-        "short_name": "Текториальная",
-        "name": "Покровная (текториальная) мембрана",
-        "description": "Оксифильная лента, нависающая над стереоцилиями волосковых клеток.",
-        "color": "#F59E0B",
-        "pin_x": 48,
-        "pin_y": 55
-      }
-    ],
-    "embryoOrigin": "Развивается из эктодермы. Сенсорные (волосковые) клетки и поддерживающий эпителий органа формируются из эпителия слухового пузырька (производное эктодермы), а соединительнотканные структуры (базилярная мембрана) — из мезенхимы.",
-    "functionText": "Восприятие звуковых колебаний. Механорецепторы (волосковые клетки) преобразуют энергию звуковых волн (механические колебания эндолимфы и базилярной мембраны) в нервный импульс, который затем передается в слуховой нерв. Опорные клетки выполняют трофическую и механическую функции.",
-    "imageUrls": [
-      "./slides/tg/slide_4294968053_0.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Кафедра)"
-    ],
-    "examPlan": {
-      "stainAndType": "Кортиев (спиральный) орган. Срез улитки внутреннего уха (Гематоксилином и эозином)",
-      "origin": "Развивается из эктодермы. Сенсорные (волосковые) клетки и поддерживающий эпителий органа формируются из эпителия слухового пузырька (производное эктодермы), а соединительнотканные структуры (базилярная мембрана) — из мезенхимы.",
-      "structure": "На препарате виден сложный рецепторный аппарат, расположенный на базилярной (основной) мембране. Основу органа составляют опорные (поддерживающие) и волосковые (сенсорные) клетки. Хорошо просматривается туннель Кортиева органа, образованный наружными и внутренними столбовыми клетками. По бокам от туннеля расположены наружные (в 3-4 ряда) и внутренние (в один ряд) волосковые клетки. Сверху над ними нависает текториальная (покровная) мембрана, имеющая вид гомогенной пластинки. Также видна сосудистая полоска (спиральный гребешок) — утолщенный эпителий на наружной стенке улиткового протока, участвующий в секреции эндолимфы.",
-      "location": "Внутри улиткового протока (среднего канала улитки) перепончатого лабиринта внутреннего уха, на базилярной мембране.",
-      "functionText": "Восприятие звуковых колебаний. Механорецепторы (волосковые клетки) преобразуют энергию звуковых волн (механические колебания эндолимфы и базилярной мембраны) в нервный импульс, который затем передается в слуховой нерв. Опорные клетки выполняют трофическую и механическую функции.",
-      "killerFeature": "10 слоев сетчатки на срезе задней стенки глазного яблока, пигментный эпителий и пучки склеры."
-    }
-  },
-  {
-    "id": "slide_27",
-    "examNumber": 27,
-    "moduleId": "mod_nervous_sensory",
-    "title": "Вкусовые луковицы в листовидных сосочках языка",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x200 / x400",
-    "imageUrl": "./slides/tg/slide_4294968053_0.jpg",
-    "layersText": "Улитка (костный и перепончатый лабиринты): вестибулярная лестница -> кохлеарный проток -> барабанная лестница. Базилярная пластинка с сенсорными волосковыми (внутренними/наружными) и поддерживающими клетками (столбовые, Дейтерса), покровная мембрана (текториальная).",
-    "keyCells": "Сенсорные вкусовые эпителиоциты (со штифтиками в области вкусовой поры), поддерживающие и базальные клетки.",
-    "killerFeature": "Спиральный туннель, образованный клетками-столбами, и нависающая над волосковыми клетками текториальная мембрана.",
-    "distractors": [
-      "Нитевидные сосочки языка",
-      "Пищевод",
-      "Небная миндалина"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Сосочек",
-        "name": "Листовидный сосочек языка",
-        "description": "Параллельные складки слизистой с многослойным плоским неороговевающим эпителием.",
-        "color": "#EC4899",
-        "pin_x": 50,
-        "pin_y": 30
-      },
-      {
-        "number": 2,
-        "short_name": "Луковица",
-        "name": "Вкусовая луковица (почка)",
-        "description": "Светлый овальный комплекс рецепторных и поддерживающих клеток в боковой стенке сосочка.",
-        "color": "#6366F1",
-        "pin_x": 68,
-        "pin_y": 50
-      },
-      {
-        "number": 3,
-        "short_name": "Железы Эбнера",
-        "name": "Белковые железы Эбнера",
-        "description": "Серозные железы в глубине языка, протоки которых промывают ров сосочка.",
-        "color": "#8B5CF6",
-        "pin_x": 50,
-        "pin_y": 80
-      }
-    ],
-    "embryoOrigin": "Эктодерма слухового пузырька (эпителиальный сенсорный аппарат Кортиева органа) и мезенхима (базилярная мембрана, спиральная связка, костный лабиринт).",
-    "functionText": "Рецепция звуковых колебаний разной частоты (высокие у основания, низкие у вершины) и трансформация механических колебаний эндолимфы в нервные импульсы.",
-    "imageUrls": [
-      "./slides/tg/slide_4294968053_0.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)"
-    ],
-    "examPlan": {
-      "stainAndType": "Вкусовые луковицы в листовидных сосочках языка (Гематоксилин и эозин)",
-      "origin": "Эктодерма слухового пузырька (эпителиальный сенсорный аппарат Кортиева органа) и мезенхима (базилярная мембрана, спиральная связка, костный лабиринт).",
-      "structure": "Улитка (костный и перепончатый лабиринты): вестибулярная лестница -> кохлеарный проток -> барабанная лестница. Базилярная пластинка с сенсорными волосковыми (внутренними/наружными) и поддерживающими клетками (столбовые, Дейтерса), покровная мембрана (текториальная).",
-      "location": "Сенсорные вкусовые эпителиоциты (со штифтиками в области вкусовой поры), поддерживающие и базальные клетки.",
-      "functionText": "Рецепция звуковых колебаний разной частоты (высокие у основания, низкие у вершины) и трансформация механических колебаний эндолимфы в нервные импульсы.",
-      "killerFeature": "Спиральный туннель, образованный клетками-столбами, и нависающая над волосковыми клетками текториальная мембрана."
-    }
-  },
-  {
-    "id": "slide_28",
-    "examNumber": 28,
-    "moduleId": "mod_cardio_immune",
-    "title": "Микроциркуляторное русло мягкой мозговой оболочки (тотальный препарат)",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x100 / x400",
-    "imageUrl": "./slides/tg/slide_4294968060_0.jpg",
-    "layersText": "Тотальный пленочный препарат мягкой мозговой оболочки: артериолы (1-2 слоя циркулярных гладких миоцитов), венулы (широкий просвет, тонкая стенка без выраженного мышечного слоя), капилляры (эндотелий + перициты в расщеплении базальной мембраны).",
-    "keyCells": "Эндотелиоциты (ядра вытянуты вдоль сосуда), гладкие миоциты (в артериолах ядра лежат поперек хода сосуда), перициты.",
-    "killerFeature": "Тонкий пленочный препарат с ветвящимися микрососудами: артериола с поперечно ориентированными ядрами миоцитов и сопутствующая более широкая венула.",
-    "distractors": [
-      "Однослойный плоский эпителий сальника",
-      "РВСТ пленочный препарат",
-      "Артерия мышечного типа"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Артериола",
-        "name": "Артериола (внутренние продольные, наружные поперечные ядра)",
-        "description": "Внутренний эндотелий ориентирован вдоль, а циркулярные гладкие миоциты лежат поперек хода сосуда.",
-        "color": "#EF4444",
-        "pin_x": 40,
-        "pin_y": 45
-      },
-      {
-        "number": 2,
-        "short_name": "Венула",
-        "name": "Венула (широкий просвет, тонкая стенка)",
-        "description": "Широкий просвет, тонкая стенка, отсутствие непрерывного слоя гладких миоцитов.",
-        "color": "#3B82F6",
-        "pin_x": 65,
-        "pin_y": 55
-      }
-    ],
-    "embryoOrigin": "Мягкая мозговая оболочка (как и другие оболочки мозга) развивается из мезенхимы (производное мезодермы), окружающей нервную трубку. Кровеносные сосуды также имеют мезенхимальное происхождение (эндотелий и гладкомышечные клетки формируются из мезенхимы).",
-    "functionText": "Обеспечение трофики (питания) и газообмена тканей мозга, а также выведение продуктов метаболизма. Мягкая мозговая оболочка содержит сосуды, которые проникают в вещество мозга; она выполняет защитную и барьерную функции, участвуя в формировании гематоэнцефалического барьера.",
-    "imageUrls": [
-      "./slides/tg/slide_4294968060_0.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Кафедра)"
-    ],
-    "examPlan": {
-      "stainAndType": "Микроциркуляторное русло мягкой мозговой оболочки (тотальный препарат) (Гематоксилин и эозин)",
-      "origin": "Мягкая мозговая оболочка (как и другие оболочки мозга) развивается из мезенхимы (производное мезодермы), окружающей нервную трубку. Кровеносные сосуды также имеют мезенхимальное происхождение (эндотелий и гладкомышечные клетки формируются из мезенхимы).",
-      "structure": "На препарате видна густая сеть кровеносных сосудов, расположенных в рыхлой соединительной ткани. Сосуды имеют вид ветвящихся трубок разного диаметра. Артериолы и более мелкие артерии отличаются более четкими, ровными контурами и наличием хорошо выраженной стенки (гладкомышечные клетки, эндотелий). Венулы и вены имеют более широкий и неровный просвет, стенка их тоньше по отношению к диаметру. Между ними видна капиллярная сеть. Ткань вокруг сосудов (мягкая мозговая оболочка) представлена рыхлой волокнистой соединительной тканью с фибробластами и тонкими коллагеновыми волокнами (на препарате выглядят как бледно-розовый фон)",
-      "location": "В мягкой мозговой оболочке (pia mater), которая плотно прилегает к поверхности головного и спинного мозга. На препарате представлена сосудистая сеть этой оболочки.",
-      "functionText": "Обеспечение трофики (питания) и газообмена тканей мозга, а также выведение продуктов метаболизма. Мягкая мозговая оболочка содержит сосуды, которые проникают в вещество мозга; она выполняет защитную и барьерную функции, участвуя в формировании гематоэнцефалического барьера.",
-      "killerFeature": "Тонкий пленочный препарат с ветвящимися микрососудами: артериола с поперечно ориентированными ядрами миоцитов и сопутствующая более широкая венула."
-    }
-  },
-  {
-    "id": "slide_29",
-    "examNumber": 29,
-    "moduleId": "mod_cardio_immune",
-    "title": "Артерия мышечного типа (бедренная артерия)",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x100",
-    "imageUrl": "./slides/tg/slide_4294968065_0.jpg",
-    "layersText": "1. Внутренняя оболочка (интима: эндотелий, подэндотелий, выраженная волнистая внутренняя эластическая мембрана) -> 2. Средняя оболочка (медиа: циркулярные гладкие миоциты, наружная эластическая мембрана) -> 3. Наружная оболочка (адвентиция из РВСТ с сосудами сосудов).",
-    "keyCells": "Эндотелиоциты, гладкие миоциты средней оболочки, фибробласты адвентиции.",
-    "killerFeature": "Ярко выраженная складчатая внутренняя эластическая мембрана на границе интимы и медиа и толстая мышечная оболочка.",
-    "distractors": [
-      "Вена мышечного типа",
-      "Аорта (артерия эластического типа)",
-      "Мочеточник"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Интима",
-        "name": "Интима с внутренней эластической мембраной",
-        "description": "Эндотелий и ярко выраженная фестончатая («гармошкой») внутренняя эластическая мембрана.",
-        "color": "#6366F1",
-        "pin_x": 38,
-        "pin_y": 35
-      },
-      {
-        "number": 2,
-        "short_name": "Медиа",
-        "name": "Средняя мышечная оболочка",
-        "description": "Толстый слой циркулярно расположенных гладких миоцитов.",
-        "color": "#EF4444",
-        "pin_x": 48,
-        "pin_y": 50
-      },
-      {
-        "number": 3,
-        "short_name": "Адвентиция",
-        "name": "Наружная адвентициальная оболочка",
-        "description": "Рыхлая соединительная ткань с сосудами сосудов (vasa vasorum).",
-        "color": "#10B981",
-        "pin_x": 65,
-        "pin_y": 70
-      }
-    ],
-    "embryoOrigin": "Стенка сосуда развивается из мезенхимы. Эндотелий и гладкомышечные клетки (медия) формируются из клеток мезенхимного происхождения, а адвентиция — из окружающей мезенхимы, которая впоследствии дифференцируется в рыхлую соединительную ткань.",
-    "functionText": "Транспорт крови к дистальным отделам конечности (к мышцам, коже, костям). Благодаря мощному мышечному слою, эти артерии способны активно сокращаться и регулировать просвет сосуда, тем самым контролируя объем кровотока и артериальное давление в соответствующем регионе (распределительная и сосудосуживающая функция).",
-    "imageUrls": [
-      "./slides/tg/slide_4294968065_0.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Кафедра)"
-    ],
-    "examPlan": {
-      "stainAndType": "Артерия мышечного типа (бедренная артерия) (Гематоксилин и эозин)",
-      "origin": "Стенка сосуда развивается из мезенхимы. Эндотелий и гладкомышечные клетки (медия) формируются из клеток мезенхимного происхождения, а адвентиция — из окружающей мезенхимы, которая впоследствии дифференцируется в рыхлую соединительную ткань.",
-      "structure": "На препарате виден кровеносный сосуд с четко выраженной стенкой и звездчатым (складчатым) просветом, что характерно для артерий в спавшемся состоянии. Стенка состоит из трех оболочек. Внутренняя оболочка (интима) представлена эндотелием и подэндотелиальным слоем. Средняя оболочка (медия) самая толстая, состоит из нескольких десятков слоев гладкомышечных клеток (циркулярно расположенных), между которыми видны тонкие розовые волокна. Наружная оболочка (адвентиция) представлена рыхлой волокнистой соединительной тканью. Хорошо заметна внутренняя эластическая мембрана (базофильная извилистая линия на границе интимы и медии)",
-      "location": "Бедренная артерия относится к сосудам мышечного типа, которые располагаются в опорно-двигательном аппарате (конечности, туловище), а также в органах с активной моторикой. На препарате представлен изолированный поперечный срез сосуда.",
-      "functionText": "Транспорт крови к дистальным отделам конечности (к мышцам, коже, костям). Благодаря мощному мышечному слою, эти артерии способны активно сокращаться и регулировать просвет сосуда, тем самым контролируя объем кровотока и артериальное давление в соответствующем регионе (распределительная и сосудосуживающая функция).",
-      "killerFeature": "Ярко выраженная складчатая внутренняя эластическая мембрана на границе интимы и медиа и толстая мышечная оболочка."
-    }
-  },
-  {
-    "id": "slide_30",
-    "examNumber": 30,
-    "moduleId": "mod_cardio_immune",
-    "title": "Вена мышечного типа (бедренная вена)",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x100",
-    "imageUrl": "./slides/tg/slide_4294968069_0.jpg",
-    "layersText": "1. Внутренняя оболочка (интима: эндотелий, подэндотелий, клапаны) -> 2. Средняя оболочка (медиа: пучки гладких миоцитов, разделенные прослойками РВСТ, слабее выражена, чем в артерии) -> 3. Наружная оболочка (толстая адвентиция с продольными пучками миоцитов).",
-    "keyCells": "Эндотелиоциты, гладкие миоциты, фибробласты.",
-    "killerFeature": "Широкий спавшийся просвет неправильной формы, слабо развитая средняя оболочка и преобладающая по толщине адвентиция.",
-    "distractors": [
-      "Артерия мышечного типа",
-      "Аорта",
-      "Лимфатический сосуд"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Просвет",
-        "name": "Спавшийся просвет и эндотелий",
-        "description": "Щелевидный просвет, отсутствие выраженной внутренней эластической мембраны.",
-        "color": "#3B82F6",
-        "pin_x": 45,
-        "pin_y": 40
-      },
-      {
-        "number": 2,
-        "short_name": "Адвентиция",
-        "name": "Мощная наружная адвентиция",
-        "description": "Самая толстая оболочка вены с продольными пучками гладких миоцитов.",
-        "color": "#EC4899",
-        "pin_x": 60,
-        "pin_y": 65
-      }
-    ],
-    "embryoOrigin": "Стенка сосуда развивается из мезенхимы. Эндотелий и гладкомышечные клетки (медия) формируются из клеток мезенхимного происхождения, а адвентиция — из окружающей мезенхимы, которая впоследствии дифференцируется в рыхлую соединительную ткань.",
-    "functionText": "Транспорт крови к дистальным отделам конечности (к мышцам, коже, костям). Благодаря мощному мышечному слою, эти артерии способны активно сокращаться и регулировать просвет сосуда, тем самым контролируя объем кровотока и артериальное давление в соответствующем регионе (распределительная и сосудосуживающая функция).",
-    "imageUrls": [
-      "./slides/tg/slide_4294968065_0.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/94/Thymic_corpuscle.jpg/1280px-Thymic_corpuscle.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "https://upload.wikimedia.org/wikipedia/commons/f/ff/Hassall_corpuscle.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
-    ],
-    "imageLabels": [
-      "Срез 1 (Кафедра)",
-      "Срез 2 (Атлас)",
-      "Срез 3 (Атлас)"
-    ],
-    "examPlan": {
-      "stainAndType": "Вена мышечного типа (бедренная вена) (Гематоксилин и эозин)",
-      "origin": "Стенка сосуда развивается из мезенхимы. Эндотелий и гладкомышечные клетки (медия) формируются из клеток мезенхимного происхождения, а адвентиция — из окружающей мезенхимы, которая впоследствии дифференцируется в рыхлую соединительную ткань.",
-      "structure": "На препарате виден кровеносный сосуд с четко выраженной стенкой и звездчатым (складчатым) просветом, что характерно для артерий в спавшемся состоянии. Стенка состоит из трех оболочек. Внутренняя оболочка (интима) представлена эндотелием и подэндотелиальным слоем. Средняя оболочка (медия) самая толстая, состоит из нескольких десятков слоев гладкомышечных клеток (циркулярно расположенных), между которыми видны тонкие розовые волокна. Наружная оболочка (адвентиция) представлена рыхлой волокнистой соединительной тканью. Хорошо заметна внутренняя эластическая мембрана (базофильная извилистая линия на границе интимы и медии)",
-      "location": "Бедренная артерия относится к сосудам мышечного типа, которые располагаются в опорно-двигательном аппарате (конечности, туловище), а также в органах с активной моторикой. На препарате представлен изолированный поперечный срез сосуда.",
-      "functionText": "Транспорт крови к дистальным отделам конечности (к мышцам, коже, костям). Благодаря мощному мышечному слою, эти артерии способны активно сокращаться и регулировать просвет сосуда, тем самым контролируя объем кровотока и артериальное давление в соответствующем регионе (распределительная и сосудосуживающая функция).",
-      "killerFeature": "Широкий спавшийся просвет неправильной формы, слабо развитая средняя оболочка и преобладающая по толщине адвентиция."
-    }
-  },
-  {
-    "id": "slide_31",
-    "examNumber": 31,
-    "moduleId": "mod_cardio_immune",
-    "title": "Артерия эластического типа (аорта)",
-    "stain": "Орсеин",
-    "magnification": "x100 / x200",
-    "imageUrl": "./slides/tg/slide_4294968074_0.jpg",
-    "layersText": "1. Интима (эндотелий, мощный подэндотелиальный слой, сплетение эластических волокон) -> 2. Медиа (40-50 окончатых эластических мембран с гладкими миоцитами между ними) -> 3. Адвентиция (РВСТ, vasa vasorum).",
-    "keyCells": "Эндотелиоциты, гладкие миоциты между эластическими мембранами, фибробласты.",
-    "killerFeature": "Многочисленные параллельные волнистые окончатые эластические мембраны в мощной средней оболочке.",
-    "distractors": [
-      "Артерия мышечного типа",
-      "Эластический хрящ ушной раковины",
-      "Вена мышечного типа"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Интима",
-        "name": "Внутренняя оболочка (интима)",
-        "description": "Эндотелий и толстый подэндотелиальный слой.",
-        "color": "#FDE047",
-        "pin_x": 50,
-        "pin_y": 20
-      },
-      {
-        "number": 2,
-        "short_name": "Мембраны",
-        "name": "Окончатые эластические мембраны (орсеин)",
-        "description": "40–70 концентрических коричнево-бурых эластических мембран в толще средней оболочки.",
-        "color": "#7F1D1D",
-        "pin_x": 50,
-        "pin_y": 55
-      }
-    ],
-    "embryoOrigin": "Стенка сосуда развивается из мезенхимы. Эндотелий и гладкомышечные клетки (медия) формируются из клеток мезенхимного происхождения, а адвентиция — из окружающей мезенхимы, которая впоследствии дифференцируется в рыхлую соединительную ткань.",
-    "functionText": "Транспорт крови к дистальным отделам конечности (к мышцам, коже, костям). Благодаря мощному мышечному слою, эти артерии способны активно сокращаться и регулировать просвет сосуда, тем самым контролируя объем кровотока и артериальное давление в соответствующем регионе (распределительная и сосудосуживающая функция).",
-    "imageUrls": [
-      "./slides/tg/slide_4294968065_0.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Кафедра)"
-    ],
-    "examPlan": {
-      "stainAndType": "Артерия эластического типа (аорта) (Гематоксилин и эозин)",
-      "origin": "Стенка сосуда развивается из мезенхимы. Эндотелий и гладкомышечные клетки (медия) формируются из клеток мезенхимного происхождения, а адвентиция — из окружающей мезенхимы, которая впоследствии дифференцируется в рыхлую соединительную ткань.",
-      "structure": "На препарате виден кровеносный сосуд с четко выраженной стенкой и звездчатым (складчатым) просветом, что характерно для артерий в спавшемся состоянии. Стенка состоит из трех оболочек. Внутренняя оболочка (интима) представлена эндотелием и подэндотелиальным слоем. Средняя оболочка (медия) самая толстая, состоит из нескольких десятков слоев гладкомышечных клеток (циркулярно расположенных), между которыми видны тонкие розовые волокна. Наружная оболочка (адвентиция) представлена рыхлой волокнистой соединительной тканью. Хорошо заметна внутренняя эластическая мембрана (базофильная извилистая линия на границе интимы и медии)",
-      "location": "Бедренная артерия относится к сосудам мышечного типа, которые располагаются в опорно-двигательном аппарате (конечности, туловище), а также в органах с активной моторикой. На препарате представлен изолированный поперечный срез сосуда.",
-      "functionText": "Транспорт крови к дистальным отделам конечности (к мышцам, коже, костям). Благодаря мощному мышечному слою, эти артерии способны активно сокращаться и регулировать просвет сосуда, тем самым контролируя объем кровотока и артериальное давление в соответствующем регионе (распределительная и сосудосуживающая функция).",
-      "killerFeature": "Многочисленные параллельные волнистые окончатые эластические мембраны в мощной средней оболочке."
-    }
-  },
-  {
-    "id": "slide_32",
-    "examNumber": 32,
-    "moduleId": "mod_cardio_immune",
-    "title": "Стенка сердца (эндокард и миокард) с волокнами Пуркинье",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x200",
-    "imageUrl": "./slides/tg/slide_4294968077_0.jpg",
-    "layersText": "Эндокард -> Субэндокардиальный слой с атипичными кардиомиоцитами (проводящие волокна Пуркинье: крупные, светлые клетки с небольшим числом миофибрилл по периферии и запасами гликогена) -> Рабочий сократительный миокард.",
-    "keyCells": "Атипичные проводящие кардиомиоциты (клетки Пуркинье) — гигантские светлые клетки; сократительные кардиомиоциты.",
-    "killerFeature": "Крупные клетки Пуркинье с эксцентричными ядрами и светлой цитоплазмой, резко контрастирующие с тонкими оксифильными сократительными кардиомиоцитами.",
-    "distractors": [
-      "Миокард (железный гематоксилин)",
-      "Скелетная мышечная ткань",
-      "Аорта"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Клетки Пуркинье",
-        "name": "Проводящие клетки Пуркинье",
-        "description": "Очень крупные, светлые проводящие кардиомиоциты (много гликогена), миофибриллы смещены к периферии.",
-        "color": "#EC4899",
-        "pin_x": 45,
-        "pin_y": 42
-      },
-      {
-        "number": 2,
-        "short_name": "Миокард",
-        "name": "Сократительный рабочий миокард",
-        "description": "Типичные кардиомиоциты с центральным ядром, поперечной исчерченностью и вставочными дисками.",
-        "color": "#EF4444",
-        "pin_x": 60,
-        "pin_y": 65
-      }
-    ],
-    "embryoOrigin": "Развивается из мезенхимы (мезодермы), как и вся сердечная мышечная ткань. Проводящие кардиомиоциты дифференцируются из клеток миоэпикардиальной пластинки (висцерального листка спланхнотома) в процессе эмбриогенеза, отставая в развитии от сократительных кардиомиоцитов и сохраняя черты эмбрионального типа.",
-    "functionText": "Проведение нервного импульса (возбуждения) от атриовентрикулярного узла и пучка Гиса к сократительным кардиомиоцитам желудочков. Благодаря крупному диаметру и высокой скорости проведения возбуждения они обеспечивают синхронное и быстрое сокращение миокарда желудочков",
-    "imageUrls": [
-      "./slides/tg/slide_4294968077_0.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Кафедра)"
-    ],
-    "examPlan": {
-      "stainAndType": "Стенка сердца (эндокард и миокард) с волокнами Пуркинье (Гематоксилин и эозин)",
-      "origin": "Развивается из мезенхимы (мезодермы), как и вся сердечная мышечная ткань. Проводящие кардиомиоциты дифференцируются из клеток миоэпикардиальной пластинки (висцерального листка спланхнотома) в процессе эмбриогенеза, отставая в развитии от сократительных кардиомиоцитов и сохраняя черты эмбрионального типа.",
-      "structure": "На фоне розовых, продольно ориентированных сократительных кардиомиоцитов (рабочих мышечных волокон) выделяются крупные, светлые, округлые или овальные структуры с центрально расположенным ядром — это волокна Пуркинье. Они резко отличаются от обычных кардиомиоцитов своим размером (значительно крупнее) и светлой, слабо оксифильной цитоплазмой, которая выглядит пенистой или гомогенной из-за высокого содержания гликогена и миоглобина, а также из-за слабого развития миофибрилл. Вокруг волокон Пуркинье и между сократительными кардиомиоцитами видна рыхлая соединительная ткань с фибробластами и капиллярами",
-      "location": "В толще миокарда, в составе проводящей системы сердца.",
-      "functionText": "Проведение нервного импульса (возбуждения) от атриовентрикулярного узла и пучка Гиса к сократительным кардиомиоцитам желудочков. Благодаря крупному диаметру и высокой скорости проведения возбуждения они обеспечивают синхронное и быстрое сокращение миокарда желудочков",
-      "killerFeature": "Крупные клетки Пуркинье с эксцентричными ядрами и светлой цитоплазмой, резко контрастирующие с тонкими оксифильными сократительными кардиомиоцитами."
-    }
-  },
-  {
-    "id": "slide_33",
-    "examNumber": 33,
-    "moduleId": "mod_cardio_immune",
-    "title": "Тимус (вилочковая железа)",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x100 / x400",
-    "imageUrl": "./slides/tg/slide_4294968080_0.jpg",
-    "layersText": "Сократительные кардиомиоциты, соединенные вставочными дисками (десмосомы и нексусы) в функциональный синцитий; анастомозы между волокнами; центрально расположенные ядра; эндомизий с богатой капиллярной сетью.",
-    "keyCells": "Т-лимфоциты (тимоциты), эпителиоретикулоциты (строма), слоистые эпителиальные тельца Гассаля в мозговом веществе.",
-    "killerFeature": "Поперечные полоски вставочных дисков, центральное положение ядер кардиомиоцитов и ветвящиеся анастомозы волокон.",
-    "distractors": [
-      "Лимфатический узел",
-      "Селезенка",
-      "Небная миндалина"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Кора",
-        "name": "Корковое вещество дольки",
-        "description": "Темная периферия дольки с высокой плотностью малых Т-лимфоцитов (тимоцитов).",
-        "color": "#4338CA",
-        "pin_x": 35,
-        "pin_y": 35
-      },
-      {
-        "number": 2,
-        "short_name": "Мозговое в-во",
-        "name": "Мозговое вещество дольки",
-        "description": "Светлый центр дольки, где происходит отрицательная селекция Т-лимфоцитов.",
-        "color": "#C084FC",
-        "pin_x": 55,
-        "pin_y": 55
-      },
-      {
-        "number": 3,
-        "short_name": "Тельце Гассаля",
-        "name": "Слоистое тельце Гассаля",
-        "description": "Концентрические наслоения дегенерирующих эпителиоретикулоцитов с кератином.",
-        "color": "#EC4899",
-        "pin_x": 62,
-        "pin_y": 62
-      }
-    ],
-    "embryoOrigin": "Миоэпикардиальная пластинка висцерального листка спланхнотома мезодермы.",
-    "functionText": "Ритмическое непроизвольное сокращение камер сердца, нагнетание крови в сосудистое русло большого и малого кругов кровообращения.",
-    "imageUrls": [
-      "./slides/tg/slide_4294968080_0.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)"
-    ],
-    "examPlan": {
-      "stainAndType": "Тимус (вилочковая железа) (Гематоксилин и эозин)",
-      "origin": "Миоэпикардиальная пластинка висцерального листка спланхнотома мезодермы.",
-      "structure": "Сократительные кардиомиоциты, соединенные вставочными дисками (десмосомы и нексусы) в функциональный синцитий; анастомозы между волокнами; центрально расположенные ядра; эндомизий с богатой капиллярной сетью.",
-      "location": "Т-лимфоциты (тимоциты), эпителиоретикулоциты (строма), слоистые эпителиальные тельца Гассаля в мозговом веществе.",
-      "functionText": "Ритмическое непроизвольное сокращение камер сердца, нагнетание крови в сосудистое русло большого и малого кругов кровообращения.",
-      "killerFeature": "Поперечные полоски вставочных дисков, центральное положение ядер кардиомиоцитов и ветвящиеся анастомозы волокон."
-    }
-  },
-  {
-    "id": "slide_34",
-    "examNumber": 34,
-    "moduleId": "mod_cardio_immune",
-    "title": "Лимфатический узел",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x40 / x200",
-    "imageUrl": "./slides/tg/slide_4294968083_0.jpg",
-    "layersText": "Капсула -> Междольковые трабекулы -> Дольки: Корковое вещество (темное, густо заселено тимоцитами/Т-лимфобластами, эпителиоретикулоциты) -> Мозговое вещество (светлое, зрелые Т-лимфоциты, слоистые эпителиальные тельца Гассаля).",
-    "keyCells": "B- и T-лимфоциты, плазмоциты, макрофаги, ретикулярные клетки.",
-    "killerFeature": "Дольчатое строение и концентрические слоистые тельца Гассаля (тимические тельца) в светлом мозговом веществе.",
-    "distractors": [
-      "Селезенка",
-      "Тимус",
-      "Небная миндалина"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Краевой синус",
-        "name": "Капсула и краевой синус",
-        "description": "Под соединительнотканной капсулой протекает лимфа из приносящих сосудов.",
-        "color": "#94A3B8",
-        "pin_x": 25,
-        "pin_y": 20
-      },
-      {
-        "number": 2,
-        "short_name": "Фолликул",
-        "name": "Лимфоидный фолликул коры (B-зона)",
-        "description": "Узелок со светлым герминативным центром (центром размножения В-бластов).",
-        "color": "#6366F1",
-        "pin_x": 35,
-        "pin_y": 40
-      },
-      {
-        "number": 3,
-        "short_name": "Мозговые тяжи",
-        "name": "Мозговые тяжи и синусы",
-        "description": "Центр узла, скопление плазмоцитов и макрофагов, секретирующих антитела.",
-        "color": "#EC4899",
-        "pin_x": 60,
-        "pin_y": 60
-      }
-    ],
-    "embryoOrigin": "Развивается из мезенхимы. Лимфоидные клетки происходят из стволовых клеток красного костного мозга, которые мигрируют в зачаток узла. Соединительнотканная капсула и трабекулы формируются из окружающей мезенхимы.",
-    "functionText": "Орган периферического лимфопоэза и иммуногенеза. В корковом веществе (в фолликулах) происходит антигензависимая пролиферация и дифференцировка B-лимфоцитов. В паракортикальной зоне (Т-зависимая зона) — пролиферация T-лимфоцитов. В мозговом веществе (плазмоциты в мозговых тяжах) завершается созревание клеток и синтезируются антитела. Кроме того, узел выполняет функцию биологического фильтра для лимфы.",
-    "imageUrls": [
-      "./slides/tg/slide_4294968087_0.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/25/Tumors_of_the_pituitary_gland.djvu/page1-960px-Tumors_of_the_pituitary_gland.djvu.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "https://upload.wikimedia.org/wikipedia/commons/4/48/IMG-20220727-WA0007.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
-    ],
-    "imageLabels": [
-      "Срез 1 (Кафедра)",
-      "Срез 2 (Атлас)",
-      "Срез 3 (Атлас)"
-    ],
-    "examPlan": {
-      "stainAndType": "Лимфатический узел (Гематоксилин и эозин)",
-      "origin": "Развивается из мезенхимы. Лимфоидные клетки происходят из стволовых клеток красного костного мозга, которые мигрируют в зачаток узла. Соединительнотканная капсула и трабекулы формируются из окружающей мезенхимы.",
-      "structure": "На препарате виден орган бобовидной формы, окруженный капсулой (соединительнотканной оболочкой). Снаружи (на вогнутой стороне — воротах) в орган входят и выходят сосуды, там же видна жировая ткань. Паренхима узла разделена на дольки соединительнотканными трабекулами. Четко выделяются зоны:\n   · Корковое вещество (периферическая часть) — более темное, базофильное, содержит округлые структуры — лимфатические фолликулы (узелки) с более светлыми герминативными центрами.\n   · Мозговое вещество (центральная часть) — более светлое, представлено мозговыми тяжами (мякотными шнурами), между которыми находятся мозговые синусы.\n   · Между капсулой и фолликулами, а также вокруг трабекул видны синусы (краевой, подкапсулярный и трабекулярные) — светлые щелевидные пространства.",
-      "location": "Лимфатические узлы располагаются по ходу лимфатических сосудов в различных регионах тела (подмышечные, паховые, подчелюстные и др.)",
-      "functionText": "Орган периферического лимфопоэза и иммуногенеза. В корковом веществе (в фолликулах) происходит антигензависимая пролиферация и дифференцировка B-лимфоцитов. В паракортикальной зоне (Т-зависимая зона) — пролиферация T-лимфоцитов. В мозговом веществе (плазмоциты в мозговых тяжах) завершается созревание клеток и синтезируются антитела. Кроме того, узел выполняет функцию биологического фильтра для лимфы.",
-      "killerFeature": "Дольчатое строение и концентрические слоистые тельца Гассаля (тимические тельца) в светлом мозговом веществе."
-    }
-  },
-  {
-    "id": "slide_35",
-    "examNumber": 35,
-    "moduleId": "mod_cardio_immune",
-    "title": "Селезенка",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x40 / x200",
-    "imageUrl": "./slides/tg/slide_4294968087_0.jpg",
-    "layersText": "Капсула с приносящими лимфатическими сосудами -> Корковое вещество (лимфоидные узелки с герминативными центрами — В-зона) -> Паракортикальная зона (Т-зона) -> Мозговое вещество (мякотные тяжи и мозговые синусы).",
-    "keyCells": "Лимфоциты, макрофаги (спленофаги), эритроциты в синусоидах, ретикулярные клетки.",
-    "killerFeature": "Краевой (подэточный) синус под капсулой, фолликулы со светлыми центрами размножения и мякотные шнуры в мозговом веществе.",
-    "distractors": [
-      "Лимфатический узел",
-      "Тимус",
-      "Красный костный мозг"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Белая пульпа",
-        "name": "Белая пульпа с центральной артерией",
-        "description": "Лимфоидный узелок, в котором эксцентрично проходит центральная артерия.",
-        "color": "#6366F1",
-        "pin_x": 40,
-        "pin_y": 40
-      },
-      {
-        "number": 2,
-        "short_name": "Красная пульпа",
-        "name": "Красная пульпа (тяжи Бильрота и синусы)",
-        "description": "Эритроциты, макрофаги, фагоцитирующие старые эритроциты, ретикулярная строма.",
-        "color": "#EF4444",
-        "pin_x": 65,
-        "pin_y": 60
-      }
-    ],
-    "embryoOrigin": "Развивается из мезенхимы. Строма (капсула, трабекулы, ретикулярная ткань) формируется из мезенхимальных клеток. Лимфоидные клетки (T- и B-лимфоциты) мигрируют сюда из красного костного мозга и тимуса в процессе эмбриогенеза.",
-    "functionText": "Орган периферического кроветворения и иммуногенеза. В белой пульпе происходит антигензависимая пролиферация и дифференцировка T- и B-лимфоцитов (иммунная функция). Красная пульпа служит местом депонирования крови, разрушения старых эритроцитов (фагоцитоз макрофагами) и дозревания клеток крови, а также фильтрации крови от чужеродных частиц.",
-    "imageUrls": [
-      "./slides/tg/slide_4294968092_0.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/Young_Pineal_Gland_Hematoxylin_and_Eosin_Staining_%2846457461065%29.jpg/1280px-Young_Pineal_Gland_Hematoxylin_and_Eosin_Staining_%2846457461065%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/Young_Pineal_Gland_Hematoxylin_and_Eosin_Staining_%2833496199108%29.jpg/1280px-Young_Pineal_Gland_Hematoxylin_and_Eosin_Staining_%2833496199108%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    ],
-    "imageLabels": [
-      "Срез 1 (Кафедра)",
-      "Срез 2 (Атлас)",
-      "Срез 3 (Атлас)"
-    ],
-    "examPlan": {
-      "stainAndType": "Селезенка (Гематоксилин и эозин)",
-      "origin": "Развивается из мезенхимы. Строма (капсула, трабекулы, ретикулярная ткань) формируется из мезенхимальных клеток. Лимфоидные клетки (T- и B-лимфоциты) мигрируют сюда из красного костного мозга и тимуса в процессе эмбриогенеза.",
-      "structure": "На препарате видна паренхима (пульпа) селезенки, не разделенная на дольки. Четко выделяются две основные зоны:\n   · Белая пульпа — представлена округлыми или овальными базофильными структурами (лимфоидными узелками, или фолликулами). В центре узелка часто видна более светлая зона — центральная артерия (на срезе может выглядеть как щель или округлое отверстие). Вокруг узелка располагается маргинальная зона.\n   · Красная пульпа — составляет основную массу органа. Она имеет оксифильный (красный/оранжевый) цвет и представлена ретикулярной тканью, заполненной эритроцитами, макрофагами, плазмоцитами и синусоидами (щелевидными пространствами между тяжами). Также видны прослойки соединительной ткани (трабекулы), отходящие от капсулы.",
-      "location": "В левом подреберье брюшной полости",
-      "functionText": "Орган периферического кроветворения и иммуногенеза. В белой пульпе происходит антигензависимая пролиферация и дифференцировка T- и B-лимфоцитов (иммунная функция). Красная пульпа служит местом депонирования крови, разрушения старых эритроцитов (фагоцитоз макрофагами) и дозревания клеток крови, а также фильтрации крови от чужеродных частиц.",
-      "killerFeature": "Краевой (подэточный) синус под капсулой, фолликулы со светлыми центрами размножения и мякотные шнуры в мозговом веществе."
-    }
-  },
-  {
-    "id": "slide_36",
-    "examNumber": 36,
-    "moduleId": "mod_cardio_immune",
-    "title": "Небная миндалина",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x40 / x200",
-    "imageUrl": "./slides/tg/slide_4294968092_0.jpg",
-    "layersText": "Серозная оболочка и капсула с трабекулами -> Белая пульпа (лимфоидные фолликулы с эксцентрично расположенной центральной артерией и периартериальными муфтами) -> Красная пульпа (селезеночные тяжи Бильрота, венозные синусоиды).",
-    "keyCells": "Лимфоциты (инфильтрируют эпителий крипт), плазмоциты, макрофаги, плоские эпителиоциты.",
-    "killerFeature": "Центральная артерия, проходящая эксцентрично через лимфоидный узелок белой пульпы, окруженный эритроцитами красной пульпы.",
-    "distractors": [
-      "Лимфатический узел",
-      "Аппендикс",
-      "Пищевод"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Крипта",
-        "name": "Крипта миндалины с эпителием",
-        "description": "Глубокий карман, выстланный многослойным плоским эпителием, инфильтрированным лимфоцитами.",
-        "color": "#6366F1",
-        "pin_x": 45,
-        "pin_y": 35
-      },
-      {
-        "number": 2,
-        "short_name": "Узелки",
-        "name": "Цепочка лимфоидных узелков",
-        "description": "Ряды фолликулов со светлыми центрами размножения вдоль стенок крипты.",
-        "color": "#8B5CF6",
-        "pin_x": 60,
-        "pin_y": 55
-      }
-    ],
-    "embryoOrigin": "Развивается из мезенхимы (строма) и эпителия ротовой полости (эктодерма/энтодерма). Лимфоидные узелки формируются путем миграции и пролиферации лимфоцитов из красного костного мозга и тимуса в процессе эмбриогенеза и после рождения (в ответ на антигенную стимуляцию).",
-    "functionText": "Периферический орган иммуногенеза (лимфоидная ткань, ассоциированная со слизистыми оболочками). Обеспечивает защиту организма от патогенов, проникающих через ротовую полость и воздухоносные пути. В лимфоидных узелках происходит антигензависимая пролиферация и дифференцировка T- и B-лимфоцитов, продукция антител (плазмоцитами) и формирование иммунного ответа.",
-    "imageUrls": [
-      "./slides/tg/slide_4294968099_0.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8e/Thyroid_gland_microscope2.jpg/1280px-Thyroid_gland_microscope2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6a/Thyroid_gland_microscope.jpg/1280px-Thyroid_gland_microscope.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    ],
-    "imageLabels": [
-      "Срез 1 (Кафедра)",
-      "Срез 2 (Атлас)",
-      "Срез 3 (Атлас)"
-    ],
-    "examPlan": {
-      "stainAndType": "Небная миндалина (Гематоксилин и эозин)",
-      "origin": "Развивается из мезенхимы (строма) и эпителия ротовой полости (эктодерма/энтодерма). Лимфоидные узелки формируются путем миграции и пролиферации лимфоцитов из красного костного мозга и тимуса в процессе эмбриогенеза и после рождения (в ответ на антигенную стимуляцию).",
-      "structure": "На препарате виден орган, покрытый многослойным плоским неороговевающим эпителием, который образует глубокие впячивания — крипты (лакуны). Крипты древовидно ветвятся, их просвет часто заполнен слущенными эпителиальными клетками, лейкоцитами и детритом (на препарате выглядит как светлая масса в центре). Под эпителием в собственной пластинке слизистой оболочки расположена плотная скопление лимфоидной ткани, образующая округлые лимфоидные узелки (фолликулы) с более светлыми герминативными центрами (в этих центрах происходит размножение лимфоцитов). Вокруг узелков и крипт видны прослойки соединительной ткани (капсула, трабекулы) и скелетная мышечная ткань (поперечно-полосатые волокна, окрашенные в ярко-красный/оранжевый цвет), которая отделяет миндалину от окружающих тканей",
-      "location": "В области зева, на боковых стенках ротовой полости (между небными дужками)",
-      "functionText": "Периферический орган иммуногенеза (лимфоидная ткань, ассоциированная со слизистыми оболочками). Обеспечивает защиту организма от патогенов, проникающих через ротовую полость и воздухоносные пути. В лимфоидных узелках происходит антигензависимая пролиферация и дифференцировка T- и B-лимфоцитов, продукция антител (плазмоцитами) и формирование иммунного ответа.",
-      "killerFeature": "Центральная артерия, проходящая эксцентрично через лимфоидный узелок белой пульпы, окруженный эритроцитами красной пульпы."
-    }
-  },
-  {
-    "id": "slide_37",
-    "examNumber": 37,
-    "moduleId": "mod_skin_resp",
-    "title": "Кожа пальца человека (толстая кожа)",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x100 / x200",
-    "imageUrl": "./slides/tg/slide_4294968172_0.jpg",
-    "layersText": "Эпидермис (5 слоев: базальный, шиповатый, зернистый, блестящий, роговой) -> Дерма (сосочковый слой из РВСТ и сетчатый слой из ПНВСТ) -> Подкожно-жировая клетчатка",
-    "keyCells": "Кератиноциты на разных стадиях кератинизации, меланоциты, клетки Лангерганса, клетки Меркеля, секреторные и миоэпителиальные клетки потовых желез.",
-    "killerFeature": "Наличие толстого блестящего слоя (элеидин) и мощного рогового слоя эпидермиса, сосочки дермы.",
-    "distractors": [
-      "Кожа с волосом (тонкая кожа)",
-      "Пищевод",
-      "Роговица глаза"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Роговой слой",
-        "name": "Мощный роговой слой (stratum corneum)",
-        "description": "Многочисленные ряды безъядерных ороговевших чешуек, заполненных кератином.",
-        "color": "#EC4899",
-        "pin_x": 50,
-        "pin_y": 20
-      },
-      {
-        "number": 2,
-        "short_name": "Дерма",
-        "name": "Сосочковый и сетчатый слои дермы",
-        "description": "Рыхлая и плотная волокнистая соединительная ткань с капиллярными петлями и потовыми железами.",
-        "color": "#6366F1",
-        "pin_x": 50,
-        "pin_y": 65
-      }
-    ],
-    "embryoOrigin": "Эктодерма (эпидермис) и мезенхима (дерма, сосуды, гиподерма)",
-    "functionText": "Защитная (барьерная), терморегуляторная, рецепторная (осязание)",
-    "imageUrls": [
-      "./slides/tg/slide_4294968172_0.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Parathyroid_gland_high_mag_cropped.jpg/1280px-Parathyroid_gland_high_mag_cropped.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ca/Parathyroid_gland_high_mag.jpg/1280px-Parathyroid_gland_high_mag.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    ],
-    "imageLabels": [
-      "Срез 1 (Кафедра)",
-      "Срез 2 (Атлас)",
-      "Срез 3 (Атлас)"
-    ],
-    "examPlan": {
-      "stainAndType": "Кожа пальца человека (толстая кожа) (Гематоксилин и эозин)",
-      "origin": "Эктодерма (эпидермис) и мезенхима (дерма, сосуды, гиподерма)",
-      "structure": "Эпидермис (5 слоев: базальный, шиповатый, зернистый, блестящий, роговой) -> Дерма (сосочковый слой из РВСТ и сетчатый слой из ПНВСТ) -> Подкожно-жировая клетчатка",
-      "location": "Кератиноциты на разных стадиях кератинизации, меланоциты, клетки Лангерганса, клетки Меркеля, секреторные и миоэпителиальные клетки потовых желез.",
-      "functionText": "Защитная (барьерная), терморегуляторная, рецепторная (осязание)",
-      "killerFeature": "Наличие толстого блестящего слоя (элеидин) и мощного рогового слоя эпидермиса, сосочки дермы."
-    }
-  },
-  {
-    "id": "slide_38",
-    "examNumber": 38,
-    "moduleId": "mod_skin_resp",
-    "title": "Кожа с волосом (тонкая кожа)",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x100",
-    "imageUrl": "./slides/tg/slide_4294968174_0.jpg",
-    "layersText": "Эпидермис (4 слоя: базальный, шиповатый, зернистый, роговой; блестящий отсутствует) -> Дерма с корнями волос и сальными железами -> Мышца, поднимающая волос",
-    "keyCells": "Кератиноциты, себоциты (светлые пенистые клетки голокриновых сальных желез), клетки волосяной луковицы, гладкие миоциты.",
-    "killerFeature": "Срезы волосяных фолликулов со стержнями волос и альвеолярные сальные железы в дерме.",
-    "distractors": [
-      "Кожа пальца человека",
-      "Молочная железа",
-      "Околоушная слюнная железа"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Фолликул",
-        "name": "Волосяной фолликул и корень волоса",
-        "description": "Эпителиальное корневое влагалище, волосяная сумка и стержень волоса.",
-        "color": "#6366F1",
-        "pin_x": 45,
-        "pin_y": 50
-      },
-      {
-        "number": 2,
-        "short_name": "Сальная железа",
-        "name": "Сальная железа (простая альвеолярная)",
-        "description": "Светлые дольки себоцитов с голокриновым типом секреции, впадающие в устье фолликула.",
-        "color": "#F59E0B",
-        "pin_x": 62,
-        "pin_y": 42
-      }
-    ],
-    "embryoOrigin": "Эктодерма (эпидермис, волосяные фолликулы, железы) и дерматомная мезенхима (дерма)",
-    "functionText": "Барьерная защита, термоизоляция, осязание (волосяные луковицы), выработка кожного сала",
-    "imageUrls": [
-      "./slides/tg/slide_4294968174_0.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)"
-    ],
-    "examPlan": {
-      "stainAndType": "Кожа с волосом (тонкая кожа) (Гематоксилин и эозин)",
-      "origin": "Эктодерма (эпидермис, волосяные фолликулы, железы) и дерматомная мезенхима (дерма)",
-      "structure": "Эпидермис (4 слоя: базальный, шиповатый, зернистый, роговой; блестящий отсутствует) -> Дерма с корнями волос и сальными железами -> Мышца, поднимающая волос",
-      "location": "Кератиноциты, себоциты (светлые пенистые клетки голокриновых сальных желез), клетки волосяной луковицы, гладкие миоциты.",
-      "functionText": "Барьерная защита, термоизоляция, осязание (волосяные луковицы), выработка кожного сала",
-      "killerFeature": "Срезы волосяных фолликулов со стержнями волос и альвеолярные сальные железы в дерме."
-    }
-  },
-  {
-    "id": "slide_39",
-    "examNumber": 39,
-    "moduleId": "mod_skin_resp",
-    "title": "Трахея (поперечный срез)",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x100 / x400",
-    "imageUrl": "./slides/tg/slide_4294968134_0.jpg",
-    "layersText": "1. Слизистая (многорядный реснитчатый эпителий + собственная пластинка) -> 2. Подслизистая (белково-слизистые железы) -> 3. Волокнисто-хрящевая (гиалиновый хрящ) -> 4. Адвентиция",
-    "keyCells": "Реснитчатые, бокаловидные, вставочные базальные и эндокринные клетки эпителия; хондроциты гиалинового хряща.",
-    "killerFeature": "Незамкнутое кольцо гиалинового хряща с изогенными группами хондроцитов и многорядный мерцательный эпителий.",
-    "distractors": [
-      "Пищевод",
-      "Крупный бронх",
-      "Мочеточник"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Эпителий",
-        "name": "Многорядный мерцательный эпителий",
-        "description": "Реснитчатые, бокаловидные, вставочные и эндокринные клетки слизистой.",
-        "color": "#6366F1",
-        "pin_x": 45,
-        "pin_y": 22
-      },
-      {
-        "number": 2,
-        "short_name": "Гиалиновый хрящ",
-        "name": "Полукольцо гиалинового хряща",
-        "description": "Изогенные группы хондроцитов в базофильном аморфном матриксе с надхрящницей.",
-        "color": "#10B981",
-        "pin_x": 55,
-        "pin_y": 65
-      }
-    ],
-    "embryoOrigin": "Энтодерма вентральной стенки передней кишки (эпителий и железы) и мезенхима мезодермального происхождения (хрящ, соединительная ткань, сосуды)",
-    "functionText": "Проведение воздуха от гортани к бронхам, увлажнение, согревание и очищение вдыхаемого воздуха мукоцилиарным клиренсом; хрящевой каркас предотвращает спадение.",
-    "imageUrls": [
-      "./slides/tg/slide_4294968134_0.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)"
-    ],
-    "examPlan": {
-      "stainAndType": "Трахея (поперечный срез) (Гематоксилин и эозин)",
-      "origin": "Энтодерма вентральной стенки передней кишки (эпителий и железы) и мезенхима мезодермального происхождения (хрящ, соединительная ткань, сосуды)",
-      "structure": "1. Слизистая (многорядный реснитчатый эпителий + собственная пластинка) -> 2. Подслизистая (белково-слизистые железы) -> 3. Волокнисто-хрящевая (гиалиновый хрящ) -> 4. Адвентиция",
-      "location": "Реснитчатые, бокаловидные, вставочные базальные и эндокринные клетки эпителия; хондроциты гиалинового хряща.",
-      "functionText": "Проведение воздуха от гортани к бронхам, увлажнение, согревание и очищение вдыхаемого воздуха мукоцилиарным клиренсом; хрящевой каркас предотвращает спадение.",
-      "killerFeature": "Незамкнутое кольцо гиалинового хряща с изогенными группами хондроцитов и многорядный мерцательный эпителий."
-    }
-  },
-  {
-    "id": "slide_40",
-    "examNumber": 40,
-    "moduleId": "mod_skin_resp",
-    "title": "Легкое",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x100 / x400",
-    "imageUrl": "./slides/tg/slide_4294968122_0.jpg",
-    "layersText": "Паренхима (альвеолы с альвеолоцитами I и II типов) -> Межальвеолярные перегородки (эластические волокна, капилляры) -> Бронхиолы и сосуды -> Плевра",
-    "keyCells": "Альвеолоциты I типа (респираторные плоские), альвеолоциты II типа (большие, секретируют сурфактант), альвеолярные макрофаги (пылевые клетки), клетки Клара.",
-    "killerFeature": "Ячеисто-губчатый рисунок паренхимы с тонкими межальвеолярными перегородками и срезами бронхиол.",
-    "distractors": [
-      "Щитовидная железа",
-      "Молочная железа (лактирующая)",
-      "Белая жировая ткань"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Альвеолы",
-        "name": "Альвеолы и межальвеолярные перегородки",
-        "description": "Тончайшие пузырьки с респираторными альвеолоцитами I и II типа и капиллярной сетью.",
-        "color": "#EC4899",
-        "pin_x": 35,
-        "pin_y": 40
-      },
-      {
-        "number": 2,
-        "short_name": "Бронхиола",
-        "name": "Терминальная бронхиола",
-        "description": "Складчатый просвет без хряща и желез, выстланный однослойным кубическим/призматическим эпителием.",
-        "color": "#6366F1",
-        "pin_x": 68,
-        "pin_y": 55
-      }
-    ],
-    "embryoOrigin": "Развивается из энтодермы (эпителий альвеол и бронхиального дерева — выпячивание вентральной стенки передней кишки) и мезенхимы (соединительная ткань, хрящи, гладкие мышцы, сосуды).",
-    "functionText": "Основная функция — газообмен. В альвеолах происходит диффузия кислорода из вдыхаемого воздуха в кровь капилляров, а углекислого газа — из крови в альвеолы для выведения при выдохе. Эластические волокна в перегородках обеспечивают растяжение и спадение легких при дыхании. Бронхиолы проводят воздух к альвеолам.",
-    "imageUrls": [
-      "./slides/tg/slide_4294968122_0.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/e/e3/IMG-20220913-WA0001.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
-    ],
-    "imageLabels": [
-      "Срез 1 (Кафедра)",
-      "Срез 2 (Атлас)"
-    ],
-    "examPlan": {
-      "stainAndType": "Легкое (?)",
-      "origin": "Развивается из энтодермы (эпителий альвеол и бронхиального дерева — выпячивание вентральной стенки передней кишки) и мезенхимы (соединительная ткань, хрящи, гладкие мышцы, сосуды).",
-      "structure": "На препарате виден губчатый (ячеистый) рисунок, характерный для легочной паренхимы. Ткань пронизана множеством пустот — альвеол (на фото выглядят как крупные светлые ячейки, разделенные тонкими перегородками). Межальвеолярные перегородки содержат капилляры, эластические и коллагеновые волокна, а также клетки (фибробласты, макрофаги). В толще ткани видны более крупные полости — это бронхиолы (и/или бронхи) и кровеносные сосуды (артерии и вены), стенки которых выглядят как утолщенные кольца или тяжи. На снимке также просматривается плевра (соединительнотканная оболочка) по краю",
-      "location": "В грудной полости, составляет основную паренхиму легких (органов дыхания).",
-      "functionText": "Основная функция — газообмен. В альвеолах происходит диффузия кислорода из вдыхаемого воздуха в кровь капилляров, а углекислого газа — из крови в альвеолы для выведения при выдохе. Эластические волокна в перегородках обеспечивают растяжение и спадение легких при дыхании. Бронхиолы проводят воздух к альвеолам.",
-      "killerFeature": "Ячеисто-губчатый рисунок паренхимы с тонкими межальвеолярными перегородками и срезами бронхиол."
-    }
-  },
-  {
-    "id": "slide_41",
-    "examNumber": 41,
-    "moduleId": "mod_endocrine",
-    "title": "Щитовидная железа",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x200",
-    "imageUrl": "./slides/tg/slide_4294968114_0.jpg",
-    "layersText": "Аденогипофиз (передняя доля: хромофильные базофилы/ацидофилы и хромофобы) -> Промежуточная доля (кисты Ратке с коллоидом) -> Нейрогипофиз (задняя доля: питуициты, аксоны с тельцами Херринга)",
-    "keyCells": "Тироциты (фолликулярные клетки — кубические в норме, плоские при гипофункции, цилиндрические при гиперфункции), кальцитониноциты (парафолликулярные C-клетки — крупнее и светлее).",
-    "killerFeature": "Тяжи базофильных (фиолетовых) и ацидофильных (розовых) аденоцитов, синусоидные капилляры и кисты Ратке.",
-    "distractors": [
-      "Легкое",
-      "Околощитовидная железа",
-      "Молочная железа"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Фолликул",
-        "name": "Фолликул щитовидной железы",
-        "description": "Стенка из однослойного кубического эпителия тироцитов на базальной мембране.",
-        "color": "#6366F1",
-        "pin_x": 48,
-        "pin_y": 35
-      },
-      {
-        "number": 2,
-        "short_name": "Коллоид",
-        "name": "Оксифильный коллоид (тиреоглобулин)",
-        "description": "Гомогенная розовая белковая масса с гормонами T3 и T4 внутри полости фолликула.",
-        "color": "#EC4899",
-        "pin_x": 52,
-        "pin_y": 52
-      }
-    ],
-    "embryoOrigin": "Развивается из энтодермы (из эпителия 3-й и 4-й пар жаберных карманов). У млекопитающих верхние паращитовидные железы формируются из 4-го кармана, а нижние — из 3-го. Соединительнотканная строма формируется из мезенхимы.",
-    "functionText": "Эндокринная регуляция кальциево-фосфорного обмена. Паратироциты синтезируют паратгормон (паратирин), который повышает уровень кальция в крови (путем стимуляции остеокластов, усиления всасывания кальция в кишечнике и реабсорбции в почках) и снижает содержание фосфатов. Это необходимо для нормальной возбудимости нервно-мышечной ткани и прочности костей.",
-    "imageUrls": [
-      "./slides/tg/slide_4294968140_0.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Кафедра)"
-    ],
-    "examPlan": {
-      "stainAndType": "Щитовидная железа (?)",
-      "origin": "Развивается из энтодермы (из эпителия 3-й и 4-й пар жаберных карманов). У млекопитающих верхние паращитовидные железы формируются из 4-го кармана, а нижние — из 3-го. Соединительнотканная строма формируется из мезенхимы.",
-      "structure": "На препарате видна паренхима железы, окруженная капсулой. Паренхима образована тяжами и компактными скоплениями эпителиальных клеток — паратироцитов. Эти клетки расположены плотно, формируя округлые дольки, разделенные тонкими прослойками рыхлой соединительной ткани с гемокапиллярами. Вокруг железы и между ее дольками хорошо заметна обильная жировая ткань (крупные светлые пустые ячейки — адипоциты), которая у крупного рогатого скота (быка) часто врастает в строму органа с возрастом или образует выраженную прослойку вокруг него. На препарате также видны крупные кровеносные сосуды (артерии и вены) с толстыми стенками в соединительнотканных прослойках. (Внутри долек при большем увеличении можно дифференцировать главные и ацидофильные паратироциты, но здесь видна общая масса клеток)",
-      "location": "В области шеи, рядом со щитовидной железой",
-      "functionText": "Эндокринная регуляция кальциево-фосфорного обмена. Паратироциты синтезируют паратгормон (паратирин), который повышает уровень кальция в крови (путем стимуляции остеокластов, усиления всасывания кальция в кишечнике и реабсорбции в почках) и снижает содержание фосфатов. Это необходимо для нормальной возбудимости нервно-мышечной ткани и прочности костей.",
-      "killerFeature": "Тяжи базофильных (фиолетовых) и ацидофильных (розовых) аденоцитов, синусоидные капилляры и кисты Ратке."
-    }
-  },
-  {
-    "id": "slide_42",
-    "examNumber": 42,
-    "moduleId": "mod_endocrine",
-    "title": "Околощитовидная железа",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x200",
-    "imageUrl": "./slides/tg/slide_4294968145_0.jpg",
-    "layersText": "Фолликулы (стенка из однослойного кубического эпителия — тироцитов) -> Просвет фолликула (коллоид с тиреоглобулином) -> Интерстиций с С-клетками (парафолликулярными) и капиллярами",
-    "keyCells": "Главные паратироциты (мелкие, многочисленные, со светлой или базофильной цитоплазмой) и оксифильные паратироциты (крупные, с ярко-розовой цитоплазмой и темным ядром).",
-    "killerFeature": "Округлые фолликулы с однослойной стенкой, заполненные оксифильным розовым коллоидом.",
-    "distractors": [
-      "Щитовидная железа",
-      "Аденогипофиз",
-      "Надпочечник"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Главные клетки",
-        "name": "Главные паратироциты (базофильные)",
-        "description": "Мелкие клетки, секретирующие паратгормон, образующие плотные тяжи.",
-        "color": "#6366F1",
-        "pin_x": 42,
-        "pin_y": 40
-      },
-      {
-        "number": 2,
-        "short_name": "Оксифильные клетки",
-        "name": "Оксифильные паратироциты",
-        "description": "Крупные клетки с ярко-розовой зернистой цитоплазмой, богатой митохондриями.",
-        "color": "#EC4899",
-        "pin_x": 65,
-        "pin_y": 55
-      }
-    ],
-    "embryoOrigin": "Развивается из энтодермы (впячивание глотки — формирование щитовидного мешочка, или зачатка, на дне глотки). Эпителий фолликулов имеет энтодермальное происхождение. Парафолликулярные клетки (С-клетки), по современным данным, мигрируют из клеток нервного гребня (нейроэктодермы). Соединительнотканная строма развивается из мезенхимы.",
-    "functionText": "Синтез и накопление йодсодержащих гормонов — тироксина (Т4) и трийодтиронина (Т3). Эти гормоны регулируют основной обмен веществ, рост и развитие организма, а также возбудимость нервной системы. В состав коллоида входит гликопротеин тиреоглобулин, из которого при необходимости высвобождаются гормоны. Кроме того, в строме (между фолликулами) могут располагаться парафолликулярные (С-клетки), вырабатывающие кальцитонин (регуляция уровня кальция).",
-    "imageUrls": [
-      "./slides/tg/slide_4294968145_0.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/38/Normal_lung_%285414785258%29.jpg/1280px-Normal_lung_%285414785258%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "https://upload.wikimedia.org/wikipedia/commons/a/ac/Normal_lung_%283660695207%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
-    ],
-    "imageLabels": [
-      "Срез 1 (Кафедра)",
-      "Срез 2 (Атлас)",
-      "Срез 3 (Атлас)"
-    ],
-    "examPlan": {
-      "stainAndType": "Околощитовидная железа (Гематоксилин и эозин)",
-      "origin": "Развивается из энтодермы (впячивание глотки — формирование щитовидного мешочка, или зачатка, на дне глотки). Эпителий фолликулов имеет энтодермальное происхождение. Парафолликулярные клетки (С-клетки), по современным данным, мигрируют из клеток нервного гребня (нейроэктодермы). Соединительнотканная строма развивается из мезенхимы.",
-      "structure": "На препарате видна паренхима щитовидной железы, представленная множеством округлых или овальных структур — фолликулов (пузырьков). Стенка каждого фолликула образована одним слоем эпителиальных клеток (тироцитов или фолликулярных эндокриноцитов), ядра которых хорошо видны (округлые, базофильные). В просвете фолликулов находится гомогенный коллоид (оксифильная масса от бледно-розового до желтоватого цвета) — это запасной тиреоглобулин. Между фолликулами (в интерстиции) видны прослойки рыхлой соединительной ткани с многочисленными капиллярами. На препарате также видна крупная светлая структура (возможно, фолликул с вакуолизированным коллоидом на границе резорбции или участок соединительной ткани), но в целом препарат демонстрирует типичное фолликулярное строение железы.",
-      "location": "На передней поверхности шеи, по бокам от трахеи и гортани",
-      "functionText": "Синтез и накопление йодсодержащих гормонов — тироксина (Т4) и трийодтиронина (Т3). Эти гормоны регулируют основной обмен веществ, рост и развитие организма, а также возбудимость нервной системы. В состав коллоида входит гликопротеин тиреоглобулин, из которого при необходимости высвобождаются гормоны. Кроме того, в строме (между фолликулами) могут располагаться парафолликулярные (С-клетки), вырабатывающие кальцитонин (регуляция уровня кальция).",
-      "killerFeature": "Округлые фолликулы с однослойной стенкой, заполненные оксифильным розовым коллоидом."
-    }
-  },
-  {
-    "id": "slide_43",
-    "examNumber": 43,
-    "moduleId": "mod_endocrine",
-    "title": "Надпочечник",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x100 / x200",
-    "imageUrl": "./slides/tg/slide_4294968140_0.jpg",
-    "layersText": "Капсула -> Трабекулы и тяжи паратироцитов (главные светлые/темные и оксифильные клетки) -> Обильные включения жировой ткани (адипоциты) -> Синусоидные капилляры",
-    "keyCells": "Клетки клубочковой зоны, спонгиоциты пучковой зоны (много липидных вакуолей), клетки сетчатой зоны, хромаффинные клетки мозгового вещества (эпинефроциты и норэпинефроциты).",
-    "killerFeature": "Компактные клеточные тяжи паратироцитов, окруженные характерными гнездами адипоцитов (жировых клеток) у быка.",
-    "distractors": [
-      "Почка (корковое и мозговое вещество)",
-      "Лимфатический узел",
-      "Гипофиз"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Пучковая зона",
-        "name": "Пучковая зона коры надпочечника",
-        "description": "Параллельные тяжи светлых пенистых спонгиоцитов, синтезирующих глюкокортикоиды (кортизол).",
-        "color": "#F59E0B",
-        "pin_x": 48,
-        "pin_y": 35
-      },
-      {
-        "number": 2,
-        "short_name": "Мозговое вещество",
-        "name": "Мозговое вещество (хромаффиноциты)",
-        "description": "Темные базофильные клетки вокруг широких вен, синтезирующие адреналин и норадреналин.",
-        "color": "#8B5CF6",
-        "pin_x": 52,
-        "pin_y": 72
-      }
-    ],
-    "embryoOrigin": "Имеет двойное происхождение:\n   · Корковое вещество развивается из мезодермы (целомического эпителия — эпителиальных тяжей, врастающих в мезенхиму).\n   · Мозговое вещество развивается из нейроэктодермы (клеток нервного гребня — симпатических ганглиобластов, мигрирующих в зачаток надпочечника).",
-    "functionText": "Эндокринный орган, регулирующий обмен веществ и адаптационные реакции.\n   · Корковое вещество: синтез стероидных гормонов — минералокортикоидов (альдостерон, регуляция водно-солевого обмена), глюкокортикоидов (кортизол, регуляция углеводного и белкового обмена, противовоспалительное действие) и андрогенов.\n   · Мозговое вещество: синтез катехоламинов (адреналин, норадреналин), которые повышают артериальное давление, учащают сердечные сокращения и мобилизуют организм при стрессе.",
-    "imageUrls": [
-      "./slides/tg/slide_4294968137_0.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/5/5a/Gray1018.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/Fungiform_papillae_and_Filiform_papillae.jpg/1280px-Fungiform_papillae_and_Filiform_papillae.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    ],
-    "imageLabels": [
-      "Срез 1 (Кафедра)",
-      "Срез 2 (Атлас)",
-      "Срез 3 (Атлас)"
-    ],
-    "examPlan": {
-      "stainAndType": "Надпочечник (Гематоксилин и эозин)",
-      "origin": "Имеет двойное происхождение:\n   · Корковое вещество развивается из мезодермы (целомического эпителия — эпителиальных тяжей, врастающих в мезенхиму).\n   · Мозговое вещество развивается из нейроэктодермы (клеток нервного гребня — симпатических ганглиобластов, мигрирующих в зачаток надпочечника).",
-      "structure": "На препарате виден паренхиматозный орган, окруженный тонкой соединительнотканной капсулой. Четко выделяются две основные зоны (слоя):\n   · Корковое вещество (периферическая часть, на снимке — более темная, оксифильная зона слева/снизу): представлено тяжами и гнездами эпителиальных клеток (адренокортикоцитов), разделенных тонкими прослойками соединительной ткани с капиллярами. В нем (при большем увеличении) можно было бы различить клубочковую, пучковую и сетчатую зоны.\n   · Мозговое вещество (центральная часть, на снимке — более светлая, бледно-розовая/желтоватая зона справа): состоит из крупных, светлых клеток (хромаффинных и ганглиозных), расположенных в виде тяжей и групп, разделенных венозными синусоидами.\n   · Строма органа представлена рыхлой соединительной тканью, разделяющей орган на дольки (соединительнотканные трабекулы).",
-      "location": "На верхнем полюсе каждой почки",
-      "functionText": "Эндокринный орган, регулирующий обмен веществ и адаптационные реакции.\n   · Корковое вещество: синтез стероидных гормонов — минералокортикоидов (альдостерон, регуляция водно-солевого обмена), глюкокортикоидов (кортизол, регуляция углеводного и белкового обмена, противовоспалительное действие) и андрогенов.\n   · Мозговое вещество: синтез катехоламинов (адреналин, норадреналин), которые повышают артериальное давление, учащают сердечные сокращения и мобилизуют организм при стрессе.",
-      "killerFeature": "Компактные клеточные тяжи паратироцитов, окруженные характерными гнездами адипоцитов (жировых клеток) у быка."
-    }
-  },
-  {
-    "id": "slide_44",
-    "examNumber": 44,
-    "moduleId": "mod_endocrine",
-    "title": "Гипофиз человека",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x100 / x400",
-    "imageUrl": "./slides/tg/slide_4294968137_0.jpg",
-    "layersText": "Капсула -> Корковое вещество (клубочковая зона -> пучковая зона -> сетчатая зона) -> Мозговое вещество (хромаффиноциты, ганглиозные нейроны, синусоидные вены)",
-    "keyCells": "Хромофобные клетки (бледные, мелкие, без гранул) и хромофильные: ацидофильные (розовые соматотропы и лактотропы) и базофильные (сине-фиолетовые тиро-, гонадо- и кортикотропы); питуициты в задней доле.",
-    "killerFeature": "Четкая зональность коры (клубочки, параллельные пучки тяжей, сеть) и светлоокрашенное мозговое вещество с венозными синусоидами в центре.",
-    "distractors": [
-      "Околощитовидная железа",
-      "Надпочечник",
-      "Поджелудочная железа"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Аденогипофиз",
-        "name": "Передняя доля (аденогипофиз)",
-        "description": "Тяжи хромофильных (розовых ацидофилов, синих базофилов) и бледных хромофобных клеток.",
-        "color": "#6366F1",
-        "pin_x": 35,
-        "pin_y": 45
-      },
-      {
-        "number": 2,
-        "short_name": "Нейрогипофиз",
-        "name": "Задняя доля (нейрогипофиз)",
-        "description": "Волокнистая нервная ткань из безмиелиновых волокон гипоталамуса и питуицитов.",
-        "color": "#10B981",
-        "pin_x": 70,
-        "pin_y": 50
-      }
-    ],
-    "embryoOrigin": "Двойное происхождение: кора развивается из целомического эпителия мезодермы (мезодермальная мезотелиальная пластинка); мозговое вещество — из нервного гребня (симпатобласты нейроэктодермы).",
-    "functionText": "Кора: минералокортикоиды/альдостерон (клубочковая), глюкокортикоиды/кортизол (пучковая), андрогены (сетчатая). Мозговое вещество: катехоламины (адреналин, норадреналин).",
-    "imageUrls": [
-      "./slides/tg/slide_4294968171_0.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Кафедра)"
-    ],
-    "examPlan": {
-      "stainAndType": "Гипофиз человека (Гематоксилин и эозин)",
-      "origin": "Двойное происхождение: кора развивается из целомического эпителия мезодермы (мезодермальная мезотелиальная пластинка); мозговое вещество — из нервного гребня (симпатобласты нейроэктодермы).",
-      "structure": "На препарате видна паренхима гипофиза, ...\nПередняя доля:\n\n· Адренокортикотропный гормон — стимулирует кору надпочечников (выработка кортизола).\n· Тиреотропный гормон — стимулирует щитовидную железу.\n· Гормон роста — регулирует рост и развитие.\n· Фолликулостимулирующий гормон — созревание яйцеклеток у женщин, выработка спермы у мужчин.\n· Лютеинизирующий гормон — овуляция и выработка прогестерона у женщин, тестостерона у мужчин.\n· Пролактин — выработка грудного молока.\n\nЗадняя доля:\n\n· Вазопрессин (антидиуретический гормон) — задержка воды в почках, водный баланс.\n· Окситоцин — сокращение матки в родах, выделение молока.",
-      "location": "Хромофобные клетки (бледные, мелкие, без гранул) и хромофильные: ацидофильные (розовые соматотропы и лактотропы) и базофильные (сине-фиолетовые тиро-, гонадо- и кортикотропы); питуициты в задней доле.",
-      "functionText": "Кора: минералокортикоиды/альдостерон (клубочковая), глюкокортикоиды/кортизол (пучковая), андрогены (сетчатая). Мозговое вещество: катехоламины (адреналин, норадреналин).",
-      "killerFeature": "Четкая зональность коры (клубочки, параллельные пучки тяжей, сеть) и светлоокрашенное мозговое вещество с венозными синусоидами в центре."
-    }
-  },
-  {
-    "id": "slide_45",
-    "examNumber": 45,
-    "moduleId": "mod_digestive",
-    "title": "Нитевидные сосочки языка",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x100",
-    "imageUrl": "./slides/tg/slide_4294968058_0.jpg",
-    "layersText": "Многослойный плоский неороговевающий эпителий листовидных сосочков -> Вкусовые почки (луковицы) в боковых стенках сосочков -> Ров/щель между сосочками с протоками серозных желез Эбнера -> Поперечно-полосатые мышцы языка.",
-    "keyCells": "Кератиноциты с роговыми чешуйками на верхушках сосочков, поперечнополосатые мышечные волокна.",
-    "killerFeature": "Параллельные складки сосочков со светлыми овальными вкусовыми почками на боковых поверхностях и протоками желез на дне рва.",
-    "distractors": [
-      "Вкусовые луковицы в листовидных сосочках языка",
-      "Кожа пальца человека",
-      "Пищевод"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Нитевидный сосочек",
-        "name": "Нитевидный сосочек с ороговевающей верхушкой",
-        "description": "Конический вырост собственной пластинки слизистой, покрытый ороговевающим эпителием.",
-        "color": "#EC4899",
-        "pin_x": 48,
-        "pin_y": 25
-      },
-      {
-        "number": 2,
-        "short_name": "Мышцы языка",
-        "name": "Поперечнополосатые мышцы языка",
-        "description": "Пучки скелетных мышечных волокон, ориентированные продольно, поперечно и вертикально.",
-        "color": "#6366F1",
-        "pin_x": 52,
-        "pin_y": 70
-      }
-    ],
-    "embryoOrigin": "Эпителий слизистой оболочки языка и вкусовые почки развиваются из эктодермы (передняя часть) и энтодермы (корень языка). Соединительнотканная строма и мышцы языка развиваются из мезенхимы (в основном, из затылочных сомитов и жаберных дуг).",
-    "functionText": "Восприятие вкуса (вкусовые почки реагируют на химические раздражители, растворенные в слюне). Также сосочки участвуют в механической обработке пищи. Серозные железы (железы Эбнера) омывают сосочки слюной, очищая их и растворяя питательные вещества для вкусовых рецепторов.",
-    "imageUrls": [
-      "./slides/tg/slide_4294968058_0.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Кафедра)"
-    ],
-    "examPlan": {
-      "stainAndType": "Нитевидные сосочки языка (Гематоксилин и эозин)",
-      "origin": "Эпителий слизистой оболочки языка и вкусовые почки развиваются из эктодермы (передняя часть) и энтодермы (корень языка). Соединительнотканная строма и мышцы языка развиваются из мезенхимы (в основном, из затылочных сомитов и жаберных дуг).",
-      "structure": "На препарате видны многочисленные параллельные складки слизистой оболочки, разделенные глубокими бороздами (щелями). Складки образованы многослойным плоским неороговевающим эпителием (снаружи) и собственной пластинкой слизистой оболочки (внутри) из рыхлой волокнистой соединительной ткани. В эпителии боковых поверхностей сосочков различимы бледные овальные структуры — вкусовые почки (луковицы). В толще собственной пластинки видны прослойки скелетной мышечной ткани языка (поперечно-полосатые волокна) и выводные протоки серозных желез.",
-      "location": "На боковых поверхностях языка",
-      "functionText": "Восприятие вкуса (вкусовые почки реагируют на химические раздражители, растворенные в слюне). Также сосочки участвуют в механической обработке пищи. Серозные железы (железы Эбнера) омывают сосочки слюной, очищая их и растворяя питательные вещества для вкусовых рецепторов.",
-      "killerFeature": "Параллельные складки сосочков со светлыми овальными вкусовыми почками на боковых поверхностях и протоками желез на дне рва."
-    }
-  },
-  {
-    "id": "slide_46",
-    "examNumber": 46,
-    "moduleId": "mod_digestive",
-    "title": "Околоушная слюнная железа",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x200",
-    "imageUrl": "./slides/tg/slide_4294968099_0.jpg",
-    "layersText": "Многослойный плоский неороговевающий эпителий, инфильтрированный лимфоцитами -> Глубокие ветвящиеся крипты -> Лимфоидные фолликулы с герминативными центрами -> Соединительнотканная полукапсула.",
-    "keyCells": "Сероциты (конические клетки с базофильной цитоплазмой и круглым ядром в центре), миоэпителиальные клетки, клетки исчерченных протоков (ярко-розовые с базальной исчерченностью).",
-    "killerFeature": "Глубокие крипты с «продырявленным» эпителием (инфильтрация лимфоцитами) и лимфоидные узелки вдоль стенок крипт.",
-    "distractors": [
-      "Подъязычная и подчелюстная слюнные железы",
-      "Поджелудочная железа",
-      "Молочная железа"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Серозный ацинус",
-        "name": "Серозный (белковый) концевой отдел",
-        "description": "Темные базофильные клетки сероциты с круглыми центральными ядрами.",
-        "color": "#6366F1",
-        "pin_x": 42,
-        "pin_y": 40
-      },
-      {
-        "number": 2,
-        "short_name": "Исчерченный проток",
-        "name": "Исчерченный выводной проток",
-        "description": "Ярко-розовый проток с базальной исчерченностью (складки мембраны с митохондриями).",
-        "color": "#EC4899",
-        "pin_x": 62,
-        "pin_y": 55
-      }
-    ],
-    "embryoOrigin": "Эпителий 2-го жаберного кармана (энтодерма/эктодерма ротовой полости) и мезенхима.",
-    "functionText": "Периферический лимфоэпителиальный орган защитного глоточного кольца Пирогова–Вальдейера: иммунологический барьер входных ворот дыхательной и пищеварительной систем.",
-    "imageUrls": [
-      "./slides/tg/slide_4294968099_0.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)"
-    ],
-    "examPlan": {
-      "stainAndType": "Околоушная слюнная железа (Гематоксилин и эозин)",
-      "origin": "Эпителий 2-го жаберного кармана (энтодерма/эктодерма ротовой полости) и мезенхима.",
-      "structure": "Многослойный плоский неороговевающий эпителий, инфильтрированный лимфоцитами -> Глубокие ветвящиеся крипты -> Лимфоидные фолликулы с герминативными центрами -> Соединительнотканная полукапсула.",
-      "location": "Сероциты (конические клетки с базофильной цитоплазмой и круглым ядром в центре), миоэпителиальные клетки, клетки исчерченных протоков (ярко-розовые с базальной исчерченностью).",
-      "functionText": "Периферический лимфоэпителиальный орган защитного глоточного кольца Пирогова–Вальдейера: иммунологический барьер входных ворот дыхательной и пищеварительной систем.",
-      "killerFeature": "Глубокие крипты с «продырявленным» эпителием (инфильтрация лимфоцитами) и лимфоидные узелки вдоль стенок крипт."
-    }
-  },
-  {
-    "id": "slide_47",
-    "examNumber": 47,
-    "moduleId": "mod_digestive",
-    "title": "Подъязычная и подчелюстная слюнные железы",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x200",
-    "imageUrl": "./slides/tg/slide_4294968175_0.jpg",
-    "layersText": "Сложная альвеолярная разветвленная чисто серозная (белковая) железа: темные белковые концевые отделы (ацинусы из сероцитов с базофильной цитоплазмой) -> Длинные вставочные протоки -> Исчерченные протоки (с базальной исчерченностью) -> Междольковые протоки.",
-    "keyCells": "Мукоциты (крупные светлые пенистые клетки с уплощенным ядром у базальной мембраны), сероциты (образуют темные «серозные полулуния Джиануцци» на концах слизистых трубочек).",
-    "killerFeature": "Исключительно белковые (темно-оксифильные/базофильные) концевые отделы без слизистых клеток; многочисленные исчерченные протоки.",
-    "distractors": [
-      "Околоушная слюнная железа",
-      "Поджелудочная железа",
-      "Пилорический отдел желудка"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Полулуние",
-        "name": "Серозное полулуние Джиануцци",
-        "description": "Темные белковые клетки-сероциты, охватывающие конец светлой слизистой трубочки.",
-        "color": "#6366F1",
-        "pin_x": 45,
-        "pin_y": 42
-      },
-      {
-        "number": 2,
-        "short_name": "Слизистый ацинус",
-        "name": "Слизистый концевой отдел (мукоциты)",
-        "description": "Крупные светлые клетки с уплощенными базофильными ядрами у базальной мембраны.",
-        "color": "#10B981",
-        "pin_x": 58,
-        "pin_y": 52
-      }
-    ],
-    "embryoOrigin": "Эктодерма первичной ротовой полости и мезенхима.",
-    "functionText": "Секреция жидкой слюны, богатой ферментами (альфа-амилаза, мальтаза), водой и белками; первичный гидролиз углеводов.",
-    "imageUrls": [
-      "./slides/tg/slide_4294968172_0.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)"
-    ],
-    "examPlan": {
-      "stainAndType": "Подъязычная и подчелюстная слюнные железы (Гематоксилин и эозин)",
-      "origin": "Эктодерма первичной ротовой полости и мезенхима.",
-      "structure": "Сложная альвеолярная разветвленная чисто серозная (белковая) железа: темные белковые концевые отделы (ацинусы из сероцитов с базофильной цитоплазмой) -> Длинные вставочные протоки -> Исчерченные протоки (с базальной исчерченностью) -> Междольковые протоки.",
-      "location": "Мукоциты (крупные светлые пенистые клетки с уплощенным ядром у базальной мембраны), сероциты (образуют темные «серозные полулуния Джиануцци» на концах слизистых трубочек).",
-      "functionText": "Секреция жидкой слюны, богатой ферментами (альфа-амилаза, мальтаза), водой и белками; первичный гидролиз углеводов.",
-      "killerFeature": "Исключительно белковые (темно-оксифильные/базофильные) концевые отделы без слизистых клеток; многочисленные исчерченные протоки."
-    }
-  },
-  {
-    "id": "slide_48",
-    "examNumber": 48,
-    "moduleId": "mod_digestive",
-    "title": "2-я стадия развития зуба (дифференцировка зубных зачатков)",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x100",
-    "imageUrl": "./slides/tg/slide_4294968171_0.jpg",
-    "layersText": "Сложная альвеолярно-трубчатая разветвленная смешанная (белково-слизистая) железа: преобладают белковые концевые отделы; смешанные концевые отделы со светлыми мукоцитами и серозными полулуниями Джиануцци; выводные протоки.",
-    "keyCells": "Преэнамелобласты (высокие клетки внутреннего эпителия, ядра смещены к центру), преодонтобласты на периферии зубного сосочка, звездчатые клетки пульпы эмалевого органа.",
-    "killerFeature": "Наличие серозных полулуний Джиануцци (темные клетки в виде полумесяца охватывают светлые слизистые клетки смешанных концевых отделов).",
-    "distractors": [
-      "Гистогенез зуба (3-я стадия)",
-      "Прямой остеогенез нижней челюсти",
-      "Кортиев орган"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Эмалевый орган",
-        "name": "Эмалевый орган (форма колокольчика)",
-        "description": "Внутренний и наружный эмалевый эпителий с пульпой эмалевого органа между ними.",
-        "color": "#6366F1",
-        "pin_x": 48,
-        "pin_y": 35
-      },
-      {
-        "number": 2,
-        "short_name": "Зубной сосочек",
-        "name": "Зубной сосочек из мезенхимы",
-        "description": "Густоклеточное скопление мезенхимы под колокольчиком, предшественник пульпы и дентина.",
-        "color": "#EC4899",
-        "pin_x": 52,
-        "pin_y": 60
-      }
-    ],
-    "embryoOrigin": "Эктодерма ротовой полости и мезенхима.",
-    "functionText": "Секреция смешанной слюны (белки, слизь-муцин для смазывания пищевого комка, электролиты).",
-    "imageUrls": [
-      "./slides/tg/slide_4294968171_0.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)"
-    ],
-    "examPlan": {
-      "stainAndType": "2-я стадия развития зуба (дифференцировка зубных зачатков) (Гематоксилин и эозин)",
-      "origin": "Эктодерма ротовой полости и мезенхима.",
-      "structure": "Сложная альвеолярно-трубчатая разветвленная смешанная (белково-слизистая) железа: преобладают белковые концевые отделы; смешанные концевые отделы со светлыми мукоцитами и серозными полулуниями Джиануцци; выводные протоки.",
-      "location": "Преэнамелобласты (высокие клетки внутреннего эпителия, ядра смещены к центру), преодонтобласты на периферии зубного сосочка, звездчатые клетки пульпы эмалевого органа.",
-      "functionText": "Секреция смешанной слюны (белки, слизь-муцин для смазывания пищевого комка, электролиты).",
-      "killerFeature": "Наличие серозных полулуний Джиануцци (темные клетки в виде полумесяца охватывают светлые слизистые клетки смешанных концевых отделов)."
-    }
-  },
-  {
-    "id": "slide_49",
-    "examNumber": 49,
-    "moduleId": "mod_digestive",
-    "title": "Гистогенез зуба (3-я стадия — образование дентина и эмали)",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x100 / x200",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Tooth_histogenesis_dentin_enamel_40x.jpg/800px-Tooth_histogenesis_dentin_enamel_40x.jpg",
-    "layersText": "Изнутри наружу на верхушке зубного сосочка: 1. Пульпа зуба 2. Слой одонтобластов 3. Предентин и розовый дентин 4. Темно-фиолетовая полоска эмали 5. Слой высоких энамелобластов.",
-    "keyCells": "Одонтобласты (вытянутые клетки с отростками Томеса в дентинных канальцах), энамелобласты (высокие призматические клетки, синтезирующие эмаль).",
-    "killerFeature": "Между слоями высоких одонтобластов и энамелобластов появляются две плотные окрашенные полоски: розовый дентин и темно-фиолетовая/бурая эмаль.",
-    "distractors": [
-      "2-я стадия развития зуба",
-      "Прямой остеогенез нижней челюсти",
-      "Непрямой остеогенез"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Дентин",
-        "name": "Розовый слой дентина и предентина",
-        "description": "Обызвествленный матрикс с радиальными дентинными канальцами отростков одонтобластов.",
-        "color": "#EC4899",
-        "pin_x": 48,
-        "pin_y": 45
-      },
-      {
-        "number": 2,
-        "short_name": "Эмаль",
-        "name": "Темно-фиолетовая полоска эмали",
-        "description": "Слой призм гидроксиапатита, отложенный энамелобластами снаружи от дентина.",
-        "color": "#6366F1",
-        "pin_x": 55,
-        "pin_y": 38
-      }
-    ],
-    "embryoOrigin": "Эктодерма + мезенхима",
-    "functionText": "Синтез дентина (одонтобластами) и эмали (энамелобластами), формирование коронки зуба",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Tooth_histogenesis_dentin_enamel_40x.jpg/800px-Tooth_histogenesis_dentin_enamel_40x.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)"
-    ],
-    "examPlan": {
-      "stainAndType": "Гистогенез зуба (3-я стадия — образование дентина и эмали) (Гематоксилин и эозин)",
-      "origin": "Эктодерма + мезенхима",
-      "structure": "Изнутри наружу на верхушке зубного сосочка: 1. Пульпа зуба 2. Слой одонтобластов 3. Предентин и розовый дентин 4. Темно-фиолетовая полоска эмали 5. Слой высоких энамелобластов.",
-      "location": "Одонтобласты (вытянутые клетки с отростками Томеса в дентинных канальцах), энамелобласты (высокие призматические клетки, синтезирующие эмаль).",
-      "functionText": "Синтез дентина (одонтобластами) и эмали (энамелобластами), формирование коронки зуба",
-      "killerFeature": "Между слоями высоких одонтобластов и энамелобластов появляются две плотные окрашенные полоски: розовый дентин и темно-фиолетовая/бурая эмаль."
-    }
-  },
-  {
-    "id": "slide_50",
-    "examNumber": 50,
-    "moduleId": "mod_digestive",
-    "title": "Пищевод (поперечный срез)",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x40 / x200",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Esophagus_histology_40x.jpg/800px-Esophagus_histology_40x.jpg",
-    "layersText": "1. Слизистая (многослойный плоский неороговевающий эпителий, собственная пластинка с кардиальными железами, мышечная пластинка из продольных гладких миоцитов) 2. Подслизистая (концевые отделы собственных слизистых желез пищевода!) 3. Мышечная (внутренний циркулярный и наружный продольный слои) 4. Адвентициальная.",
-    "keyCells": "Плоские эпителиоциты, светлые слизистые клетки собственных желез подслизистой, гладкие миоциты (в верхней трети — скелетные).",
-    "killerFeature": "Звездчатый просвет, выстланный толстым многослойным плоским неороговевающим эпителием, и гроздья светлых слизистых желез в подслизистой основе.",
-    "distractors": [
-      "Трахея",
-      "Мочеточник",
-      "Роговица глаза"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Эпителий",
-        "name": "Многослойный плоский неороговевающий эпителий",
-        "description": "Толстый пласт неороговевающих эпителиоцитов со звездчатым просветом органа.",
-        "color": "#6366F1",
-        "pin_x": 48,
-        "pin_y": 28
-      },
-      {
-        "number": 2,
-        "short_name": "Железы подслизистой",
-        "name": "Собственные железы пищевода в подслизистой",
-        "description": "Пакеты светлых альвеолярно-трубчатых слизистых желез в подслизистой основе.",
-        "color": "#10B981",
-        "pin_x": 56,
-        "pin_y": 50
-      }
-    ],
-    "embryoOrigin": "Энтодерма передней кишки + мезенхима",
-    "functionText": "Проведение пищевого комка из глотки в желудок, защита от грубой пищи",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Esophagus_histology_40x.jpg/800px-Esophagus_histology_40x.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)"
-    ],
-    "examPlan": {
-      "stainAndType": "Пищевод (поперечный срез) (Гематоксилин и эозин)",
-      "origin": "Энтодерма передней кишки + мезенхима",
-      "structure": "1. Слизистая (многослойный плоский неороговевающий эпителий, собственная пластинка с кардиальными железами, мышечная пластинка из продольных гладких миоцитов) 2. Подслизистая (концевые отделы собственных слизистых желез пищевода!) 3. Мышечная (внутренний циркулярный и наружный продольный слои) 4. Адвентициальная.",
-      "location": "Плоские эпителиоциты, светлые слизистые клетки собственных желез подслизистой, гладкие миоциты (в верхней трети — скелетные).",
-      "functionText": "Проведение пищевого комка из глотки в желудок, защита от грубой пищи",
-      "killerFeature": "Звездчатый просвет, выстланный толстым многослойным плоским неороговевающим эпителием, и гроздья светлых слизистых желез в подслизистой основе."
-    }
-  },
-  {
-    "id": "slide_51",
-    "examNumber": 51,
-    "moduleId": "mod_digestive",
-    "title": "Фундальный (дно) отдел желудка",
-    "stain": "Конго-рот + гематоксилин",
-    "magnification": "x100 / x400",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/07/Histology_of_normal_antral_mucosa.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-    "layersText": "1. Слизистая (однослойный призматический железистый эпителий, неглубокие желудочные ямки на 1/4 толщины слизистой, длинные прямые собственные железы дна желудка, мышечная пластинка из 3 слоев) 2. Подслизистая (без желез) 3. Мышечная (3 слоя) 4. Серозная.",
-    "keyCells": "Главные экзокриноциты (синие/базофильные у дна желез), париетальные/обкладочные клетки (крупные округлые, окрашены конго-рот в ярко-оранжевый/красный цвет!), шеечные мукоциты, эндокриноциты.",
-    "killerFeature": "Неглубокие ямки (1/4 слизистой), длинные прямые трубочки желез и крупные ярко-оранжевые/красные обкладочные клетки (окр. конго-рот) по бокам желез.",
-    "distractors": [
-      "Пилорический отдел желудка",
-      "Двенадцатиперстная кишка",
-      "Толстая кишка"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Париетальные клетки",
-        "name": "Париетальные (обкладочные) клетки (оранжево-красные)",
-        "description": "Крупные клетки по бокам желез, секретирующие HCl и внутренний фактор Касла, ярко окрашенные конго-рот.",
-        "color": "#EF4444",
-        "pin_x": 48,
-        "pin_y": 45
-      },
-      {
-        "number": 2,
-        "short_name": "Главные клетки",
-        "name": "Главные клетки у дна желез (синие)",
-        "description": "Базофильные экзокриноциты, синтезирующие пепсиноген.",
-        "color": "#6366F1",
-        "pin_x": 52,
-        "pin_y": 70
-      }
-    ],
-    "embryoOrigin": "Энтодерма передней кишки",
-    "functionText": "Химическая обработка пищи желудочным соком (соляная кислота, пепсин), выработка фактора Касла",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Fundic_stomach_congo_red_40x.jpg/800px-Fundic_stomach_congo_red_40x.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/0/07/Histology_of_normal_antral_mucosa.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)",
-      "Срез 2 (Атлас)"
-    ],
-    "examPlan": {
-      "stainAndType": "Фундальный (дно) отдел желудка (Конго-рот + гематоксилин)",
-      "origin": "Энтодерма передней кишки",
-      "structure": "1. Слизистая (однослойный призматический железистый эпителий, неглубокие желудочные ямки на 1/4 толщины слизистой, длинные прямые собственные железы дна желудка, мышечная пластинка из 3 слоев) 2. Подслизистая (без желез) 3. Мышечная (3 слоя) 4. Серозная.",
-      "location": "Главные экзокриноциты (синие/базофильные у дна желез), париетальные/обкладочные клетки (крупные округлые, окрашены конго-рот в ярко-оранжевый/красный цвет!), шеечные мукоциты, эндокриноциты.",
-      "functionText": "Химическая обработка пищи желудочным соком (соляная кислота, пепсин), выработка фактора Касла",
-      "killerFeature": "Неглубокие ямки (1/4 слизистой), длинные прямые трубочки желез и крупные ярко-оранжевые/красные обкладочные клетки (окр. конго-рот) по бокам желез."
-    }
-  },
-  {
-    "id": "slide_52",
-    "examNumber": 52,
-    "moduleId": "mod_digestive",
-    "title": "Пилорический отдел желудка",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x100 / x200",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Pyloric_stomach_40x.jpg/800px-Pyloric_stomach_40x.jpg",
-    "layersText": "1. Слизистая (однослойный призматический железистый эпителий, очень глубокие желудочные ямки до 1/2 толщины слизистой, короткие разветвленные пилорические железы с широким просветом) 2. Подслизистая (без желез) 3. Мышечная (утолщенный циркулярный слой — сфинктер) 4. Серозная.",
-    "keyCells": "Слизистые клетки пилорических желез (светлые, с уплощенным базальным ядром), G-клетки (гастрин-продуцирующие), покровные мукоциты.",
-    "killerFeature": "Очень глубокие желудочные ямки (до половины слизистой) и светлые извитые трубчатые железы без главных и обкладочных клеток.",
-    "distractors": [
-      "Фундальный отдел желудка",
-      "Двенадцатиперстная кишка",
-      "Тощая кишка"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Глубокие ямки",
-        "name": "Глубокие желудочные ямки (до 1/2 слизистой)",
-        "description": "Выстланы однослойным высокопризматическим поверхностным эпителием, секретирующим слизь.",
-        "color": "#6366F1",
-        "pin_x": 48,
-        "pin_y": 25
-      },
-      {
-        "number": 2,
-        "short_name": "Пилорические железы",
-        "name": "Пилорические железы (разветвленные светлые)",
-        "description": "Короткие разветвленные трубчатые железы с широким просветом из светлых мукоцитов и эндокриноцитов (G-клеток).",
-        "color": "#10B981",
-        "pin_x": 52,
-        "pin_y": 55
-      }
-    ],
-    "embryoOrigin": "Энтодерма передней кишки",
-    "functionText": "Ослизнение химуса, нейтрализация кислоты бикарбонатами, секреция гастрина G-клетками",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Pyloric_stomach_40x.jpg/800px-Pyloric_stomach_40x.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)"
-    ],
-    "examPlan": {
-      "stainAndType": "Пилорический отдел желудка (Гематоксилин и эозин)",
-      "origin": "Энтодерма передней кишки",
-      "structure": "1. Слизистая (однослойный призматический железистый эпителий, очень глубокие желудочные ямки до 1/2 толщины слизистой, короткие разветвленные пилорические железы с широким просветом) 2. Подслизистая (без желез) 3. Мышечная (утолщенный циркулярный слой — сфинктер) 4. Серозная.",
-      "location": "Слизистые клетки пилорических желез (светлые, с уплощенным базальным ядром), G-клетки (гастрин-продуцирующие), покровные мукоциты.",
-      "functionText": "Ослизнение химуса, нейтрализация кислоты бикарбонатами, секреция гастрина G-клетками",
-      "killerFeature": "Очень глубокие желудочные ямки (до половины слизистой) и светлые извитые трубчатые железы без главных и обкладочных клеток."
-    }
-  },
-  {
-    "id": "slide_53",
-    "examNumber": 53,
-    "moduleId": "mod_digestive",
-    "title": "Двенадцатиперстная кишка",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x100",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Duodenum_histology_40x.jpg/800px-Duodenum_histology_40x.jpg",
-    "layersText": "1. Слизистая (высокие широкие листовидные ворсинки + крипты, однослойный призматический каемчатый эпителий с бокаловидными клетками) 2. Подслизистая (заполнена слизистыми дуоденальными/бруннеровыми железами!) 3. Мышечная (2 слоя) 4. Серозная/адвентициальная.",
-    "keyCells": "Столбчатые каемчатые энтероциты, бокаловидные клетки, клетки Панета (красные гранулы на дне крипт), слизистые клетки бруннеровых желез.",
-    "killerFeature": "Единственный отдел кишечника, где в подслизистой основе под мышечной пластинкой лежат плотные пакеты светлых слизистых дуоденальных (бруннеровых) желез + есть ворсинки.",
-    "distractors": [
-      "Тощая кишка",
-      "Пилорический отдел желудка",
-      "Толстая кишка"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Ворсинки",
-        "name": "Ворсинки и крипты двенадцатиперстной кишки",
-        "description": "Широкие листовидные выросты слизистой с каемчатыми энтероцитами и бокаловидными клетками.",
-        "color": "#EC4899",
-        "pin_x": 48,
-        "pin_y": 20
-      },
-      {
-        "number": 2,
-        "short_name": "Бруннеровы железы",
-        "name": "Дуоденальные (бруннеровы) железы в подслизистой",
-        "description": "Пакеты светлых слизистых желез в подслизистой основе, вырабатывающих щелочной секрет.",
-        "color": "#10B981",
-        "pin_x": 52,
-        "pin_y": 55
-      }
-    ],
-    "embryoOrigin": "Энтодерма средней кишки",
-    "functionText": "Интенсивное полостное и мембранное пищеварение, нейтрализация кислого химуса соком бруннеровых желез",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Duodenum_histology_40x.jpg/800px-Duodenum_histology_40x.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)"
-    ],
-    "examPlan": {
-      "stainAndType": "Двенадцатиперстная кишка (Гематоксилин и эозин)",
-      "origin": "Энтодерма средней кишки",
-      "structure": "1. Слизистая (высокие широкие листовидные ворсинки + крипты, однослойный призматический каемчатый эпителий с бокаловидными клетками) 2. Подслизистая (заполнена слизистыми дуоденальными/бруннеровыми железами!) 3. Мышечная (2 слоя) 4. Серозная/адвентициальная.",
-      "location": "Столбчатые каемчатые энтероциты, бокаловидные клетки, клетки Панета (красные гранулы на дне крипт), слизистые клетки бруннеровых желез.",
-      "functionText": "Интенсивное полостное и мембранное пищеварение, нейтрализация кислого химуса соком бруннеровых желез",
-      "killerFeature": "Единственный отдел кишечника, где в подслизистой основе под мышечной пластинкой лежат плотные пакеты светлых слизистых дуоденальных (бруннеровых) желез + есть ворсинки."
-    }
-  },
-  {
-    "id": "slide_54",
-    "examNumber": 54,
-    "moduleId": "mod_digestive",
-    "title": "Тощая кишка",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x100",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Jejunum_histology_40x.jpg/800px-Jejunum_histology_40x.jpg",
-    "layersText": "1. Слизистая (длинные тонкие пальцевидные ворсинки + крипты, однослойный призматический каемчатый эпителий) 2. Подслизистая (рыхлая соединительная ткань с сосудами, желез и пейеровых бляшек НЕТ) 3. Мышечная (2 слоя) 4. Серозная.",
-    "keyCells": "Каемчатые энтероциты, бокаловидные клетки, клетки Панета на дне крипт, энтероэндокриноциты.",
-    "killerFeature": "Длинные тонкие пальцевидные ворсинки и крипты при полном отсутствии бруннеровых желез в подслизистой основе.",
-    "distractors": [
-      "Двенадцатиперстная кишка",
-      "Толстая кишка",
-      "Пилорический отдел желудка"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Ворсинки",
-        "name": "Пальцевидные ворсинки тощей кишки",
-        "description": "Длинные тонкие выросты слизистой с каемчатыми энтероцитами и бокаловидными клетками.",
-        "color": "#EC4899",
-        "pin_x": 48,
-        "pin_y": 25
-      },
-      {
-        "number": 2,
-        "short_name": "Подслизистая",
-        "name": "Подслизистая основа (без желез)",
-        "description": "Рыхлая соединительная ткань с кровеносными сосудами и мейснеровским сплетением, без дуоденальных желез.",
-        "color": "#6366F1",
-        "pin_x": 52,
-        "pin_y": 65
-      }
-    ],
-    "embryoOrigin": "Энтодерма средней кишки",
-    "functionText": "Всасывание расщепленных нутриентов (моносахариды, аминокислоты, жирные кислоты)",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Jejunum_histology_40x.jpg/800px-Jejunum_histology_40x.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)"
-    ],
-    "examPlan": {
-      "stainAndType": "Тощая кишка (Гематоксилин и эозин)",
-      "origin": "Энтодерма средней кишки",
-      "structure": "1. Слизистая (длинные тонкие пальцевидные ворсинки + крипты, однослойный призматический каемчатый эпителий) 2. Подслизистая (рыхлая соединительная ткань с сосудами, желез и пейеровых бляшек НЕТ) 3. Мышечная (2 слоя) 4. Серозная.",
-      "location": "Каемчатые энтероциты, бокаловидные клетки, клетки Панета на дне крипт, энтероэндокриноциты.",
-      "functionText": "Всасывание расщепленных нутриентов (моносахариды, аминокислоты, жирные кислоты)",
-      "killerFeature": "Длинные тонкие пальцевидные ворсинки и крипты при полном отсутствии бруннеровых желез в подслизистой основе."
-    }
-  },
-  {
-    "id": "slide_55",
-    "examNumber": 55,
-    "moduleId": "mod_digestive",
-    "title": "Толстая кишка",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x100",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Colon_histology_40x.jpg/800px-Colon_histology_40x.jpg",
-    "layersText": "1. Слизистая (ровная поверхность БЕЗ ворсинок! Многочисленные глубокие прямые крипты, обилие бокаловидных клеток) 2. Подслизистая (без желез, одиночные лимфоидные фолликулы) 3. Мышечная (циркулярный слой и 3 продольные ленты — teniae coli) 4. Серозная.",
-    "keyCells": "Бокаловидные экзокриноциты (преобладают в криптах — выглядят как белые пузырьки), каемчатые энтероциты (колоноциты), недифференцированные клетки.",
-    "killerFeature": "Ворсинки полностью отсутствуют; слизистая состоит из ровных глубоких пробирок-крипт, густо набитых светлыми бокаловидными клетками.",
-    "distractors": [
-      "Тощая кишка",
-      "Аппендикс",
-      "Пилорический отдел желудка"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Крипты",
-        "name": "Прямые глубокие крипты с бокаловидными клетками",
-        "description": "Трубчатые вдавления эпителия, заполненные светлыми слизистыми пузырьками без ворсинок.",
-        "color": "#6366F1",
-        "pin_x": 48,
-        "pin_y": 35
-      },
-      {
-        "number": 2,
-        "short_name": "Мышечная оболочка",
-        "name": "Мышечная оболочка с лентами (teniae coli)",
-        "description": "Внутренний сплошной циркулярный и наружный продольный слой, собранный в 3 ленты.",
-        "color": "#EC4899",
-        "pin_x": 52,
-        "pin_y": 75
-      }
-    ],
-    "embryoOrigin": "Энтодерма задней кишки",
-    "functionText": "Всасывание воды и электролитов, формирование каловых масс, симбионтное пищеварение",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Colon_histology_40x.jpg/800px-Colon_histology_40x.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)"
-    ],
-    "examPlan": {
-      "stainAndType": "Толстая кишка (Гематоксилин и эозин)",
-      "origin": "Энтодерма задней кишки",
-      "structure": "1. Слизистая (ровная поверхность БЕЗ ворсинок! Многочисленные глубокие прямые крипты, обилие бокаловидных клеток) 2. Подслизистая (без желез, одиночные лимфоидные фолликулы) 3. Мышечная (циркулярный слой и 3 продольные ленты — teniae coli) 4. Серозная.",
-      "location": "Бокаловидные экзокриноциты (преобладают в криптах — выглядят как белые пузырьки), каемчатые энтероциты (колоноциты), недифференцированные клетки.",
-      "functionText": "Всасывание воды и электролитов, формирование каловых масс, симбионтное пищеварение",
-      "killerFeature": "Ворсинки полностью отсутствуют; слизистая состоит из ровных глубоких пробирок-крипт, густо набитых светлыми бокаловидными клетками."
-    }
-  },
-  {
-    "id": "slide_56",
-    "examNumber": 56,
-    "moduleId": "mod_digestive",
-    "title": "Аппендикс (червеобразный отросток)",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x40 / x100",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Appendix_histology_40x.jpg/800px-Appendix_histology_40x.jpg",
-    "layersText": "1. Слизистая (без ворсинок, мало крипт, прерывистая мышечная пластинка) 2. Подслизистая (сплошное кольцо крупных лимфоидных узелков со светлыми центрами размножения!) 3. Мышечная (сплошной продольный и циркулярный слои) 4. Серозная.",
-    "keyCells": "B- и T-лимфоциты, макрофаги, бокаловидные клетки, колоноциты.",
-    "killerFeature": "Небольшой диаметр органа с узким треугольным/звездчатым просветом и сплошное кольцо крупных лимфоидных фолликулов в подслизистой основе по всей окружности.",
-    "distractors": [
-      "Толстая кишка",
-      "Небная миндалина",
-      "Лимфатический узел"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Лимфоидный узелок",
-        "name": "Лимфоидный узелок со светлым центром",
-        "description": "Крупный фолликул B-лимфоцитов в составе сплошного кольца в подслизистой основе.",
-        "color": "#6366F1",
-        "pin_x": 48,
-        "pin_y": 40
-      },
-      {
-        "number": 2,
-        "short_name": "Просвет",
-        "name": "Узкий звездчатый просвет отростка",
-        "description": "Просвет выстлан однослойным призматическим эпителием без ворсинок с остатками детрита.",
-        "color": "#10B981",
-        "pin_x": 50,
-        "pin_y": 18
-      }
-    ],
-    "embryoOrigin": "Энтодерма задней кишки + мезенхима",
-    "functionText": "Иммунный надзор кишечного содержимого («кишечная миндалина»), депо полезной микрофлоры",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Appendix_histology_40x.jpg/800px-Appendix_histology_40x.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)"
-    ],
-    "examPlan": {
-      "stainAndType": "Аппендикс (червеобразный отросток) (Гематоксилин и эозин)",
-      "origin": "Энтодерма задней кишки + мезенхима",
-      "structure": "1. Слизистая (без ворсинок, мало крипт, прерывистая мышечная пластинка) 2. Подслизистая (сплошное кольцо крупных лимфоидных узелков со светлыми центрами размножения!) 3. Мышечная (сплошной продольный и циркулярный слои) 4. Серозная.",
-      "location": "B- и T-лимфоциты, макрофаги, бокаловидные клетки, колоноциты.",
-      "functionText": "Иммунный надзор кишечного содержимого («кишечная миндалина»), депо полезной микрофлоры",
-      "killerFeature": "Небольшой диаметр органа с узким треугольным/звездчатым просветом и сплошное кольцо крупных лимфоидных фолликулов в подслизистой основе по всей окружности."
-    }
-  },
-  {
-    "id": "slide_57",
-    "examNumber": 57,
-    "moduleId": "mod_digestive",
-    "title": "Поджелудочная железа",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x200",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Pancreas_histology_40x.jpg/800px-Pancreas_histology_40x.jpg",
-    "layersText": "Дольчатый паренхиматозный орган: экзокринная часть (97% — панкреатические ацинусы и выводные протоки) и эндокринная часть (3% — светлые островки Лангерганса без выводных протоков).",
-    "keyCells": "Ацинозные клетки (конические, гомогенная базофильная базальная часть и оксифильная апикальная зона с гранулами зимогена), центроацинозные клетки, B- и A-инсулоциты островков.",
-    "killerFeature": "Темные белковые ацинусы с двухцветной цитоплазмой и четко очерченные округлые светлые «островки» (Лангерганса) с густой сетью капилляров; исчерченных протоков нет (в отличие от слюнной железы).",
-    "distractors": [
-      "Околоушная слюнная железа",
-      "Гипофиз",
-      "Околощитовидная железа"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Островок",
-        "name": "Островок Лангерганса (эндокринная часть)",
-        "description": "Светлое округлое скопление инсулоцитов (бета-, альфа-, дельта-клетки) с синусоидными капиллярами.",
-        "color": "#10B981",
-        "pin_x": 48,
-        "pin_y": 40
-      },
-      {
-        "number": 2,
-        "short_name": "Ацинусы",
-        "name": "Панкреатические ацинусы (экзокринная часть)",
-        "description": "Темные конические ациноциты с базофильной базальной и оксифильной верхушечной зоной зимогена.",
-        "color": "#6366F1",
-        "pin_x": 65,
-        "pin_y": 60
-      }
-    ],
-    "embryoOrigin": "Энтодерма кишечной трубки",
-    "functionText": "Экзокринная секреция ферментов (трипсин, липаза, амилаза) и эндокринная (инсулин, глюкагон)",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1d/Pancreas_histology_40x.jpg/800px-Pancreas_histology_40x.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/7/78/Liver_scheme1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)",
-      "Срез 2 (Атлас)"
-    ],
-    "examPlan": {
-      "stainAndType": "Поджелудочная железа (Гематоксилин и эозин)",
-      "origin": "Энтодерма кишечной трубки",
-      "structure": "Дольчатый паренхиматозный орган: экзокринная часть (97% — панкреатические ацинусы и выводные протоки) и эндокринная часть (3% — светлые островки Лангерганса без выводных протоков).",
-      "location": "Ацинозные клетки (конические, гомогенная базофильная базальная часть и оксифильная апикальная зона с гранулами зимогена), центроацинозные клетки, B- и A-инсулоциты островков.",
-      "functionText": "Экзокринная секреция ферментов (трипсин, липаза, амилаза) и эндокринная (инсулин, глюкагон)",
-      "killerFeature": "Темные белковые ацинусы с двухцветной цитоплазмой и четко очерченные округлые светлые «островки» (Лангерганса) с густой сетью капилляров; исчерченных протоков нет (в отличие от слюнной железы)."
-    }
-  },
-  {
-    "id": "slide_58",
-    "examNumber": 58,
-    "moduleId": "mod_digestive",
-    "title": "Печень человека",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x100 / x400",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Human_liver_histology_40x.jpg/800px-Human_liver_histology_40x.jpg",
-    "layersText": "Классические печеночные дольки (слабо отграничены друг от друга соединительной тканью!): в центре дольки — центральная вена, от нее радиально расходятся печеночные балки и синусоидные капилляры; по углам долек — портальные тракты (триады).",
-    "keyCells": "Гепатоциты (полигональные, 1–2 круглых ядра, оксифильная цитоплазма), звездчатые макрофаги (клетки Купфера), эндотелиоциты, клетки Ито.",
-    "killerFeature": "Радиальное расположение тяжей гепатоцитов вокруг центральной вены и характерные «печеночные триады» в междольковой соединительной ткани (междольковая артерия, вена и желчный проточек).",
-    "distractors": [
-      "Поджелудочная железа",
-      "Надпочечник",
-      "Почка"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Центральная вена",
-        "name": "Центральная вена дольки печени",
-        "description": "Широкий бесклеточный сосуд в центре дольки, куда открываются синусоидные капилляры.",
-        "color": "#6366F1",
-        "pin_x": 48,
-        "pin_y": 40
-      },
-      {
-        "number": 2,
-        "short_name": "Триада",
-        "name": "Печеночная триада (портальный тракт)",
-        "description": "Междольковая артерия, междольковая вена и желчный междольковый проточек в соединительной ткани.",
-        "color": "#10B981",
-        "pin_x": 75,
-        "pin_y": 65
-      }
-    ],
-    "embryoOrigin": "Энтодерма печеночного выроста кишки + мезенхима",
-    "functionText": "Метаболическая фабрика, детоксикация, секреция желчи, синтез белков крови (альбумин)",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Human_liver_histology_40x.jpg/800px-Human_liver_histology_40x.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)"
-    ],
-    "examPlan": {
-      "stainAndType": "Печень человека (Гематоксилин и эозин)",
-      "origin": "Энтодерма печеночного выроста кишки + мезенхима",
-      "structure": "Классические печеночные дольки (слабо отграничены друг от друга соединительной тканью!): в центре дольки — центральная вена, от нее радиально расходятся печеночные балки и синусоидные капилляры; по углам долек — портальные тракты (триады).",
-      "location": "Гепатоциты (полигональные, 1–2 круглых ядра, оксифильная цитоплазма), звездчатые макрофаги (клетки Купфера), эндотелиоциты, клетки Ито.",
-      "functionText": "Метаболическая фабрика, детоксикация, секреция желчи, синтез белков крови (альбумин)",
-      "killerFeature": "Радиальное расположение тяжей гепатоцитов вокруг центральной вены и характерные «печеночные триады» в междольковой соединительной ткани (междольковая артерия, вена и желчный проточек)."
-    }
-  },
-  {
-    "id": "slide_59",
-    "examNumber": 59,
-    "moduleId": "mod_urogenital",
-    "title": "Почка (корковое и мозговое вещество)",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x100 / x400",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Kidney_cortex_histology_40x.jpg/800px-Kidney_cortex_histology_40x.jpg",
-    "layersText": "1. Фиброзная капсула 2. Корковое вещество (почечные тельца + извитые проксимальные и дистальные канальцы + мозговые лучи) 3. Мозговое вещество (прямые канальцы петли Генле и собирательные трубочки — почечных телец нет!).",
-    "keyCells": "Подоциты, эндотелиоциты капилляров клубочка, клетки проксимальных канальцев (мутная розовая цитоплазма, щеточная каемка, узкий просвет), клетки дистальных канальцев (светлее, широкий просвет).",
-    "killerFeature": "В корковом веществе — характерные круглые почечные тельца (сосудистый клубочек внутри двухслойной капсулы Шумлянского-Боумена) в окружении срезов извитых канальцев.",
-    "distractors": [
-      "Щитовидная железа",
-      "Надпочечник",
-      "Семенник"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Почечное тельце",
-        "name": "Почечное тельце (клубочек и капсула Боумена)",
-        "description": "Сосудистый клубочек капилляров, подоциты и щелевидная полость капсулы.",
-        "color": "#6366F1",
-        "pin_x": 48,
-        "pin_y": 35
-      },
-      {
-        "number": 2,
-        "short_name": "Канальцы",
-        "name": "Проксимальные и дистальные извитые канальцы",
-        "description": "Срезы канальцев с кубическим эпителием: проксимальные со щеточной каемкой и дистальные со светлым просветом.",
-        "color": "#EC4899",
-        "pin_x": 62,
-        "pin_y": 60
-      }
-    ],
-    "embryoOrigin": "Мезодерма (метанефрогенная бластема + мочеточниковый вырост)",
-    "functionText": "Ультрафильтрация плазмы, реабсорбция, секреция, водно-солевой гомеостаз, эритропоэз",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Kidney_cortex_histology_40x.jpg/800px-Kidney_cortex_histology_40x.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)"
-    ],
-    "examPlan": {
-      "stainAndType": "Почка (корковое и мозговое вещество) (Гематоксилин и эозин)",
-      "origin": "Мезодерма (метанефрогенная бластема + мочеточниковый вырост)",
-      "structure": "1. Фиброзная капсула 2. Корковое вещество (почечные тельца + извитые проксимальные и дистальные канальцы + мозговые лучи) 3. Мозговое вещество (прямые канальцы петли Генле и собирательные трубочки — почечных телец нет!).",
-      "location": "Подоциты, эндотелиоциты капилляров клубочка, клетки проксимальных канальцев (мутная розовая цитоплазма, щеточная каемка, узкий просвет), клетки дистальных канальцев (светлее, широкий просвет).",
-      "functionText": "Ультрафильтрация плазмы, реабсорбция, секреция, водно-солевой гомеостаз, эритропоэз",
-      "killerFeature": "В корковом веществе — характерные круглые почечные тельца (сосудистый клубочек внутри двухслойной капсулы Шумлянского-Боумена) в окружении срезов извитых канальцев."
-    }
-  },
-  {
-    "id": "slide_60",
-    "examNumber": 60,
-    "moduleId": "mod_urogenital",
-    "title": "Мочеточник (поперечный срез)",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x100",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Ureter_histology_40x.jpg/800px-Ureter_histology_40x.jpg",
-    "layersText": "1. Слизистая (звездчатые продольные складки, переходный эпителий — уротелий + собственная пластинка; мышечной пластинки НЕТ!) 2. Подслизистая (без желез) 3. Мышечная (внутренний продольный и наружный циркулярный слои — наоборот по сравнению с ЖКТ!) 4. Адвентициальная.",
-    "keyCells": "Клетки переходного эпителия (базальные, промежуточные грушевидные и крупные поверхностные куполообразные/зонтичные клетки, часто двуядерные).",
-    "killerFeature": "Звездчатый просвет с глубокими складками, выстланный многослойным переходным эпителием с крупными округлыми поверхностными клетками; желез в стенке нет.",
-    "distractors": [
-      "Пищевод",
-      "Мочевой пузырь",
-      "Яйцевод"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Уротелий",
-        "name": "Переходный эпителий (уротелий) со складками",
-        "description": "Звездчатый просвет с глубокими складками и крупными куполообразными поверхностными клетками.",
-        "color": "#6366F1",
-        "pin_x": 48,
-        "pin_y": 35
-      },
-      {
-        "number": 2,
-        "short_name": "Мышечная оболочка",
-        "name": "Мышечная оболочка мочеточника",
-        "description": "Внутренний продольный и наружный циркулярный слои гладких миоцитов.",
-        "color": "#EC4899",
-        "pin_x": 55,
-        "pin_y": 65
-      }
-    ],
-    "embryoOrigin": "Мочеточниковый вырост вольфова протока",
-    "functionText": "Транспорт мочи из почечной лоханки в мочевой пузырь перистальтическими сокращениями",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Ureter_histology_40x.jpg/800px-Ureter_histology_40x.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)"
-    ],
-    "examPlan": {
-      "stainAndType": "Мочеточник (поперечный срез) (Гематоксилин и эозин)",
-      "origin": "Мочеточниковый вырост вольфова протока",
-      "structure": "1. Слизистая (звездчатые продольные складки, переходный эпителий — уротелий + собственная пластинка; мышечной пластинки НЕТ!) 2. Подслизистая (без желез) 3. Мышечная (внутренний продольный и наружный циркулярный слои — наоборот по сравнению с ЖКТ!) 4. Адвентициальная.",
-      "location": "Клетки переходного эпителия (базальные, промежуточные грушевидные и крупные поверхностные куполообразные/зонтичные клетки, часто двуядерные).",
-      "functionText": "Транспорт мочи из почечной лоханки в мочевой пузырь перистальтическими сокращениями",
-      "killerFeature": "Звездчатый просвет с глубокими складками, выстланный многослойным переходным эпителием с крупными округлыми поверхностными клетками; желез в стенке нет."
-    }
-  },
-  {
-    "id": "slide_61",
-    "examNumber": 61,
-    "moduleId": "mod_urogenital",
-    "title": "Мочевой пузырь",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x100 / x200",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Urinary_bladder_histology_40x.jpg/800px-Urinary_bladder_histology_40x.jpg",
-    "layersText": "1. Слизистая (толстый переходный эпителий + собственная пластинка) 2. Подслизистая основа 3. Мощная мышечная оболочка из 3 переплетающихся слоев гладких миоцитов (внутренний продольный, средний циркулярный, наружный продольный) 4. Серозная/адвентициальная.",
-    "keyCells": "Куполообразные зонтичные клетки уротелия, грушевидные и базальные клетки, крупные пучки гладких миоцитов.",
-    "killerFeature": "Толстый слой переходного эпителия (в нерастянутом органе 6–8 рядов клеток с крупными куполообразными клетками сверху) и очень мощные разнонаправленные пучки гладких мышц.",
-    "distractors": [
-      "Мочеточник",
-      "Матка",
-      "Пищевод"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Уротелий",
-        "name": "Переходный эпителий с зонтичными клетками",
-        "description": "6–8 рядов клеток со светлыми крупными куполообразными фасеточными клетками на поверхности.",
-        "color": "#6366F1",
-        "pin_x": 48,
-        "pin_y": 25
-      },
-      {
-        "number": 2,
-        "short_name": "Детрузор",
-        "name": "Мощный мышечный слой детрузора",
-        "description": "Крупные пучки гладких миоцитов, переплетающиеся в 3 взаимно перпендикулярных слоях.",
-        "color": "#EC4899",
-        "pin_x": 52,
-        "pin_y": 65
-      }
-    ],
-    "embryoOrigin": "Аллантоис и клоака (энтодерма мочеполового синуса)",
-    "functionText": "Резервуар мочи и её периодическая эвакуация наружу (детрузор)",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Urinary_bladder_histology_40x.jpg/800px-Urinary_bladder_histology_40x.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)"
-    ],
-    "examPlan": {
-      "stainAndType": "Мочевой пузырь (Гематоксилин и эозин)",
-      "origin": "Аллантоис и клоака (энтодерма мочеполового синуса)",
-      "structure": "1. Слизистая (толстый переходный эпителий + собственная пластинка) 2. Подслизистая основа 3. Мощная мышечная оболочка из 3 переплетающихся слоев гладких миоцитов (внутренний продольный, средний циркулярный, наружный продольный) 4. Серозная/адвентициальная.",
-      "location": "Куполообразные зонтичные клетки уротелия, грушевидные и базальные клетки, крупные пучки гладких миоцитов.",
-      "functionText": "Резервуар мочи и её периодическая эвакуация наружу (детрузор)",
-      "killerFeature": "Толстый слой переходного эпителия (в нерастянутом органе 6–8 рядов клеток с крупными куполообразными клетками сверху) и очень мощные разнонаправленные пучки гладких мышц."
-    }
-  },
-  {
-    "id": "slide_62",
-    "examNumber": 62,
-    "moduleId": "mod_urogenital",
-    "title": "Семенник (яичко)",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x100 / x400",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Testis_histology_40x.jpg/800px-Testis_histology_40x.jpg",
-    "layersText": "Снаружи — толстая плотная белочная оболочка; паренхима состоит из множества извитых семенных канальцев (выстланы сперматогенным эпителием) и интерстициальной соединительной ткани между ними.",
-    "keyCells": "Поддерживающие клетки Сертоли (треугольное светлое ядро с ядрышком у базальной мембраны), сперматогонии, сперматоциты 1-го и 2-го порядка, сперматиды, сперматозоиды в просвете; интерстициальные эндокриноциты (клетки Лейдига — крупные розовые клетки в интерстиции).",
-    "killerFeature": "Многочисленные срезы извитых трубочек, в стенке которых видны многослойные ряды делящихся половых клеток от круглых сперматогоний у края до хвостатых сперматозоидов в просвете.",
-    "distractors": [
-      "Придаток семенника",
-      "Предстательная железа",
-      "Почка"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Семенной каналец",
-        "name": "Извитой семенной каналец (сперматогенез)",
-        "description": "Сперматогенный эпителий с клетками Сертоли, сперматогониями, сперматоцитами и сперматидами.",
-        "color": "#6366F1",
-        "pin_x": 48,
-        "pin_y": 40
-      },
-      {
-        "number": 2,
-        "short_name": "Клетки Лейдига",
-        "name": "Интерстициальные клетки Лейдига",
-        "description": "Крупные розовые оксифильные эндокриноциты в межканальцевой ткани, вырабатывающие тестостерон.",
-        "color": "#F59E0B",
-        "pin_x": 72,
-        "pin_y": 55
-      }
-    ],
-    "embryoOrigin": "Первичные половые клетки (гоноциты) + мезодерма полового валика",
-    "functionText": "Сперматогенез (в извитых семенных канальцах) и секреция тестостерона (клетками Лейдига)",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Testis_histology_40x.jpg/800px-Testis_histology_40x.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)"
-    ],
-    "examPlan": {
-      "stainAndType": "Семенник (яичко) (Гематоксилин и эозин)",
-      "origin": "Первичные половые клетки (гоноциты) + мезодерма полового валика",
-      "structure": "Снаружи — толстая плотная белочная оболочка; паренхима состоит из множества извитых семенных канальцев (выстланы сперматогенным эпителием) и интерстициальной соединительной ткани между ними.",
-      "location": "Поддерживающие клетки Сертоли (треугольное светлое ядро с ядрышком у базальной мембраны), сперматогонии, сперматоциты 1-го и 2-го порядка, сперматиды, сперматозоиды в просвете; интерстициальные эндокриноциты (клетки Лейдига — крупные розовые клетки в интерстиции).",
-      "functionText": "Сперматогенез (в извитых семенных канальцах) и секреция тестостерона (клетками Лейдига)",
-      "killerFeature": "Многочисленные срезы извитых трубочек, в стенке которых видны многослойные ряды делящихся половых клеток от круглых сперматогоний у края до хвостатых сперматозоидов в просвете."
-    }
-  },
-  {
-    "id": "slide_63",
-    "examNumber": 63,
-    "moduleId": "mod_urogenital",
-    "title": "Придаток семенника (эпидидимис)",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x100 / x400",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Epididymis_histology_40x.jpg/800px-Epididymis_histology_40x.jpg",
-    "layersText": "Срезы выносящих канальцев (неровный фестончатый просвет, чередование высоких реснитчатых и низких железистых клеток) и протока придатка (ровный округлый просвет, выстлан двурядным призматическим эпителием со стереоцилиями).",
-    "keyCells": "Высокие призматические клетки со стереоцилиями (пучками длинных неподвижных микроворсинок), вставочные базальные клетки, тонкий ободок циркулярных гладких миоцитов.",
-    "killerFeature": "Срезы канальцев с ровным просветом (часто заполненным сперматозоидами), выстланных строгим двурядным эпителием с длинными склеенными «кисточками»-стереоцилиями.",
-    "distractors": [
-      "Семенник",
-      "Предстательная железа",
-      "Щитовидная железа"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Стереоцилии",
-        "name": "Двурядный призматический эпителий со стереоцилиями",
-        "description": "Высокие призматические клетки с пучками длинных неподвижных микроворсинок-стереоцилий.",
-        "color": "#6366F1",
-        "pin_x": 48,
-        "pin_y": 35
-      },
-      {
-        "number": 2,
-        "short_name": "Сперматозоиды",
-        "name": "Скопление сперматозоидов в просвете",
-        "description": "Плотная масса созревающих спермиев внутри круглого просвета протока придатка.",
-        "color": "#10B981",
-        "pin_x": 52,
-        "pin_y": 50
-      }
-    ],
-    "embryoOrigin": "Канальцы мезонефроса (вольфова протока)",
-    "functionText": "Накопление, созревание и приобретение подвижности сперматозоидами",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Epididymis_histology_40x.jpg/800px-Epididymis_histology_40x.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)"
-    ],
-    "examPlan": {
-      "stainAndType": "Придаток семенника (эпидидимис) (Гематоксилин и эозин)",
-      "origin": "Канальцы мезонефроса (вольфова протока)",
-      "structure": "Срезы выносящих канальцев (неровный фестончатый просвет, чередование высоких реснитчатых и низких железистых клеток) и протока придатка (ровный округлый просвет, выстлан двурядным призматическим эпителием со стереоцилиями).",
-      "location": "Высокие призматические клетки со стереоцилиями (пучками длинных неподвижных микроворсинок), вставочные базальные клетки, тонкий ободок циркулярных гладких миоцитов.",
-      "functionText": "Накопление, созревание и приобретение подвижности сперматозоидами",
-      "killerFeature": "Срезы канальцев с ровным просветом (часто заполненным сперматозоидами), выстланных строгим двурядным эпителием с длинными склеенными «кисточками»-стереоцилиями."
-    }
-  },
-  {
-    "id": "slide_64",
-    "examNumber": 64,
-    "moduleId": "mod_urogenital",
-    "title": "Предстательная железа (простата)",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x100 / x200",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Prostate_histology_40x.jpg/800px-Prostate_histology_40x.jpg",
-    "layersText": "Сложные трубчато-альвеолярные железы со складчатым фестончатым просветом, погруженные в мощную мышечно-эластическую строму (много пучков гладких миоцитов и соединительной ткани).",
-    "keyCells": "Высокие секреторные эпителиоциты, базальные клетки, гладкие миоциты стромы.",
-    "killerFeature": "Железистые альвеолы с характерными сосочковыми складками эпителия, окруженные толстыми прослойками гладких мышц; в просвете многих желез лежат розовые слоистые простатические конкреции (амилоидные тельца).",
-    "distractors": [
-      "Молочная железа",
-      "Щитовидная железа",
-      "Придаток семенника"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Конкреции",
-        "name": "Простатические конкреции (амилоидные тельца)",
-        "description": "Слоистые оксифильные розовые белковые тельца внутри просвета железистых альвеол.",
-        "color": "#EC4899",
-        "pin_x": 48,
-        "pin_y": 40
-      },
-      {
-        "number": 2,
-        "short_name": "Мышечная строма",
-        "name": "Мышечно-эластическая строма",
-        "description": "Мощные переплетающиеся пучки гладких миоцитов между железистыми дольками.",
-        "color": "#6366F1",
-        "pin_x": 65,
-        "pin_y": 60
-      }
-    ],
-    "embryoOrigin": "Урогенитальный синус (энтодерма) + мезенхима",
-    "functionText": "Секреция жидкой слабощелочной части спермы, разжижение семенной плазмы",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Prostate_histology_40x.jpg/800px-Prostate_histology_40x.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)"
-    ],
-    "examPlan": {
-      "stainAndType": "Предстательная железа (простата) (Гематоксилин и эозин)",
-      "origin": "Урогенитальный синус (энтодерма) + мезенхима",
-      "structure": "Сложные трубчато-альвеолярные железы со складчатым фестончатым просветом, погруженные в мощную мышечно-эластическую строму (много пучков гладких миоцитов и соединительной ткани).",
-      "location": "Высокие секреторные эпителиоциты, базальные клетки, гладкие миоциты стромы.",
-      "functionText": "Секреция жидкой слабощелочной части спермы, разжижение семенной плазмы",
-      "killerFeature": "Железистые альвеолы с характерными сосочковыми складками эпителия, окруженные толстыми прослойками гладких мышц; в просвете многих желез лежат розовые слоистые простатические конкреции (амилоидные тельца)."
-    }
-  },
-  {
-    "id": "slide_65",
-    "examNumber": 65,
-    "moduleId": "mod_urogenital",
-    "title": "Яичник",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x40 / x200",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Ovary_histology_40x.jpg/800px-Ovary_histology_40x.jpg",
-    "layersText": "1. Покровный однослойный кубический эпителий и белочная оболочка 2. Корковое вещество (фолликулы на разных стадиях развития: примордиальные, первичные, вторичные, зрелый Граафов пузырек, желтые и белые тела) 3. Мозговое вещество в центре (РВСТ и крупные извитые сосуды).",
-    "keyCells": "Ооциты 1-го порядка, фолликулярные клетки (клетки зернистого слоя), тека-клетки, лютеоциты желтого тела.",
-    "killerFeature": "В корковом веществе под белочной оболочкой видны многочисленные примордиальные фолликулы и крупные пузырчатые фолликулы с полостью (антрумом), яйценосным бугорком и ооцитом внутри.",
-    "distractors": [
-      "Щитовидная железа",
-      "Лимфатический узел",
-      "Семенник"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Граафов пузырек",
-        "name": "Зрелый Граафов пузырек с антрумом и ооцитом",
-        "description": "Крупный третичный фолликул с фолликулярной жидкостью, яйценосным бугорком и ооцитом.",
-        "color": "#6366F1",
-        "pin_x": 48,
-        "pin_y": 40
-      },
-      {
-        "number": 2,
-        "short_name": "Примордиальные фолликулы",
-        "name": "Примордиальные фолликулы под белочной оболочкой",
-        "description": "Мелкие ооциты, окруженные одним слоем плоских фолликулярных клеток на периферии коры.",
-        "color": "#EC4899",
-        "pin_x": 25,
-        "pin_y": 20
-      }
-    ],
-    "embryoOrigin": "Гоноциты + целомический эпителий полового валика",
-    "functionText": "Овогенез (созревание фолликулов), овуляция, эндокринная секреция эстрогенов и прогестерона",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Ovary_histology_40x.jpg/800px-Ovary_histology_40x.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)"
-    ],
-    "examPlan": {
-      "stainAndType": "Яичник (Гематоксилин и эозин)",
-      "origin": "Гоноциты + целомический эпителий полового валика",
-      "structure": "1. Покровный однослойный кубический эпителий и белочная оболочка 2. Корковое вещество (фолликулы на разных стадиях развития: примордиальные, первичные, вторичные, зрелый Граафов пузырек, желтые и белые тела) 3. Мозговое вещество в центре (РВСТ и крупные извитые сосуды).",
-      "location": "Ооциты 1-го порядка, фолликулярные клетки (клетки зернистого слоя), тека-клетки, лютеоциты желтого тела.",
-      "functionText": "Овогенез (созревание фолликулов), овуляция, эндокринная секреция эстрогенов и прогестерона",
-      "killerFeature": "В корковом веществе под белочной оболочкой видны многочисленные примордиальные фолликулы и крупные пузырчатые фолликулы с полостью (антрумом), яйценосным бугорком и ооцитом внутри."
-    }
-  },
-  {
-    "id": "slide_66",
-    "examNumber": 66,
-    "moduleId": "mod_urogenital",
-    "title": "Яйцевод (маточная труба)",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x100 / x400",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Fallopian_tube_histology_40x.jpg/800px-Fallopian_tube_histology_40x.jpg",
-    "layersText": "1. Слизистая (образует сложные ветвящиеся лабиринтообразные складки, однослойный призматический реснитчато-секреторный эпителий + собственная пластинка; подслизистой НЕТ!) 2. Мышечная (внутренний циркулярный и наружный продольный слои) 3. Серозная.",
-    "keyCells": "Реснитчатые эпителиоциты и секреторные (куполообразные безреснитчатые) клетки.",
-    "killerFeature": "Просвет почти полностью заполнен сложнейшим «лабиринтом» ветвящихся складок слизистой, покрытых однослойным призматическим эпителием с ресничками.",
-    "distractors": [
-      "Мочеточник",
-      "Аппендикс",
-      "Желчный пузырь"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Складки слизистой",
-        "name": "Сложные ветвящиеся складки слизистой («лабиринт»)",
-        "description": "Древовидно ветвящиеся складки, заполняющие практически весь просвет трубы.",
-        "color": "#6366F1",
-        "pin_x": 48,
-        "pin_y": 40
-      },
-      {
-        "number": 2,
-        "short_name": "Реснитчатый эпителий",
-        "name": "Однослойный призматический реснитчатый эпителий",
-        "description": "Реснитчатые клетки, мерцающие в сторону матки, и вставочные секреторные клетки.",
-        "color": "#EC4899",
-        "pin_x": 55,
-        "pin_y": 28
-      }
-    ],
-    "embryoOrigin": "Парамезонефральный (мюллеров) проток",
-    "functionText": "Захват яйцеклетки, создание среды для оплодотворения и транспорт зиготы в матку",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Fallopian_tube_histology_40x.jpg/800px-Fallopian_tube_histology_40x.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/f/f7/Graafian_follicle.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)",
-      "Срез 2 (Атлас)"
-    ],
-    "examPlan": {
-      "stainAndType": "Яйцевод (маточная труба) (Гематоксилин и эозин)",
-      "origin": "Парамезонефральный (мюллеров) проток",
-      "structure": "1. Слизистая (образует сложные ветвящиеся лабиринтообразные складки, однослойный призматический реснитчато-секреторный эпителий + собственная пластинка; подслизистой НЕТ!) 2. Мышечная (внутренний циркулярный и наружный продольный слои) 3. Серозная.",
-      "location": "Реснитчатые эпителиоциты и секреторные (куполообразные безреснитчатые) клетки.",
-      "functionText": "Захват яйцеклетки, создание среды для оплодотворения и транспорт зиготы в матку",
-      "killerFeature": "Просвет почти полностью заполнен сложнейшим «лабиринтом» ветвящихся складок слизистой, покрытых однослойным призматическим эпителием с ресничками."
-    }
-  },
-  {
-    "id": "slide_67",
-    "examNumber": 67,
-    "moduleId": "mod_urogenital",
-    "title": "Матка (эндометрий и миометрий)",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x40 / x100",
-    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/Rabbit_uterus_at_different_stages_of_pseudopregnancy.png/1280px-Rabbit_uterus_at_different_stages_of_pseudopregnancy.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "layersText": "1. Эндометрий — слизистая (однослойный призматический эпителий, рыхлая строма с простыми трубчатыми маточными железами; делится на функциональный и базальный слои) 2. Миометрий — очень толстая мышечная оболочка (3 переплетающихся слоя: подслизистый, сосудистый, надсосудистый) 3. Периметрий (серозная).",
-    "keyCells": "Реснитчатые и секреторные клетки эпителия и желез, децидуальные/стромальные клетки, гигантские гладкие миоциты миометрия.",
-    "killerFeature": "Толстая слизистая с многочисленными срезами трубчатых маточных желез (в фазу секреции — штопорообразно извитых) переходит без подслизистой основы в мощнейший мышечный слой (миометрий).",
-    "distractors": [
-      "Мочевой пузырь",
-      "Толстая кишка",
-      "Пилорический отдел желудка"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Эндометрий",
-        "name": "Эндометрий со срезами маточных желез",
-        "description": "Функциональный слой с простыми трубчатыми железами и рыхлой клеточной стромой.",
-        "color": "#6366F1",
-        "pin_x": 48,
-        "pin_y": 30
-      },
-      {
-        "number": 2,
-        "short_name": "Миометрий",
-        "name": "Мощный миометрий (гладкие миоциты)",
-        "description": "Гигантские пучки гладкомышечных клеток с кровеносными сосудами сосудистого слоя.",
-        "color": "#EC4899",
-        "pin_x": 52,
-        "pin_y": 70
-      }
-    ],
-    "embryoOrigin": "Слияние каудальных отделов мюллеровых протоков",
-    "functionText": "Имплантация бластоцисты, вынашивание плода и изгнание его в родах",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a1/Uterus_endometrium_40x.jpg/800px-Uterus_endometrium_40x.jpg",
-      "https://upload.wikimedia.org/wikipedia/commons/6/67/Rabbit_uterus_at_3-7_days_of_pseudopregnancy.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/Rabbit_uterus_at_different_stages_of_pseudopregnancy.png/1280px-Rabbit_uterus_at_different_stages_of_pseudopregnancy.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)",
-      "Срез 2 (Атлас)",
-      "Срез 3 (Атлас)"
-    ],
-    "examPlan": {
-      "stainAndType": "Матка (эндометрий и миометрий) (Гематоксилин и эозин)",
-      "origin": "Слияние каудальных отделов мюллеровых протоков",
-      "structure": "1. Эндометрий — слизистая (однослойный призматический эпителий, рыхлая строма с простыми трубчатыми маточными железами; делится на функциональный и базальный слои) 2. Миометрий — очень толстая мышечная оболочка (3 переплетающихся слоя: подслизистый, сосудистый, надсосудистый) 3. Периметрий (серозная).",
-      "location": "Реснитчатые и секреторные клетки эпителия и желез, децидуальные/стромальные клетки, гигантские гладкие миоциты миометрия.",
-      "functionText": "Имплантация бластоцисты, вынашивание плода и изгнание его в родах",
-      "killerFeature": "Толстая слизистая с многочисленными срезами трубчатых маточных желез (в фазу секреции — штопорообразно извитых) переходит без подслизистой основы в мощнейший мышечный слой (миометрий)."
-    }
-  },
-  {
-    "id": "slide_68",
-    "examNumber": 68,
-    "moduleId": "mod_urogenital",
-    "title": "Молочная железа (лактирующая / нелактирующая)",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x100 / x200",
-    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Lactating_mammary_gland_40x.jpg/800px-Lactating_mammary_gland_40x.jpg",
-    "layersText": "Дольчатое строение; в дольках (при лактации) — сильно разросшиеся альвеолярные концевые отделы, заполненные секретом (молоком), и выводные протоки; между дольками — прослойки РВСТ и жировой ткани.",
-    "keyCells": "Лактоциты (секреторные клетки с каплями жира на апикальном полюсе — апокриновая секреция) и звездчатые миоэпителиальные клетки вокруг альвеол.",
-    "killerFeature": "Крупные дольки из растянутых секреторных альвеол разной формы, внутри которых виден розовый белковый секрет и светлые вакуоли капель молочного жира.",
-    "distractors": [
-      "Щитовидная железа",
-      "Легкое",
-      "Предстательная железа"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Альвеолы с молоком",
-        "name": "Растянутые секреторные альвеолы с молоком",
-        "description": "Альвеолы выстланы лактоцитами с куполообразными верхушками и розовым секретом внутри.",
-        "color": "#EC4899",
-        "pin_x": 48,
-        "pin_y": 40
-      },
-      {
-        "number": 2,
-        "short_name": "Строма дольки",
-        "name": "Междольковая соединительная ткань и жир",
-        "description": "Прослойки РВСТ с кровеносными сосудами и дольками белой жировой ткани.",
-        "color": "#6366F1",
-        "pin_x": 75,
-        "pin_y": 60
-      }
-    ],
-    "embryoOrigin": "Развивается из эпителия эктодермального происхождения (впячивания эпидермиса — молочные полоски) и окружающей мезенхимы (соединительная ткань, строма и жировая ткань). Под влиянием гормонов гипофиза и яичников происходит развитие альвеол и подготовка к лактации.",
-    "functionText": "Синтез и секреция молока для вскармливания потомства. Альвеолы выделяют молоко, которое накапливается в полостях альвеол и выводится через систему протоков в млечные цистерны (синусы)",
-    "imageUrls": [
-      "./slides/tg/slide_4294968129_0.jpg"
-    ],
-    "imageLabels": [
-      "Срез 1 (Кафедра)"
-    ],
-    "examPlan": {
-      "stainAndType": "Молочная железа (лактирующая / нелактирующая) (?)",
-      "origin": "Развивается из эпителия эктодермального происхождения (впячивания эпидермиса — молочные полоски) и окружающей мезенхимы (соединительная ткань, строма и жировая ткань). Под влиянием гормонов гипофиза и яичников происходит развитие альвеол и подготовка к лактации.",
-      "structure": "На препарате видна сложная альвеолярно-трубчатая (или альвеолярная) железа. Паренхима органа представлена множеством долек, разделенных прослойками соединительной ткани (междольковые перегородки). Внутри долек четко видны концевые отделы — альвеолы (округлые или овальные структуры, выстланные однослойным эпителием) и выводные протоки (более крупные полости). На снимке в центре виден расширенный млечный синус/проток, заполненный секретом (секрет выглядит как гомогенная масса яркого оранжево-желтого цвета). Вокруг альвеол и между ними обильно развита соединительная ткань с жировыми клетками (крупные светлые ячейки в перегородках).",
-      "location": "В области вымени (молочной железы) на брюшной стороне тела животного",
-      "functionText": "Синтез и секреция молока для вскармливания потомства. Альвеолы выделяют молоко, которое накапливается в полостях альвеол и выводится через систему протоков в млечные цистерны (синусы)",
-      "killerFeature": "Крупные дольки из растянутых секреторных альвеол разной формы, внутри которых виден розовый белковый секрет и светлые вакуоли капель молочного жира."
-    }
-  },
-  {
-    "id": "slide_69",
-    "examNumber": 69,
-    "moduleId": "mod_urogenital",
-    "title": "Плацента человека (срез со стороны плодной поверхности)",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x100 / x400",
-    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4e/Schematic_representation_of_a_human_placenta_at_term.jpg/1280px-Schematic_representation_of_a_human_placenta_at_term.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "layersText": "1. Амниотическая оболочка (однослойный кубический/призматический эпителий + соединительная ткань) 2. Хориальная пластинка (плотная соединительная ткань с крупными плодными сосудами) 3. Многочисленные срезы ворсин хориона в межворсинчатом пространстве с материнской кровью.",
-    "keyCells": "Синтитиотрофобласт (наружный многоядерный симпласт ворсин), цитотрофобласт (клетки Лангханса — в ранней плаценте), клетки Кащенко-Гофбауэра (макрофаги стромы ворсин), фибриноид Лангханса.",
-    "killerFeature": "Плоская эпителиальная выстилка амниона сверху, плотная хориальная пластинка и «море» поперечных срезов ворсин хориона с капиллярами плода внутри и эритроцитами матери снаружи.",
-    "distractors": [
-      "Плацента со стороны материнской поверхности",
-      "Легкое",
-      "Яйцевод"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Амнион и хорион",
-        "name": "Амниотическая оболочка и хориальная пластинка",
-        "description": "Гладкий однослойный эпителий амниона сверху и плотная волокнистая ткань хориона с сосудами.",
-        "color": "#6366F1",
-        "pin_x": 48,
-        "pin_y": 20
-      },
-      {
-        "number": 2,
-        "short_name": "Ворсины хориона",
-        "name": "Ворсины хориона в межворсинчатом пространстве",
-        "description": "Срезы древовидных ворсин с синцитиотрофобластом и капиллярами плода.",
-        "color": "#EC4899",
-        "pin_x": 52,
-        "pin_y": 60
-      }
-    ],
-    "embryoOrigin": "Ворсинчатый хорион плода (трофобласт + внезародышевая мезодерма)",
-    "functionText": "Газообмен, трофика, иммунный барьер плода, синтез ХГЧ и плацентарного лактогена",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Human_placenta_chorionic_villi_40x.jpg/800px-Human_placenta_chorionic_villi_40x.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4e/Schematic_representation_of_a_human_placenta_at_term.jpg/1280px-Schematic_representation_of_a_human_placenta_at_term.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/df/Chorionic_Terminal_Villus_%28NIH_BioArt_702%29.png/1280px-Chorionic_Terminal_Villus_%28NIH_BioArt_702%29.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)",
-      "Срез 2 (Атлас)",
-      "Срез 3 (Атлас)"
-    ],
-    "examPlan": {
-      "stainAndType": "Плацента человека (срез со стороны плодной поверхности) (Гематоксилин и эозин)",
-      "origin": "Ворсинчатый хорион плода (трофобласт + внезародышевая мезодерма)",
-      "structure": "1. Амниотическая оболочка (однослойный кубический/призматический эпителий + соединительная ткань) 2. Хориальная пластинка (плотная соединительная ткань с крупными плодными сосудами) 3. Многочисленные срезы ворсин хориона в межворсинчатом пространстве с материнской кровью.",
-      "location": "Синтитиотрофобласт (наружный многоядерный симпласт ворсин), цитотрофобласт (клетки Лангханса — в ранней плаценте), клетки Кащенко-Гофбауэра (макрофаги стромы ворсин), фибриноид Лангханса.",
-      "functionText": "Газообмен, трофика, иммунный барьер плода, синтез ХГЧ и плацентарного лактогена",
-      "killerFeature": "Плоская эпителиальная выстилка амниона сверху, плотная хориальная пластинка и «море» поперечных срезов ворсин хориона с капиллярами плода внутри и эритроцитами матери снаружи."
-    }
-  },
-  {
-    "id": "slide_70",
-    "examNumber": 70,
-    "moduleId": "mod_urogenital",
-    "title": "Плацента человека (срез со стороны материнской поверхности)",
-    "stain": "Гематоксилин и эозин",
-    "magnification": "x100 / x200",
-    "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/Anatomy_of_the_Human_Body_%28Part_1%29.djvu/page1-1280px-Anatomy_of_the_Human_Body_%28Part_1%29.djvu.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-    "layersText": "Базальная отпадающая оболочка (decidua basalis) с крупными децидуальными клетками, прослойками ярко-розового фибриноида Рора/Нитахбуха, спиральными артериями и прикрепляющимися якорными ворсинами хориона.",
-    "keyCells": "Децидуальные клетки (очень крупные, округлые/полигональные, со светлой оксифильной цитоплазмой богатой гликогеном и четкими границами), клетки трофобласта, эндотелиоциты.",
-    "killerFeature": "Наличие массивных пластов гигантских светлых децидуальных клеток в отпадающей оболочке матки, в которую врастают якорные ворсины хориона и откладывается ярко-розовый фибриноид.",
-    "distractors": [
-      "Плацента со стороны плодной поверхности",
-      "Матка (эндометрий)",
-      "Желтое тело яичника"
-    ],
-    "layers": [
-      {
-        "number": 1,
-        "short_name": "Децидуальная оболочка",
-        "name": "Базальная отпадающая оболочка (decidua basalis)",
-        "description": "Массивные пласты гигантских светлых децидуальных клеток, богатых гликогеном.",
-        "color": "#F59E0B",
-        "pin_x": 48,
-        "pin_y": 35
-      },
-      {
-        "number": 2,
-        "short_name": "Якорные ворсины",
-        "name": "Якорные ворсины и фибриноид Рора",
-        "description": "Ворсины хориона, прикрепляющиеся к децидуальной ткани через ярко-розовый фибриноид.",
-        "color": "#6366F1",
-        "pin_x": 55,
-        "pin_y": 65
-      }
-    ],
-    "embryoOrigin": "Базальная пластинка децидуальной оболочки эндометрия матки",
-    "functionText": "Образование лакун с материнской кровью, омывающей ворсины хориона плода",
-    "imageUrls": [
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Placenta_decidua_basalis_40x.jpg/800px-Placenta_decidua_basalis_40x.jpg",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/Anatomy_of_the_Human_Body_%28Part_1%29.djvu/page1-1280px-Anatomy_of_the_Human_Body_%28Part_1%29.djvu.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/Anatomy_of_the_Human_Body%28Lewis-1918%29.djvu/page1-1280px-Anatomy_of_the_Human_Body%28Lewis-1918%29.djvu.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
-    ],
-    "imageLabels": [
-      "Срез 1 (Оригинал)",
-      "Срез 2 (Атлас)",
-      "Срез 3 (Атлас)"
-    ],
-    "examPlan": {
-      "stainAndType": "Плацента человека (срез со стороны материнской поверхности) (Гематоксилин и эозин)",
-      "origin": "Базальная пластинка децидуальной оболочки эндометрия матки",
-      "structure": "Базальная отпадающая оболочка (decidua basalis) с крупными децидуальными клетками, прослойками ярко-розового фибриноида Рора/Нитахбуха, спиральными артериями и прикрепляющимися якорными ворсинами хориона.",
-      "location": "Децидуальные клетки (очень крупные, округлые/полигональные, со светлой оксифильной цитоплазмой богатой гликогеном и четкими границами), клетки трофобласта, эндотелиоциты.",
-      "functionText": "Образование лакун с материнской кровью, омывающей ворсины хориона плода",
-      "killerFeature": "Наличие массивных пластов гигантских светлых децидуальных клеток в отпадающей оболочке матки, в которую врастают якорные ворсины хориона и откладывается ярко-розовый фибриноид."
-    }
+    "killerFeature": "Четкие черные извилистые границы («пазлы») при серебрении."
   }
-
+},
+{
+  "id": "slide_02",
+  "examNumber": 2,
+  "moduleId": "mod_epithelium_conn",
+  "title": "Однослойный столбчатый каемчатый эпителий",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x400",
+  "imageUrl": "",
+  "layersText": "Однорядный пласт высоких призматических клеток с полоской щеточной каемки.",
+  "keyCells": "Каемчатые энтероциты, бокаловидные клетки.",
+  "killerFeature": "Четкая розовая щеточная каемка на апикальном крае высоких клеток.",
+  "distractors": [
+    "Многорядный эпителий",
+    "Многослойный эпителий",
+    "Переходный эпителий"
+  ],
+  "youtubeTimestampUrl": "https://youtu.be/axja21H8i9I?t=364",
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Каемка",
+      "name": "Щеточная каемка (микроворсинки)",
+      "description": "Плотный слой микроворсинок с гликокаликсом на апикальном крае.",
+      "color": "#EC4899",
+      "pin_x": 50,
+      "pin_y": 25
+    },
+    {
+      "number": 2,
+      "short_name": "Энтероцит",
+      "name": "Призматический энтероцит",
+      "description": "Высокая клетка цилиндрической формы с базальным ядром.",
+      "color": "#6366F1",
+      "pin_x": 45,
+      "pin_y": 50
+    },
+    {
+      "number": 3,
+      "short_name": "Бокал. кл.",
+      "name": "Бокаловидная клетка",
+      "description": "Светлая одноклеточная эндоэпителиальная железа со слизью.",
+      "color": "#10B981",
+      "pin_x": 62,
+      "pin_y": 42
+    }
+  ],
+  "embryoOrigin": "Энтодерма кишечной трубки",
+  "functionText": "Пристеночное пищеварение и полостное всасывание питательных веществ, секреция слизи",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Однослойный столбчатый каемчатый эпителий (Гематоксилин и эозин)",
+    "origin": "Энтодерма кишечной трубки",
+    "structure": "Однорядный пласт высоких призматических клеток с полоской щеточной каемки.",
+    "location": "Каемчатые энтероциты, бокаловидные клетки.",
+    "functionText": "Пристеночное пищеварение и полостное всасывание питательных веществ, секреция слизи",
+    "killerFeature": "Четкая розовая щеточная каемка на апикальном крае высоких клеток."
+  }
+},
+{
+  "id": "slide_03",
+  "examNumber": 3,
+  "moduleId": "mod_epithelium_conn",
+  "title": "Однослойный многорядный реснитчатый эпителий (трахея)",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x400",
+  "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/2304_Pseudostratified_Epithelium.jpg/1280px-2304_Pseudostratified_Epithelium.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "layersText": "Все клетки на базальной мембране, но ядра на разной высоте (многорядность).",
+  "keyCells": "Реснитчатые, бокаловидные, вставочные базальные клетки.",
+  "killerFeature": "Многоядерные ряды и реснички на поверхности без бокаловидных разрывов.",
+  "distractors": [
+    "Однослойный эпителий",
+    "Многослойный плоский",
+    "Каемчатый эпителий"
+  ],
+  "youtubeTimestampUrl": "https://youtu.be/axja21H8i9I?t=634",
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Реснички",
+      "name": "Мерцательные реснички",
+      "description": "Подвижные выросты цитоплазмы с аксонемой 9х2 + 2 микротрубочек.",
+      "color": "#6366F1",
+      "pin_x": 50,
+      "pin_y": 20
+    },
+    {
+      "number": 2,
+      "short_name": "Ядра",
+      "name": "Ряды ядер вставочных клеток",
+      "description": "Разноуровневое положение ядер создает эффект многослойности.",
+      "color": "#EC4899",
+      "pin_x": 48,
+      "pin_y": 55
+    },
+    {
+      "number": 3,
+      "short_name": "Мембрана",
+      "name": "Базальная мембрана",
+      "description": "Толстая четко очерченная базальная мембрана дыхательных путей.",
+      "color": "#10B981",
+      "pin_x": 50,
+      "pin_y": 78
+    }
+  ],
+  "embryoOrigin": "Прехордальная пластинка / энтодерма передней кишки",
+  "functionText": "Мукоцилиарный клиренс: очищение, согревание и увлажнение вдыхаемого воздуха",
+  "imageUrls": [
+    "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/76/2304_Pseudostratified_Epithelium.jpg/1280px-2304_Pseudostratified_Epithelium.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/26/Ciliated_epithelium_from_the_human_windpipe._Wellcome_M0011238.jpg/1280px-Ciliated_epithelium_from_the_human_windpipe._Wellcome_M0011238.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  ],
+  "imageLabels": [
+    "Срез 2 (Атлас)",
+    "Срез 3 (Атлас)"
+  ],
+  "examPlan": {
+    "stainAndType": "Однослойный многорядный реснитчатый эпителий (трахея) (Гематоксилин и эозин)",
+    "origin": "Прехордальная пластинка / энтодерма передней кишки",
+    "structure": "Все клетки на базальной мембране, но ядра на разной высоте (многорядность).",
+    "location": "Реснитчатые, бокаловидные, вставочные базальные клетки.",
+    "functionText": "Мукоцилиарный клиренс: очищение, согревание и увлажнение вдыхаемого воздуха",
+    "killerFeature": "Многоядерные ряды и реснички на поверхности без бокаловидных разрывов."
+  }
+},
+{
+  "id": "slide_04",
+  "examNumber": 4,
+  "moduleId": "mod_epithelium_conn",
+  "title": "Многослойный плоский неороговевающий эпителий (пищевод / роговица)",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x200",
+  "imageUrl": "",
+  "layersText": "Базальный, шиповатый и плоский поверхностный слои (живые ядра доверху).",
+  "keyCells": "Кератиноциты разных слоев.",
+  "killerFeature": "Много рядов клеток, поверхностные клетки уплощены, но сохраняют ядра.",
+  "distractors": [
+    "Ороговевающий эпителий",
+    "Переходный эпителий",
+    "Многорядный эпителий"
+  ],
+  "youtubeTimestampUrl": "https://youtu.be/axja21H8i9I?t=892",
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Поверхн. слой",
+      "name": "Поверхностный слой плоских клеток с ядрами",
+      "description": "Уплощенные живые клетки с четко видимыми ядрами.",
+      "color": "#EC4899",
+      "pin_x": 50,
+      "pin_y": 22
+    },
+    {
+      "number": 2,
+      "short_name": "Шиповатый",
+      "name": "Шиповатый промежуточный слой",
+      "description": "Полигональные клетки с десмосомальными контактами.",
+      "color": "#6366F1",
+      "pin_x": 50,
+      "pin_y": 48
+    },
+    {
+      "number": 3,
+      "short_name": "Базальный",
+      "name": "Базальный камбиальный слой",
+      "description": "Призматические делящиеся клетки на базальной мембране.",
+      "color": "#10B981",
+      "pin_x": 50,
+      "pin_y": 75
+    }
+  ],
+  "embryoOrigin": "Эктодерма (передний отдел пищеварительной трубки)",
+  "functionText": "Механическая защита подлежащих тканей от грубого пищевого комка",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Многослойный плоский неороговевающий эпителий (пищевод / роговица) (Гематоксилин и эозин)",
+    "origin": "Эктодерма (передний отдел пищеварительной трубки)",
+    "structure": "Базальный, шиповатый и плоский поверхностный слои (живые ядра доверху).",
+    "location": "Кератиноциты разных слоев.",
+    "functionText": "Механическая защита подлежащих тканей от грубого пищевого комка",
+    "killerFeature": "Много рядов клеток, поверхностные клетки уплощены, но сохраняют ядра."
+  }
+},
+{
+  "id": "slide_05",
+  "examNumber": 5,
+  "moduleId": "mod_epithelium_conn",
+  "title": "Многослойный переходный эпителий (уротелий — мочевой пузырь)",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x400",
+  "imageUrl": "",
+  "layersText": "Базальный, промежуточный и поверхностный слои с куполообразными клетками.",
+  "keyCells": "Зонтичные (поверхностные) крупные клетки, часто двуядерные.",
+  "killerFeature": "Крупные куполообразные поверхностные клетки («зонтичные»), меняющие форму при растяжении.",
+  "distractors": [
+    "Многослойный неороговевающий",
+    "Многорядный эпителий",
+    "Однослойный кубический"
+  ],
+  "youtubeTimestampUrl": "https://youtu.be/axja21H8i9I?t=1166",
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Зонтичные кл.",
+      "name": "Крупные зонтичные клетки",
+      "description": "Куполообразные клетки, покрывающие несколько промежуточных.",
+      "color": "#EC4899",
+      "pin_x": 48,
+      "pin_y": 28
+    },
+    {
+      "number": 2,
+      "short_name": "Промежуточный",
+      "name": "Промежуточный грушевидный слой",
+      "description": "Клетки с вытянутыми ножками, скользящие друг по другу при растяжении.",
+      "color": "#6366F1",
+      "pin_x": 50,
+      "pin_y": 52
+    },
+    {
+      "number": 3,
+      "short_name": "Базальный",
+      "name": "Базальный слой",
+      "description": "Мелкие округлые камбиальные клетки.",
+      "color": "#10B981",
+      "pin_x": 52,
+      "pin_y": 75
+    }
+  ],
+  "embryoOrigin": "Мезодерма (промежуточная мезодерма / нефрогонотом)",
+  "functionText": "Защита от агрессивных компонентов мочи, растяжимость при наполнении мочевыводящих путей",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Многослойный переходный эпителий (уротелий — мочевой пузырь) (Гематоксилин и эозин)",
+    "origin": "Мезодерма (промежуточная мезодерма / нефрогонотом)",
+    "structure": "Базальный, промежуточный и поверхностный слои с куполообразными клетками.",
+    "location": "Зонтичные (поверхностные) крупные клетки, часто двуядерные.",
+    "functionText": "Защита от агрессивных компонентов мочи, растяжимость при наполнении мочевыводящих путей",
+    "killerFeature": "Крупные куполообразные поверхностные клетки («зонтичные»), меняющие форму при растяжении."
+  }
+},
+{
+  "id": "slide_06",
+  "examNumber": 6,
+  "moduleId": "mod_epithelium_conn",
+  "title": "Многослойный плоский ороговевающий эпителий (кожа пальца)",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x200",
+  "imageUrl": "",
+  "layersText": "Базальный, шиповатый, зернистый, блестящий и мощный роговой слои.",
+  "keyCells": "Кератиноциты, корнеоциты без ядер в роговом слое.",
+  "killerFeature": "Наличие бесструктурного розового рогового слоя из омертвевших чешуек сверху.",
+  "distractors": [
+    "Неороговевающий эпителий",
+    "Переходный эпителий",
+    "Многорядный реснитчатый"
+  ],
+  "youtubeTimestampUrl": "https://youtu.be/axja21H8i9I?t=1521",
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Роговой",
+      "name": "Роговой слой (корнеоциты)",
+      "description": "Многослойные пласты безъядерных кератиновых чешуек.",
+      "color": "#EC4899",
+      "pin_x": 50,
+      "pin_y": 18
+    },
+    {
+      "number": 2,
+      "short_name": "Зернистый",
+      "name": "Зернистый слой",
+      "description": "Темные гранулы кератогиалина в цитоплазме.",
+      "color": "#7C3AED",
+      "pin_x": 50,
+      "pin_y": 38
+    },
+    {
+      "number": 3,
+      "short_name": "Шиповатый",
+      "name": "Шиповатый слой",
+      "description": "Много рядов полигональных кератиноцитов с десмосомами.",
+      "color": "#6366F1",
+      "pin_x": 50,
+      "pin_y": 58
+    }
+  ],
+  "embryoOrigin": "Кожная эктодерма",
+  "functionText": "Барьерная функция, защита от механических повреждений, высыхания и проникновения микроорганизмов",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Многослойный плоский ороговевающий эпителий (кожа пальца) (Гематоксилин и эозин)",
+    "origin": "Кожная эктодерма",
+    "structure": "Базальный, шиповатый, зернистый, блестящий и мощный роговой слои.",
+    "location": "Кератиноциты, корнеоциты без ядер в роговом слое.",
+    "functionText": "Барьерная функция, защита от механических повреждений, высыхания и проникновения микроорганизмов",
+    "killerFeature": "Наличие бесструктурного розового рогового слоя из омертвевших чешуек сверху."
+  }
+},
+{
+  "id": "slide_07",
+  "examNumber": 7,
+  "moduleId": "mod_epithelium_conn",
+  "title": "Простая разветвленная альвеолярная железа (сальная железа кожи)",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x200",
+  "imageUrl": "",
+  "layersText": "Мешковидные концевые отделы (альвеолы), открывающиеся в волосяной фолликул.",
+  "keyCells": "Себоциты (с накоплением капель жира — голокриновый тип секреции).",
+  "killerFeature": "Светлые ячеистые клетки с пенистой цитоплазмой, распадающиеся при выделении секрета.",
+  "distractors": [
+    "Потовые железы",
+    "Слюнные железы",
+    "Щитовидная железа"
+  ],
+  "youtubeTimestampUrl": "https://youtu.be/axja21H8i9I?t=2159",
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Альвеола",
+      "name": "Концевой альвеолярный отдел",
+      "description": "Группа клеток, окруженная соединительнотканной капсулой.",
+      "color": "#6366F1",
+      "pin_x": 48,
+      "pin_y": 40
+    },
+    {
+      "number": 2,
+      "short_name": "Себоциты",
+      "name": "Себоциты с каплями липидов",
+      "description": "Светлые ячеистые клетки на разных стадиях накопления жира.",
+      "color": "#EC4899",
+      "pin_x": 55,
+      "pin_y": 55
+    },
+    {
+      "number": 3,
+      "short_name": "Фолликул",
+      "name": "Волосяной фолликул",
+      "description": "Устье железы открывается в шейку волосяного фолликула.",
+      "color": "#10B981",
+      "pin_x": 35,
+      "pin_y": 30
+    }
+  ],
+  "embryoOrigin": "Кожная эктодерма",
+  "functionText": "Голокриновая секреция кожного сала, смягчение кожи и бактерицидная защита",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Простая разветвленная альвеолярная железа (сальная железа кожи) (Гематоксилин и эозин)",
+    "origin": "Кожная эктодерма",
+    "structure": "Мешковидные концевые отделы (альвеолы), открывающиеся в волосяной фолликул.",
+    "location": "Себоциты (с накоплением капель жира — голокриновый тип секреции).",
+    "functionText": "Голокриновая секреция кожного сала, смягчение кожи и бактерицидная защита",
+    "killerFeature": "Светлые ячеистые клетки с пенистой цитоплазмой, распадающиеся при выделении секрета."
+  }
+},
+{
+  "id": "slide_08",
+  "examNumber": 8,
+  "moduleId": "mod_cartilage_bone_muscle",
+  "title": "Кровь человека (мазок)",
+  "stain": "По Романовскому-Гимза",
+  "magnification": "x900",
+  "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Connective_Tissue_Hyaline_Cartilage_%2840958872915%29.jpg/1280px-Connective_Tissue_Hyaline_Cartilage_%2840958872915%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "layersText": "Форменные элементы в жидкой плазме.",
+  "keyCells": "Эритроциты, нейтрофилы, лимфоциты, моноциты, эозинофилы, тромбоциты.",
+  "killerFeature": "Масса розовых безъядерных дисков-эритроцитов и редкие ядра лейкоцитов.",
+  "distractors": [
+    "Красный костный мозг",
+    "Лимфа",
+    "Селезенка"
+  ],
+  "youtubeTimestampUrl": "https://youtu.be/axja21H8i9I?t=2706",
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Эритроциты",
+      "name": "Эритроциты (нормоциты)",
+      "description": "Безъядерные двояковогнутые диски диаметром 7.5 мкм.",
+      "color": "#EC4899",
+      "pin_x": 40,
+      "pin_y": 40
+    },
+    {
+      "number": 2,
+      "short_name": "Нейтрофил",
+      "name": "Сегментоядерный нейтрофил",
+      "description": "Лейкоцит с ядром из 3-5 сегментов и мелкой зернистостью.",
+      "color": "#7C3AED",
+      "pin_x": 58,
+      "pin_y": 48
+    },
+    {
+      "number": 3,
+      "short_name": "Тромбоциты",
+      "name": "Кровяные пластинки (тромбоциты)",
+      "description": "Мелкие безъядерные фиолетовые осколки мегакариоцитов.",
+      "color": "#6366F1",
+      "pin_x": 68,
+      "pin_y": 60
+    }
+  ],
+  "embryoOrigin": "Мезенхима красного костного мозга (стволовые клетки крови)",
+  "functionText": "Транспорт газов (эритроциты), иммунный надзор (лейкоциты), гемостаз (тромбоциты)",
+  "imageUrls": [
+    "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Connective_Tissue_Hyaline_Cartilage_%2840958872915%29.jpg/1280px-Connective_Tissue_Hyaline_Cartilage_%2840958872915%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/46/Connective_Tissue_Hyaline_Cartilage_%2826989335717%29.jpg/1280px-Connective_Tissue_Hyaline_Cartilage_%2826989335717%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  ],
+  "imageLabels": [
+    "Срез 2 (Атлас)",
+    "Срез 3 (Атлас)"
+  ],
+  "examPlan": {
+    "stainAndType": "Кровь человека (мазок) (По Романовскому-Гимза)",
+    "origin": "Мезенхима красного костного мозга (стволовые клетки крови)",
+    "structure": "Форменные элементы в жидкой плазме.",
+    "location": "Эритроциты, нейтрофилы, лимфоциты, моноциты, эозинофилы, тромбоциты.",
+    "functionText": "Транспорт газов (эритроциты), иммунный надзор (лейкоциты), гемостаз (тромбоциты)",
+    "killerFeature": "Масса розовых безъядерных дисков-эритроцитов и редкие ядра лейкоцитов."
+  }
+},
+{
+  "id": "slide_09",
+  "examNumber": 9,
+  "moduleId": "mod_cartilage_bone_muscle",
+  "title": "Рыхлая волокнистая соединительная ткань (РВСТ, пленочный препарат)",
+  "stain": "Железный гематоксилин",
+  "magnification": "x400",
+  "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/Connective_Tissue_Elastic_Cartilage_%2841812803082%29.jpg/1280px-Connective_Tissue_Elastic_Cartilage_%2841812803082%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "layersText": "Переплетающиеся пучки коллагеновых и тонкие сети эластических волокон.",
+  "keyCells": "Фибробласты, макрофаги, тучные клетки, плазмоциты.",
+  "killerFeature": "Два типа волокон (толстые коллагеновые и тонкие эластические) в аморфном матриксе.",
+  "distractors": [
+    "Плотная волокнистая ткань",
+    "Мезенхима",
+    "Ретикулярная ткань"
+  ],
+  "youtubeTimestampUrl": "https://youtu.be/axja21H8i9I?t=3532",
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Коллаген",
+      "name": "Пучки коллагеновых волокон",
+      "description": "Широкие розовые волнистые ленты неветвящихся волокон.",
+      "color": "#EC4899",
+      "pin_x": 45,
+      "pin_y": 35
+    },
+    {
+      "number": 2,
+      "short_name": "Эластин",
+      "name": "Эластические волокна",
+      "description": "Тонкие темные ветвящиеся нити, анастомозирующие в сеть.",
+      "color": "#0F172A",
+      "pin_x": 60,
+      "pin_y": 50
+    },
+    {
+      "number": 3,
+      "short_name": "Фибробласт",
+      "name": "Фибробласт",
+      "description": "Крупная отростчатая клетка со светлым овальным ядром.",
+      "color": "#6366F1",
+      "pin_x": 35,
+      "pin_y": 65
+    }
+  ],
+  "embryoOrigin": "Мезенхима",
+  "functionText": "Трофическая, опорная, защитная (фагоцитоз, иммуногенез), пластическая (регенерация)",
+  "imageUrls": [
+    "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/Connective_Tissue_Elastic_Cartilage_%2841812803082%29.jpg/1280px-Connective_Tissue_Elastic_Cartilage_%2841812803082%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4c/Connective_Tissue_Elastic_Cartilage_%2841855667361%29.jpg/1280px-Connective_Tissue_Elastic_Cartilage_%2841855667361%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  ],
+  "imageLabels": [
+    "Срез 2 (Атлас)",
+    "Срез 3 (Атлас)"
+  ],
+  "examPlan": {
+    "stainAndType": "Рыхлая волокнистая соединительная ткань (РВСТ, пленочный препарат) (Железный гематоксилин)",
+    "origin": "Мезенхима",
+    "structure": "Переплетающиеся пучки коллагеновых и тонкие сети эластических волокон.",
+    "location": "Фибробласты, макрофаги, тучные клетки, плазмоциты.",
+    "functionText": "Трофическая, опорная, защитная (фагоцитоз, иммуногенез), пластическая (регенерация)",
+    "killerFeature": "Два типа волокон (толстые коллагеновые и тонкие эластические) в аморфном матриксе."
+  }
+},
+{
+  "id": "slide_10",
+  "examNumber": 10,
+  "moduleId": "mod_cartilage_bone_muscle",
+  "title": "Плотная оформленная соединительная ткань (сухожилие, продольный срез)",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x200",
+  "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/Connective_Tissue_Fibrocartilage_%2827988651538%29.jpg/1280px-Connective_Tissue_Fibrocartilage_%2827988651538%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "layersText": "Параллельные толстые пучки коллагеновых волокон 1-го и 2-го порядка.",
+  "keyCells": "Тендиноциты (фиброциты) с вытянутыми темными ядрами в виде цепочек.",
+  "killerFeature": "Строго параллельные волнистые розовые пучки волокон и ровные ряды ядер между ними.",
+  "distractors": [
+    "Скелетная мышца",
+    "Плотная неоформленная ткань",
+    "Гладкая мышца"
+  ],
+  "youtubeTimestampUrl": "https://youtu.be/axja21H8i9I?t=4106",
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Коллаген",
+      "name": "Параллельные коллагеновые пучки",
+      "description": "Плотные пучки волокон I порядка, ориентированные строго вдоль оси.",
+      "color": "#EC4899",
+      "pin_x": 50,
+      "pin_y": 35
+    },
+    {
+      "number": 2,
+      "short_name": "Тендиноциты",
+      "name": "Ряды ядер сухожильных клеток (тендиноцитов)",
+      "description": "Вытянутые уплощенные темные ядра фиброцитов в виде цепочек.",
+      "color": "#7C3AED",
+      "pin_x": 48,
+      "pin_y": 55
+    },
+    {
+      "number": 3,
+      "short_name": "Эндотеноний",
+      "name": "Эндотеноний",
+      "description": "Прослойки РВСТ с капиллярами между пучками II порядка.",
+      "color": "#10B981",
+      "pin_x": 55,
+      "pin_y": 80
+    }
+  ],
+  "embryoOrigin": "Мезенхима (склеротом)",
+  "functionText": "Передача механической тяги от скелетной мышцы к кости, высокая прочность на разрыв",
+  "imageUrls": [
+    "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f3/Connective_Tissue_Fibrocartilage_%2827988651538%29.jpg/1280px-Connective_Tissue_Fibrocartilage_%2827988651538%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  ],
+  "imageLabels": [
+    "Срез 3 (Атлас)"
+  ],
+  "examPlan": {
+    "stainAndType": "Плотная оформленная соединительная ткань (сухожилие, продольный срез) (Гематоксилин и эозин)",
+    "origin": "Мезенхима (склеротом)",
+    "structure": "Параллельные толстые пучки коллагеновых волокон 1-го и 2-го порядка.",
+    "location": "Тендиноциты (фиброциты) с вытянутыми темными ядрами в виде цепочек.",
+    "functionText": "Передача механической тяги от скелетной мышцы к кости, высокая прочность на разрыв",
+    "killerFeature": "Строго параллельные волнистые розовые пучки волокон и ровные ряды ядер между ними."
+  }
+},
+{
+  "id": "slide_11",
+  "examNumber": 11,
+  "moduleId": "mod_cartilage_bone_muscle",
+  "title": "Гиалиновый хрящ (ребро)",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x200",
+  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Gray73.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+  "layersText": "Надхрящница и глубокая зона с изогенными группами хондроцитов.",
+  "keyCells": "Хондроциты в лакунах по 2–5 штук (изогенные группы).",
+  "killerFeature": "Однородное стекловидное (базофильное) межклеточное вещество без видимых волокон.",
+  "distractors": [
+    "Эластический хрящ",
+    "Костная ткань",
+    "Волокнистый хрящ"
+  ],
+  "youtubeTimestampUrl": "https://youtu.be/axja21H8i9I?t=5152",
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Изогенная гр.",
+      "name": "Изогенная группа хондроцитов",
+      "description": "Группа из 2-4 клеток-потомков одного хондробласта в общей лакуне.",
+      "color": "#7C3AED",
+      "pin_x": 52,
+      "pin_y": 48
+    },
+    {
+      "number": 2,
+      "short_name": "Матрикс",
+      "name": "Базофильный матрикс",
+      "description": "Аморфное стекловидное вещество, богатое хондроитинсульфатами.",
+      "color": "#6366F1",
+      "pin_x": 38,
+      "pin_y": 60
+    },
+    {
+      "number": 3,
+      "short_name": "Надхрящница",
+      "name": "Надхрящница (перихондрий)",
+      "description": "Волокнистый слой с сосудами и камбиальными хондробластами.",
+      "color": "#EC4899",
+      "pin_x": 50,
+      "pin_y": 18
+    }
+  ],
+  "embryoOrigin": "Мезенхима (склеротом сомитов)",
+  "functionText": "Опорная и формообразующая функция скелета, обеспечение подвижности ребер и суставов",
+  "imageUrls": [
+    "https://upload.wikimedia.org/wikipedia/commons/c/cc/Gray73.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+    "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/58/624_Diagram_of_Compact_Bone-new.jpg/1280px-624_Diagram_of_Compact_Bone-new.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  ],
+  "imageLabels": [
+    "Срез 2 (Атлас)",
+    "Срез 3 (Атлас)"
+  ],
+  "examPlan": {
+    "stainAndType": "Гиалиновый хрящ (ребро) (Гематоксилин и эозин)",
+    "origin": "Мезенхима (склеротом сомитов)",
+    "structure": "Надхрящница и глубокая зона с изогенными группами хондроцитов.",
+    "location": "Хондроциты в лакунах по 2–5 штук (изогенные группы).",
+    "functionText": "Опорная и формообразующая функция скелета, обеспечение подвижности ребер и суставов",
+    "killerFeature": "Однородное стекловидное (базофильное) межклеточное вещество без видимых волокон."
+  }
+},
+{
+  "id": "slide_12",
+  "examNumber": 12,
+  "moduleId": "mod_cartilage_bone_muscle",
+  "title": "Эластический хрящ (ушная раковина)",
+  "stain": "Орсеин",
+  "magnification": "x200",
+  "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/Ossification_endochondrale_chez_le_chat.jpg/1280px-Ossification_endochondrale_chez_le_chat.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "layersText": "Матрикс, пронизанный густой сетью эластических волокон.",
+  "keyCells": "Хондроциты в капсулах.",
+  "killerFeature": "Темно-коричневая или вишневая густая сеть эластических волокон при окраске орсеином.",
+  "distractors": [
+    "Гиалиновый хрящ",
+    "Волокнистый хрящ",
+    "Костная ткань"
+  ],
+  "youtubeTimestampUrl": "https://youtu.be/axja21H8i9I?t=5758",
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Эластин",
+      "name": "Сеть эластических волокон",
+      "description": "Густая сеть волокон, избирательно прокрашенная орсеином.",
+      "color": "#991B1B",
+      "pin_x": 52,
+      "pin_y": 40
+    },
+    {
+      "number": 2,
+      "short_name": "Хондроциты",
+      "name": "Хондроциты в лакунах",
+      "description": "Клетки хряща, лежащие поодиночке или мелкими парами.",
+      "color": "#7C3AED",
+      "pin_x": 42,
+      "pin_y": 55
+    },
+    {
+      "number": 3,
+      "short_name": "Перихондрий",
+      "name": "Перихондрий",
+      "description": "Соединительнотканная оболочка хряща.",
+      "color": "#EC4899",
+      "pin_x": 50,
+      "pin_y": 20
+    }
+  ],
+  "embryoOrigin": "Мезенхима головной части (жаберные дуги)",
+  "functionText": "Упругость и поддержание формы наружного уха и надгортанника, обратимая деформация",
+  "imageUrls": [
+    "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/73/Ossification_endochondrale_chez_le_chat.jpg/1280px-Ossification_endochondrale_chez_le_chat.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  ],
+  "imageLabels": [
+    "Срез 3 (Атлас)"
+  ],
+  "examPlan": {
+    "stainAndType": "Эластический хрящ (ушная раковина) (Орсеин)",
+    "origin": "Мезенхима головной части (жаберные дуги)",
+    "structure": "Матрикс, пронизанный густой сетью эластических волокон.",
+    "location": "Хондроциты в капсулах.",
+    "functionText": "Упругость и поддержание формы наружного уха и надгортанника, обратимая деформация",
+    "killerFeature": "Темно-коричневая или вишневая густая сеть эластических волокон при окраске орсеином."
+  }
+},
+{
+  "id": "slide_13",
+  "examNumber": 13,
+  "moduleId": "mod_cartilage_bone_muscle",
+  "title": "Пластинчатая костная ткань (диафиз, поперечный срез по Шморлю)",
+  "stain": "По Шморлю",
+  "magnification": "x100",
+  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Skeletal_muscle_-_cross_section%2C_nerve_bundle.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+  "layersText": "Остеоны с концентрическими пластинками вокруг центральных каналов.",
+  "keyCells": "Остеоциты с паукообразными отростками в лакунах.",
+  "killerFeature": "Системы колец остеонов вокруг темных каналов Гаверса.",
+  "distractors": [
+    "Продольный срез кости",
+    "Непрямой остеогенез",
+    "Гиалиновый хрящ"
+  ],
+  "youtubeTimestampUrl": "https://youtu.be/axja21H8i9I?t=6193",
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Гаверсов канал",
+      "name": "Канал остеона (канал Гаверса)",
+      "description": "Центральный канал с кровеносными сосудами и нервными волокнами.",
+      "color": "#0F172A",
+      "pin_x": 50,
+      "pin_y": 50
+    },
+    {
+      "number": 2,
+      "short_name": "Пластинки",
+      "name": "Концентрические костные пластинки",
+      "description": "Цилиндрические слои минерализованного костного матрикса.",
+      "color": "#F59E0B",
+      "pin_x": 40,
+      "pin_y": 38
+    },
+    {
+      "number": 3,
+      "short_name": "Остеоциты",
+      "name": "Лакуны с остеоцитами",
+      "description": "Паукообразные темные щели с костными клетками и канальцами.",
+      "color": "#7C3AED",
+      "pin_x": 62,
+      "pin_y": 45
+    }
+  ],
+  "embryoOrigin": "Мезенхима (склеротом)",
+  "functionText": "Опорно-механическая функция, защита внутренних органов, минеральное депо кальция и фосфора",
+  "imageUrls": [
+    "https://upload.wikimedia.org/wikipedia/commons/c/c3/Skeletal_muscle_-_cross_section%2C_nerve_bundle.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+    "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/Muscle_Tissue_Cross_Section_Whole_Skeletal_Muscle_%2828089115068%29.jpg/1280px-Muscle_Tissue_Cross_Section_Whole_Skeletal_Muscle_%2828089115068%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  ],
+  "imageLabels": [
+    "Срез 2 (Атлас)",
+    "Срез 3 (Атлас)"
+  ],
+  "examPlan": {
+    "stainAndType": "Пластинчатая костная ткань (диафиз, поперечный срез по Шморлю) (По Шморлю)",
+    "origin": "Мезенхима (склеротом)",
+    "structure": "Остеоны с концентрическими пластинками вокруг центральных каналов.",
+    "location": "Остеоциты с паукообразными отростками в лакунах.",
+    "functionText": "Опорно-механическая функция, защита внутренних органов, минеральное депо кальция и фосфора",
+    "killerFeature": "Системы колец остеонов вокруг темных каналов Гаверса."
+  }
+},
+{
+  "id": "slide_14",
+  "examNumber": 14,
+  "moduleId": "mod_cartilage_bone_muscle",
+  "title": "Поперечно-полосатая скелетная мышечная ткань (язык)",
+  "stain": "Железный гематоксилин",
+  "magnification": "x400",
+  "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fe/Muscle_Tissue_Intercalated_Discs_in_Cardiac_Muscle_%2827061943807%29.jpg/1280px-Muscle_Tissue_Intercalated_Discs_in_Cardiac_Muscle_%2827061943807%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "layersText": "Длинные цилиндрические симпласты с поперечной исчерченностью.",
+  "keyCells": "Мышечные симпласты, множество плоских ядер на периферии.",
+  "killerFeature": "Четкие полоски дисков (A и I) и периферическое положение ядер, волокна не ветвятся.",
+  "distractors": [
+    "Сердечная мышечная ткань",
+    "Гладкая мышца",
+    "Сухожилие"
+  ],
+  "youtubeTimestampUrl": "https://youtu.be/axja21H8i9I?t=7335",
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Исчерченность",
+      "name": "Поперечная исчерченность (диски A и I)",
+      "description": "Чередование темных анизотропных и светлых изотропных дисков саркомеров.",
+      "color": "#6366F1",
+      "pin_x": 50,
+      "pin_y": 40
+    },
+    {
+      "number": 2,
+      "short_name": "Ядра под сарколеммой",
+      "name": "Периферические ядра симпласта",
+      "description": "Сплющенные ядра, оттесненные миофибриллами под оболочку волокна.",
+      "color": "#7C3AED",
+      "pin_x": 35,
+      "pin_y": 52
+    },
+    {
+      "number": 3,
+      "short_name": "Эндомизий",
+      "name": "Эндомизий",
+      "description": "Тончайшая прослойка РВСТ с капиллярами вокруг каждого волокна.",
+      "color": "#EC4899",
+      "pin_x": 65,
+      "pin_y": 60
+    }
+  ],
+  "embryoOrigin": "Миотом сомитов мезодермы",
+  "functionText": "Произвольные сокращения, перемещение тела в пространстве, поддержание позы",
+  "imageUrls": [
+    "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fe/Muscle_Tissue_Intercalated_Discs_in_Cardiac_Muscle_%2827061943807%29.jpg/1280px-Muscle_Tissue_Intercalated_Discs_in_Cardiac_Muscle_%2827061943807%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c0/Muscle_Tissue_Intercalated_Discs_in_Cardiac_Muscle_%2827061945057%29.jpg/1280px-Muscle_Tissue_Intercalated_Discs_in_Cardiac_Muscle_%2827061945057%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  ],
+  "imageLabels": [
+    "Срез 2 (Атлас)",
+    "Срез 3 (Атлас)"
+  ],
+  "examPlan": {
+    "stainAndType": "Поперечно-полосатая скелетная мышечная ткань (язык) (Железный гематоксилин)",
+    "origin": "Миотом сомитов мезодермы",
+    "structure": "Длинные цилиндрические симпласты с поперечной исчерченностью.",
+    "location": "Мышечные симпласты, множество плоских ядер на периферии.",
+    "functionText": "Произвольные сокращения, перемещение тела в пространстве, поддержание позы",
+    "killerFeature": "Четкие полоски дисков (A и I) и периферическое положение ядер, волокна не ветвятся."
+  }
+},
+{
+  "id": "slide_15",
+  "examNumber": 15,
+  "moduleId": "mod_cartilage_bone_muscle",
+  "title": "Поперечно-полосатая сердечная мышечная ткань (миокард)",
+  "stain": "Железный гематоксилин / Г-Э",
+  "magnification": "x400",
+  "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/Smooth_muscle_%28251_08%29_Smooth_muscle.jpg/1280px-Smooth_muscle_%28251_08%29_Smooth_muscle.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "layersText": "Взаимосвязанная сеть кардиомиоцитов с анастомозами.",
+  "keyCells": "Кардиомиоциты с центральным расположением ядра и вставочными дисками.",
+  "killerFeature": "Ветвление волокон (анастомозы), центральные ядра и темные черточки — вставочные диски.",
+  "distractors": [
+    "Скелетная мускулатура",
+    "Гладкая мышца",
+    "Нерв"
+  ],
+  "youtubeTimestampUrl": "https://youtu.be/axja21H8i9I?t=7673",
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Вставочный диск",
+      "name": "Вставочный диск",
+      "description": "Граница между соседними кардиомиоцитами с десмосомами и нексусами.",
+      "color": "#991B1B",
+      "pin_x": 48,
+      "pin_y": 35
+    },
+    {
+      "number": 2,
+      "short_name": "Центр. ядро",
+      "name": "Центральное ядро кардиомиоцита",
+      "description": "Овальное ядро строго в центре волокна в околоядерной зоне.",
+      "color": "#7C3AED",
+      "pin_x": 40,
+      "pin_y": 52
+    },
+    {
+      "number": 3,
+      "short_name": "Анастомоз",
+      "name": "Анастомоз между волокнами",
+      "description": "Y-образное ветвление кардиомиоцитов в трехмерную сеть.",
+      "color": "#6366F1",
+      "pin_x": 65,
+      "pin_y": 45
+    }
+  ],
+  "embryoOrigin": "Миоэпикардиальная пластинка висцерального листка спланхнотома",
+  "functionText": "Автоматические ритмичные непроизвольные сокращения стенок полостей сердца",
+  "imageUrls": [
+    "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/Smooth_muscle_%28251_08%29_Smooth_muscle.jpg/1280px-Smooth_muscle_%28251_08%29_Smooth_muscle.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  ],
+  "imageLabels": [
+    "Срез 3 (Атлас)"
+  ],
+  "examPlan": {
+    "stainAndType": "Поперечно-полосатая сердечная мышечная ткань (миокард) (Железный гематоксилин / Г-Э)",
+    "origin": "Миоэпикардиальная пластинка висцерального листка спланхнотома",
+    "structure": "Взаимосвязанная сеть кардиомиоцитов с анастомозами.",
+    "location": "Кардиомиоциты с центральным расположением ядра и вставочными дисками.",
+    "functionText": "Автоматические ритмичные непроизвольные сокращения стенок полостей сердца",
+    "killerFeature": "Ветвление волокон (анастомозы), центральные ядра и темные черточки — вставочные диски."
+  }
+},
+{
+  "id": "slide_16",
+  "examNumber": 16,
+  "moduleId": "mod_cartilage_bone_muscle",
+  "title": "Гладкая мышечная ткань",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x400",
+  "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Some_erythrocytic_morphologies_and_intraerythrocytic_inclusions_found_in_peripheral_blood_smears_of_quokkas_on_Rottnest_Island_%28also_found_in_quokkas_on_mainland_Western_Australia%29.png/1280px-thumbnail.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "layersText": "Плотные пласты веретенообразных клеток.",
+  "keyCells": "Гладкие миоциты с палочковидными ядрами в центре.",
+  "killerFeature": "Веретенообразная форма клеток и палочковидные ядра, изгибающиеся при сокращении.",
+  "distractors": [
+    "Плотная соединительная ткань",
+    "Скелетная мышца",
+    "Сухожилие"
+  ],
+  "youtubeTimestampUrl": "https://youtu.be/axja21H8i9I?t=7944",
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Ядро миоцита",
+      "name": "Палочковидное центральное ядро миоцита",
+      "description": "Вытянутое сигарообразное ядро в широкой центральной части клетки.",
+      "color": "#7C3AED",
+      "pin_x": 50,
+      "pin_y": 45
+    },
+    {
+      "number": 2,
+      "short_name": "Цитоплазма",
+      "name": "Оксифильная цитоплазма гладкого миоцита",
+      "description": "Розовая гомогенная цитоплазма без поперечной исчерченности.",
+      "color": "#EC4899",
+      "pin_x": 42,
+      "pin_y": 60
+    },
+    {
+      "number": 3,
+      "short_name": "Эндомизий",
+      "name": "Прослойка эндомизия",
+      "description": "Тонкая базальная пластинка и ретикулярные волокна вокруг миоцита.",
+      "color": "#10B981",
+      "pin_x": 65,
+      "pin_y": 35
+    }
+  ],
+  "embryoOrigin": "Мезенхима внутренних органов",
+  "functionText": "Медленные длительные непроизвольные тонические сокращения стенок полых органов и сосудов",
+  "imageUrls": [
+    "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Some_erythrocytic_morphologies_and_intraerythrocytic_inclusions_found_in_peripheral_blood_smears_of_quokkas_on_Rottnest_Island_%28also_found_in_quokkas_on_mainland_Western_Australia%29.png/1280px-thumbnail.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  ],
+  "imageLabels": [
+    "Срез 2 (Атлас)"
+  ],
+  "examPlan": {
+    "stainAndType": "Гладкая мышечная ткань (Гематоксилин и эозин)",
+    "origin": "Мезенхима внутренних органов",
+    "structure": "Плотные пласты веретенообразных клеток.",
+    "location": "Гладкие миоциты с палочковидными ядрами в центре.",
+    "functionText": "Медленные длительные непроизвольные тонические сокращения стенок полых органов и сосудов",
+    "killerFeature": "Веретенообразная форма клеток и палочковидные ядра, изгибающиеся при сокращении."
+  }
+},
+{
+  "id": "slide_17",
+  "examNumber": 17,
+  "moduleId": "mod_nervous_sensory",
+  "title": "Миелиновые нервные волокна (расщипанный препарат)",
+  "stain": "Осмиевая кислота",
+  "magnification": "x400",
+  "imageUrl": "",
+  "layersText": "В центре — светлый осевой цилиндр, снаружи — толстая черная миелиновая оболочка (липиды окрашены осмием), поверх нее — тонкая неврилемма.",
+  "keyCells": "Шванновские клетки (леммоциты), образующие миелиновую муфту вокруг одного осевого цилиндра.",
+  "killerFeature": "Толстые черные цилиндры с регулярными перетяжками — перехватами Ранвье, и косыми светлыми линиями — насечками миелина (Шмидта-Лантермана).",
+  "distractors": [
+    "Безмиелиновые нервные волокна",
+    "Скелетная мышечная ткань",
+    "Плотная оформленная ткань сухожилия"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Осевой цил.",
+      "name": "Светлый осевой цилиндр",
+      "description": "Центральный отросток нейрона (аксон), содержащий нейрофиламенты и микротрубочки.",
+      "color": "#6366F1",
+      "pin_x": 50,
+      "pin_y": 50
+    },
+    {
+      "number": 2,
+      "short_name": "Миелин",
+      "name": "Черная миелиновая оболочка",
+      "description": "Многослойно закрученная мембрана шванновской клетки, липиды которой окислены осмием в черный цвет.",
+      "color": "#0F172A",
+      "pin_x": 56,
+      "pin_y": 42
+    },
+    {
+      "number": 3,
+      "short_name": "Ранвье",
+      "name": "Перехват Ранвье",
+      "description": "Участок аксона, лишенный миелина, на стыке двух соседних леммоцитов. Обеспечивает сальтаторное проведение импульса.",
+      "color": "#EF4444",
+      "pin_x": 68,
+      "pin_y": 50
+    }
+  ],
+  "embryoOrigin": "Нервный гребень (леммоциты) и нервная трубка (аксоны)",
+  "functionText": "Быстрое сальтаторное проведение нервного импульса (до 120 м/с)",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Миелиновые нервные волокна (расщипанный препарат) (Осмиевая кислота)",
+    "origin": "Нервный гребень (леммоциты) и нервная трубка (аксоны)",
+    "structure": "В центре — светлый осевой цилиндр, снаружи — толстая черная миелиновая оболочка (липиды окрашены осмием), поверх нее — тонкая неврилемма.",
+    "location": "Шванновские клетки (леммоциты), образующие миелиновую муфту вокруг одного осевого цилиндра.",
+    "functionText": "Быстрое сальтаторное проведение нервного импульса (до 120 м/с)",
+    "killerFeature": "Толстые черные цилиндры с регулярными перетяжками — перехватами Ранвье, и косыми светлыми линиями — насечками миелина (Шмидта-Лантермана)."
+  }
+},
+{
+  "id": "slide_18",
+  "examNumber": 18,
+  "moduleId": "mod_nervous_sensory",
+  "title": "Безмиелиновые нервные волокна (поперечный/продольный срез)",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x400",
+  "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b3/%D0%9C%D0%BE%D0%B7%D0%B6%D0%B5%D1%87%D0%BA%D0%BE%D0%B2%D0%B0%D1%8F_%D0%BA%D0%BE%D1%80%D0%B0_%D0%BA%D0%BE%D1%88%D0%BA%D0%B8._%D0%9E%D0%BA%D1%80%D0%B0%D1%81%D0%BA%D0%B0_%D0%B3%D0%B5%D0%BC%D0%B0%D1%82%D0%BE%D0%BA%D1%81%D0%B8%D0%BB%D0%B8%D0%BD-%D1%8D%D0%BE%D0%B7%D0%B8%D0%BD._%D0%A3%D0%B2%D0%B5%D0%BB%D0%B8%D1%87%D0%B5%D0%BD%D0%B8%D0%B5_x100.jpg/1280px-%D0%9C%D0%BE%D0%B7%D0%B6%D0%B5%D1%87%D0%BA%D0%BE%D0%B2%D0%B0%D1%8F_%D0%BA%D0%BE%D1%80%D0%B0_%D0%BA%D0%BE%D1%88%D0%BA%D0%B8._%D0%9E%D0%BA%D1%80%D0%B0%D1%81%D0%BA%D0%B0_%D0%B3%D0%B5%D0%BC%D0%B0%D1%82%D0%BE%D0%BA%D1%81%D0%B8%D0%BB%D0%B8%D0%BD-%D1%8D%D0%BE%D0%B7%D0%B8%D0%BD._%D0%A3%D0%B2%D0%B5%D0%BB%D0%B8%D1%87%D0%B5%D0%BD%D0%B8%D0%B5_x100.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "layersText": "Пучки нервных волокон кабельного типа (несколько осевых цилиндров погружены в тяж леммоцитов), окруженные эндонефрием и периневрием.",
+  "keyCells": "Леммоциты (шванновские клетки) — многочисленные овальные/вытянутые ядра, лежащие цепочками вдоль розовых цитоплазматических тяжей.",
+  "killerFeature": "Отсутствует черная миелиновая оболочка и перехваты Ранвье; видны нежно-розовые тяжи с множеством овальных ядер шванновских клеток.",
+  "distractors": [
+    "Миелиновые нервные волокна",
+    "Гладкая мышечная ткань",
+    "Рыхлая волокнистая соединительная ткань"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Тяжи",
+      "name": "Тяжи леммоцитов с аксонами (кабельный тип)",
+      "description": "Цитоплазматические розовые тяжи шванновских клеток, в которые погружены 5-20 осевых цилиндров.",
+      "color": "#EC4899",
+      "pin_x": 48,
+      "pin_y": 45
+    },
+    {
+      "number": 2,
+      "short_name": "Ядра",
+      "name": "Вытянутые ядра леммоцитов",
+      "description": "Овальные базофильные ядра, расположенные цепочками вдоль нервного волокна.",
+      "color": "#6366F1",
+      "pin_x": 62,
+      "pin_y": 55
+    }
+  ],
+  "embryoOrigin": "Нервный гребень и нервная трубка",
+  "functionText": "Кабельное непрерывное проведение импульса низкой скорости (0.5–2 м/с)",
+  "imageUrls": [
+    "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b3/%D0%9C%D0%BE%D0%B7%D0%B6%D0%B5%D1%87%D0%BA%D0%BE%D0%B2%D0%B0%D1%8F_%D0%BA%D0%BE%D1%80%D0%B0_%D0%BA%D0%BE%D1%88%D0%BA%D0%B8._%D0%9E%D0%BA%D1%80%D0%B0%D1%81%D0%BA%D0%B0_%D0%B3%D0%B5%D0%BC%D0%B0%D1%82%D0%BE%D0%BA%D1%81%D0%B8%D0%BB%D0%B8%D0%BD-%D1%8D%D0%BE%D0%B7%D0%B8%D0%BD._%D0%A3%D0%B2%D0%B5%D0%BB%D0%B8%D1%87%D0%B5%D0%BD%D0%B8%D0%B5_x100.jpg/1280px-%D0%9C%D0%BE%D0%B7%D0%B6%D0%B5%D1%87%D0%BA%D0%BE%D0%B2%D0%B0%D1%8F_%D0%BA%D0%BE%D1%80%D0%B0_%D0%BA%D0%BE%D1%88%D0%BA%D0%B8._%D0%9E%D0%BA%D1%80%D0%B0%D1%81%D0%BA%D0%B0_%D0%B3%D0%B5%D0%BC%D0%B0%D1%82%D0%BE%D0%BA%D1%81%D0%B8%D0%BB%D0%B8%D0%BD-%D1%8D%D0%BE%D0%B7%D0%B8%D0%BD._%D0%A3%D0%B2%D0%B5%D0%BB%D0%B8%D1%87%D0%B5%D0%BD%D0%B8%D0%B5_x100.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  ],
+  "imageLabels": [
+    "Срез 2 (Атлас)"
+  ],
+  "examPlan": {
+    "stainAndType": "Безмиелиновые нервные волокна (поперечный/продольный срез) (Гематоксилин и эозин)",
+    "origin": "Нервный гребень и нервная трубка",
+    "structure": "Пучки нервных волокон кабельного типа (несколько осевых цилиндров погружены в тяж леммоцитов), окруженные эндонефрием и периневрием.",
+    "location": "Леммоциты (шванновские клетки) — многочисленные овальные/вытянутые ядра, лежащие цепочками вдоль розовых цитоплазматических тяжей.",
+    "functionText": "Кабельное непрерывное проведение импульса низкой скорости (0.5–2 м/с)",
+    "killerFeature": "Отсутствует черная миелиновая оболочка и перехваты Ранвье; видны нежно-розовые тяжи с множеством овальных ядер шванновских клеток."
+  }
+},
+{
+  "id": "slide_19",
+  "examNumber": 19,
+  "moduleId": "mod_nervous_sensory",
+  "title": "Спинномозговой узел (чувствительный ганглий)",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x100 / x400",
+  "imageUrl": "",
+  "layersText": "Снаружи — соединительнотканная капсула; по периферии узла группами лежат тела нейронов, в центре проходят пучки нервных волокон.",
+  "keyCells": "Псевдоуниполярные нейроны (крупные округлые тела со светлым пузырьковидным ядром и четким ядрышком), глиальные клетки-сателлиты (мантийные глиоциты).",
+  "killerFeature": "Крупные округлые псевдоуниполярные нейроны лежат плотными группами по периферии узла, а каждый нейрон окружен венчиком мелких ядер клеток-сателлитов.",
+  "distractors": [
+    "Вегетативный ганглий",
+    "Спинной мозг (окр. по Нисслю)",
+    "Кора мозжечка"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Нейрон",
+      "name": "Псевдоуниполярный нейрон",
+      "description": "Крупное сферическое тело со светлым пузырьковидным ядром и темно-фиолетовым ядрышком в центре.",
+      "color": "#8B5CF6",
+      "pin_x": 35,
+      "pin_y": 40
+    },
+    {
+      "number": 2,
+      "short_name": "Сателлиты",
+      "name": "Мантийные глиоциты (клетки-сателлиты)",
+      "description": "Венчик мелких круглых ядер глиальных клеток, плотно облегающих перикарион каждого нейрона.",
+      "color": "#6366F1",
+      "pin_x": 42,
+      "pin_y": 45
+    },
+    {
+      "number": 3,
+      "short_name": "Волокна",
+      "name": "Пучки нервных волокон в центре",
+      "description": "Аксоны и дендриты псевдоуниполярных нейронов, формирующие задний корешок спинного мозга.",
+      "color": "#EC4899",
+      "pin_x": 65,
+      "pin_y": 60
+    }
+  ],
+  "embryoOrigin": "Нервный гребень (ганглиозная пластинка)",
+  "functionText": "Рецепция и первичная передача всех видов чувствительности в спинной и головной мозг",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Спинномозговой узел (чувствительный ганглий) (Гематоксилин и эозин)",
+    "origin": "Нервный гребень (ганглиозная пластинка)",
+    "structure": "Снаружи — соединительнотканная капсула; по периферии узла группами лежат тела нейронов, в центре проходят пучки нервных волокон.",
+    "location": "Псевдоуниполярные нейроны (крупные округлые тела со светлым пузырьковидным ядром и четким ядрышком), глиальные клетки-сателлиты (мантийные глиоциты).",
+    "functionText": "Рецепция и первичная передача всех видов чувствительности в спинной и головной мозг",
+    "killerFeature": "Крупные округлые псевдоуниполярные нейроны лежат плотными группами по периферии узла, а каждый нейрон окружен венчиком мелких ядер клеток-сателлитов."
+  }
+},
+{
+  "id": "slide_20",
+  "examNumber": 20,
+  "moduleId": "mod_nervous_sensory",
+  "title": "Мультиполярные двигательные нейроны спинного мозга (нейрофибриллы)",
+  "stain": "Импрегнация серебром",
+  "magnification": "x40 / x400",
+  "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/DRG_Chicken_e7.jpg/1280px-DRG_Chicken_e7.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "layersText": "В центре — темное серое вещество в форме «бабочки» (передние, задние и боковые рога) со спинномозговым каналом; по периферии — белое вещество.",
+  "keyCells": "Мультиполярные нейроны (особенно крупные мотонейроны в передних рогах с множеством отростков), нейроглия, эпендимоциты центрального канала.",
+  "killerFeature": "Серое вещество в виде «бабочки» в центре; при импрегнации серебром в телах и отростках мультиполярных нейронов четко видны черные нейрофибриллы.",
+  "distractors": [
+    "Спинной мозг (окр. по Нисслю)",
+    "Кора больших полушарий головного мозга",
+    "Спинномозговой узел"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Серое в-во",
+      "name": "Серое вещество («бабочка»)",
+      "description": "Тела мультиполярных нейронов, дендриты и глиоциты в центре спинного мозга.",
+      "color": "#475569",
+      "pin_x": 48,
+      "pin_y": 48
+    },
+    {
+      "number": 2,
+      "short_name": "Мотонейрон",
+      "name": "Мотонейроны передних рогов",
+      "description": "Крупные полигональные клетки с отростками и темными нейрофибриллами.",
+      "color": "#0F172A",
+      "pin_x": 36,
+      "pin_y": 62
+    },
+    {
+      "number": 3,
+      "short_name": "Белое в-во",
+      "name": "Белое вещество (канатики)",
+      "description": "Миелиновые нервные волокна восходящих и нисходящих проводящих путей.",
+      "color": "#94A3B8",
+      "pin_x": 22,
+      "pin_y": 35
+    }
+  ],
+  "embryoOrigin": "Нервная трубка",
+  "functionText": "Двигательная иннервация скелетной мускулатуры, замыкание рефлекторных дуг",
+  "imageUrls": [
+    "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/71/DRG_Chicken_e7.jpg/1280px-DRG_Chicken_e7.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/58/Spinal_ganglion.jpg/1280px-Spinal_ganglion.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  ],
+  "imageLabels": [
+    "Срез 2 (Атлас)",
+    "Срез 3 (Атлас)"
+  ],
+  "examPlan": {
+    "stainAndType": "Мультиполярные двигательные нейроны спинного мозга (нейрофибриллы) (Импрегнация серебром)",
+    "origin": "Нервная трубка",
+    "structure": "В центре — темное серое вещество в форме «бабочки» (передние, задние и боковые рога) со спинномозговым каналом; по периферии — белое вещество.",
+    "location": "Мультиполярные нейроны (особенно крупные мотонейроны в передних рогах с множеством отростков), нейроглия, эпендимоциты центрального канала.",
+    "functionText": "Двигательная иннервация скелетной мускулатуры, замыкание рефлекторных дуг",
+    "killerFeature": "Серое вещество в виде «бабочки» в центре; при импрегнации серебром в телах и отростках мультиполярных нейронов четко видны черные нейрофибриллы."
+  }
+},
+{
+  "id": "slide_21",
+  "examNumber": 21,
+  "moduleId": "mod_nervous_sensory",
+  "title": "Спинной мозг (хроматофильная субстанция по Нисслю)",
+  "stain": "По Нисслю (толуидиновый синий / тионин)",
+  "magnification": "x100 / x400",
+  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/08/Myelinated_nerve_fibers%2C_Ranvier_nodes.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+  "layersText": "Серое вещество в центре («бабочка») и белое вещество по периферии.",
+  "keyCells": "Крупные мультиполярные мотонейроны передних рогов со светлым ядром и темным ядрышком («совиный глаз»).",
+  "killerFeature": "Сине-фиолетовая окраска: в цитоплазме и дендритах нейронов видны базофильные глыбки хроматофильной субстанции (тельца Ниссля — грЭПС), а аксональный холмик остается светлым.",
+  "distractors": [
+    "Спинной мозг (импрегнация серебром)",
+    "Кора больших полушарий",
+    "Спинномозговой узел"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Мотонейрон",
+      "name": "Мотонейрон переднего рога с тельцами Ниссля",
+      "description": "Базофильные синие глыбки хроматофильной субстанции (тигроид / грЭПС) в цитоплазме и дендритах.",
+      "color": "#4338CA",
+      "pin_x": 52,
+      "pin_y": 50
+    },
+    {
+      "number": 2,
+      "short_name": "Холмик",
+      "name": "Аксональный холмик (светлый участок)",
+      "description": "Участок отхождения аксона, полностью свободный от гранулярной ЭПС (не окрашивается основным красителем).",
+      "color": "#818CF8",
+      "pin_x": 60,
+      "pin_y": 58
+    }
+  ],
+  "embryoOrigin": "Нервная трубка",
+  "functionText": "Обеспечение белкового синтеза для поддержания отростков и синаптической передачи нейрона",
+  "imageUrls": [
+    "https://upload.wikimedia.org/wikipedia/commons/0/08/Myelinated_nerve_fibers%2C_Ranvier_nodes.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+  ],
+  "imageLabels": [
+    "Срез 2 (Атлас)"
+  ],
+  "examPlan": {
+    "stainAndType": "Спинной мозг (хроматофильная субстанция по Нисслю) (По Нисслю (толуидиновый синий / тионин))",
+    "origin": "Нервная трубка",
+    "structure": "Серое вещество в центре («бабочка») и белое вещество по периферии.",
+    "location": "Крупные мультиполярные мотонейроны передних рогов со светлым ядром и темным ядрышком («совиный глаз»).",
+    "functionText": "Обеспечение белкового синтеза для поддержания отростков и синаптической передачи нейрона",
+    "killerFeature": "Сине-фиолетовая окраска: в цитоплазме и дендритах нейронов видны базофильные глыбки хроматофильной субстанции (тельца Ниссля — грЭПС), а аксональный холмик остается светлым."
+  }
+},
+{
+  "id": "slide_22",
+  "examNumber": 22,
+  "moduleId": "mod_nervous_sensory",
+  "title": "Кора больших полушарий головного мозга",
+  "stain": "Импрегнация серебром",
+  "magnification": "x100 / x400",
+  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Cajal_Retina.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+  "layersText": "6 слоев (снаружи внутрь): 1. Молекулярный 2. Наружный зернистый 3. Пирамидный 4. Внутренний зернистый 5. Ганглионарный (гигантские пирамиды Беца) 6. Полиморфный.",
+  "keyCells": "Пирамидные нейроны разного калибра (от мелких до гигантских клеток Беца с апикальным дендритом, направленным к поверхности коры), звездчатые клетки.",
+  "killerFeature": "Характерные треугольные (пирамидные) тела черных нейронов, верхушки которых ориентированы к поверхности коры; 6-слойное строение.",
+  "distractors": [
+    "Кора мозжечка",
+    "Спинной мозг (импрегнация серебром)",
+    "Спинномозговой узел"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "I Молекулярный",
+      "name": "Молекулярный слой (I слой)",
+      "description": "Мало клеток, сплетение тангенциальных нервных волокон.",
+      "color": "#64748B",
+      "pin_x": 50,
+      "pin_y": 12
+    },
+    {
+      "number": 2,
+      "short_name": "III Пирамидный",
+      "name": "Пирамидный слой (III слой)",
+      "description": "Средние пирамидные клетки, от верхушек отходят апикальные дендриты к поверхности.",
+      "color": "#475569",
+      "pin_x": 50,
+      "pin_y": 42
+    },
+    {
+      "number": 3,
+      "short_name": "V Клетки Беца",
+      "name": "Ганглионарный слой (V слой, клетки Беца)",
+      "description": "Гигантские пирамидные нейроны, аксоны которых образуют кортико-спинальный пирамидный тракт.",
+      "color": "#0F172A",
+      "pin_x": 50,
+      "pin_y": 72
+    }
+  ],
+  "embryoOrigin": "Нервная трубка (краниальный конец)",
+  "functionText": "Высшая интегративная деятельность, сознание, память, произвольные движения",
+  "imageUrls": [
+    "https://upload.wikimedia.org/wikipedia/commons/b/b6/Cajal_Retina.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+  ],
+  "imageLabels": [
+    "Срез 2 (Атлас)"
+  ],
+  "examPlan": {
+    "stainAndType": "Кора больших полушарий головного мозга (Импрегнация серебром)",
+    "origin": "Нервная трубка (краниальный конец)",
+    "structure": "6 слоев (снаружи внутрь): 1. Молекулярный 2. Наружный зернистый 3. Пирамидный 4. Внутренний зернистый 5. Ганглионарный (гигантские пирамиды Беца) 6. Полиморфный.",
+    "location": "Пирамидные нейроны разного калибра (от мелких до гигантских клеток Беца с апикальным дендритом, направленным к поверхности коры), звездчатые клетки.",
+    "functionText": "Высшая интегративная деятельность, сознание, память, произвольные движения",
+    "killerFeature": "Характерные треугольные (пирамидные) тела черных нейронов, верхушки которых ориентированы к поверхности коры; 6-слойное строение."
+  }
+},
+{
+  "id": "slide_23",
+  "examNumber": 23,
+  "moduleId": "mod_nervous_sensory",
+  "title": "Мозжечок (кора и белое вещество)",
+  "stain": "Импрегнация серебром",
+  "magnification": "x100 / x400",
+  "imageUrl": "",
+  "layersText": "Характерные извилины с 3 слоями коры: 1. Молекулярный (наружный, светлый) 2. Ганглионарный (1 ряд крупных клеток Пуркинье) 3. Зернистый (внутренний, густоклеточный) + в центре белое вещество.",
+  "keyCells": "Грушевидные нейроны (клетки Пуркинье) с мощно ветвящимися в молекулярном слое дендритами, клетки-зерна, корзинчатые и звездчатые нейроны.",
+  "killerFeature": "Древовидное ветвление извилин и один строгий ряд крупных грушевидных клеток Пуркинье на границе светлого молекулярного и темного зернистого слоев.",
+  "distractors": [
+    "Кора больших полушарий головного мозга",
+    "Спинной мозг",
+    "Лимфатический узел"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Молекулярный",
+      "name": "Молекулярный слой (наружный)",
+      "description": "Светлый наружный слой, содержит корзинчатые и звездчатые нейроны, дендриты клеток Пуркинье.",
+      "color": "#94A3B8",
+      "pin_x": 50,
+      "pin_y": 25
+    },
+    {
+      "number": 2,
+      "short_name": "Пуркинье",
+      "name": "Грушевидные нейроны (клетки Пуркинье)",
+      "description": "Один строгий ряд крупных грушевидных нейронов с мощно ветвящимися дендритами.",
+      "color": "#0F172A",
+      "pin_x": 50,
+      "pin_y": 48
+    },
+    {
+      "number": 3,
+      "short_name": "Зернистый",
+      "name": "Зернистый слой (внутренний)",
+      "description": "Густоклеточный темный слой, заполненный мелкими клетками-зернами и клубочками мозжечка.",
+      "color": "#475569",
+      "pin_x": 50,
+      "pin_y": 75
+    }
+  ],
+  "embryoOrigin": "Нервная трубка (дорсальная часть ромбовидного мозга)",
+  "functionText": "Координация движений, поддержание равновесия и мышечного тонуса",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Мозжечок (кора и белое вещество) (Импрегнация серебром)",
+    "origin": "Нервная трубка (дорсальная часть ромбовидного мозга)",
+    "structure": "Характерные извилины с 3 слоями коры: 1. Молекулярный (наружный, светлый) 2. Ганглионарный (1 ряд крупных клеток Пуркинье) 3. Зернистый (внутренний, густоклеточный) + в центре белое вещество.",
+    "location": "Грушевидные нейроны (клетки Пуркинье) с мощно ветвящимися в молекулярном слое дендритами, клетки-зерна, корзинчатые и звездчатые нейроны.",
+    "functionText": "Координация движений, поддержание равновесия и мышечного тонуса",
+    "killerFeature": "Древовидное ветвление извилин и один строгий ряд крупных грушевидных клеток Пуркинье на границе светлого молекулярного и темного зернистого слоев."
+  }
+},
+{
+  "id": "slide_24",
+  "examNumber": 24,
+  "moduleId": "mod_nervous_sensory",
+  "title": "Роговица глаза",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x100 / x400",
+  "imageUrl": "",
+  "layersText": "5 слоев: 1. Передний многослойный плоский неороговевающий эпителий 2. Передняя пограничная мембрана (Боуменова) 3. Собственное вещество роговицы 4. Задняя пограничная мембрана (Десцеметова) 5. Задний однослойный плоский эпителий (эндотелий).",
+  "keyCells": "Эпителиоциты переднего эпителия, уплощенные фиброциты (кератоциты) между коллагеновыми пластинками собственного вещества, клетки заднего эпителия.",
+  "killerFeature": "Полное отсутствие кровеносных сосудов; с одной стороны толстый многослойный плоский неороговевающий эпителий, с другой — однослойный плоский на толстой розовой Десцеметовой мембране.",
+  "distractors": [
+    "Пищевод (слизистая)",
+    "Кожа пальца человека",
+    "Белочная оболочка семенника"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Передний эпит.",
+      "name": "Передний эпителий роговицы",
+      "description": "Многослойный плоский неороговевающий эпителий с высокой способностью к регенерации.",
+      "color": "#6366F1",
+      "pin_x": 50,
+      "pin_y": 16
+    },
+    {
+      "number": 2,
+      "short_name": "Строма",
+      "name": "Собственное вещество (строма)",
+      "description": "Параллельные коллагеновые пластинки с кератоцитами, отсутствие кровеносных сосудов.",
+      "color": "#EC4899",
+      "pin_x": 50,
+      "pin_y": 50
+    },
+    {
+      "number": 3,
+      "short_name": "Задний эпит.",
+      "name": "Задний эпителий (эндотелий)",
+      "description": "Однослойный плоский эпителий на толстой Десцеметовой мембране, откачивает влагу из стромы.",
+      "color": "#10B981",
+      "pin_x": 50,
+      "pin_y": 86
+    }
+  ],
+  "embryoOrigin": "Кожная эктодерма (эпителий) и мезенхима (строма)",
+  "functionText": "Преломление света (главная оптическая линза глаза, 43 дптр), защита глазного яблока",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Роговица глаза (Гематоксилин и эозин)",
+    "origin": "Кожная эктодерма (эпителий) и мезенхима (строма)",
+    "structure": "5 слоев: 1. Передний многослойный плоский неороговевающий эпителий 2. Передняя пограничная мембрана (Боуменова) 3. Собственное вещество роговицы 4. Задняя пограничная мембрана (Десцеметова) 5. Задний однослойный плоский эпителий (эндотелий).",
+    "location": "Эпителиоциты переднего эпителия, уплощенные фиброциты (кератоциты) между коллагеновыми пластинками собственного вещества, клетки заднего эпителия.",
+    "functionText": "Преломление света (главная оптическая линза глаза, 43 дптр), защита глазного яблока",
+    "killerFeature": "Полное отсутствие кровеносных сосудов; с одной стороны толстый многослойный плоский неороговевающий эпителий, с другой — однослойный плоский на толстой розовой Десцеметовой мембране."
+  }
+},
+{
+  "id": "slide_25",
+  "examNumber": 25,
+  "moduleId": "mod_nervous_sensory",
+  "title": "Задняя стенка глаза (сетчатка, сосудистая и склера)",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x200",
+  "imageUrl": "",
+  "layersText": "3 оболочки: 1. Склера (плотная соед. ткань) 2. Сосудистая оболочка (пигмент и сосуды) 3. Сетчатка (10 слоев, включая пигментный эпителий, слой палочек и колбочек, наружный и внутренний ядерные слои, ганглионарный слой).",
+  "keyCells": "Пигментоциты, фоторецепторы (палочки и колбочки), биполярные нейроны, ганглиозные мультиполярные нейроны, глиоциты Мюллера.",
+  "killerFeature": "Характерная «слоистость» сетчатки с тремя четкими рядами фиолетовых ядер (наружный ядерный, внутренний ядерный, ганглионарный) и черной полосой пигментного эпителия на границе с сосудистой оболочкой.",
+  "distractors": [
+    "Кора больших полушарий",
+    "Роговица глаза",
+    "Кожа с волосом"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Склера",
+      "name": "Склера (наружная оболочка)",
+      "description": "Плотная оформленная соединительная ткань белого цвета.",
+      "color": "#94A3B8",
+      "pin_x": 50,
+      "pin_y": 12
+    },
+    {
+      "number": 2,
+      "short_name": "Сосудистая",
+      "name": "Сосудистая оболочка с пигментом",
+      "description": "Множество сосудов и темно-коричневых пигментоцитов.",
+      "color": "#78350F",
+      "pin_x": 50,
+      "pin_y": 30
+    },
+    {
+      "number": 3,
+      "short_name": "Сетчатка",
+      "name": "Сетчатка (10 слоев, 3 ядерных ряда)",
+      "description": "Наружный ядерный (фоторецепторы), внутренний ядерный (биполяры) и ганглионарный слои.",
+      "color": "#6366F1",
+      "pin_x": 50,
+      "pin_y": 65
+    }
+  ],
+  "embryoOrigin": "Нервная трубка (глазной пузырь — сетчатка) и мезенхима",
+  "functionText": "Фоторецепция, трансдукция светового сигнала в нервный импульс, трофика глаза",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Задняя стенка глаза (сетчатка, сосудистая и склера) (Гематоксилин и эозин)",
+    "origin": "Нервная трубка (глазной пузырь — сетчатка) и мезенхима",
+    "structure": "На препарате видна многослойн...\nI. Склера (наружная фиброзная оболочка)\n\n· 1.1 — Фиброциты: Клетки соединительной ткани, расположенные между волокнами. Они уплощены и синтезируют межклеточное вещество.\n· 1.2 — Пучки коллагеновых волокон: Главный структурный компонент. Волокна образуют толстые пучки, идущие в разных направлениях, что обеспечивает прочность и защиту глазного яблока.\n\nII. Сосудистая оболочка (средняя оболочка, хориоидея)\n\n· Образование: Рыхлая соединительная ткань с большим количеством кровеносных сосудов (питают наружные слои сетчатки) и пигментных клеток (меланоцитов). Между ней и сетчаткой находится мембрана Бруха (стекловидная пластинка).\n\nIII. Сетчатка (внутренняя нервная оболочка)\n\n· 1 — Пигментный слой (пигментный эпителий): Один слой клеток с меланином. Поглощает свет и участвует в обмене веществ с фоторецепторами.\n· 2 — Слой палочек и колбочек (фотосенсорный): Наружные сегменты фоторецепторов (палочки — сумеречное зрение, колбочки — цветное).\n· 3 — Наружная пограничная (глиальная) мембрана: Тонкая структура из концевых отростков глиальных клеток Мюллера.\n· 4 — Наружный ядерный слой: Ядра тел фоторецепторов (палочек и колбочек).\n· 5 — Наружный сетчатый слой: Синапсы между фоторецепторами и биполярными клетками.\n· 6 — Внутренний ядерный слой: Ядра биполярных, горизонтальных, амакриновых нейронов и клеток Мюллера.\n· 7 — Внутренний сетчатый слой: Синапсы между биполярными и ганглиозными клетками.\n· 8 — Ганглиозный слой: Тела ганглиозных клеток (их аксоны образуют зрительный нерв).\n· 9 — Слой нервных волокон: Безмиелиновые аксоны ганглиозных клеток, идущие к зрительному нерву.\n· 10 — Внутренняя пограничная (глиальная) мембрана: Граница со стекловидным телом (отростки клеток Мюллера).",
+    "location": "Пигментоциты, фоторецепторы (палочки и колбочки), биполярные нейроны, ганглиозные мультиполярные нейроны, глиоциты Мюллера.",
+    "functionText": "Фоторецепция, трансдукция светового сигнала в нервный импульс, трофика глаза",
+    "killerFeature": "Характерная «слоистость» сетчатки с тремя четкими рядами фиолетовых ядер (наружный ядерный, внутренний ядерный, ганглионарный) и черной полосой пигментного эпителия на границе с сосудистой оболочкой."
+  }
+},
+{
+  "id": "slide_26",
+  "examNumber": 26,
+  "moduleId": "mod_nervous_sensory",
+  "title": "Кортиев (спиральный) орган. Срез улитки внутреннего уха",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x100 / x400",
+  "imageUrl": "",
+  "layersText": "Склера (фиброциты, плотные пучки коллагена) -> Сосудистая оболочка (пигментные клетки, капилляры, мембрана Бруха) -> Сетчатка (10 слоев: пигментный, палочки/колбочки, пограничные мембраны, ядерные, сетчатые, ганглиозный, нервные волокна)",
+  "keyCells": "Внутренние и наружные волосковые сенсорные клетки, поддерживающие клетки-столбы (внутренний туннель), фаланговые клетки Дейтерса.",
+  "killerFeature": "10 слоев сетчатки на срезе задней стенки глазного яблока, пигментный эпителий и пучки склеры.",
+  "distractors": [
+    "Непрямой остеогенез",
+    "Развитие зуба (2-я стадия)",
+    "Трахея"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Канал улитки",
+      "name": "Перепончатый канал улитки",
+      "description": "Треугольный просвет, заполненный эндолимфой, ограниченный вестибулярной мембраной и сосудистой полоской.",
+      "color": "#6366F1",
+      "pin_x": 50,
+      "pin_y": 35
+    },
+    {
+      "number": 2,
+      "short_name": "Орган Корти",
+      "name": "Спиральный орган на базилярной пластинке",
+      "description": "Сенсорные волосковые клетки и поддерживающие клетки-столбы, образующие треугольный туннель Корти.",
+      "color": "#EC4899",
+      "pin_x": 55,
+      "pin_y": 65
+    },
+    {
+      "number": 3,
+      "short_name": "Текториальная",
+      "name": "Покровная (текториальная) мембрана",
+      "description": "Оксифильная лента, нависающая над стереоцилиями волосковых клеток.",
+      "color": "#F59E0B",
+      "pin_x": 48,
+      "pin_y": 55
+    }
+  ],
+  "embryoOrigin": "Развивается из эктодермы. Сенсорные (волосковые) клетки и поддерживающий эпителий органа формируются из эпителия слухового пузырька (производное эктодермы), а соединительнотканные структуры (базилярная мембрана) — из мезенхимы.",
+  "functionText": "Восприятие звуковых колебаний. Механорецепторы (волосковые клетки) преобразуют энергию звуковых волн (механические колебания эндолимфы и базилярной мембраны) в нервный импульс, который затем передается в слуховой нерв. Опорные клетки выполняют трофическую и механическую функции.",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Кортиев (спиральный) орган. Срез улитки внутреннего уха (Гематоксилином и эозином)",
+    "origin": "Развивается из эктодермы. Сенсорные (волосковые) клетки и поддерживающий эпителий органа формируются из эпителия слухового пузырька (производное эктодермы), а соединительнотканные структуры (базилярная мембрана) — из мезенхимы.",
+    "structure": "На препарате виден сложный рецепторный аппарат, расположенный на базилярной (основной) мембране. Основу органа составляют опорные (поддерживающие) и волосковые (сенсорные) клетки. Хорошо просматривается туннель Кортиева органа, образованный наружными и внутренними столбовыми клетками. По бокам от туннеля расположены наружные (в 3-4 ряда) и внутренние (в один ряд) волосковые клетки. Сверху над ними нависает текториальная (покровная) мембрана, имеющая вид гомогенной пластинки. Также видна сосудистая полоска (спиральный гребешок) — утолщенный эпителий на наружной стенке улиткового протока, участвующий в секреции эндолимфы.",
+    "location": "Внутри улиткового протока (среднего канала улитки) перепончатого лабиринта внутреннего уха, на базилярной мембране.",
+    "functionText": "Восприятие звуковых колебаний. Механорецепторы (волосковые клетки) преобразуют энергию звуковых волн (механические колебания эндолимфы и базилярной мембраны) в нервный импульс, который затем передается в слуховой нерв. Опорные клетки выполняют трофическую и механическую функции.",
+    "killerFeature": "10 слоев сетчатки на срезе задней стенки глазного яблока, пигментный эпителий и пучки склеры."
+  }
+},
+{
+  "id": "slide_27",
+  "examNumber": 27,
+  "moduleId": "mod_nervous_sensory",
+  "title": "Вкусовые луковицы в листовидных сосочках языка",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x200 / x400",
+  "imageUrl": "",
+  "layersText": "Улитка (костный и перепончатый лабиринты): вестибулярная лестница -> кохлеарный проток -> барабанная лестница. Базилярная пластинка с сенсорными волосковыми (внутренними/наружными) и поддерживающими клетками (столбовые, Дейтерса), покровная мембрана (текториальная).",
+  "keyCells": "Сенсорные вкусовые эпителиоциты (со штифтиками в области вкусовой поры), поддерживающие и базальные клетки.",
+  "killerFeature": "Спиральный туннель, образованный клетками-столбами, и нависающая над волосковыми клетками текториальная мембрана.",
+  "distractors": [
+    "Нитевидные сосочки языка",
+    "Пищевод",
+    "Небная миндалина"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Сосочек",
+      "name": "Листовидный сосочек языка",
+      "description": "Параллельные складки слизистой с многослойным плоским неороговевающим эпителием.",
+      "color": "#EC4899",
+      "pin_x": 50,
+      "pin_y": 30
+    },
+    {
+      "number": 2,
+      "short_name": "Луковица",
+      "name": "Вкусовая луковица (почка)",
+      "description": "Светлый овальный комплекс рецепторных и поддерживающих клеток в боковой стенке сосочка.",
+      "color": "#6366F1",
+      "pin_x": 68,
+      "pin_y": 50
+    },
+    {
+      "number": 3,
+      "short_name": "Железы Эбнера",
+      "name": "Белковые железы Эбнера",
+      "description": "Серозные железы в глубине языка, протоки которых промывают ров сосочка.",
+      "color": "#8B5CF6",
+      "pin_x": 50,
+      "pin_y": 80
+    }
+  ],
+  "embryoOrigin": "Эктодерма слухового пузырька (эпителиальный сенсорный аппарат Кортиева органа) и мезенхима (базилярная мембрана, спиральная связка, костный лабиринт).",
+  "functionText": "Рецепция звуковых колебаний разной частоты (высокие у основания, низкие у вершины) и трансформация механических колебаний эндолимфы в нервные импульсы.",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Вкусовые луковицы в листовидных сосочках языка (Гематоксилин и эозин)",
+    "origin": "Эктодерма слухового пузырька (эпителиальный сенсорный аппарат Кортиева органа) и мезенхима (базилярная мембрана, спиральная связка, костный лабиринт).",
+    "structure": "Улитка (костный и перепончатый лабиринты): вестибулярная лестница -> кохлеарный проток -> барабанная лестница. Базилярная пластинка с сенсорными волосковыми (внутренними/наружными) и поддерживающими клетками (столбовые, Дейтерса), покровная мембрана (текториальная).",
+    "location": "Сенсорные вкусовые эпителиоциты (со штифтиками в области вкусовой поры), поддерживающие и базальные клетки.",
+    "functionText": "Рецепция звуковых колебаний разной частоты (высокие у основания, низкие у вершины) и трансформация механических колебаний эндолимфы в нервные импульсы.",
+    "killerFeature": "Спиральный туннель, образованный клетками-столбами, и нависающая над волосковыми клетками текториальная мембрана."
+  }
+},
+{
+  "id": "slide_28",
+  "examNumber": 28,
+  "moduleId": "mod_cardio_immune",
+  "title": "Микроциркуляторное русло мягкой мозговой оболочки (тотальный препарат)",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x100 / x400",
+  "imageUrl": "",
+  "layersText": "Тотальный пленочный препарат мягкой мозговой оболочки: артериолы (1-2 слоя циркулярных гладких миоцитов), венулы (широкий просвет, тонкая стенка без выраженного мышечного слоя), капилляры (эндотелий + перициты в расщеплении базальной мембраны).",
+  "keyCells": "Эндотелиоциты (ядра вытянуты вдоль сосуда), гладкие миоциты (в артериолах ядра лежат поперек хода сосуда), перициты.",
+  "killerFeature": "Тонкий пленочный препарат с ветвящимися микрососудами: артериола с поперечно ориентированными ядрами миоцитов и сопутствующая более широкая венула.",
+  "distractors": [
+    "Однослойный плоский эпителий сальника",
+    "РВСТ пленочный препарат",
+    "Артерия мышечного типа"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Артериола",
+      "name": "Артериола (внутренние продольные, наружные поперечные ядра)",
+      "description": "Внутренний эндотелий ориентирован вдоль, а циркулярные гладкие миоциты лежат поперек хода сосуда.",
+      "color": "#EF4444",
+      "pin_x": 40,
+      "pin_y": 45
+    },
+    {
+      "number": 2,
+      "short_name": "Венула",
+      "name": "Венула (широкий просвет, тонкая стенка)",
+      "description": "Широкий просвет, тонкая стенка, отсутствие непрерывного слоя гладких миоцитов.",
+      "color": "#3B82F6",
+      "pin_x": 65,
+      "pin_y": 55
+    }
+  ],
+  "embryoOrigin": "Мягкая мозговая оболочка (как и другие оболочки мозга) развивается из мезенхимы (производное мезодермы), окружающей нервную трубку. Кровеносные сосуды также имеют мезенхимальное происхождение (эндотелий и гладкомышечные клетки формируются из мезенхимы).",
+  "functionText": "Обеспечение трофики (питания) и газообмена тканей мозга, а также выведение продуктов метаболизма. Мягкая мозговая оболочка содержит сосуды, которые проникают в вещество мозга; она выполняет защитную и барьерную функции, участвуя в формировании гематоэнцефалического барьера.",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Микроциркуляторное русло мягкой мозговой оболочки (тотальный препарат) (Гематоксилин и эозин)",
+    "origin": "Мягкая мозговая оболочка (как и другие оболочки мозга) развивается из мезенхимы (производное мезодермы), окружающей нервную трубку. Кровеносные сосуды также имеют мезенхимальное происхождение (эндотелий и гладкомышечные клетки формируются из мезенхимы).",
+    "structure": "На препарате видна густая сеть кровеносных сосудов, расположенных в рыхлой соединительной ткани. Сосуды имеют вид ветвящихся трубок разного диаметра. Артериолы и более мелкие артерии отличаются более четкими, ровными контурами и наличием хорошо выраженной стенки (гладкомышечные клетки, эндотелий). Венулы и вены имеют более широкий и неровный просвет, стенка их тоньше по отношению к диаметру. Между ними видна капиллярная сеть. Ткань вокруг сосудов (мягкая мозговая оболочка) представлена рыхлой волокнистой соединительной тканью с фибробластами и тонкими коллагеновыми волокнами (на препарате выглядят как бледно-розовый фон)",
+    "location": "В мягкой мозговой оболочке (pia mater), которая плотно прилегает к поверхности головного и спинного мозга. На препарате представлена сосудистая сеть этой оболочки.",
+    "functionText": "Обеспечение трофики (питания) и газообмена тканей мозга, а также выведение продуктов метаболизма. Мягкая мозговая оболочка содержит сосуды, которые проникают в вещество мозга; она выполняет защитную и барьерную функции, участвуя в формировании гематоэнцефалического барьера.",
+    "killerFeature": "Тонкий пленочный препарат с ветвящимися микрососудами: артериола с поперечно ориентированными ядрами миоцитов и сопутствующая более широкая венула."
+  }
+},
+{
+  "id": "slide_29",
+  "examNumber": 29,
+  "moduleId": "mod_cardio_immune",
+  "title": "Артерия мышечного типа (бедренная артерия)",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x100",
+  "imageUrl": "",
+  "layersText": "1. Внутренняя оболочка (интима: эндотелий, подэндотелий, выраженная волнистая внутренняя эластическая мембрана) -> 2. Средняя оболочка (медиа: циркулярные гладкие миоциты, наружная эластическая мембрана) -> 3. Наружная оболочка (адвентиция из РВСТ с сосудами сосудов).",
+  "keyCells": "Эндотелиоциты, гладкие миоциты средней оболочки, фибробласты адвентиции.",
+  "killerFeature": "Ярко выраженная складчатая внутренняя эластическая мембрана на границе интимы и медиа и толстая мышечная оболочка.",
+  "distractors": [
+    "Вена мышечного типа",
+    "Аорта (артерия эластического типа)",
+    "Мочеточник"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Интима",
+      "name": "Интима с внутренней эластической мембраной",
+      "description": "Эндотелий и ярко выраженная фестончатая («гармошкой») внутренняя эластическая мембрана.",
+      "color": "#6366F1",
+      "pin_x": 38,
+      "pin_y": 35
+    },
+    {
+      "number": 2,
+      "short_name": "Медиа",
+      "name": "Средняя мышечная оболочка",
+      "description": "Толстый слой циркулярно расположенных гладких миоцитов.",
+      "color": "#EF4444",
+      "pin_x": 48,
+      "pin_y": 50
+    },
+    {
+      "number": 3,
+      "short_name": "Адвентиция",
+      "name": "Наружная адвентициальная оболочка",
+      "description": "Рыхлая соединительная ткань с сосудами сосудов (vasa vasorum).",
+      "color": "#10B981",
+      "pin_x": 65,
+      "pin_y": 70
+    }
+  ],
+  "embryoOrigin": "Стенка сосуда развивается из мезенхимы. Эндотелий и гладкомышечные клетки (медия) формируются из клеток мезенхимного происхождения, а адвентиция — из окружающей мезенхимы, которая впоследствии дифференцируется в рыхлую соединительную ткань.",
+  "functionText": "Транспорт крови к дистальным отделам конечности (к мышцам, коже, костям). Благодаря мощному мышечному слою, эти артерии способны активно сокращаться и регулировать просвет сосуда, тем самым контролируя объем кровотока и артериальное давление в соответствующем регионе (распределительная и сосудосуживающая функция).",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Артерия мышечного типа (бедренная артерия) (Гематоксилин и эозин)",
+    "origin": "Стенка сосуда развивается из мезенхимы. Эндотелий и гладкомышечные клетки (медия) формируются из клеток мезенхимного происхождения, а адвентиция — из окружающей мезенхимы, которая впоследствии дифференцируется в рыхлую соединительную ткань.",
+    "structure": "На препарате виден кровеносный сосуд с четко выраженной стенкой и звездчатым (складчатым) просветом, что характерно для артерий в спавшемся состоянии. Стенка состоит из трех оболочек. Внутренняя оболочка (интима) представлена эндотелием и подэндотелиальным слоем. Средняя оболочка (медия) самая толстая, состоит из нескольких десятков слоев гладкомышечных клеток (циркулярно расположенных), между которыми видны тонкие розовые волокна. Наружная оболочка (адвентиция) представлена рыхлой волокнистой соединительной тканью. Хорошо заметна внутренняя эластическая мембрана (базофильная извилистая линия на границе интимы и медии)",
+    "location": "Бедренная артерия относится к сосудам мышечного типа, которые располагаются в опорно-двигательном аппарате (конечности, туловище), а также в органах с активной моторикой. На препарате представлен изолированный поперечный срез сосуда.",
+    "functionText": "Транспорт крови к дистальным отделам конечности (к мышцам, коже, костям). Благодаря мощному мышечному слою, эти артерии способны активно сокращаться и регулировать просвет сосуда, тем самым контролируя объем кровотока и артериальное давление в соответствующем регионе (распределительная и сосудосуживающая функция).",
+    "killerFeature": "Ярко выраженная складчатая внутренняя эластическая мембрана на границе интимы и медиа и толстая мышечная оболочка."
+  }
+},
+{
+  "id": "slide_30",
+  "examNumber": 30,
+  "moduleId": "mod_cardio_immune",
+  "title": "Вена мышечного типа (бедренная вена)",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x100",
+  "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/94/Thymic_corpuscle.jpg/1280px-Thymic_corpuscle.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "layersText": "1. Внутренняя оболочка (интима: эндотелий, подэндотелий, клапаны) -> 2. Средняя оболочка (медиа: пучки гладких миоцитов, разделенные прослойками РВСТ, слабее выражена, чем в артерии) -> 3. Наружная оболочка (толстая адвентиция с продольными пучками миоцитов).",
+  "keyCells": "Эндотелиоциты, гладкие миоциты, фибробласты.",
+  "killerFeature": "Широкий спавшийся просвет неправильной формы, слабо развитая средняя оболочка и преобладающая по толщине адвентиция.",
+  "distractors": [
+    "Артерия мышечного типа",
+    "Аорта",
+    "Лимфатический сосуд"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Просвет",
+      "name": "Спавшийся просвет и эндотелий",
+      "description": "Щелевидный просвет, отсутствие выраженной внутренней эластической мембраны.",
+      "color": "#3B82F6",
+      "pin_x": 45,
+      "pin_y": 40
+    },
+    {
+      "number": 2,
+      "short_name": "Адвентиция",
+      "name": "Мощная наружная адвентиция",
+      "description": "Самая толстая оболочка вены с продольными пучками гладких миоцитов.",
+      "color": "#EC4899",
+      "pin_x": 60,
+      "pin_y": 65
+    }
+  ],
+  "embryoOrigin": "Стенка сосуда развивается из мезенхимы. Эндотелий и гладкомышечные клетки (медия) формируются из клеток мезенхимного происхождения, а адвентиция — из окружающей мезенхимы, которая впоследствии дифференцируется в рыхлую соединительную ткань.",
+  "functionText": "Транспорт крови к дистальным отделам конечности (к мышцам, коже, костям). Благодаря мощному мышечному слою, эти артерии способны активно сокращаться и регулировать просвет сосуда, тем самым контролируя объем кровотока и артериальное давление в соответствующем регионе (распределительная и сосудосуживающая функция).",
+  "imageUrls": [
+    "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/94/Thymic_corpuscle.jpg/1280px-Thymic_corpuscle.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  ],
+  "imageLabels": [
+    "Срез 2 (Атлас)"
+  ],
+  "examPlan": {
+    "stainAndType": "Вена мышечного типа (бедренная вена) (Гематоксилин и эозин)",
+    "origin": "Стенка сосуда развивается из мезенхимы. Эндотелий и гладкомышечные клетки (медия) формируются из клеток мезенхимного происхождения, а адвентиция — из окружающей мезенхимы, которая впоследствии дифференцируется в рыхлую соединительную ткань.",
+    "structure": "На препарате виден кровеносный сосуд с четко выраженной стенкой и звездчатым (складчатым) просветом, что характерно для артерий в спавшемся состоянии. Стенка состоит из трех оболочек. Внутренняя оболочка (интима) представлена эндотелием и подэндотелиальным слоем. Средняя оболочка (медия) самая толстая, состоит из нескольких десятков слоев гладкомышечных клеток (циркулярно расположенных), между которыми видны тонкие розовые волокна. Наружная оболочка (адвентиция) представлена рыхлой волокнистой соединительной тканью. Хорошо заметна внутренняя эластическая мембрана (базофильная извилистая линия на границе интимы и медии)",
+    "location": "Бедренная артерия относится к сосудам мышечного типа, которые располагаются в опорно-двигательном аппарате (конечности, туловище), а также в органах с активной моторикой. На препарате представлен изолированный поперечный срез сосуда.",
+    "functionText": "Транспорт крови к дистальным отделам конечности (к мышцам, коже, костям). Благодаря мощному мышечному слою, эти артерии способны активно сокращаться и регулировать просвет сосуда, тем самым контролируя объем кровотока и артериальное давление в соответствующем регионе (распределительная и сосудосуживающая функция).",
+    "killerFeature": "Широкий спавшийся просвет неправильной формы, слабо развитая средняя оболочка и преобладающая по толщине адвентиция."
+  }
+},
+{
+  "id": "slide_31",
+  "examNumber": 31,
+  "moduleId": "mod_cardio_immune",
+  "title": "Артерия эластического типа (аорта)",
+  "stain": "Орсеин",
+  "magnification": "x100 / x200",
+  "imageUrl": "",
+  "layersText": "1. Интима (эндотелий, мощный подэндотелиальный слой, сплетение эластических волокон) -> 2. Медиа (40-50 окончатых эластических мембран с гладкими миоцитами между ними) -> 3. Адвентиция (РВСТ, vasa vasorum).",
+  "keyCells": "Эндотелиоциты, гладкие миоциты между эластическими мембранами, фибробласты.",
+  "killerFeature": "Многочисленные параллельные волнистые окончатые эластические мембраны в мощной средней оболочке.",
+  "distractors": [
+    "Артерия мышечного типа",
+    "Эластический хрящ ушной раковины",
+    "Вена мышечного типа"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Интима",
+      "name": "Внутренняя оболочка (интима)",
+      "description": "Эндотелий и толстый подэндотелиальный слой.",
+      "color": "#FDE047",
+      "pin_x": 50,
+      "pin_y": 20
+    },
+    {
+      "number": 2,
+      "short_name": "Мембраны",
+      "name": "Окончатые эластические мембраны (орсеин)",
+      "description": "40–70 концентрических коричнево-бурых эластических мембран в толще средней оболочки.",
+      "color": "#7F1D1D",
+      "pin_x": 50,
+      "pin_y": 55
+    }
+  ],
+  "embryoOrigin": "Стенка сосуда развивается из мезенхимы. Эндотелий и гладкомышечные клетки (медия) формируются из клеток мезенхимного происхождения, а адвентиция — из окружающей мезенхимы, которая впоследствии дифференцируется в рыхлую соединительную ткань.",
+  "functionText": "Транспорт крови к дистальным отделам конечности (к мышцам, коже, костям). Благодаря мощному мышечному слою, эти артерии способны активно сокращаться и регулировать просвет сосуда, тем самым контролируя объем кровотока и артериальное давление в соответствующем регионе (распределительная и сосудосуживающая функция).",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Артерия эластического типа (аорта) (Гематоксилин и эозин)",
+    "origin": "Стенка сосуда развивается из мезенхимы. Эндотелий и гладкомышечные клетки (медия) формируются из клеток мезенхимного происхождения, а адвентиция — из окружающей мезенхимы, которая впоследствии дифференцируется в рыхлую соединительную ткань.",
+    "structure": "На препарате виден кровеносный сосуд с четко выраженной стенкой и звездчатым (складчатым) просветом, что характерно для артерий в спавшемся состоянии. Стенка состоит из трех оболочек. Внутренняя оболочка (интима) представлена эндотелием и подэндотелиальным слоем. Средняя оболочка (медия) самая толстая, состоит из нескольких десятков слоев гладкомышечных клеток (циркулярно расположенных), между которыми видны тонкие розовые волокна. Наружная оболочка (адвентиция) представлена рыхлой волокнистой соединительной тканью. Хорошо заметна внутренняя эластическая мембрана (базофильная извилистая линия на границе интимы и медии)",
+    "location": "Бедренная артерия относится к сосудам мышечного типа, которые располагаются в опорно-двигательном аппарате (конечности, туловище), а также в органах с активной моторикой. На препарате представлен изолированный поперечный срез сосуда.",
+    "functionText": "Транспорт крови к дистальным отделам конечности (к мышцам, коже, костям). Благодаря мощному мышечному слою, эти артерии способны активно сокращаться и регулировать просвет сосуда, тем самым контролируя объем кровотока и артериальное давление в соответствующем регионе (распределительная и сосудосуживающая функция).",
+    "killerFeature": "Многочисленные параллельные волнистые окончатые эластические мембраны в мощной средней оболочке."
+  }
+},
+{
+  "id": "slide_32",
+  "examNumber": 32,
+  "moduleId": "mod_cardio_immune",
+  "title": "Стенка сердца (эндокард и миокард) с волокнами Пуркинье",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x200",
+  "imageUrl": "",
+  "layersText": "Эндокард -> Субэндокардиальный слой с атипичными кардиомиоцитами (проводящие волокна Пуркинье: крупные, светлые клетки с небольшим числом миофибрилл по периферии и запасами гликогена) -> Рабочий сократительный миокард.",
+  "keyCells": "Атипичные проводящие кардиомиоциты (клетки Пуркинье) — гигантские светлые клетки; сократительные кардиомиоциты.",
+  "killerFeature": "Крупные клетки Пуркинье с эксцентричными ядрами и светлой цитоплазмой, резко контрастирующие с тонкими оксифильными сократительными кардиомиоцитами.",
+  "distractors": [
+    "Миокард (железный гематоксилин)",
+    "Скелетная мышечная ткань",
+    "Аорта"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Клетки Пуркинье",
+      "name": "Проводящие клетки Пуркинье",
+      "description": "Очень крупные, светлые проводящие кардиомиоциты (много гликогена), миофибриллы смещены к периферии.",
+      "color": "#EC4899",
+      "pin_x": 45,
+      "pin_y": 42
+    },
+    {
+      "number": 2,
+      "short_name": "Миокард",
+      "name": "Сократительный рабочий миокард",
+      "description": "Типичные кардиомиоциты с центральным ядром, поперечной исчерченностью и вставочными дисками.",
+      "color": "#EF4444",
+      "pin_x": 60,
+      "pin_y": 65
+    }
+  ],
+  "embryoOrigin": "Развивается из мезенхимы (мезодермы), как и вся сердечная мышечная ткань. Проводящие кардиомиоциты дифференцируются из клеток миоэпикардиальной пластинки (висцерального листка спланхнотома) в процессе эмбриогенеза, отставая в развитии от сократительных кардиомиоцитов и сохраняя черты эмбрионального типа.",
+  "functionText": "Проведение нервного импульса (возбуждения) от атриовентрикулярного узла и пучка Гиса к сократительным кардиомиоцитам желудочков. Благодаря крупному диаметру и высокой скорости проведения возбуждения они обеспечивают синхронное и быстрое сокращение миокарда желудочков",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Стенка сердца (эндокард и миокард) с волокнами Пуркинье (Гематоксилин и эозин)",
+    "origin": "Развивается из мезенхимы (мезодермы), как и вся сердечная мышечная ткань. Проводящие кардиомиоциты дифференцируются из клеток миоэпикардиальной пластинки (висцерального листка спланхнотома) в процессе эмбриогенеза, отставая в развитии от сократительных кардиомиоцитов и сохраняя черты эмбрионального типа.",
+    "structure": "На фоне розовых, продольно ориентированных сократительных кардиомиоцитов (рабочих мышечных волокон) выделяются крупные, светлые, округлые или овальные структуры с центрально расположенным ядром — это волокна Пуркинье. Они резко отличаются от обычных кардиомиоцитов своим размером (значительно крупнее) и светлой, слабо оксифильной цитоплазмой, которая выглядит пенистой или гомогенной из-за высокого содержания гликогена и миоглобина, а также из-за слабого развития миофибрилл. Вокруг волокон Пуркинье и между сократительными кардиомиоцитами видна рыхлая соединительная ткань с фибробластами и капиллярами",
+    "location": "В толще миокарда, в составе проводящей системы сердца.",
+    "functionText": "Проведение нервного импульса (возбуждения) от атриовентрикулярного узла и пучка Гиса к сократительным кардиомиоцитам желудочков. Благодаря крупному диаметру и высокой скорости проведения возбуждения они обеспечивают синхронное и быстрое сокращение миокарда желудочков",
+    "killerFeature": "Крупные клетки Пуркинье с эксцентричными ядрами и светлой цитоплазмой, резко контрастирующие с тонкими оксифильными сократительными кардиомиоцитами."
+  }
+},
+{
+  "id": "slide_33",
+  "examNumber": 33,
+  "moduleId": "mod_cardio_immune",
+  "title": "Тимус (вилочковая железа)",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x100 / x400",
+  "imageUrl": "",
+  "layersText": "Сократительные кардиомиоциты, соединенные вставочными дисками (десмосомы и нексусы) в функциональный синцитий; анастомозы между волокнами; центрально расположенные ядра; эндомизий с богатой капиллярной сетью.",
+  "keyCells": "Т-лимфоциты (тимоциты), эпителиоретикулоциты (строма), слоистые эпителиальные тельца Гассаля в мозговом веществе.",
+  "killerFeature": "Поперечные полоски вставочных дисков, центральное положение ядер кардиомиоцитов и ветвящиеся анастомозы волокон.",
+  "distractors": [
+    "Лимфатический узел",
+    "Селезенка",
+    "Небная миндалина"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Кора",
+      "name": "Корковое вещество дольки",
+      "description": "Темная периферия дольки с высокой плотностью малых Т-лимфоцитов (тимоцитов).",
+      "color": "#4338CA",
+      "pin_x": 35,
+      "pin_y": 35
+    },
+    {
+      "number": 2,
+      "short_name": "Мозговое в-во",
+      "name": "Мозговое вещество дольки",
+      "description": "Светлый центр дольки, где происходит отрицательная селекция Т-лимфоцитов.",
+      "color": "#C084FC",
+      "pin_x": 55,
+      "pin_y": 55
+    },
+    {
+      "number": 3,
+      "short_name": "Тельце Гассаля",
+      "name": "Слоистое тельце Гассаля",
+      "description": "Концентрические наслоения дегенерирующих эпителиоретикулоцитов с кератином.",
+      "color": "#EC4899",
+      "pin_x": 62,
+      "pin_y": 62
+    }
+  ],
+  "embryoOrigin": "Миоэпикардиальная пластинка висцерального листка спланхнотома мезодермы.",
+  "functionText": "Ритмическое непроизвольное сокращение камер сердца, нагнетание крови в сосудистое русло большого и малого кругов кровообращения.",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Тимус (вилочковая железа) (Гематоксилин и эозин)",
+    "origin": "Миоэпикардиальная пластинка висцерального листка спланхнотома мезодермы.",
+    "structure": "Сократительные кардиомиоциты, соединенные вставочными дисками (десмосомы и нексусы) в функциональный синцитий; анастомозы между волокнами; центрально расположенные ядра; эндомизий с богатой капиллярной сетью.",
+    "location": "Т-лимфоциты (тимоциты), эпителиоретикулоциты (строма), слоистые эпителиальные тельца Гассаля в мозговом веществе.",
+    "functionText": "Ритмическое непроизвольное сокращение камер сердца, нагнетание крови в сосудистое русло большого и малого кругов кровообращения.",
+    "killerFeature": "Поперечные полоски вставочных дисков, центральное положение ядер кардиомиоцитов и ветвящиеся анастомозы волокон."
+  }
+},
+{
+  "id": "slide_34",
+  "examNumber": 34,
+  "moduleId": "mod_cardio_immune",
+  "title": "Лимфатический узел",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x40 / x200",
+  "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/25/Tumors_of_the_pituitary_gland.djvu/page1-960px-Tumors_of_the_pituitary_gland.djvu.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "layersText": "Капсула -> Междольковые трабекулы -> Дольки: Корковое вещество (темное, густо заселено тимоцитами/Т-лимфобластами, эпителиоретикулоциты) -> Мозговое вещество (светлое, зрелые Т-лимфоциты, слоистые эпителиальные тельца Гассаля).",
+  "keyCells": "B- и T-лимфоциты, плазмоциты, макрофаги, ретикулярные клетки.",
+  "killerFeature": "Дольчатое строение и концентрические слоистые тельца Гассаля (тимические тельца) в светлом мозговом веществе.",
+  "distractors": [
+    "Селезенка",
+    "Тимус",
+    "Небная миндалина"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Краевой синус",
+      "name": "Капсула и краевой синус",
+      "description": "Под соединительнотканной капсулой протекает лимфа из приносящих сосудов.",
+      "color": "#94A3B8",
+      "pin_x": 25,
+      "pin_y": 20
+    },
+    {
+      "number": 2,
+      "short_name": "Фолликул",
+      "name": "Лимфоидный фолликул коры (B-зона)",
+      "description": "Узелок со светлым герминативным центром (центром размножения В-бластов).",
+      "color": "#6366F1",
+      "pin_x": 35,
+      "pin_y": 40
+    },
+    {
+      "number": 3,
+      "short_name": "Мозговые тяжи",
+      "name": "Мозговые тяжи и синусы",
+      "description": "Центр узла, скопление плазмоцитов и макрофагов, секретирующих антитела.",
+      "color": "#EC4899",
+      "pin_x": 60,
+      "pin_y": 60
+    }
+  ],
+  "embryoOrigin": "Развивается из мезенхимы. Лимфоидные клетки происходят из стволовых клеток красного костного мозга, которые мигрируют в зачаток узла. Соединительнотканная капсула и трабекулы формируются из окружающей мезенхимы.",
+  "functionText": "Орган периферического лимфопоэза и иммуногенеза. В корковом веществе (в фолликулах) происходит антигензависимая пролиферация и дифференцировка B-лимфоцитов. В паракортикальной зоне (Т-зависимая зона) — пролиферация T-лимфоцитов. В мозговом веществе (плазмоциты в мозговых тяжах) завершается созревание клеток и синтезируются антитела. Кроме того, узел выполняет функцию биологического фильтра для лимфы.",
+  "imageUrls": [
+    "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/25/Tumors_of_the_pituitary_gland.djvu/page1-960px-Tumors_of_the_pituitary_gland.djvu.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "https://upload.wikimedia.org/wikipedia/commons/4/48/IMG-20220727-WA0007.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+  ],
+  "imageLabels": [
+    "Срез 2 (Атлас)",
+    "Срез 3 (Атлас)"
+  ],
+  "examPlan": {
+    "stainAndType": "Лимфатический узел (Гематоксилин и эозин)",
+    "origin": "Развивается из мезенхимы. Лимфоидные клетки происходят из стволовых клеток красного костного мозга, которые мигрируют в зачаток узла. Соединительнотканная капсула и трабекулы формируются из окружающей мезенхимы.",
+    "structure": "На препарате виден орган бобовидной формы, окруженный капсулой (соединительнотканной оболочкой). Снаружи (на вогнутой стороне — воротах) в орган входят и выходят сосуды, там же видна жировая ткань. Паренхима узла разделена на дольки соединительнотканными трабекулами. Четко выделяются зоны:\n   · Корковое вещество (периферическая часть) — более темное, базофильное, содержит округлые структуры — лимфатические фолликулы (узелки) с более светлыми герминативными центрами.\n   · Мозговое вещество (центральная часть) — более светлое, представлено мозговыми тяжами (мякотными шнурами), между которыми находятся мозговые синусы.\n   · Между капсулой и фолликулами, а также вокруг трабекул видны синусы (краевой, подкапсулярный и трабекулярные) — светлые щелевидные пространства.",
+    "location": "Лимфатические узлы располагаются по ходу лимфатических сосудов в различных регионах тела (подмышечные, паховые, подчелюстные и др.)",
+    "functionText": "Орган периферического лимфопоэза и иммуногенеза. В корковом веществе (в фолликулах) происходит антигензависимая пролиферация и дифференцировка B-лимфоцитов. В паракортикальной зоне (Т-зависимая зона) — пролиферация T-лимфоцитов. В мозговом веществе (плазмоциты в мозговых тяжах) завершается созревание клеток и синтезируются антитела. Кроме того, узел выполняет функцию биологического фильтра для лимфы.",
+    "killerFeature": "Дольчатое строение и концентрические слоистые тельца Гассаля (тимические тельца) в светлом мозговом веществе."
+  }
+},
+{
+  "id": "slide_35",
+  "examNumber": 35,
+  "moduleId": "mod_cardio_immune",
+  "title": "Селезенка",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x40 / x200",
+  "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/Young_Pineal_Gland_Hematoxylin_and_Eosin_Staining_%2846457461065%29.jpg/1280px-Young_Pineal_Gland_Hematoxylin_and_Eosin_Staining_%2846457461065%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "layersText": "Капсула с приносящими лимфатическими сосудами -> Корковое вещество (лимфоидные узелки с герминативными центрами — В-зона) -> Паракортикальная зона (Т-зона) -> Мозговое вещество (мякотные тяжи и мозговые синусы).",
+  "keyCells": "Лимфоциты, макрофаги (спленофаги), эритроциты в синусоидах, ретикулярные клетки.",
+  "killerFeature": "Краевой (подэточный) синус под капсулой, фолликулы со светлыми центрами размножения и мякотные шнуры в мозговом веществе.",
+  "distractors": [
+    "Лимфатический узел",
+    "Тимус",
+    "Красный костный мозг"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Белая пульпа",
+      "name": "Белая пульпа с центральной артерией",
+      "description": "Лимфоидный узелок, в котором эксцентрично проходит центральная артерия.",
+      "color": "#6366F1",
+      "pin_x": 40,
+      "pin_y": 40
+    },
+    {
+      "number": 2,
+      "short_name": "Красная пульпа",
+      "name": "Красная пульпа (тяжи Бильрота и синусы)",
+      "description": "Эритроциты, макрофаги, фагоцитирующие старые эритроциты, ретикулярная строма.",
+      "color": "#EF4444",
+      "pin_x": 65,
+      "pin_y": 60
+    }
+  ],
+  "embryoOrigin": "Развивается из мезенхимы. Строма (капсула, трабекулы, ретикулярная ткань) формируется из мезенхимальных клеток. Лимфоидные клетки (T- и B-лимфоциты) мигрируют сюда из красного костного мозга и тимуса в процессе эмбриогенеза.",
+  "functionText": "Орган периферического кроветворения и иммуногенеза. В белой пульпе происходит антигензависимая пролиферация и дифференцировка T- и B-лимфоцитов (иммунная функция). Красная пульпа служит местом депонирования крови, разрушения старых эритроцитов (фагоцитоз макрофагами) и дозревания клеток крови, а также фильтрации крови от чужеродных частиц.",
+  "imageUrls": [
+    "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/Young_Pineal_Gland_Hematoxylin_and_Eosin_Staining_%2846457461065%29.jpg/1280px-Young_Pineal_Gland_Hematoxylin_and_Eosin_Staining_%2846457461065%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1b/Young_Pineal_Gland_Hematoxylin_and_Eosin_Staining_%2833496199108%29.jpg/1280px-Young_Pineal_Gland_Hematoxylin_and_Eosin_Staining_%2833496199108%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  ],
+  "imageLabels": [
+    "Срез 2 (Атлас)",
+    "Срез 3 (Атлас)"
+  ],
+  "examPlan": {
+    "stainAndType": "Селезенка (Гематоксилин и эозин)",
+    "origin": "Развивается из мезенхимы. Строма (капсула, трабекулы, ретикулярная ткань) формируется из мезенхимальных клеток. Лимфоидные клетки (T- и B-лимфоциты) мигрируют сюда из красного костного мозга и тимуса в процессе эмбриогенеза.",
+    "structure": "На препарате видна паренхима (пульпа) селезенки, не разделенная на дольки. Четко выделяются две основные зоны:\n   · Белая пульпа — представлена округлыми или овальными базофильными структурами (лимфоидными узелками, или фолликулами). В центре узелка часто видна более светлая зона — центральная артерия (на срезе может выглядеть как щель или округлое отверстие). Вокруг узелка располагается маргинальная зона.\n   · Красная пульпа — составляет основную массу органа. Она имеет оксифильный (красный/оранжевый) цвет и представлена ретикулярной тканью, заполненной эритроцитами, макрофагами, плазмоцитами и синусоидами (щелевидными пространствами между тяжами). Также видны прослойки соединительной ткани (трабекулы), отходящие от капсулы.",
+    "location": "В левом подреберье брюшной полости",
+    "functionText": "Орган периферического кроветворения и иммуногенеза. В белой пульпе происходит антигензависимая пролиферация и дифференцировка T- и B-лимфоцитов (иммунная функция). Красная пульпа служит местом депонирования крови, разрушения старых эритроцитов (фагоцитоз макрофагами) и дозревания клеток крови, а также фильтрации крови от чужеродных частиц.",
+    "killerFeature": "Краевой (подэточный) синус под капсулой, фолликулы со светлыми центрами размножения и мякотные шнуры в мозговом веществе."
+  }
+},
+{
+  "id": "slide_36",
+  "examNumber": 36,
+  "moduleId": "mod_cardio_immune",
+  "title": "Небная миндалина",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x40 / x200",
+  "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8e/Thyroid_gland_microscope2.jpg/1280px-Thyroid_gland_microscope2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "layersText": "Серозная оболочка и капсула с трабекулами -> Белая пульпа (лимфоидные фолликулы с эксцентрично расположенной центральной артерией и периартериальными муфтами) -> Красная пульпа (селезеночные тяжи Бильрота, венозные синусоиды).",
+  "keyCells": "Лимфоциты (инфильтрируют эпителий крипт), плазмоциты, макрофаги, плоские эпителиоциты.",
+  "killerFeature": "Центральная артерия, проходящая эксцентрично через лимфоидный узелок белой пульпы, окруженный эритроцитами красной пульпы.",
+  "distractors": [
+    "Лимфатический узел",
+    "Аппендикс",
+    "Пищевод"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Крипта",
+      "name": "Крипта миндалины с эпителием",
+      "description": "Глубокий карман, выстланный многослойным плоским эпителием, инфильтрированным лимфоцитами.",
+      "color": "#6366F1",
+      "pin_x": 45,
+      "pin_y": 35
+    },
+    {
+      "number": 2,
+      "short_name": "Узелки",
+      "name": "Цепочка лимфоидных узелков",
+      "description": "Ряды фолликулов со светлыми центрами размножения вдоль стенок крипты.",
+      "color": "#8B5CF6",
+      "pin_x": 60,
+      "pin_y": 55
+    }
+  ],
+  "embryoOrigin": "Развивается из мезенхимы (строма) и эпителия ротовой полости (эктодерма/энтодерма). Лимфоидные узелки формируются путем миграции и пролиферации лимфоцитов из красного костного мозга и тимуса в процессе эмбриогенеза и после рождения (в ответ на антигенную стимуляцию).",
+  "functionText": "Периферический орган иммуногенеза (лимфоидная ткань, ассоциированная со слизистыми оболочками). Обеспечивает защиту организма от патогенов, проникающих через ротовую полость и воздухоносные пути. В лимфоидных узелках происходит антигензависимая пролиферация и дифференцировка T- и B-лимфоцитов, продукция антител (плазмоцитами) и формирование иммунного ответа.",
+  "imageUrls": [
+    "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8e/Thyroid_gland_microscope2.jpg/1280px-Thyroid_gland_microscope2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6a/Thyroid_gland_microscope.jpg/1280px-Thyroid_gland_microscope.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  ],
+  "imageLabels": [
+    "Срез 2 (Атлас)",
+    "Срез 3 (Атлас)"
+  ],
+  "examPlan": {
+    "stainAndType": "Небная миндалина (Гематоксилин и эозин)",
+    "origin": "Развивается из мезенхимы (строма) и эпителия ротовой полости (эктодерма/энтодерма). Лимфоидные узелки формируются путем миграции и пролиферации лимфоцитов из красного костного мозга и тимуса в процессе эмбриогенеза и после рождения (в ответ на антигенную стимуляцию).",
+    "structure": "На препарате виден орган, покрытый многослойным плоским неороговевающим эпителием, который образует глубокие впячивания — крипты (лакуны). Крипты древовидно ветвятся, их просвет часто заполнен слущенными эпителиальными клетками, лейкоцитами и детритом (на препарате выглядит как светлая масса в центре). Под эпителием в собственной пластинке слизистой оболочки расположена плотная скопление лимфоидной ткани, образующая округлые лимфоидные узелки (фолликулы) с более светлыми герминативными центрами (в этих центрах происходит размножение лимфоцитов). Вокруг узелков и крипт видны прослойки соединительной ткани (капсула, трабекулы) и скелетная мышечная ткань (поперечно-полосатые волокна, окрашенные в ярко-красный/оранжевый цвет), которая отделяет миндалину от окружающих тканей",
+    "location": "В области зева, на боковых стенках ротовой полости (между небными дужками)",
+    "functionText": "Периферический орган иммуногенеза (лимфоидная ткань, ассоциированная со слизистыми оболочками). Обеспечивает защиту организма от патогенов, проникающих через ротовую полость и воздухоносные пути. В лимфоидных узелках происходит антигензависимая пролиферация и дифференцировка T- и B-лимфоцитов, продукция антител (плазмоцитами) и формирование иммунного ответа.",
+    "killerFeature": "Центральная артерия, проходящая эксцентрично через лимфоидный узелок белой пульпы, окруженный эритроцитами красной пульпы."
+  }
+},
+{
+  "id": "slide_37",
+  "examNumber": 37,
+  "moduleId": "mod_skin_resp",
+  "title": "Кожа пальца человека (толстая кожа)",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x100 / x200",
+  "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Parathyroid_gland_high_mag_cropped.jpg/1280px-Parathyroid_gland_high_mag_cropped.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "layersText": "Эпидермис (5 слоев: базальный, шиповатый, зернистый, блестящий, роговой) -> Дерма (сосочковый слой из РВСТ и сетчатый слой из ПНВСТ) -> Подкожно-жировая клетчатка",
+  "keyCells": "Кератиноциты на разных стадиях кератинизации, меланоциты, клетки Лангерганса, клетки Меркеля, секреторные и миоэпителиальные клетки потовых желез.",
+  "killerFeature": "Наличие толстого блестящего слоя (элеидин) и мощного рогового слоя эпидермиса, сосочки дермы.",
+  "distractors": [
+    "Кожа с волосом (тонкая кожа)",
+    "Пищевод",
+    "Роговица глаза"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Роговой слой",
+      "name": "Мощный роговой слой (stratum corneum)",
+      "description": "Многочисленные ряды безъядерных ороговевших чешуек, заполненных кератином.",
+      "color": "#EC4899",
+      "pin_x": 50,
+      "pin_y": 20
+    },
+    {
+      "number": 2,
+      "short_name": "Дерма",
+      "name": "Сосочковый и сетчатый слои дермы",
+      "description": "Рыхлая и плотная волокнистая соединительная ткань с капиллярными петлями и потовыми железами.",
+      "color": "#6366F1",
+      "pin_x": 50,
+      "pin_y": 65
+    }
+  ],
+  "embryoOrigin": "Эктодерма (эпидермис) и мезенхима (дерма, сосуды, гиподерма)",
+  "functionText": "Защитная (барьерная), терморегуляторная, рецепторная (осязание)",
+  "imageUrls": [
+    "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/db/Parathyroid_gland_high_mag_cropped.jpg/1280px-Parathyroid_gland_high_mag_cropped.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ca/Parathyroid_gland_high_mag.jpg/1280px-Parathyroid_gland_high_mag.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  ],
+  "imageLabels": [
+    "Срез 2 (Атлас)",
+    "Срез 3 (Атлас)"
+  ],
+  "examPlan": {
+    "stainAndType": "Кожа пальца человека (толстая кожа) (Гематоксилин и эозин)",
+    "origin": "Эктодерма (эпидермис) и мезенхима (дерма, сосуды, гиподерма)",
+    "structure": "Эпидермис (5 слоев: базальный, шиповатый, зернистый, блестящий, роговой) -> Дерма (сосочковый слой из РВСТ и сетчатый слой из ПНВСТ) -> Подкожно-жировая клетчатка",
+    "location": "Кератиноциты на разных стадиях кератинизации, меланоциты, клетки Лангерганса, клетки Меркеля, секреторные и миоэпителиальные клетки потовых желез.",
+    "functionText": "Защитная (барьерная), терморегуляторная, рецепторная (осязание)",
+    "killerFeature": "Наличие толстого блестящего слоя (элеидин) и мощного рогового слоя эпидермиса, сосочки дермы."
+  }
+},
+{
+  "id": "slide_38",
+  "examNumber": 38,
+  "moduleId": "mod_skin_resp",
+  "title": "Кожа с волосом (тонкая кожа)",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x100",
+  "imageUrl": "",
+  "layersText": "Эпидермис (4 слоя: базальный, шиповатый, зернистый, роговой; блестящий отсутствует) -> Дерма с корнями волос и сальными железами -> Мышца, поднимающая волос",
+  "keyCells": "Кератиноциты, себоциты (светлые пенистые клетки голокриновых сальных желез), клетки волосяной луковицы, гладкие миоциты.",
+  "killerFeature": "Срезы волосяных фолликулов со стержнями волос и альвеолярные сальные железы в дерме.",
+  "distractors": [
+    "Кожа пальца человека",
+    "Молочная железа",
+    "Околоушная слюнная железа"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Фолликул",
+      "name": "Волосяной фолликул и корень волоса",
+      "description": "Эпителиальное корневое влагалище, волосяная сумка и стержень волоса.",
+      "color": "#6366F1",
+      "pin_x": 45,
+      "pin_y": 50
+    },
+    {
+      "number": 2,
+      "short_name": "Сальная железа",
+      "name": "Сальная железа (простая альвеолярная)",
+      "description": "Светлые дольки себоцитов с голокриновым типом секреции, впадающие в устье фолликула.",
+      "color": "#F59E0B",
+      "pin_x": 62,
+      "pin_y": 42
+    }
+  ],
+  "embryoOrigin": "Эктодерма (эпидермис, волосяные фолликулы, железы) и дерматомная мезенхима (дерма)",
+  "functionText": "Барьерная защита, термоизоляция, осязание (волосяные луковицы), выработка кожного сала",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Кожа с волосом (тонкая кожа) (Гематоксилин и эозин)",
+    "origin": "Эктодерма (эпидермис, волосяные фолликулы, железы) и дерматомная мезенхима (дерма)",
+    "structure": "Эпидермис (4 слоя: базальный, шиповатый, зернистый, роговой; блестящий отсутствует) -> Дерма с корнями волос и сальными железами -> Мышца, поднимающая волос",
+    "location": "Кератиноциты, себоциты (светлые пенистые клетки голокриновых сальных желез), клетки волосяной луковицы, гладкие миоциты.",
+    "functionText": "Барьерная защита, термоизоляция, осязание (волосяные луковицы), выработка кожного сала",
+    "killerFeature": "Срезы волосяных фолликулов со стержнями волос и альвеолярные сальные железы в дерме."
+  }
+},
+{
+  "id": "slide_39",
+  "examNumber": 39,
+  "moduleId": "mod_skin_resp",
+  "title": "Трахея (поперечный срез)",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x100 / x400",
+  "imageUrl": "",
+  "layersText": "1. Слизистая (многорядный реснитчатый эпителий + собственная пластинка) -> 2. Подслизистая (белково-слизистые железы) -> 3. Волокнисто-хрящевая (гиалиновый хрящ) -> 4. Адвентиция",
+  "keyCells": "Реснитчатые, бокаловидные, вставочные базальные и эндокринные клетки эпителия; хондроциты гиалинового хряща.",
+  "killerFeature": "Незамкнутое кольцо гиалинового хряща с изогенными группами хондроцитов и многорядный мерцательный эпителий.",
+  "distractors": [
+    "Пищевод",
+    "Крупный бронх",
+    "Мочеточник"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Эпителий",
+      "name": "Многорядный мерцательный эпителий",
+      "description": "Реснитчатые, бокаловидные, вставочные и эндокринные клетки слизистой.",
+      "color": "#6366F1",
+      "pin_x": 45,
+      "pin_y": 22
+    },
+    {
+      "number": 2,
+      "short_name": "Гиалиновый хрящ",
+      "name": "Полукольцо гиалинового хряща",
+      "description": "Изогенные группы хондроцитов в базофильном аморфном матриксе с надхрящницей.",
+      "color": "#10B981",
+      "pin_x": 55,
+      "pin_y": 65
+    }
+  ],
+  "embryoOrigin": "Энтодерма вентральной стенки передней кишки (эпителий и железы) и мезенхима мезодермального происхождения (хрящ, соединительная ткань, сосуды)",
+  "functionText": "Проведение воздуха от гортани к бронхам, увлажнение, согревание и очищение вдыхаемого воздуха мукоцилиарным клиренсом; хрящевой каркас предотвращает спадение.",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Трахея (поперечный срез) (Гематоксилин и эозин)",
+    "origin": "Энтодерма вентральной стенки передней кишки (эпителий и железы) и мезенхима мезодермального происхождения (хрящ, соединительная ткань, сосуды)",
+    "structure": "1. Слизистая (многорядный реснитчатый эпителий + собственная пластинка) -> 2. Подслизистая (белково-слизистые железы) -> 3. Волокнисто-хрящевая (гиалиновый хрящ) -> 4. Адвентиция",
+    "location": "Реснитчатые, бокаловидные, вставочные базальные и эндокринные клетки эпителия; хондроциты гиалинового хряща.",
+    "functionText": "Проведение воздуха от гортани к бронхам, увлажнение, согревание и очищение вдыхаемого воздуха мукоцилиарным клиренсом; хрящевой каркас предотвращает спадение.",
+    "killerFeature": "Незамкнутое кольцо гиалинового хряща с изогенными группами хондроцитов и многорядный мерцательный эпителий."
+  }
+},
+{
+  "id": "slide_40",
+  "examNumber": 40,
+  "moduleId": "mod_skin_resp",
+  "title": "Легкое",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x100 / x400",
+  "imageUrl": "",
+  "layersText": "Паренхима (альвеолы с альвеолоцитами I и II типов) -> Межальвеолярные перегородки (эластические волокна, капилляры) -> Бронхиолы и сосуды -> Плевра",
+  "keyCells": "Альвеолоциты I типа (респираторные плоские), альвеолоциты II типа (большие, секретируют сурфактант), альвеолярные макрофаги (пылевые клетки), клетки Клара.",
+  "killerFeature": "Ячеисто-губчатый рисунок паренхимы с тонкими межальвеолярными перегородками и срезами бронхиол.",
+  "distractors": [
+    "Щитовидная железа",
+    "Молочная железа (лактирующая)",
+    "Белая жировая ткань"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Альвеолы",
+      "name": "Альвеолы и межальвеолярные перегородки",
+      "description": "Тончайшие пузырьки с респираторными альвеолоцитами I и II типа и капиллярной сетью.",
+      "color": "#EC4899",
+      "pin_x": 35,
+      "pin_y": 40
+    },
+    {
+      "number": 2,
+      "short_name": "Бронхиола",
+      "name": "Терминальная бронхиола",
+      "description": "Складчатый просвет без хряща и желез, выстланный однослойным кубическим/призматическим эпителием.",
+      "color": "#6366F1",
+      "pin_x": 68,
+      "pin_y": 55
+    }
+  ],
+  "embryoOrigin": "Развивается из энтодермы (эпителий альвеол и бронхиального дерева — выпячивание вентральной стенки передней кишки) и мезенхимы (соединительная ткань, хрящи, гладкие мышцы, сосуды).",
+  "functionText": "Основная функция — газообмен. В альвеолах происходит диффузия кислорода из вдыхаемого воздуха в кровь капилляров, а углекислого газа — из крови в альвеолы для выведения при выдохе. Эластические волокна в перегородках обеспечивают растяжение и спадение легких при дыхании. Бронхиолы проводят воздух к альвеолам.",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Легкое (?)",
+    "origin": "Развивается из энтодермы (эпителий альвеол и бронхиального дерева — выпячивание вентральной стенки передней кишки) и мезенхимы (соединительная ткань, хрящи, гладкие мышцы, сосуды).",
+    "structure": "На препарате виден губчатый (ячеистый) рисунок, характерный для легочной паренхимы. Ткань пронизана множеством пустот — альвеол (на фото выглядят как крупные светлые ячейки, разделенные тонкими перегородками). Межальвеолярные перегородки содержат капилляры, эластические и коллагеновые волокна, а также клетки (фибробласты, макрофаги). В толще ткани видны более крупные полости — это бронхиолы (и/или бронхи) и кровеносные сосуды (артерии и вены), стенки которых выглядят как утолщенные кольца или тяжи. На снимке также просматривается плевра (соединительнотканная оболочка) по краю",
+    "location": "В грудной полости, составляет основную паренхиму легких (органов дыхания).",
+    "functionText": "Основная функция — газообмен. В альвеолах происходит диффузия кислорода из вдыхаемого воздуха в кровь капилляров, а углекислого газа — из крови в альвеолы для выведения при выдохе. Эластические волокна в перегородках обеспечивают растяжение и спадение легких при дыхании. Бронхиолы проводят воздух к альвеолам.",
+    "killerFeature": "Ячеисто-губчатый рисунок паренхимы с тонкими межальвеолярными перегородками и срезами бронхиол."
+  }
+},
+{
+  "id": "slide_41",
+  "examNumber": 41,
+  "moduleId": "mod_endocrine",
+  "title": "Щитовидная железа",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x200",
+  "imageUrl": "",
+  "layersText": "Аденогипофиз (передняя доля: хромофильные базофилы/ацидофилы и хромофобы) -> Промежуточная доля (кисты Ратке с коллоидом) -> Нейрогипофиз (задняя доля: питуициты, аксоны с тельцами Херринга)",
+  "keyCells": "Тироциты (фолликулярные клетки — кубические в норме, плоские при гипофункции, цилиндрические при гиперфункции), кальцитониноциты (парафолликулярные C-клетки — крупнее и светлее).",
+  "killerFeature": "Тяжи базофильных (фиолетовых) и ацидофильных (розовых) аденоцитов, синусоидные капилляры и кисты Ратке.",
+  "distractors": [
+    "Легкое",
+    "Околощитовидная железа",
+    "Молочная железа"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Фолликул",
+      "name": "Фолликул щитовидной железы",
+      "description": "Стенка из однослойного кубического эпителия тироцитов на базальной мембране.",
+      "color": "#6366F1",
+      "pin_x": 48,
+      "pin_y": 35
+    },
+    {
+      "number": 2,
+      "short_name": "Коллоид",
+      "name": "Оксифильный коллоид (тиреоглобулин)",
+      "description": "Гомогенная розовая белковая масса с гормонами T3 и T4 внутри полости фолликула.",
+      "color": "#EC4899",
+      "pin_x": 52,
+      "pin_y": 52
+    }
+  ],
+  "embryoOrigin": "Развивается из энтодермы (из эпителия 3-й и 4-й пар жаберных карманов). У млекопитающих верхние паращитовидные железы формируются из 4-го кармана, а нижние — из 3-го. Соединительнотканная строма формируется из мезенхимы.",
+  "functionText": "Эндокринная регуляция кальциево-фосфорного обмена. Паратироциты синтезируют паратгормон (паратирин), который повышает уровень кальция в крови (путем стимуляции остеокластов, усиления всасывания кальция в кишечнике и реабсорбции в почках) и снижает содержание фосфатов. Это необходимо для нормальной возбудимости нервно-мышечной ткани и прочности костей.",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Щитовидная железа (?)",
+    "origin": "Развивается из энтодермы (из эпителия 3-й и 4-й пар жаберных карманов). У млекопитающих верхние паращитовидные железы формируются из 4-го кармана, а нижние — из 3-го. Соединительнотканная строма формируется из мезенхимы.",
+    "structure": "На препарате видна паренхима железы, окруженная капсулой. Паренхима образована тяжами и компактными скоплениями эпителиальных клеток — паратироцитов. Эти клетки расположены плотно, формируя округлые дольки, разделенные тонкими прослойками рыхлой соединительной ткани с гемокапиллярами. Вокруг железы и между ее дольками хорошо заметна обильная жировая ткань (крупные светлые пустые ячейки — адипоциты), которая у крупного рогатого скота (быка) часто врастает в строму органа с возрастом или образует выраженную прослойку вокруг него. На препарате также видны крупные кровеносные сосуды (артерии и вены) с толстыми стенками в соединительнотканных прослойках. (Внутри долек при большем увеличении можно дифференцировать главные и ацидофильные паратироциты, но здесь видна общая масса клеток)",
+    "location": "В области шеи, рядом со щитовидной железой",
+    "functionText": "Эндокринная регуляция кальциево-фосфорного обмена. Паратироциты синтезируют паратгормон (паратирин), который повышает уровень кальция в крови (путем стимуляции остеокластов, усиления всасывания кальция в кишечнике и реабсорбции в почках) и снижает содержание фосфатов. Это необходимо для нормальной возбудимости нервно-мышечной ткани и прочности костей.",
+    "killerFeature": "Тяжи базофильных (фиолетовых) и ацидофильных (розовых) аденоцитов, синусоидные капилляры и кисты Ратке."
+  }
+},
+{
+  "id": "slide_42",
+  "examNumber": 42,
+  "moduleId": "mod_endocrine",
+  "title": "Околощитовидная железа",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x200",
+  "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/38/Normal_lung_%285414785258%29.jpg/1280px-Normal_lung_%285414785258%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "layersText": "Фолликулы (стенка из однослойного кубического эпителия — тироцитов) -> Просвет фолликула (коллоид с тиреоглобулином) -> Интерстиций с С-клетками (парафолликулярными) и капиллярами",
+  "keyCells": "Главные паратироциты (мелкие, многочисленные, со светлой или базофильной цитоплазмой) и оксифильные паратироциты (крупные, с ярко-розовой цитоплазмой и темным ядром).",
+  "killerFeature": "Округлые фолликулы с однослойной стенкой, заполненные оксифильным розовым коллоидом.",
+  "distractors": [
+    "Щитовидная железа",
+    "Аденогипофиз",
+    "Надпочечник"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Главные клетки",
+      "name": "Главные паратироциты (базофильные)",
+      "description": "Мелкие клетки, секретирующие паратгормон, образующие плотные тяжи.",
+      "color": "#6366F1",
+      "pin_x": 42,
+      "pin_y": 40
+    },
+    {
+      "number": 2,
+      "short_name": "Оксифильные клетки",
+      "name": "Оксифильные паратироциты",
+      "description": "Крупные клетки с ярко-розовой зернистой цитоплазмой, богатой митохондриями.",
+      "color": "#EC4899",
+      "pin_x": 65,
+      "pin_y": 55
+    }
+  ],
+  "embryoOrigin": "Развивается из энтодермы (впячивание глотки — формирование щитовидного мешочка, или зачатка, на дне глотки). Эпителий фолликулов имеет энтодермальное происхождение. Парафолликулярные клетки (С-клетки), по современным данным, мигрируют из клеток нервного гребня (нейроэктодермы). Соединительнотканная строма развивается из мезенхимы.",
+  "functionText": "Синтез и накопление йодсодержащих гормонов — тироксина (Т4) и трийодтиронина (Т3). Эти гормоны регулируют основной обмен веществ, рост и развитие организма, а также возбудимость нервной системы. В состав коллоида входит гликопротеин тиреоглобулин, из которого при необходимости высвобождаются гормоны. Кроме того, в строме (между фолликулами) могут располагаться парафолликулярные (С-клетки), вырабатывающие кальцитонин (регуляция уровня кальция).",
+  "imageUrls": [
+    "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/38/Normal_lung_%285414785258%29.jpg/1280px-Normal_lung_%285414785258%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "https://upload.wikimedia.org/wikipedia/commons/a/ac/Normal_lung_%283660695207%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+  ],
+  "imageLabels": [
+    "Срез 2 (Атлас)",
+    "Срез 3 (Атлас)"
+  ],
+  "examPlan": {
+    "stainAndType": "Околощитовидная железа (Гематоксилин и эозин)",
+    "origin": "Развивается из энтодермы (впячивание глотки — формирование щитовидного мешочка, или зачатка, на дне глотки). Эпителий фолликулов имеет энтодермальное происхождение. Парафолликулярные клетки (С-клетки), по современным данным, мигрируют из клеток нервного гребня (нейроэктодермы). Соединительнотканная строма развивается из мезенхимы.",
+    "structure": "На препарате видна паренхима щитовидной железы, представленная множеством округлых или овальных структур — фолликулов (пузырьков). Стенка каждого фолликула образована одним слоем эпителиальных клеток (тироцитов или фолликулярных эндокриноцитов), ядра которых хорошо видны (округлые, базофильные). В просвете фолликулов находится гомогенный коллоид (оксифильная масса от бледно-розового до желтоватого цвета) — это запасной тиреоглобулин. Между фолликулами (в интерстиции) видны прослойки рыхлой соединительной ткани с многочисленными капиллярами. На препарате также видна крупная светлая структура (возможно, фолликул с вакуолизированным коллоидом на границе резорбции или участок соединительной ткани), но в целом препарат демонстрирует типичное фолликулярное строение железы.",
+    "location": "На передней поверхности шеи, по бокам от трахеи и гортани",
+    "functionText": "Синтез и накопление йодсодержащих гормонов — тироксина (Т4) и трийодтиронина (Т3). Эти гормоны регулируют основной обмен веществ, рост и развитие организма, а также возбудимость нервной системы. В состав коллоида входит гликопротеин тиреоглобулин, из которого при необходимости высвобождаются гормоны. Кроме того, в строме (между фолликулами) могут располагаться парафолликулярные (С-клетки), вырабатывающие кальцитонин (регуляция уровня кальция).",
+    "killerFeature": "Округлые фолликулы с однослойной стенкой, заполненные оксифильным розовым коллоидом."
+  }
+},
+{
+  "id": "slide_43",
+  "examNumber": 43,
+  "moduleId": "mod_endocrine",
+  "title": "Надпочечник",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x100 / x200",
+  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Gray1018.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+  "layersText": "Капсула -> Трабекулы и тяжи паратироцитов (главные светлые/темные и оксифильные клетки) -> Обильные включения жировой ткани (адипоциты) -> Синусоидные капилляры",
+  "keyCells": "Клетки клубочковой зоны, спонгиоциты пучковой зоны (много липидных вакуолей), клетки сетчатой зоны, хромаффинные клетки мозгового вещества (эпинефроциты и норэпинефроциты).",
+  "killerFeature": "Компактные клеточные тяжи паратироцитов, окруженные характерными гнездами адипоцитов (жировых клеток) у быка.",
+  "distractors": [
+    "Почка (корковое и мозговое вещество)",
+    "Лимфатический узел",
+    "Гипофиз"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Пучковая зона",
+      "name": "Пучковая зона коры надпочечника",
+      "description": "Параллельные тяжи светлых пенистых спонгиоцитов, синтезирующих глюкокортикоиды (кортизол).",
+      "color": "#F59E0B",
+      "pin_x": 48,
+      "pin_y": 35
+    },
+    {
+      "number": 2,
+      "short_name": "Мозговое вещество",
+      "name": "Мозговое вещество (хромаффиноциты)",
+      "description": "Темные базофильные клетки вокруг широких вен, синтезирующие адреналин и норадреналин.",
+      "color": "#8B5CF6",
+      "pin_x": 52,
+      "pin_y": 72
+    }
+  ],
+  "embryoOrigin": "Имеет двойное происхождение:\n   · Корковое вещество развивается из мезодермы (целомического эпителия — эпителиальных тяжей, врастающих в мезенхиму).\n   · Мозговое вещество развивается из нейроэктодермы (клеток нервного гребня — симпатических ганглиобластов, мигрирующих в зачаток надпочечника).",
+  "functionText": "Эндокринный орган, регулирующий обмен веществ и адаптационные реакции.\n   · Корковое вещество: синтез стероидных гормонов — минералокортикоидов (альдостерон, регуляция водно-солевого обмена), глюкокортикоидов (кортизол, регуляция углеводного и белкового обмена, противовоспалительное действие) и андрогенов.\n   · Мозговое вещество: синтез катехоламинов (адреналин, норадреналин), которые повышают артериальное давление, учащают сердечные сокращения и мобилизуют организм при стрессе.",
+  "imageUrls": [
+    "https://upload.wikimedia.org/wikipedia/commons/5/5a/Gray1018.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+    "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/18/Fungiform_papillae_and_Filiform_papillae.jpg/1280px-Fungiform_papillae_and_Filiform_papillae.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  ],
+  "imageLabels": [
+    "Срез 2 (Атлас)",
+    "Срез 3 (Атлас)"
+  ],
+  "examPlan": {
+    "stainAndType": "Надпочечник (Гематоксилин и эозин)",
+    "origin": "Имеет двойное происхождение:\n   · Корковое вещество развивается из мезодермы (целомического эпителия — эпителиальных тяжей, врастающих в мезенхиму).\n   · Мозговое вещество развивается из нейроэктодермы (клеток нервного гребня — симпатических ганглиобластов, мигрирующих в зачаток надпочечника).",
+    "structure": "На препарате виден паренхиматозный орган, окруженный тонкой соединительнотканной капсулой. Четко выделяются две основные зоны (слоя):\n   · Корковое вещество (периферическая часть, на снимке — более темная, оксифильная зона слева/снизу): представлено тяжами и гнездами эпителиальных клеток (адренокортикоцитов), разделенных тонкими прослойками соединительной ткани с капиллярами. В нем (при большем увеличении) можно было бы различить клубочковую, пучковую и сетчатую зоны.\n   · Мозговое вещество (центральная часть, на снимке — более светлая, бледно-розовая/желтоватая зона справа): состоит из крупных, светлых клеток (хромаффинных и ганглиозных), расположенных в виде тяжей и групп, разделенных венозными синусоидами.\n   · Строма органа представлена рыхлой соединительной тканью, разделяющей орган на дольки (соединительнотканные трабекулы).",
+    "location": "На верхнем полюсе каждой почки",
+    "functionText": "Эндокринный орган, регулирующий обмен веществ и адаптационные реакции.\n   · Корковое вещество: синтез стероидных гормонов — минералокортикоидов (альдостерон, регуляция водно-солевого обмена), глюкокортикоидов (кортизол, регуляция углеводного и белкового обмена, противовоспалительное действие) и андрогенов.\n   · Мозговое вещество: синтез катехоламинов (адреналин, норадреналин), которые повышают артериальное давление, учащают сердечные сокращения и мобилизуют организм при стрессе.",
+    "killerFeature": "Компактные клеточные тяжи паратироцитов, окруженные характерными гнездами адипоцитов (жировых клеток) у быка."
+  }
+},
+{
+  "id": "slide_44",
+  "examNumber": 44,
+  "moduleId": "mod_endocrine",
+  "title": "Гипофиз человека",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x100 / x400",
+  "imageUrl": "",
+  "layersText": "Капсула -> Корковое вещество (клубочковая зона -> пучковая зона -> сетчатая зона) -> Мозговое вещество (хромаффиноциты, ганглиозные нейроны, синусоидные вены)",
+  "keyCells": "Хромофобные клетки (бледные, мелкие, без гранул) и хромофильные: ацидофильные (розовые соматотропы и лактотропы) и базофильные (сине-фиолетовые тиро-, гонадо- и кортикотропы); питуициты в задней доле.",
+  "killerFeature": "Четкая зональность коры (клубочки, параллельные пучки тяжей, сеть) и светлоокрашенное мозговое вещество с венозными синусоидами в центре.",
+  "distractors": [
+    "Околощитовидная железа",
+    "Надпочечник",
+    "Поджелудочная железа"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Аденогипофиз",
+      "name": "Передняя доля (аденогипофиз)",
+      "description": "Тяжи хромофильных (розовых ацидофилов, синих базофилов) и бледных хромофобных клеток.",
+      "color": "#6366F1",
+      "pin_x": 35,
+      "pin_y": 45
+    },
+    {
+      "number": 2,
+      "short_name": "Нейрогипофиз",
+      "name": "Задняя доля (нейрогипофиз)",
+      "description": "Волокнистая нервная ткань из безмиелиновых волокон гипоталамуса и питуицитов.",
+      "color": "#10B981",
+      "pin_x": 70,
+      "pin_y": 50
+    }
+  ],
+  "embryoOrigin": "Двойное происхождение: кора развивается из целомического эпителия мезодермы (мезодермальная мезотелиальная пластинка); мозговое вещество — из нервного гребня (симпатобласты нейроэктодермы).",
+  "functionText": "Кора: минералокортикоиды/альдостерон (клубочковая), глюкокортикоиды/кортизол (пучковая), андрогены (сетчатая). Мозговое вещество: катехоламины (адреналин, норадреналин).",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Гипофиз человека (Гематоксилин и эозин)",
+    "origin": "Двойное происхождение: кора развивается из целомического эпителия мезодермы (мезодермальная мезотелиальная пластинка); мозговое вещество — из нервного гребня (симпатобласты нейроэктодермы).",
+    "structure": "На препарате видна паренхима гипофиза, ...\nПередняя доля:\n\n· Адренокортикотропный гормон — стимулирует кору надпочечников (выработка кортизола).\n· Тиреотропный гормон — стимулирует щитовидную железу.\n· Гормон роста — регулирует рост и развитие.\n· Фолликулостимулирующий гормон — созревание яйцеклеток у женщин, выработка спермы у мужчин.\n· Лютеинизирующий гормон — овуляция и выработка прогестерона у женщин, тестостерона у мужчин.\n· Пролактин — выработка грудного молока.\n\nЗадняя доля:\n\n· Вазопрессин (антидиуретический гормон) — задержка воды в почках, водный баланс.\n· Окситоцин — сокращение матки в родах, выделение молока.",
+    "location": "Хромофобные клетки (бледные, мелкие, без гранул) и хромофильные: ацидофильные (розовые соматотропы и лактотропы) и базофильные (сине-фиолетовые тиро-, гонадо- и кортикотропы); питуициты в задней доле.",
+    "functionText": "Кора: минералокортикоиды/альдостерон (клубочковая), глюкокортикоиды/кортизол (пучковая), андрогены (сетчатая). Мозговое вещество: катехоламины (адреналин, норадреналин).",
+    "killerFeature": "Четкая зональность коры (клубочки, параллельные пучки тяжей, сеть) и светлоокрашенное мозговое вещество с венозными синусоидами в центре."
+  }
+},
+{
+  "id": "slide_45",
+  "examNumber": 45,
+  "moduleId": "mod_digestive",
+  "title": "Нитевидные сосочки языка",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x100",
+  "imageUrl": "",
+  "layersText": "Многослойный плоский неороговевающий эпителий листовидных сосочков -> Вкусовые почки (луковицы) в боковых стенках сосочков -> Ров/щель между сосочками с протоками серозных желез Эбнера -> Поперечно-полосатые мышцы языка.",
+  "keyCells": "Кератиноциты с роговыми чешуйками на верхушках сосочков, поперечнополосатые мышечные волокна.",
+  "killerFeature": "Параллельные складки сосочков со светлыми овальными вкусовыми почками на боковых поверхностях и протоками желез на дне рва.",
+  "distractors": [
+    "Вкусовые луковицы в листовидных сосочках языка",
+    "Кожа пальца человека",
+    "Пищевод"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Нитевидный сосочек",
+      "name": "Нитевидный сосочек с ороговевающей верхушкой",
+      "description": "Конический вырост собственной пластинки слизистой, покрытый ороговевающим эпителием.",
+      "color": "#EC4899",
+      "pin_x": 48,
+      "pin_y": 25
+    },
+    {
+      "number": 2,
+      "short_name": "Мышцы языка",
+      "name": "Поперечнополосатые мышцы языка",
+      "description": "Пучки скелетных мышечных волокон, ориентированные продольно, поперечно и вертикально.",
+      "color": "#6366F1",
+      "pin_x": 52,
+      "pin_y": 70
+    }
+  ],
+  "embryoOrigin": "Эпителий слизистой оболочки языка и вкусовые почки развиваются из эктодермы (передняя часть) и энтодермы (корень языка). Соединительнотканная строма и мышцы языка развиваются из мезенхимы (в основном, из затылочных сомитов и жаберных дуг).",
+  "functionText": "Восприятие вкуса (вкусовые почки реагируют на химические раздражители, растворенные в слюне). Также сосочки участвуют в механической обработке пищи. Серозные железы (железы Эбнера) омывают сосочки слюной, очищая их и растворяя питательные вещества для вкусовых рецепторов.",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Нитевидные сосочки языка (Гематоксилин и эозин)",
+    "origin": "Эпителий слизистой оболочки языка и вкусовые почки развиваются из эктодермы (передняя часть) и энтодермы (корень языка). Соединительнотканная строма и мышцы языка развиваются из мезенхимы (в основном, из затылочных сомитов и жаберных дуг).",
+    "structure": "На препарате видны многочисленные параллельные складки слизистой оболочки, разделенные глубокими бороздами (щелями). Складки образованы многослойным плоским неороговевающим эпителием (снаружи) и собственной пластинкой слизистой оболочки (внутри) из рыхлой волокнистой соединительной ткани. В эпителии боковых поверхностей сосочков различимы бледные овальные структуры — вкусовые почки (луковицы). В толще собственной пластинки видны прослойки скелетной мышечной ткани языка (поперечно-полосатые волокна) и выводные протоки серозных желез.",
+    "location": "На боковых поверхностях языка",
+    "functionText": "Восприятие вкуса (вкусовые почки реагируют на химические раздражители, растворенные в слюне). Также сосочки участвуют в механической обработке пищи. Серозные железы (железы Эбнера) омывают сосочки слюной, очищая их и растворяя питательные вещества для вкусовых рецепторов.",
+    "killerFeature": "Параллельные складки сосочков со светлыми овальными вкусовыми почками на боковых поверхностях и протоками желез на дне рва."
+  }
+},
+{
+  "id": "slide_46",
+  "examNumber": 46,
+  "moduleId": "mod_digestive",
+  "title": "Околоушная слюнная железа",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x200",
+  "imageUrl": "",
+  "layersText": "Многослойный плоский неороговевающий эпителий, инфильтрированный лимфоцитами -> Глубокие ветвящиеся крипты -> Лимфоидные фолликулы с герминативными центрами -> Соединительнотканная полукапсула.",
+  "keyCells": "Сероциты (конические клетки с базофильной цитоплазмой и круглым ядром в центре), миоэпителиальные клетки, клетки исчерченных протоков (ярко-розовые с базальной исчерченностью).",
+  "killerFeature": "Глубокие крипты с «продырявленным» эпителием (инфильтрация лимфоцитами) и лимфоидные узелки вдоль стенок крипт.",
+  "distractors": [
+    "Подъязычная и подчелюстная слюнные железы",
+    "Поджелудочная железа",
+    "Молочная железа"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Серозный ацинус",
+      "name": "Серозный (белковый) концевой отдел",
+      "description": "Темные базофильные клетки сероциты с круглыми центральными ядрами.",
+      "color": "#6366F1",
+      "pin_x": 42,
+      "pin_y": 40
+    },
+    {
+      "number": 2,
+      "short_name": "Исчерченный проток",
+      "name": "Исчерченный выводной проток",
+      "description": "Ярко-розовый проток с базальной исчерченностью (складки мембраны с митохондриями).",
+      "color": "#EC4899",
+      "pin_x": 62,
+      "pin_y": 55
+    }
+  ],
+  "embryoOrigin": "Эпителий 2-го жаберного кармана (энтодерма/эктодерма ротовой полости) и мезенхима.",
+  "functionText": "Периферический лимфоэпителиальный орган защитного глоточного кольца Пирогова–Вальдейера: иммунологический барьер входных ворот дыхательной и пищеварительной систем.",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Околоушная слюнная железа (Гематоксилин и эозин)",
+    "origin": "Эпителий 2-го жаберного кармана (энтодерма/эктодерма ротовой полости) и мезенхима.",
+    "structure": "Многослойный плоский неороговевающий эпителий, инфильтрированный лимфоцитами -> Глубокие ветвящиеся крипты -> Лимфоидные фолликулы с герминативными центрами -> Соединительнотканная полукапсула.",
+    "location": "Сероциты (конические клетки с базофильной цитоплазмой и круглым ядром в центре), миоэпителиальные клетки, клетки исчерченных протоков (ярко-розовые с базальной исчерченностью).",
+    "functionText": "Периферический лимфоэпителиальный орган защитного глоточного кольца Пирогова–Вальдейера: иммунологический барьер входных ворот дыхательной и пищеварительной систем.",
+    "killerFeature": "Глубокие крипты с «продырявленным» эпителием (инфильтрация лимфоцитами) и лимфоидные узелки вдоль стенок крипт."
+  }
+},
+{
+  "id": "slide_47",
+  "examNumber": 47,
+  "moduleId": "mod_digestive",
+  "title": "Подъязычная и подчелюстная слюнные железы",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x200",
+  "imageUrl": "",
+  "layersText": "Сложная альвеолярная разветвленная чисто серозная (белковая) железа: темные белковые концевые отделы (ацинусы из сероцитов с базофильной цитоплазмой) -> Длинные вставочные протоки -> Исчерченные протоки (с базальной исчерченностью) -> Междольковые протоки.",
+  "keyCells": "Мукоциты (крупные светлые пенистые клетки с уплощенным ядром у базальной мембраны), сероциты (образуют темные «серозные полулуния Джиануцци» на концах слизистых трубочек).",
+  "killerFeature": "Исключительно белковые (темно-оксифильные/базофильные) концевые отделы без слизистых клеток; многочисленные исчерченные протоки.",
+  "distractors": [
+    "Околоушная слюнная железа",
+    "Поджелудочная железа",
+    "Пилорический отдел желудка"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Полулуние",
+      "name": "Серозное полулуние Джиануцци",
+      "description": "Темные белковые клетки-сероциты, охватывающие конец светлой слизистой трубочки.",
+      "color": "#6366F1",
+      "pin_x": 45,
+      "pin_y": 42
+    },
+    {
+      "number": 2,
+      "short_name": "Слизистый ацинус",
+      "name": "Слизистый концевой отдел (мукоциты)",
+      "description": "Крупные светлые клетки с уплощенными базофильными ядрами у базальной мембраны.",
+      "color": "#10B981",
+      "pin_x": 58,
+      "pin_y": 52
+    }
+  ],
+  "embryoOrigin": "Эктодерма первичной ротовой полости и мезенхима.",
+  "functionText": "Секреция жидкой слюны, богатой ферментами (альфа-амилаза, мальтаза), водой и белками; первичный гидролиз углеводов.",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Подъязычная и подчелюстная слюнные железы (Гематоксилин и эозин)",
+    "origin": "Эктодерма первичной ротовой полости и мезенхима.",
+    "structure": "Сложная альвеолярная разветвленная чисто серозная (белковая) железа: темные белковые концевые отделы (ацинусы из сероцитов с базофильной цитоплазмой) -> Длинные вставочные протоки -> Исчерченные протоки (с базальной исчерченностью) -> Междольковые протоки.",
+    "location": "Мукоциты (крупные светлые пенистые клетки с уплощенным ядром у базальной мембраны), сероциты (образуют темные «серозные полулуния Джиануцци» на концах слизистых трубочек).",
+    "functionText": "Секреция жидкой слюны, богатой ферментами (альфа-амилаза, мальтаза), водой и белками; первичный гидролиз углеводов.",
+    "killerFeature": "Исключительно белковые (темно-оксифильные/базофильные) концевые отделы без слизистых клеток; многочисленные исчерченные протоки."
+  }
+},
+{
+  "id": "slide_48",
+  "examNumber": 48,
+  "moduleId": "mod_digestive",
+  "title": "2-я стадия развития зуба (дифференцировка зубных зачатков)",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x100",
+  "imageUrl": "",
+  "layersText": "Сложная альвеолярно-трубчатая разветвленная смешанная (белково-слизистая) железа: преобладают белковые концевые отделы; смешанные концевые отделы со светлыми мукоцитами и серозными полулуниями Джиануцци; выводные протоки.",
+  "keyCells": "Преэнамелобласты (высокие клетки внутреннего эпителия, ядра смещены к центру), преодонтобласты на периферии зубного сосочка, звездчатые клетки пульпы эмалевого органа.",
+  "killerFeature": "Наличие серозных полулуний Джиануцци (темные клетки в виде полумесяца охватывают светлые слизистые клетки смешанных концевых отделов).",
+  "distractors": [
+    "Гистогенез зуба (3-я стадия)",
+    "Прямой остеогенез нижней челюсти",
+    "Кортиев орган"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Эмалевый орган",
+      "name": "Эмалевый орган (форма колокольчика)",
+      "description": "Внутренний и наружный эмалевый эпителий с пульпой эмалевого органа между ними.",
+      "color": "#6366F1",
+      "pin_x": 48,
+      "pin_y": 35
+    },
+    {
+      "number": 2,
+      "short_name": "Зубной сосочек",
+      "name": "Зубной сосочек из мезенхимы",
+      "description": "Густоклеточное скопление мезенхимы под колокольчиком, предшественник пульпы и дентина.",
+      "color": "#EC4899",
+      "pin_x": 52,
+      "pin_y": 60
+    }
+  ],
+  "embryoOrigin": "Эктодерма ротовой полости и мезенхима.",
+  "functionText": "Секреция смешанной слюны (белки, слизь-муцин для смазывания пищевого комка, электролиты).",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "2-я стадия развития зуба (дифференцировка зубных зачатков) (Гематоксилин и эозин)",
+    "origin": "Эктодерма ротовой полости и мезенхима.",
+    "structure": "Сложная альвеолярно-трубчатая разветвленная смешанная (белково-слизистая) железа: преобладают белковые концевые отделы; смешанные концевые отделы со светлыми мукоцитами и серозными полулуниями Джиануцци; выводные протоки.",
+    "location": "Преэнамелобласты (высокие клетки внутреннего эпителия, ядра смещены к центру), преодонтобласты на периферии зубного сосочка, звездчатые клетки пульпы эмалевого органа.",
+    "functionText": "Секреция смешанной слюны (белки, слизь-муцин для смазывания пищевого комка, электролиты).",
+    "killerFeature": "Наличие серозных полулуний Джиануцци (темные клетки в виде полумесяца охватывают светлые слизистые клетки смешанных концевых отделов)."
+  }
+},
+{
+  "id": "slide_49",
+  "examNumber": 49,
+  "moduleId": "mod_digestive",
+  "title": "Гистогенез зуба (3-я стадия — образование дентина и эмали)",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x100 / x200",
+  "imageUrl": "",
+  "layersText": "Изнутри наружу на верхушке зубного сосочка: 1. Пульпа зуба 2. Слой одонтобластов 3. Предентин и розовый дентин 4. Темно-фиолетовая полоска эмали 5. Слой высоких энамелобластов.",
+  "keyCells": "Одонтобласты (вытянутые клетки с отростками Томеса в дентинных канальцах), энамелобласты (высокие призматические клетки, синтезирующие эмаль).",
+  "killerFeature": "Между слоями высоких одонтобластов и энамелобластов появляются две плотные окрашенные полоски: розовый дентин и темно-фиолетовая/бурая эмаль.",
+  "distractors": [
+    "2-я стадия развития зуба",
+    "Прямой остеогенез нижней челюсти",
+    "Непрямой остеогенез"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Дентин",
+      "name": "Розовый слой дентина и предентина",
+      "description": "Обызвествленный матрикс с радиальными дентинными канальцами отростков одонтобластов.",
+      "color": "#EC4899",
+      "pin_x": 48,
+      "pin_y": 45
+    },
+    {
+      "number": 2,
+      "short_name": "Эмаль",
+      "name": "Темно-фиолетовая полоска эмали",
+      "description": "Слой призм гидроксиапатита, отложенный энамелобластами снаружи от дентина.",
+      "color": "#6366F1",
+      "pin_x": 55,
+      "pin_y": 38
+    }
+  ],
+  "embryoOrigin": "Эктодерма + мезенхима",
+  "functionText": "Синтез дентина (одонтобластами) и эмали (энамелобластами), формирование коронки зуба",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Гистогенез зуба (3-я стадия — образование дентина и эмали) (Гематоксилин и эозин)",
+    "origin": "Эктодерма + мезенхима",
+    "structure": "Изнутри наружу на верхушке зубного сосочка: 1. Пульпа зуба 2. Слой одонтобластов 3. Предентин и розовый дентин 4. Темно-фиолетовая полоска эмали 5. Слой высоких энамелобластов.",
+    "location": "Одонтобласты (вытянутые клетки с отростками Томеса в дентинных канальцах), энамелобласты (высокие призматические клетки, синтезирующие эмаль).",
+    "functionText": "Синтез дентина (одонтобластами) и эмали (энамелобластами), формирование коронки зуба",
+    "killerFeature": "Между слоями высоких одонтобластов и энамелобластов появляются две плотные окрашенные полоски: розовый дентин и темно-фиолетовая/бурая эмаль."
+  }
+},
+{
+  "id": "slide_50",
+  "examNumber": 50,
+  "moduleId": "mod_digestive",
+  "title": "Пищевод (поперечный срез)",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x40 / x200",
+  "imageUrl": "",
+  "layersText": "1. Слизистая (многослойный плоский неороговевающий эпителий, собственная пластинка с кардиальными железами, мышечная пластинка из продольных гладких миоцитов) 2. Подслизистая (концевые отделы собственных слизистых желез пищевода!) 3. Мышечная (внутренний циркулярный и наружный продольный слои) 4. Адвентициальная.",
+  "keyCells": "Плоские эпителиоциты, светлые слизистые клетки собственных желез подслизистой, гладкие миоциты (в верхней трети — скелетные).",
+  "killerFeature": "Звездчатый просвет, выстланный толстым многослойным плоским неороговевающим эпителием, и гроздья светлых слизистых желез в подслизистой основе.",
+  "distractors": [
+    "Трахея",
+    "Мочеточник",
+    "Роговица глаза"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Эпителий",
+      "name": "Многослойный плоский неороговевающий эпителий",
+      "description": "Толстый пласт неороговевающих эпителиоцитов со звездчатым просветом органа.",
+      "color": "#6366F1",
+      "pin_x": 48,
+      "pin_y": 28
+    },
+    {
+      "number": 2,
+      "short_name": "Железы подслизистой",
+      "name": "Собственные железы пищевода в подслизистой",
+      "description": "Пакеты светлых альвеолярно-трубчатых слизистых желез в подслизистой основе.",
+      "color": "#10B981",
+      "pin_x": 56,
+      "pin_y": 50
+    }
+  ],
+  "embryoOrigin": "Энтодерма передней кишки + мезенхима",
+  "functionText": "Проведение пищевого комка из глотки в желудок, защита от грубой пищи",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Пищевод (поперечный срез) (Гематоксилин и эозин)",
+    "origin": "Энтодерма передней кишки + мезенхима",
+    "structure": "1. Слизистая (многослойный плоский неороговевающий эпителий, собственная пластинка с кардиальными железами, мышечная пластинка из продольных гладких миоцитов) 2. Подслизистая (концевые отделы собственных слизистых желез пищевода!) 3. Мышечная (внутренний циркулярный и наружный продольный слои) 4. Адвентициальная.",
+    "location": "Плоские эпителиоциты, светлые слизистые клетки собственных желез подслизистой, гладкие миоциты (в верхней трети — скелетные).",
+    "functionText": "Проведение пищевого комка из глотки в желудок, защита от грубой пищи",
+    "killerFeature": "Звездчатый просвет, выстланный толстым многослойным плоским неороговевающим эпителием, и гроздья светлых слизистых желез в подслизистой основе."
+  }
+},
+{
+  "id": "slide_51",
+  "examNumber": 51,
+  "moduleId": "mod_digestive",
+  "title": "Фундальный (дно) отдел желудка",
+  "stain": "Конго-рот + гематоксилин",
+  "magnification": "x100 / x400",
+  "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/0/07/Histology_of_normal_antral_mucosa.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+  "layersText": "1. Слизистая (однослойный призматический железистый эпителий, неглубокие желудочные ямки на 1/4 толщины слизистой, длинные прямые собственные железы дна желудка, мышечная пластинка из 3 слоев) 2. Подслизистая (без желез) 3. Мышечная (3 слоя) 4. Серозная.",
+  "keyCells": "Главные экзокриноциты (синие/базофильные у дна желез), париетальные/обкладочные клетки (крупные округлые, окрашены конго-рот в ярко-оранжевый/красный цвет!), шеечные мукоциты, эндокриноциты.",
+  "killerFeature": "Неглубокие ямки (1/4 слизистой), длинные прямые трубочки желез и крупные ярко-оранжевые/красные обкладочные клетки (окр. конго-рот) по бокам желез.",
+  "distractors": [
+    "Пилорический отдел желудка",
+    "Двенадцатиперстная кишка",
+    "Толстая кишка"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Париетальные клетки",
+      "name": "Париетальные (обкладочные) клетки (оранжево-красные)",
+      "description": "Крупные клетки по бокам желез, секретирующие HCl и внутренний фактор Касла, ярко окрашенные конго-рот.",
+      "color": "#EF4444",
+      "pin_x": 48,
+      "pin_y": 45
+    },
+    {
+      "number": 2,
+      "short_name": "Главные клетки",
+      "name": "Главные клетки у дна желез (синие)",
+      "description": "Базофильные экзокриноциты, синтезирующие пепсиноген.",
+      "color": "#6366F1",
+      "pin_x": 52,
+      "pin_y": 70
+    }
+  ],
+  "embryoOrigin": "Энтодерма передней кишки",
+  "functionText": "Химическая обработка пищи желудочным соком (соляная кислота, пепсин), выработка фактора Касла",
+  "imageUrls": [
+    "https://upload.wikimedia.org/wikipedia/commons/0/07/Histology_of_normal_antral_mucosa.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+  ],
+  "imageLabels": [
+    "Срез 2 (Атлас)"
+  ],
+  "examPlan": {
+    "stainAndType": "Фундальный (дно) отдел желудка (Конго-рот + гематоксилин)",
+    "origin": "Энтодерма передней кишки",
+    "structure": "1. Слизистая (однослойный призматический железистый эпителий, неглубокие желудочные ямки на 1/4 толщины слизистой, длинные прямые собственные железы дна желудка, мышечная пластинка из 3 слоев) 2. Подслизистая (без желез) 3. Мышечная (3 слоя) 4. Серозная.",
+    "location": "Главные экзокриноциты (синие/базофильные у дна желез), париетальные/обкладочные клетки (крупные округлые, окрашены конго-рот в ярко-оранжевый/красный цвет!), шеечные мукоциты, эндокриноциты.",
+    "functionText": "Химическая обработка пищи желудочным соком (соляная кислота, пепсин), выработка фактора Касла",
+    "killerFeature": "Неглубокие ямки (1/4 слизистой), длинные прямые трубочки желез и крупные ярко-оранжевые/красные обкладочные клетки (окр. конго-рот) по бокам желез."
+  }
+},
+{
+  "id": "slide_52",
+  "examNumber": 52,
+  "moduleId": "mod_digestive",
+  "title": "Пилорический отдел желудка",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x100 / x200",
+  "imageUrl": "",
+  "layersText": "1. Слизистая (однослойный призматический железистый эпителий, очень глубокие желудочные ямки до 1/2 толщины слизистой, короткие разветвленные пилорические железы с широким просветом) 2. Подслизистая (без желез) 3. Мышечная (утолщенный циркулярный слой — сфинктер) 4. Серозная.",
+  "keyCells": "Слизистые клетки пилорических желез (светлые, с уплощенным базальным ядром), G-клетки (гастрин-продуцирующие), покровные мукоциты.",
+  "killerFeature": "Очень глубокие желудочные ямки (до половины слизистой) и светлые извитые трубчатые железы без главных и обкладочных клеток.",
+  "distractors": [
+    "Фундальный отдел желудка",
+    "Двенадцатиперстная кишка",
+    "Тощая кишка"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Глубокие ямки",
+      "name": "Глубокие желудочные ямки (до 1/2 слизистой)",
+      "description": "Выстланы однослойным высокопризматическим поверхностным эпителием, секретирующим слизь.",
+      "color": "#6366F1",
+      "pin_x": 48,
+      "pin_y": 25
+    },
+    {
+      "number": 2,
+      "short_name": "Пилорические железы",
+      "name": "Пилорические железы (разветвленные светлые)",
+      "description": "Короткие разветвленные трубчатые железы с широким просветом из светлых мукоцитов и эндокриноцитов (G-клеток).",
+      "color": "#10B981",
+      "pin_x": 52,
+      "pin_y": 55
+    }
+  ],
+  "embryoOrigin": "Энтодерма передней кишки",
+  "functionText": "Ослизнение химуса, нейтрализация кислоты бикарбонатами, секреция гастрина G-клетками",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Пилорический отдел желудка (Гематоксилин и эозин)",
+    "origin": "Энтодерма передней кишки",
+    "structure": "1. Слизистая (однослойный призматический железистый эпителий, очень глубокие желудочные ямки до 1/2 толщины слизистой, короткие разветвленные пилорические железы с широким просветом) 2. Подслизистая (без желез) 3. Мышечная (утолщенный циркулярный слой — сфинктер) 4. Серозная.",
+    "location": "Слизистые клетки пилорических желез (светлые, с уплощенным базальным ядром), G-клетки (гастрин-продуцирующие), покровные мукоциты.",
+    "functionText": "Ослизнение химуса, нейтрализация кислоты бикарбонатами, секреция гастрина G-клетками",
+    "killerFeature": "Очень глубокие желудочные ямки (до половины слизистой) и светлые извитые трубчатые железы без главных и обкладочных клеток."
+  }
+},
+{
+  "id": "slide_53",
+  "examNumber": 53,
+  "moduleId": "mod_digestive",
+  "title": "Двенадцатиперстная кишка",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x100",
+  "imageUrl": "",
+  "layersText": "1. Слизистая (высокие широкие листовидные ворсинки + крипты, однослойный призматический каемчатый эпителий с бокаловидными клетками) 2. Подслизистая (заполнена слизистыми дуоденальными/бруннеровыми железами!) 3. Мышечная (2 слоя) 4. Серозная/адвентициальная.",
+  "keyCells": "Столбчатые каемчатые энтероциты, бокаловидные клетки, клетки Панета (красные гранулы на дне крипт), слизистые клетки бруннеровых желез.",
+  "killerFeature": "Единственный отдел кишечника, где в подслизистой основе под мышечной пластинкой лежат плотные пакеты светлых слизистых дуоденальных (бруннеровых) желез + есть ворсинки.",
+  "distractors": [
+    "Тощая кишка",
+    "Пилорический отдел желудка",
+    "Толстая кишка"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Ворсинки",
+      "name": "Ворсинки и крипты двенадцатиперстной кишки",
+      "description": "Широкие листовидные выросты слизистой с каемчатыми энтероцитами и бокаловидными клетками.",
+      "color": "#EC4899",
+      "pin_x": 48,
+      "pin_y": 20
+    },
+    {
+      "number": 2,
+      "short_name": "Бруннеровы железы",
+      "name": "Дуоденальные (бруннеровы) железы в подслизистой",
+      "description": "Пакеты светлых слизистых желез в подслизистой основе, вырабатывающих щелочной секрет.",
+      "color": "#10B981",
+      "pin_x": 52,
+      "pin_y": 55
+    }
+  ],
+  "embryoOrigin": "Энтодерма средней кишки",
+  "functionText": "Интенсивное полостное и мембранное пищеварение, нейтрализация кислого химуса соком бруннеровых желез",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Двенадцатиперстная кишка (Гематоксилин и эозин)",
+    "origin": "Энтодерма средней кишки",
+    "structure": "1. Слизистая (высокие широкие листовидные ворсинки + крипты, однослойный призматический каемчатый эпителий с бокаловидными клетками) 2. Подслизистая (заполнена слизистыми дуоденальными/бруннеровыми железами!) 3. Мышечная (2 слоя) 4. Серозная/адвентициальная.",
+    "location": "Столбчатые каемчатые энтероциты, бокаловидные клетки, клетки Панета (красные гранулы на дне крипт), слизистые клетки бруннеровых желез.",
+    "functionText": "Интенсивное полостное и мембранное пищеварение, нейтрализация кислого химуса соком бруннеровых желез",
+    "killerFeature": "Единственный отдел кишечника, где в подслизистой основе под мышечной пластинкой лежат плотные пакеты светлых слизистых дуоденальных (бруннеровых) желез + есть ворсинки."
+  }
+},
+{
+  "id": "slide_54",
+  "examNumber": 54,
+  "moduleId": "mod_digestive",
+  "title": "Тощая кишка",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x100",
+  "imageUrl": "",
+  "layersText": "1. Слизистая (длинные тонкие пальцевидные ворсинки + крипты, однослойный призматический каемчатый эпителий) 2. Подслизистая (рыхлая соединительная ткань с сосудами, желез и пейеровых бляшек НЕТ) 3. Мышечная (2 слоя) 4. Серозная.",
+  "keyCells": "Каемчатые энтероциты, бокаловидные клетки, клетки Панета на дне крипт, энтероэндокриноциты.",
+  "killerFeature": "Длинные тонкие пальцевидные ворсинки и крипты при полном отсутствии бруннеровых желез в подслизистой основе.",
+  "distractors": [
+    "Двенадцатиперстная кишка",
+    "Толстая кишка",
+    "Пилорический отдел желудка"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Ворсинки",
+      "name": "Пальцевидные ворсинки тощей кишки",
+      "description": "Длинные тонкие выросты слизистой с каемчатыми энтероцитами и бокаловидными клетками.",
+      "color": "#EC4899",
+      "pin_x": 48,
+      "pin_y": 25
+    },
+    {
+      "number": 2,
+      "short_name": "Подслизистая",
+      "name": "Подслизистая основа (без желез)",
+      "description": "Рыхлая соединительная ткань с кровеносными сосудами и мейснеровским сплетением, без дуоденальных желез.",
+      "color": "#6366F1",
+      "pin_x": 52,
+      "pin_y": 65
+    }
+  ],
+  "embryoOrigin": "Энтодерма средней кишки",
+  "functionText": "Всасывание расщепленных нутриентов (моносахариды, аминокислоты, жирные кислоты)",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Тощая кишка (Гематоксилин и эозин)",
+    "origin": "Энтодерма средней кишки",
+    "structure": "1. Слизистая (длинные тонкие пальцевидные ворсинки + крипты, однослойный призматический каемчатый эпителий) 2. Подслизистая (рыхлая соединительная ткань с сосудами, желез и пейеровых бляшек НЕТ) 3. Мышечная (2 слоя) 4. Серозная.",
+    "location": "Каемчатые энтероциты, бокаловидные клетки, клетки Панета на дне крипт, энтероэндокриноциты.",
+    "functionText": "Всасывание расщепленных нутриентов (моносахариды, аминокислоты, жирные кислоты)",
+    "killerFeature": "Длинные тонкие пальцевидные ворсинки и крипты при полном отсутствии бруннеровых желез в подслизистой основе."
+  }
+},
+{
+  "id": "slide_55",
+  "examNumber": 55,
+  "moduleId": "mod_digestive",
+  "title": "Толстая кишка",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x100",
+  "imageUrl": "",
+  "layersText": "1. Слизистая (ровная поверхность БЕЗ ворсинок! Многочисленные глубокие прямые крипты, обилие бокаловидных клеток) 2. Подслизистая (без желез, одиночные лимфоидные фолликулы) 3. Мышечная (циркулярный слой и 3 продольные ленты — teniae coli) 4. Серозная.",
+  "keyCells": "Бокаловидные экзокриноциты (преобладают в криптах — выглядят как белые пузырьки), каемчатые энтероциты (колоноциты), недифференцированные клетки.",
+  "killerFeature": "Ворсинки полностью отсутствуют; слизистая состоит из ровных глубоких пробирок-крипт, густо набитых светлыми бокаловидными клетками.",
+  "distractors": [
+    "Тощая кишка",
+    "Аппендикс",
+    "Пилорический отдел желудка"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Крипты",
+      "name": "Прямые глубокие крипты с бокаловидными клетками",
+      "description": "Трубчатые вдавления эпителия, заполненные светлыми слизистыми пузырьками без ворсинок.",
+      "color": "#6366F1",
+      "pin_x": 48,
+      "pin_y": 35
+    },
+    {
+      "number": 2,
+      "short_name": "Мышечная оболочка",
+      "name": "Мышечная оболочка с лентами (teniae coli)",
+      "description": "Внутренний сплошной циркулярный и наружный продольный слой, собранный в 3 ленты.",
+      "color": "#EC4899",
+      "pin_x": 52,
+      "pin_y": 75
+    }
+  ],
+  "embryoOrigin": "Энтодерма задней кишки",
+  "functionText": "Всасывание воды и электролитов, формирование каловых масс, симбионтное пищеварение",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Толстая кишка (Гематоксилин и эозин)",
+    "origin": "Энтодерма задней кишки",
+    "structure": "1. Слизистая (ровная поверхность БЕЗ ворсинок! Многочисленные глубокие прямые крипты, обилие бокаловидных клеток) 2. Подслизистая (без желез, одиночные лимфоидные фолликулы) 3. Мышечная (циркулярный слой и 3 продольные ленты — teniae coli) 4. Серозная.",
+    "location": "Бокаловидные экзокриноциты (преобладают в криптах — выглядят как белые пузырьки), каемчатые энтероциты (колоноциты), недифференцированные клетки.",
+    "functionText": "Всасывание воды и электролитов, формирование каловых масс, симбионтное пищеварение",
+    "killerFeature": "Ворсинки полностью отсутствуют; слизистая состоит из ровных глубоких пробирок-крипт, густо набитых светлыми бокаловидными клетками."
+  }
+},
+{
+  "id": "slide_56",
+  "examNumber": 56,
+  "moduleId": "mod_digestive",
+  "title": "Аппендикс (червеобразный отросток)",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x40 / x100",
+  "imageUrl": "",
+  "layersText": "1. Слизистая (без ворсинок, мало крипт, прерывистая мышечная пластинка) 2. Подслизистая (сплошное кольцо крупных лимфоидных узелков со светлыми центрами размножения!) 3. Мышечная (сплошной продольный и циркулярный слои) 4. Серозная.",
+  "keyCells": "B- и T-лимфоциты, макрофаги, бокаловидные клетки, колоноциты.",
+  "killerFeature": "Небольшой диаметр органа с узким треугольным/звездчатым просветом и сплошное кольцо крупных лимфоидных фолликулов в подслизистой основе по всей окружности.",
+  "distractors": [
+    "Толстая кишка",
+    "Небная миндалина",
+    "Лимфатический узел"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Лимфоидный узелок",
+      "name": "Лимфоидный узелок со светлым центром",
+      "description": "Крупный фолликул B-лимфоцитов в составе сплошного кольца в подслизистой основе.",
+      "color": "#6366F1",
+      "pin_x": 48,
+      "pin_y": 40
+    },
+    {
+      "number": 2,
+      "short_name": "Просвет",
+      "name": "Узкий звездчатый просвет отростка",
+      "description": "Просвет выстлан однослойным призматическим эпителием без ворсинок с остатками детрита.",
+      "color": "#10B981",
+      "pin_x": 50,
+      "pin_y": 18
+    }
+  ],
+  "embryoOrigin": "Энтодерма задней кишки + мезенхима",
+  "functionText": "Иммунный надзор кишечного содержимого («кишечная миндалина»), депо полезной микрофлоры",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Аппендикс (червеобразный отросток) (Гематоксилин и эозин)",
+    "origin": "Энтодерма задней кишки + мезенхима",
+    "structure": "1. Слизистая (без ворсинок, мало крипт, прерывистая мышечная пластинка) 2. Подслизистая (сплошное кольцо крупных лимфоидных узелков со светлыми центрами размножения!) 3. Мышечная (сплошной продольный и циркулярный слои) 4. Серозная.",
+    "location": "B- и T-лимфоциты, макрофаги, бокаловидные клетки, колоноциты.",
+    "functionText": "Иммунный надзор кишечного содержимого («кишечная миндалина»), депо полезной микрофлоры",
+    "killerFeature": "Небольшой диаметр органа с узким треугольным/звездчатым просветом и сплошное кольцо крупных лимфоидных фолликулов в подслизистой основе по всей окружности."
+  }
+},
+{
+  "id": "slide_57",
+  "examNumber": 57,
+  "moduleId": "mod_digestive",
+  "title": "Поджелудочная железа",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x200",
+  "imageUrl": "",
+  "layersText": "Дольчатый паренхиматозный орган: экзокринная часть (97% — панкреатические ацинусы и выводные протоки) и эндокринная часть (3% — светлые островки Лангерганса без выводных протоков).",
+  "keyCells": "Ацинозные клетки (конические, гомогенная базофильная базальная часть и оксифильная апикальная зона с гранулами зимогена), центроацинозные клетки, B- и A-инсулоциты островков.",
+  "killerFeature": "Темные белковые ацинусы с двухцветной цитоплазмой и четко очерченные округлые светлые «островки» (Лангерганса) с густой сетью капилляров; исчерченных протоков нет (в отличие от слюнной железы).",
+  "distractors": [
+    "Околоушная слюнная железа",
+    "Гипофиз",
+    "Околощитовидная железа"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Островок",
+      "name": "Островок Лангерганса (эндокринная часть)",
+      "description": "Светлое округлое скопление инсулоцитов (бета-, альфа-, дельта-клетки) с синусоидными капиллярами.",
+      "color": "#10B981",
+      "pin_x": 48,
+      "pin_y": 40
+    },
+    {
+      "number": 2,
+      "short_name": "Ацинусы",
+      "name": "Панкреатические ацинусы (экзокринная часть)",
+      "description": "Темные конические ациноциты с базофильной базальной и оксифильной верхушечной зоной зимогена.",
+      "color": "#6366F1",
+      "pin_x": 65,
+      "pin_y": 60
+    }
+  ],
+  "embryoOrigin": "Энтодерма кишечной трубки",
+  "functionText": "Экзокринная секреция ферментов (трипсин, липаза, амилаза) и эндокринная (инсулин, глюкагон)",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Поджелудочная железа (Гематоксилин и эозин)",
+    "origin": "Энтодерма кишечной трубки",
+    "structure": "Дольчатый паренхиматозный орган: экзокринная часть (97% — панкреатические ацинусы и выводные протоки) и эндокринная часть (3% — светлые островки Лангерганса без выводных протоков).",
+    "location": "Ацинозные клетки (конические, гомогенная базофильная базальная часть и оксифильная апикальная зона с гранулами зимогена), центроацинозные клетки, B- и A-инсулоциты островков.",
+    "functionText": "Экзокринная секреция ферментов (трипсин, липаза, амилаза) и эндокринная (инсулин, глюкагон)",
+    "killerFeature": "Темные белковые ацинусы с двухцветной цитоплазмой и четко очерченные округлые светлые «островки» (Лангерганса) с густой сетью капилляров; исчерченных протоков нет (в отличие от слюнной железы)."
+  }
+},
+{
+  "id": "slide_58",
+  "examNumber": 58,
+  "moduleId": "mod_digestive",
+  "title": "Печень человека",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x100 / x400",
+  "imageUrl": "",
+  "layersText": "Классические печеночные дольки (слабо отграничены друг от друга соединительной тканью!): в центре дольки — центральная вена, от нее радиально расходятся печеночные балки и синусоидные капилляры; по углам долек — портальные тракты (триады).",
+  "keyCells": "Гепатоциты (полигональные, 1–2 круглых ядра, оксифильная цитоплазма), звездчатые макрофаги (клетки Купфера), эндотелиоциты, клетки Ито.",
+  "killerFeature": "Радиальное расположение тяжей гепатоцитов вокруг центральной вены и характерные «печеночные триады» в междольковой соединительной ткани (междольковая артерия, вена и желчный проточек).",
+  "distractors": [
+    "Поджелудочная железа",
+    "Надпочечник",
+    "Почка"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Центральная вена",
+      "name": "Центральная вена дольки печени",
+      "description": "Широкий бесклеточный сосуд в центре дольки, куда открываются синусоидные капилляры.",
+      "color": "#6366F1",
+      "pin_x": 48,
+      "pin_y": 40
+    },
+    {
+      "number": 2,
+      "short_name": "Триада",
+      "name": "Печеночная триада (портальный тракт)",
+      "description": "Междольковая артерия, междольковая вена и желчный междольковый проточек в соединительной ткани.",
+      "color": "#10B981",
+      "pin_x": 75,
+      "pin_y": 65
+    }
+  ],
+  "embryoOrigin": "Энтодерма печеночного выроста кишки + мезенхима",
+  "functionText": "Метаболическая фабрика, детоксикация, секреция желчи, синтез белков крови (альбумин)",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Печень человека (Гематоксилин и эозин)",
+    "origin": "Энтодерма печеночного выроста кишки + мезенхима",
+    "structure": "Классические печеночные дольки (слабо отграничены друг от друга соединительной тканью!): в центре дольки — центральная вена, от нее радиально расходятся печеночные балки и синусоидные капилляры; по углам долек — портальные тракты (триады).",
+    "location": "Гепатоциты (полигональные, 1–2 круглых ядра, оксифильная цитоплазма), звездчатые макрофаги (клетки Купфера), эндотелиоциты, клетки Ито.",
+    "functionText": "Метаболическая фабрика, детоксикация, секреция желчи, синтез белков крови (альбумин)",
+    "killerFeature": "Радиальное расположение тяжей гепатоцитов вокруг центральной вены и характерные «печеночные триады» в междольковой соединительной ткани (междольковая артерия, вена и желчный проточек)."
+  }
+},
+{
+  "id": "slide_59",
+  "examNumber": 59,
+  "moduleId": "mod_urogenital",
+  "title": "Почка (корковое и мозговое вещество)",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x100 / x400",
+  "imageUrl": "",
+  "layersText": "1. Фиброзная капсула 2. Корковое вещество (почечные тельца + извитые проксимальные и дистальные канальцы + мозговые лучи) 3. Мозговое вещество (прямые канальцы петли Генле и собирательные трубочки — почечных телец нет!).",
+  "keyCells": "Подоциты, эндотелиоциты капилляров клубочка, клетки проксимальных канальцев (мутная розовая цитоплазма, щеточная каемка, узкий просвет), клетки дистальных канальцев (светлее, широкий просвет).",
+  "killerFeature": "В корковом веществе — характерные круглые почечные тельца (сосудистый клубочек внутри двухслойной капсулы Шумлянского-Боумена) в окружении срезов извитых канальцев.",
+  "distractors": [
+    "Щитовидная железа",
+    "Надпочечник",
+    "Семенник"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Почечное тельце",
+      "name": "Почечное тельце (клубочек и капсула Боумена)",
+      "description": "Сосудистый клубочек капилляров, подоциты и щелевидная полость капсулы.",
+      "color": "#6366F1",
+      "pin_x": 48,
+      "pin_y": 35
+    },
+    {
+      "number": 2,
+      "short_name": "Канальцы",
+      "name": "Проксимальные и дистальные извитые канальцы",
+      "description": "Срезы канальцев с кубическим эпителием: проксимальные со щеточной каемкой и дистальные со светлым просветом.",
+      "color": "#EC4899",
+      "pin_x": 62,
+      "pin_y": 60
+    }
+  ],
+  "embryoOrigin": "Мезодерма (метанефрогенная бластема + мочеточниковый вырост)",
+  "functionText": "Ультрафильтрация плазмы, реабсорбция, секреция, водно-солевой гомеостаз, эритропоэз",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Почка (корковое и мозговое вещество) (Гематоксилин и эозин)",
+    "origin": "Мезодерма (метанефрогенная бластема + мочеточниковый вырост)",
+    "structure": "1. Фиброзная капсула 2. Корковое вещество (почечные тельца + извитые проксимальные и дистальные канальцы + мозговые лучи) 3. Мозговое вещество (прямые канальцы петли Генле и собирательные трубочки — почечных телец нет!).",
+    "location": "Подоциты, эндотелиоциты капилляров клубочка, клетки проксимальных канальцев (мутная розовая цитоплазма, щеточная каемка, узкий просвет), клетки дистальных канальцев (светлее, широкий просвет).",
+    "functionText": "Ультрафильтрация плазмы, реабсорбция, секреция, водно-солевой гомеостаз, эритропоэз",
+    "killerFeature": "В корковом веществе — характерные круглые почечные тельца (сосудистый клубочек внутри двухслойной капсулы Шумлянского-Боумена) в окружении срезов извитых канальцев."
+  }
+},
+{
+  "id": "slide_60",
+  "examNumber": 60,
+  "moduleId": "mod_urogenital",
+  "title": "Мочеточник (поперечный срез)",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x100",
+  "imageUrl": "",
+  "layersText": "1. Слизистая (звездчатые продольные складки, переходный эпителий — уротелий + собственная пластинка; мышечной пластинки НЕТ!) 2. Подслизистая (без желез) 3. Мышечная (внутренний продольный и наружный циркулярный слои — наоборот по сравнению с ЖКТ!) 4. Адвентициальная.",
+  "keyCells": "Клетки переходного эпителия (базальные, промежуточные грушевидные и крупные поверхностные куполообразные/зонтичные клетки, часто двуядерные).",
+  "killerFeature": "Звездчатый просвет с глубокими складками, выстланный многослойным переходным эпителием с крупными округлыми поверхностными клетками; желез в стенке нет.",
+  "distractors": [
+    "Пищевод",
+    "Мочевой пузырь",
+    "Яйцевод"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Уротелий",
+      "name": "Переходный эпителий (уротелий) со складками",
+      "description": "Звездчатый просвет с глубокими складками и крупными куполообразными поверхностными клетками.",
+      "color": "#6366F1",
+      "pin_x": 48,
+      "pin_y": 35
+    },
+    {
+      "number": 2,
+      "short_name": "Мышечная оболочка",
+      "name": "Мышечная оболочка мочеточника",
+      "description": "Внутренний продольный и наружный циркулярный слои гладких миоцитов.",
+      "color": "#EC4899",
+      "pin_x": 55,
+      "pin_y": 65
+    }
+  ],
+  "embryoOrigin": "Мочеточниковый вырост вольфова протока",
+  "functionText": "Транспорт мочи из почечной лоханки в мочевой пузырь перистальтическими сокращениями",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Мочеточник (поперечный срез) (Гематоксилин и эозин)",
+    "origin": "Мочеточниковый вырост вольфова протока",
+    "structure": "1. Слизистая (звездчатые продольные складки, переходный эпителий — уротелий + собственная пластинка; мышечной пластинки НЕТ!) 2. Подслизистая (без желез) 3. Мышечная (внутренний продольный и наружный циркулярный слои — наоборот по сравнению с ЖКТ!) 4. Адвентициальная.",
+    "location": "Клетки переходного эпителия (базальные, промежуточные грушевидные и крупные поверхностные куполообразные/зонтичные клетки, часто двуядерные).",
+    "functionText": "Транспорт мочи из почечной лоханки в мочевой пузырь перистальтическими сокращениями",
+    "killerFeature": "Звездчатый просвет с глубокими складками, выстланный многослойным переходным эпителием с крупными округлыми поверхностными клетками; желез в стенке нет."
+  }
+},
+{
+  "id": "slide_61",
+  "examNumber": 61,
+  "moduleId": "mod_urogenital",
+  "title": "Мочевой пузырь",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x100 / x200",
+  "imageUrl": "",
+  "layersText": "1. Слизистая (толстый переходный эпителий + собственная пластинка) 2. Подслизистая основа 3. Мощная мышечная оболочка из 3 переплетающихся слоев гладких миоцитов (внутренний продольный, средний циркулярный, наружный продольный) 4. Серозная/адвентициальная.",
+  "keyCells": "Куполообразные зонтичные клетки уротелия, грушевидные и базальные клетки, крупные пучки гладких миоцитов.",
+  "killerFeature": "Толстый слой переходного эпителия (в нерастянутом органе 6–8 рядов клеток с крупными куполообразными клетками сверху) и очень мощные разнонаправленные пучки гладких мышц.",
+  "distractors": [
+    "Мочеточник",
+    "Матка",
+    "Пищевод"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Уротелий",
+      "name": "Переходный эпителий с зонтичными клетками",
+      "description": "6–8 рядов клеток со светлыми крупными куполообразными фасеточными клетками на поверхности.",
+      "color": "#6366F1",
+      "pin_x": 48,
+      "pin_y": 25
+    },
+    {
+      "number": 2,
+      "short_name": "Детрузор",
+      "name": "Мощный мышечный слой детрузора",
+      "description": "Крупные пучки гладких миоцитов, переплетающиеся в 3 взаимно перпендикулярных слоях.",
+      "color": "#EC4899",
+      "pin_x": 52,
+      "pin_y": 65
+    }
+  ],
+  "embryoOrigin": "Аллантоис и клоака (энтодерма мочеполового синуса)",
+  "functionText": "Резервуар мочи и её периодическая эвакуация наружу (детрузор)",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Мочевой пузырь (Гематоксилин и эозин)",
+    "origin": "Аллантоис и клоака (энтодерма мочеполового синуса)",
+    "structure": "1. Слизистая (толстый переходный эпителий + собственная пластинка) 2. Подслизистая основа 3. Мощная мышечная оболочка из 3 переплетающихся слоев гладких миоцитов (внутренний продольный, средний циркулярный, наружный продольный) 4. Серозная/адвентициальная.",
+    "location": "Куполообразные зонтичные клетки уротелия, грушевидные и базальные клетки, крупные пучки гладких миоцитов.",
+    "functionText": "Резервуар мочи и её периодическая эвакуация наружу (детрузор)",
+    "killerFeature": "Толстый слой переходного эпителия (в нерастянутом органе 6–8 рядов клеток с крупными куполообразными клетками сверху) и очень мощные разнонаправленные пучки гладких мышц."
+  }
+},
+{
+  "id": "slide_62",
+  "examNumber": 62,
+  "moduleId": "mod_urogenital",
+  "title": "Семенник (яичко)",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x100 / x400",
+  "imageUrl": "",
+  "layersText": "Снаружи — толстая плотная белочная оболочка; паренхима состоит из множества извитых семенных канальцев (выстланы сперматогенным эпителием) и интерстициальной соединительной ткани между ними.",
+  "keyCells": "Поддерживающие клетки Сертоли (треугольное светлое ядро с ядрышком у базальной мембраны), сперматогонии, сперматоциты 1-го и 2-го порядка, сперматиды, сперматозоиды в просвете; интерстициальные эндокриноциты (клетки Лейдига — крупные розовые клетки в интерстиции).",
+  "killerFeature": "Многочисленные срезы извитых трубочек, в стенке которых видны многослойные ряды делящихся половых клеток от круглых сперматогоний у края до хвостатых сперматозоидов в просвете.",
+  "distractors": [
+    "Придаток семенника",
+    "Предстательная железа",
+    "Почка"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Семенной каналец",
+      "name": "Извитой семенной каналец (сперматогенез)",
+      "description": "Сперматогенный эпителий с клетками Сертоли, сперматогониями, сперматоцитами и сперматидами.",
+      "color": "#6366F1",
+      "pin_x": 48,
+      "pin_y": 40
+    },
+    {
+      "number": 2,
+      "short_name": "Клетки Лейдига",
+      "name": "Интерстициальные клетки Лейдига",
+      "description": "Крупные розовые оксифильные эндокриноциты в межканальцевой ткани, вырабатывающие тестостерон.",
+      "color": "#F59E0B",
+      "pin_x": 72,
+      "pin_y": 55
+    }
+  ],
+  "embryoOrigin": "Первичные половые клетки (гоноциты) + мезодерма полового валика",
+  "functionText": "Сперматогенез (в извитых семенных канальцах) и секреция тестостерона (клетками Лейдига)",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Семенник (яичко) (Гематоксилин и эозин)",
+    "origin": "Первичные половые клетки (гоноциты) + мезодерма полового валика",
+    "structure": "Снаружи — толстая плотная белочная оболочка; паренхима состоит из множества извитых семенных канальцев (выстланы сперматогенным эпителием) и интерстициальной соединительной ткани между ними.",
+    "location": "Поддерживающие клетки Сертоли (треугольное светлое ядро с ядрышком у базальной мембраны), сперматогонии, сперматоциты 1-го и 2-го порядка, сперматиды, сперматозоиды в просвете; интерстициальные эндокриноциты (клетки Лейдига — крупные розовые клетки в интерстиции).",
+    "functionText": "Сперматогенез (в извитых семенных канальцах) и секреция тестостерона (клетками Лейдига)",
+    "killerFeature": "Многочисленные срезы извитых трубочек, в стенке которых видны многослойные ряды делящихся половых клеток от круглых сперматогоний у края до хвостатых сперматозоидов в просвете."
+  }
+},
+{
+  "id": "slide_63",
+  "examNumber": 63,
+  "moduleId": "mod_urogenital",
+  "title": "Придаток семенника (эпидидимис)",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x100 / x400",
+  "imageUrl": "",
+  "layersText": "Срезы выносящих канальцев (неровный фестончатый просвет, чередование высоких реснитчатых и низких железистых клеток) и протока придатка (ровный округлый просвет, выстлан двурядным призматическим эпителием со стереоцилиями).",
+  "keyCells": "Высокие призматические клетки со стереоцилиями (пучками длинных неподвижных микроворсинок), вставочные базальные клетки, тонкий ободок циркулярных гладких миоцитов.",
+  "killerFeature": "Срезы канальцев с ровным просветом (часто заполненным сперматозоидами), выстланных строгим двурядным эпителием с длинными склеенными «кисточками»-стереоцилиями.",
+  "distractors": [
+    "Семенник",
+    "Предстательная железа",
+    "Щитовидная железа"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Стереоцилии",
+      "name": "Двурядный призматический эпителий со стереоцилиями",
+      "description": "Высокие призматические клетки с пучками длинных неподвижных микроворсинок-стереоцилий.",
+      "color": "#6366F1",
+      "pin_x": 48,
+      "pin_y": 35
+    },
+    {
+      "number": 2,
+      "short_name": "Сперматозоиды",
+      "name": "Скопление сперматозоидов в просвете",
+      "description": "Плотная масса созревающих спермиев внутри круглого просвета протока придатка.",
+      "color": "#10B981",
+      "pin_x": 52,
+      "pin_y": 50
+    }
+  ],
+  "embryoOrigin": "Канальцы мезонефроса (вольфова протока)",
+  "functionText": "Накопление, созревание и приобретение подвижности сперматозоидами",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Придаток семенника (эпидидимис) (Гематоксилин и эозин)",
+    "origin": "Канальцы мезонефроса (вольфова протока)",
+    "structure": "Срезы выносящих канальцев (неровный фестончатый просвет, чередование высоких реснитчатых и низких железистых клеток) и протока придатка (ровный округлый просвет, выстлан двурядным призматическим эпителием со стереоцилиями).",
+    "location": "Высокие призматические клетки со стереоцилиями (пучками длинных неподвижных микроворсинок), вставочные базальные клетки, тонкий ободок циркулярных гладких миоцитов.",
+    "functionText": "Накопление, созревание и приобретение подвижности сперматозоидами",
+    "killerFeature": "Срезы канальцев с ровным просветом (часто заполненным сперматозоидами), выстланных строгим двурядным эпителием с длинными склеенными «кисточками»-стереоцилиями."
+  }
+},
+{
+  "id": "slide_64",
+  "examNumber": 64,
+  "moduleId": "mod_urogenital",
+  "title": "Предстательная железа (простата)",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x100 / x200",
+  "imageUrl": "",
+  "layersText": "Сложные трубчато-альвеолярные железы со складчатым фестончатым просветом, погруженные в мощную мышечно-эластическую строму (много пучков гладких миоцитов и соединительной ткани).",
+  "keyCells": "Высокие секреторные эпителиоциты, базальные клетки, гладкие миоциты стромы.",
+  "killerFeature": "Железистые альвеолы с характерными сосочковыми складками эпителия, окруженные толстыми прослойками гладких мышц; в просвете многих желез лежат розовые слоистые простатические конкреции (амилоидные тельца).",
+  "distractors": [
+    "Молочная железа",
+    "Щитовидная железа",
+    "Придаток семенника"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Конкреции",
+      "name": "Простатические конкреции (амилоидные тельца)",
+      "description": "Слоистые оксифильные розовые белковые тельца внутри просвета железистых альвеол.",
+      "color": "#EC4899",
+      "pin_x": 48,
+      "pin_y": 40
+    },
+    {
+      "number": 2,
+      "short_name": "Мышечная строма",
+      "name": "Мышечно-эластическая строма",
+      "description": "Мощные переплетающиеся пучки гладких миоцитов между железистыми дольками.",
+      "color": "#6366F1",
+      "pin_x": 65,
+      "pin_y": 60
+    }
+  ],
+  "embryoOrigin": "Урогенитальный синус (энтодерма) + мезенхима",
+  "functionText": "Секреция жидкой слабощелочной части спермы, разжижение семенной плазмы",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Предстательная железа (простата) (Гематоксилин и эозин)",
+    "origin": "Урогенитальный синус (энтодерма) + мезенхима",
+    "structure": "Сложные трубчато-альвеолярные железы со складчатым фестончатым просветом, погруженные в мощную мышечно-эластическую строму (много пучков гладких миоцитов и соединительной ткани).",
+    "location": "Высокие секреторные эпителиоциты, базальные клетки, гладкие миоциты стромы.",
+    "functionText": "Секреция жидкой слабощелочной части спермы, разжижение семенной плазмы",
+    "killerFeature": "Железистые альвеолы с характерными сосочковыми складками эпителия, окруженные толстыми прослойками гладких мышц; в просвете многих желез лежат розовые слоистые простатические конкреции (амилоидные тельца)."
+  }
+},
+{
+  "id": "slide_65",
+  "examNumber": 65,
+  "moduleId": "mod_urogenital",
+  "title": "Яичник",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x40 / x200",
+  "imageUrl": "",
+  "layersText": "1. Покровный однослойный кубический эпителий и белочная оболочка 2. Корковое вещество (фолликулы на разных стадиях развития: примордиальные, первичные, вторичные, зрелый Граафов пузырек, желтые и белые тела) 3. Мозговое вещество в центре (РВСТ и крупные извитые сосуды).",
+  "keyCells": "Ооциты 1-го порядка, фолликулярные клетки (клетки зернистого слоя), тека-клетки, лютеоциты желтого тела.",
+  "killerFeature": "В корковом веществе под белочной оболочкой видны многочисленные примордиальные фолликулы и крупные пузырчатые фолликулы с полостью (антрумом), яйценосным бугорком и ооцитом внутри.",
+  "distractors": [
+    "Щитовидная железа",
+    "Лимфатический узел",
+    "Семенник"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Граафов пузырек",
+      "name": "Зрелый Граафов пузырек с антрумом и ооцитом",
+      "description": "Крупный третичный фолликул с фолликулярной жидкостью, яйценосным бугорком и ооцитом.",
+      "color": "#6366F1",
+      "pin_x": 48,
+      "pin_y": 40
+    },
+    {
+      "number": 2,
+      "short_name": "Примордиальные фолликулы",
+      "name": "Примордиальные фолликулы под белочной оболочкой",
+      "description": "Мелкие ооциты, окруженные одним слоем плоских фолликулярных клеток на периферии коры.",
+      "color": "#EC4899",
+      "pin_x": 25,
+      "pin_y": 20
+    }
+  ],
+  "embryoOrigin": "Гоноциты + целомический эпителий полового валика",
+  "functionText": "Овогенез (созревание фолликулов), овуляция, эндокринная секреция эстрогенов и прогестерона",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Яичник (Гематоксилин и эозин)",
+    "origin": "Гоноциты + целомический эпителий полового валика",
+    "structure": "1. Покровный однослойный кубический эпителий и белочная оболочка 2. Корковое вещество (фолликулы на разных стадиях развития: примордиальные, первичные, вторичные, зрелый Граафов пузырек, желтые и белые тела) 3. Мозговое вещество в центре (РВСТ и крупные извитые сосуды).",
+    "location": "Ооциты 1-го порядка, фолликулярные клетки (клетки зернистого слоя), тека-клетки, лютеоциты желтого тела.",
+    "functionText": "Овогенез (созревание фолликулов), овуляция, эндокринная секреция эстрогенов и прогестерона",
+    "killerFeature": "В корковом веществе под белочной оболочкой видны многочисленные примордиальные фолликулы и крупные пузырчатые фолликулы с полостью (антрумом), яйценосным бугорком и ооцитом внутри."
+  }
+},
+{
+  "id": "slide_66",
+  "examNumber": 66,
+  "moduleId": "mod_urogenital",
+  "title": "Яйцевод (маточная труба)",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x100 / x400",
+  "imageUrl": "",
+  "layersText": "1. Слизистая (образует сложные ветвящиеся лабиринтообразные складки, однослойный призматический реснитчато-секреторный эпителий + собственная пластинка; подслизистой НЕТ!) 2. Мышечная (внутренний циркулярный и наружный продольный слои) 3. Серозная.",
+  "keyCells": "Реснитчатые эпителиоциты и секреторные (куполообразные безреснитчатые) клетки.",
+  "killerFeature": "Просвет почти полностью заполнен сложнейшим «лабиринтом» ветвящихся складок слизистой, покрытых однослойным призматическим эпителием с ресничками.",
+  "distractors": [
+    "Мочеточник",
+    "Аппендикс",
+    "Желчный пузырь"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Складки слизистой",
+      "name": "Сложные ветвящиеся складки слизистой («лабиринт»)",
+      "description": "Древовидно ветвящиеся складки, заполняющие практически весь просвет трубы.",
+      "color": "#6366F1",
+      "pin_x": 48,
+      "pin_y": 40
+    },
+    {
+      "number": 2,
+      "short_name": "Реснитчатый эпителий",
+      "name": "Однослойный призматический реснитчатый эпителий",
+      "description": "Реснитчатые клетки, мерцающие в сторону матки, и вставочные секреторные клетки.",
+      "color": "#EC4899",
+      "pin_x": 55,
+      "pin_y": 28
+    }
+  ],
+  "embryoOrigin": "Парамезонефральный (мюллеров) проток",
+  "functionText": "Захват яйцеклетки, создание среды для оплодотворения и транспорт зиготы в матку",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Яйцевод (маточная труба) (Гематоксилин и эозин)",
+    "origin": "Парамезонефральный (мюллеров) проток",
+    "structure": "1. Слизистая (образует сложные ветвящиеся лабиринтообразные складки, однослойный призматический реснитчато-секреторный эпителий + собственная пластинка; подслизистой НЕТ!) 2. Мышечная (внутренний циркулярный и наружный продольный слои) 3. Серозная.",
+    "location": "Реснитчатые эпителиоциты и секреторные (куполообразные безреснитчатые) клетки.",
+    "functionText": "Захват яйцеклетки, создание среды для оплодотворения и транспорт зиготы в матку",
+    "killerFeature": "Просвет почти полностью заполнен сложнейшим «лабиринтом» ветвящихся складок слизистой, покрытых однослойным призматическим эпителием с ресничками."
+  }
+},
+{
+  "id": "slide_67",
+  "examNumber": 67,
+  "moduleId": "mod_urogenital",
+  "title": "Матка (эндометрий и миометрий)",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x40 / x100",
+  "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/Rabbit_uterus_at_different_stages_of_pseudopregnancy.png/1280px-Rabbit_uterus_at_different_stages_of_pseudopregnancy.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "layersText": "1. Эндометрий — слизистая (однослойный призматический эпителий, рыхлая строма с простыми трубчатыми маточными железами; делится на функциональный и базальный слои) 2. Миометрий — очень толстая мышечная оболочка (3 переплетающихся слоя: подслизистый, сосудистый, надсосудистый) 3. Периметрий (серозная).",
+  "keyCells": "Реснитчатые и секреторные клетки эпителия и желез, децидуальные/стромальные клетки, гигантские гладкие миоциты миометрия.",
+  "killerFeature": "Толстая слизистая с многочисленными срезами трубчатых маточных желез (в фазу секреции — штопорообразно извитых) переходит без подслизистой основы в мощнейший мышечный слой (миометрий).",
+  "distractors": [
+    "Мочевой пузырь",
+    "Толстая кишка",
+    "Пилорический отдел желудка"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Эндометрий",
+      "name": "Эндометрий со срезами маточных желез",
+      "description": "Функциональный слой с простыми трубчатыми железами и рыхлой клеточной стромой.",
+      "color": "#6366F1",
+      "pin_x": 48,
+      "pin_y": 30
+    },
+    {
+      "number": 2,
+      "short_name": "Миометрий",
+      "name": "Мощный миометрий (гладкие миоциты)",
+      "description": "Гигантские пучки гладкомышечных клеток с кровеносными сосудами сосудистого слоя.",
+      "color": "#EC4899",
+      "pin_x": 52,
+      "pin_y": 70
+    }
+  ],
+  "embryoOrigin": "Слияние каудальных отделов мюллеровых протоков",
+  "functionText": "Имплантация бластоцисты, вынашивание плода и изгнание его в родах",
+  "imageUrls": [
+    "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bb/Rabbit_uterus_at_different_stages_of_pseudopregnancy.png/1280px-Rabbit_uterus_at_different_stages_of_pseudopregnancy.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  ],
+  "imageLabels": [
+    "Срез 3 (Атлас)"
+  ],
+  "examPlan": {
+    "stainAndType": "Матка (эндометрий и миометрий) (Гематоксилин и эозин)",
+    "origin": "Слияние каудальных отделов мюллеровых протоков",
+    "structure": "1. Эндометрий — слизистая (однослойный призматический эпителий, рыхлая строма с простыми трубчатыми маточными железами; делится на функциональный и базальный слои) 2. Миометрий — очень толстая мышечная оболочка (3 переплетающихся слоя: подслизистый, сосудистый, надсосудистый) 3. Периметрий (серозная).",
+    "location": "Реснитчатые и секреторные клетки эпителия и желез, децидуальные/стромальные клетки, гигантские гладкие миоциты миометрия.",
+    "functionText": "Имплантация бластоцисты, вынашивание плода и изгнание его в родах",
+    "killerFeature": "Толстая слизистая с многочисленными срезами трубчатых маточных желез (в фазу секреции — штопорообразно извитых) переходит без подслизистой основы в мощнейший мышечный слой (миометрий)."
+  }
+},
+{
+  "id": "slide_68",
+  "examNumber": 68,
+  "moduleId": "mod_urogenital",
+  "title": "Молочная железа (лактирующая / нелактирующая)",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x100 / x200",
+  "imageUrl": "",
+  "layersText": "Дольчатое строение; в дольках (при лактации) — сильно разросшиеся альвеолярные концевые отделы, заполненные секретом (молоком), и выводные протоки; между дольками — прослойки РВСТ и жировой ткани.",
+  "keyCells": "Лактоциты (секреторные клетки с каплями жира на апикальном полюсе — апокриновая секреция) и звездчатые миоэпителиальные клетки вокруг альвеол.",
+  "killerFeature": "Крупные дольки из растянутых секреторных альвеол разной формы, внутри которых виден розовый белковый секрет и светлые вакуоли капель молочного жира.",
+  "distractors": [
+    "Щитовидная железа",
+    "Легкое",
+    "Предстательная железа"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Альвеолы с молоком",
+      "name": "Растянутые секреторные альвеолы с молоком",
+      "description": "Альвеолы выстланы лактоцитами с куполообразными верхушками и розовым секретом внутри.",
+      "color": "#EC4899",
+      "pin_x": 48,
+      "pin_y": 40
+    },
+    {
+      "number": 2,
+      "short_name": "Строма дольки",
+      "name": "Междольковая соединительная ткань и жир",
+      "description": "Прослойки РВСТ с кровеносными сосудами и дольками белой жировой ткани.",
+      "color": "#6366F1",
+      "pin_x": 75,
+      "pin_y": 60
+    }
+  ],
+  "embryoOrigin": "Развивается из эпителия эктодермального происхождения (впячивания эпидермиса — молочные полоски) и окружающей мезенхимы (соединительная ткань, строма и жировая ткань). Под влиянием гормонов гипофиза и яичников происходит развитие альвеол и подготовка к лактации.",
+  "functionText": "Синтез и секреция молока для вскармливания потомства. Альвеолы выделяют молоко, которое накапливается в полостях альвеол и выводится через систему протоков в млечные цистерны (синусы)",
+  "imageUrls": [],
+  "imageLabels": [],
+  "examPlan": {
+    "stainAndType": "Молочная железа (лактирующая / нелактирующая) (?)",
+    "origin": "Развивается из эпителия эктодермального происхождения (впячивания эпидермиса — молочные полоски) и окружающей мезенхимы (соединительная ткань, строма и жировая ткань). Под влиянием гормонов гипофиза и яичников происходит развитие альвеол и подготовка к лактации.",
+    "structure": "На препарате видна сложная альвеолярно-трубчатая (или альвеолярная) железа. Паренхима органа представлена множеством долек, разделенных прослойками соединительной ткани (междольковые перегородки). Внутри долек четко видны концевые отделы — альвеолы (округлые или овальные структуры, выстланные однослойным эпителием) и выводные протоки (более крупные полости). На снимке в центре виден расширенный млечный синус/проток, заполненный секретом (секрет выглядит как гомогенная масса яркого оранжево-желтого цвета). Вокруг альвеол и между ними обильно развита соединительная ткань с жировыми клетками (крупные светлые ячейки в перегородках).",
+    "location": "В области вымени (молочной железы) на брюшной стороне тела животного",
+    "functionText": "Синтез и секреция молока для вскармливания потомства. Альвеолы выделяют молоко, которое накапливается в полостях альвеол и выводится через систему протоков в млечные цистерны (синусы)",
+    "killerFeature": "Крупные дольки из растянутых секреторных альвеол разной формы, внутри которых виден розовый белковый секрет и светлые вакуоли капель молочного жира."
+  }
+},
+{
+  "id": "slide_69",
+  "examNumber": 69,
+  "moduleId": "mod_urogenital",
+  "title": "Плацента человека (срез со стороны плодной поверхности)",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x100 / x400",
+  "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4e/Schematic_representation_of_a_human_placenta_at_term.jpg/1280px-Schematic_representation_of_a_human_placenta_at_term.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "layersText": "1. Амниотическая оболочка (однослойный кубический/призматический эпителий + соединительная ткань) 2. Хориальная пластинка (плотная соединительная ткань с крупными плодными сосудами) 3. Многочисленные срезы ворсин хориона в межворсинчатом пространстве с материнской кровью.",
+  "keyCells": "Синтитиотрофобласт (наружный многоядерный симпласт ворсин), цитотрофобласт (клетки Лангханса — в ранней плаценте), клетки Кащенко-Гофбауэра (макрофаги стромы ворсин), фибриноид Лангханса.",
+  "killerFeature": "Плоская эпителиальная выстилка амниона сверху, плотная хориальная пластинка и «море» поперечных срезов ворсин хориона с капиллярами плода внутри и эритроцитами матери снаружи.",
+  "distractors": [
+    "Плацента со стороны материнской поверхности",
+    "Легкое",
+    "Яйцевод"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Амнион и хорион",
+      "name": "Амниотическая оболочка и хориальная пластинка",
+      "description": "Гладкий однослойный эпителий амниона сверху и плотная волокнистая ткань хориона с сосудами.",
+      "color": "#6366F1",
+      "pin_x": 48,
+      "pin_y": 20
+    },
+    {
+      "number": 2,
+      "short_name": "Ворсины хориона",
+      "name": "Ворсины хориона в межворсинчатом пространстве",
+      "description": "Срезы древовидных ворсин с синцитиотрофобластом и капиллярами плода.",
+      "color": "#EC4899",
+      "pin_x": 52,
+      "pin_y": 60
+    }
+  ],
+  "embryoOrigin": "Ворсинчатый хорион плода (трофобласт + внезародышевая мезодерма)",
+  "functionText": "Газообмен, трофика, иммунный барьер плода, синтез ХГЧ и плацентарного лактогена",
+  "imageUrls": [
+    "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4e/Schematic_representation_of_a_human_placenta_at_term.jpg/1280px-Schematic_representation_of_a_human_placenta_at_term.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/df/Chorionic_Terminal_Villus_%28NIH_BioArt_702%29.png/1280px-Chorionic_Terminal_Villus_%28NIH_BioArt_702%29.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  ],
+  "imageLabels": [
+    "Срез 2 (Атлас)",
+    "Срез 3 (Атлас)"
+  ],
+  "examPlan": {
+    "stainAndType": "Плацента человека (срез со стороны плодной поверхности) (Гематоксилин и эозин)",
+    "origin": "Ворсинчатый хорион плода (трофобласт + внезародышевая мезодерма)",
+    "structure": "1. Амниотическая оболочка (однослойный кубический/призматический эпителий + соединительная ткань) 2. Хориальная пластинка (плотная соединительная ткань с крупными плодными сосудами) 3. Многочисленные срезы ворсин хориона в межворсинчатом пространстве с материнской кровью.",
+    "location": "Синтитиотрофобласт (наружный многоядерный симпласт ворсин), цитотрофобласт (клетки Лангханса — в ранней плаценте), клетки Кащенко-Гофбауэра (макрофаги стромы ворсин), фибриноид Лангханса.",
+    "functionText": "Газообмен, трофика, иммунный барьер плода, синтез ХГЧ и плацентарного лактогена",
+    "killerFeature": "Плоская эпителиальная выстилка амниона сверху, плотная хориальная пластинка и «море» поперечных срезов ворсин хориона с капиллярами плода внутри и эритроцитами матери снаружи."
+  }
+},
+{
+  "id": "slide_70",
+  "examNumber": 70,
+  "moduleId": "mod_urogenital",
+  "title": "Плацента человека (срез со стороны материнской поверхности)",
+  "stain": "Гематоксилин и эозин",
+  "magnification": "x100 / x200",
+  "imageUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/Anatomy_of_the_Human_Body_%28Part_1%29.djvu/page1-1280px-Anatomy_of_the_Human_Body_%28Part_1%29.djvu.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+  "layersText": "Базальная отпадающая оболочка (decidua basalis) с крупными децидуальными клетками, прослойками ярко-розового фибриноида Рора/Нитахбуха, спиральными артериями и прикрепляющимися якорными ворсинами хориона.",
+  "keyCells": "Децидуальные клетки (очень крупные, округлые/полигональные, со светлой оксифильной цитоплазмой богатой гликогеном и четкими границами), клетки трофобласта, эндотелиоциты.",
+  "killerFeature": "Наличие массивных пластов гигантских светлых децидуальных клеток в отпадающей оболочке матки, в которую врастают якорные ворсины хориона и откладывается ярко-розовый фибриноид.",
+  "distractors": [
+    "Плацента со стороны плодной поверхности",
+    "Матка (эндометрий)",
+    "Желтое тело яичника"
+  ],
+  "layers": [
+    {
+      "number": 1,
+      "short_name": "Децидуальная оболочка",
+      "name": "Базальная отпадающая оболочка (decidua basalis)",
+      "description": "Массивные пласты гигантских светлых децидуальных клеток, богатых гликогеном.",
+      "color": "#F59E0B",
+      "pin_x": 48,
+      "pin_y": 35
+    },
+    {
+      "number": 2,
+      "short_name": "Якорные ворсины",
+      "name": "Якорные ворсины и фибриноид Рора",
+      "description": "Ворсины хориона, прикрепляющиеся к децидуальной ткани через ярко-розовый фибриноид.",
+      "color": "#6366F1",
+      "pin_x": 55,
+      "pin_y": 65
+    }
+  ],
+  "embryoOrigin": "Базальная пластинка децидуальной оболочки эндометрия матки",
+  "functionText": "Образование лакун с материнской кровью, омывающей ворсины хориона плода",
+  "imageUrls": [
+    "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/Anatomy_of_the_Human_Body_%28Part_1%29.djvu/page1-1280px-Anatomy_of_the_Human_Body_%28Part_1%29.djvu.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/Anatomy_of_the_Human_Body%28Lewis-1918%29.djvu/page1-1280px-Anatomy_of_the_Human_Body%28Lewis-1918%29.djvu.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  ],
+  "imageLabels": [
+    "Срез 2 (Атлас)",
+    "Срез 3 (Атлас)"
+  ],
+  "examPlan": {
+    "stainAndType": "Плацента человека (срез со стороны материнской поверхности) (Гематоксилин и эозин)",
+    "origin": "Базальная пластинка децидуальной оболочки эндометрия матки",
+    "structure": "Базальная отпадающая оболочка (decidua basalis) с крупными децидуальными клетками, прослойками ярко-розового фибриноида Рора/Нитахбуха, спиральными артериями и прикрепляющимися якорными ворсинами хориона.",
+    "location": "Децидуальные клетки (очень крупные, округлые/полигональные, со светлой оксифильной цитоплазмой богатой гликогеном и четкими границами), клетки трофобласта, эндотелиоциты.",
+    "functionText": "Образование лакун с материнской кровью, омывающей ворсины хориона плода",
+    "killerFeature": "Наличие массивных пластов гигантских светлых децидуальных клеток в отпадающей оболочке матки, в которую врастают якорные ворсины хориона и откладывается ярко-розовый фибриноид."
+  }
+}
 ];

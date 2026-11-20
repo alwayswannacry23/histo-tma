@@ -3,7 +3,7 @@ import { TheorySection } from '../curriculumTypes';
 export const SECTION_SPECIAL_HISTO: TheorySection = {
   id: 'sec_5_special_histo',
   order: 5,
-  title: 'Частная гистология (Системы органов)',
+  title: 'Частная гистология',
   shortTitle: 'Частная гиста',
   semesterLabel: '2 и 3 семестр · Темы 15–34',
   topics: [

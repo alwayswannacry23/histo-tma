@@ -64,21 +64,26 @@ const ImageWithFallback: React.FC<{
   className?: string;
   fallbackIcon?: React.ReactNode;
   fallbackText?: string;
-}> = ({ src, alt, className = '', fallbackIcon, fallbackText = 'Фото недоступно' }) => {
+  isDark?: boolean;
+}> = ({ src, alt, className = '', fallbackIcon, fallbackText, isDark = true }) => {
   const [error, setError] = React.useState(false);
 
   React.useEffect(() => {
     setError(false);
   }, [src]);
 
-  if (!src || error) {
+  if (!src || !src.trim() || error) {
     return (
       <div
-        className={`flex flex-col items-center justify-center gap-1.5 bg-black/40 border border-white/10 text-center select-none ${className}`}
+        className={`flex flex-col items-center justify-center select-none ${
+          isDark ? 'bg-white/[0.04] text-zinc-500' : 'bg-zinc-100 text-zinc-400'
+        } ${className}`}
       >
-        {fallbackIcon || <Microscope className="w-5 h-5 opacity-40 text-white" />}
+        {fallbackIcon || <Microscope className="w-5 h-5 opacity-40" />}
         {fallbackText ? (
-          <span className="text-[11px] font-medium text-white/50">{fallbackText}</span>
+          <span className={`text-[11px] font-medium mt-1 ${isDark ? 'text-zinc-500' : 'text-zinc-400'}`}>
+            {fallbackText}
+          </span>
         ) : null}
       </div>
     );
@@ -126,6 +131,14 @@ function shuffleArray<T>(arr: T[]): T[] {
     [copy[i], copy[j]] = [copy[j], copy[i]];
   }
   return copy;
+}
+
+function pluralTopics(count: number): string {
+  const mod10 = count % 10;
+  const mod100 = count % 100;
+  if (mod10 === 1 && mod100 !== 11) return `${count} тема`;
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return `${count} темы`;
+  return `${count} тем`;
 }
 
 function getSlideImage(slide: any): string {
@@ -637,7 +650,7 @@ export function App() {
   return (
     <div className={`min-h-screen ${ui.bg} transition-colors duration-300 font-sans select-none flex flex-col justify-between`}>
       {/* ==================== ОСНОВНОЙ КОНТЕНТ ==================== */}
-      <div className="flex-1 pb-28">
+      <div className="flex-1 pb-32">
         <div style={{ paddingTop: `${topInsetPx}px` }} className="max-w-md mx-auto px-4 space-y-5">
           {/* 1. ГЛАВНАЯ ВКЛАДКА */}
           {activeTab === 'home' && (
@@ -869,12 +882,12 @@ export function App() {
                 </div>
               )}
 
-              {/* ДЕРЕВО: ПРОГРАММА И РАЗБОРЫ */}
+              {/* ДЕРЕВО: РАЗДЕЛЫ */}
               <div id="curriculum-tree" className="space-y-3 pt-1">
                 <div className="flex items-center justify-between px-1">
-                  <span className="font-extrabold text-[16px]">Программа и разборы</span>
+                  <span className="font-extrabold text-[16px]">Разделы</span>
                   <span className={`text-[12px] ${ui.muted}`}>
-                    {visibleTheorySections.length} {visibleTheorySections.length === 1 ? 'раздел' : 'разделов'}
+                    {visibleTheorySections.length} {visibleTheorySections.length === 1 ? 'раздел' : visibleTheorySections.length < 5 ? 'раздела' : 'разделов'}
                   </span>
                 </div>
 
@@ -910,7 +923,7 @@ export function App() {
                               {sec.title}
                             </div>
                             <div className={`text-[12px] ${ui.muted} mt-0.5`}>
-                              {sec.semesterLabel} · {secTopics.length} {secTopics.length === 1 ? 'тема' : 'тем'}
+                              {pluralTopics(secTopics.length)}
                             </div>
                           </div>
                         </div>
@@ -1058,8 +1071,9 @@ export function App() {
                                                     <ImageWithFallback
                                                       src={imgSrc}
                                                       alt={slide.title}
-                                                      className="w-12 h-12 rounded-[12px] object-cover bg-black shrink-0 border border-white/10"
-                                                      fallbackIcon={<Microscope className="w-5 h-5 text-white/40" />}
+                                                      isDark={isDark}
+                                                      className="w-12 h-12 rounded-[12px] object-cover shrink-0 border border-white/10"
+                                                      fallbackIcon={<Microscope className="w-5 h-5 opacity-40" />}
                                                       fallbackText=""
                                                     />
                                                     <div className="min-w-0 flex-1">
@@ -1212,8 +1226,9 @@ export function App() {
                             <ImageWithFallback
                               src={em.imageUrl}
                               alt={em.title}
-                              className="w-full h-44 rounded-[18px] object-cover bg-black border border-white/10"
-                              fallbackIcon={<Microscope className="w-7 h-7 text-white/40" />}
+                              isDark={isDark}
+                              className="w-full h-44 rounded-[18px] object-cover border border-white/10"
+                              fallbackIcon={<Microscope className="w-7 h-7 opacity-40" />}
                               fallbackText="Схема временно недоступна"
                             />
                           )}
@@ -1699,7 +1714,8 @@ export function App() {
                         <ImageWithFallback
                           src={getSlideImage(slide)}
                           alt={slide.title}
-                          className="w-10 h-10 rounded-xl object-cover bg-black shrink-0 border border-white/10"
+                          isDark={isDark}
+                          className="w-10 h-10 rounded-xl object-cover shrink-0 border border-white/10"
                         />
                         <div className="min-w-0 flex-1">
                           <div className="font-bold text-[13px] truncate">{slide.title}</div>
@@ -2020,7 +2036,8 @@ export function App() {
                     <ImageWithFallback
                       src={getSlideImage(slide)}
                       alt={slide.title}
-                      className="w-10 h-10 rounded-xl object-cover bg-black shrink-0 border border-white/10"
+                      isDark={isDark}
+                      className="w-10 h-10 rounded-xl object-cover shrink-0 border border-white/10"
                     />
                     <div className="min-w-0 flex-1">
                       <div className="font-bold text-[13px] truncate">{slide.title}</div>
@@ -2171,8 +2188,9 @@ export function App() {
                         <ImageWithFallback
                           src={imgSrc}
                           alt={slide.title}
+                          isDark={isDark}
                           className="w-full h-full object-cover"
-                          fallbackIcon={<Microscope className="w-8 h-8 text-white/40 mb-1" />}
+                          fallbackIcon={<Microscope className="w-8 h-8 opacity-40 mb-1" />}
                           fallbackText="Фото препарата временно недоступно"
                         />
                         <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/65 backdrop-blur-md text-white text-[11px] font-semibold border border-white/10">

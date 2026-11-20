@@ -3,7 +3,7 @@ import { TheorySection } from '../curriculumTypes';
 export const SECTION_GENERAL_HISTO: TheorySection = {
   id: 'sec_4_general_histo',
   order: 4,
-  title: 'Общая гистология (Ткани)',
+  title: 'Общая гистология',
   shortTitle: 'Общая гиста',
   semesterLabel: '2 семестр · Темы 7–14',
   topics: [
