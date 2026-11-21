@@ -63,6 +63,20 @@ export interface SlidePin {
   description: string;
 }
 
+export interface SlideLayer {
+  number: number;
+  short_name: string;
+  name: string;
+  description: string;
+  color: string;
+  pin_x: number;
+  pin_y: number;
+  /** Опциональный полигон зоны в нормированных координатах 0..1000 */
+  polygon?: [number, number][];
+  /** Опциональный фокус камеры для автозума */
+  focusBox?: { x: number; y: number; scale: number };
+}
+
 export interface SlideImageVariant {
   url: string;
   label: string;

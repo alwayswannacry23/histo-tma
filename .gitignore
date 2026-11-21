@@ -38,3 +38,6 @@ dist-ssr
 # Raw cafedra materials
 raw_cafedra/
 
+# Audit screenshots
+audit_screenshots/
+
