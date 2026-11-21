@@ -28,6 +28,7 @@ export interface TheoryTopic {
   examQuestionIds: number[];
   relatedSlideIds: string[];
   relatedEmIds: string[];
+  briefPoints?: string[];
   blocks: ContentBlock[];
 }
 
