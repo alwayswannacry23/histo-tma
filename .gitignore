@@ -41,3 +41,6 @@ raw_cafedra/
 # Audit screenshots
 audit_screenshots/
 
+# Code dump
+CURRENT_CODE_DUMP.md
+
