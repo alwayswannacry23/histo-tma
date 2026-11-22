@@ -128,7 +128,7 @@ export const ExamSimulatorModal: React.FC<ExamSimulatorModalProps> = ({
         </div>
 
         <div>
-          <h2 className="text-[22px] font-extrabold tracking-tight">Симулятор билета НГМУ</h2>
+          <h2 className="text-[22px] font-semibold tracking-tight">Симулятор билета НГМУ</h2>
           <p className={`text-[12.5px] mt-0.5 ${muted}`}>
             2-й этап экзамена: 3 вопроса · 1 задача · 2 слепых стекла · 1 ЭМ
           </p>
@@ -145,7 +145,7 @@ export const ExamSimulatorModal: React.FC<ExamSimulatorModalProps> = ({
 
         {/* 3 вопроса билета */}
         <div className={`rounded-[22px] p-4 space-y-3 ${card}`}>
-          <div className="text-[12px] font-extrabold uppercase tracking-wider" style={{ color: accentHex }}>
+          <div className="text-[12px] font-semibold uppercase tracking-wider" style={{ color: accentHex }}>
             Теоретическая часть (3 вопроса)
           </div>
           {[
@@ -182,7 +182,7 @@ export const ExamSimulatorModal: React.FC<ExamSimulatorModalProps> = ({
 
         {/* Ситуационная задача */}
         <div className={`rounded-[22px] p-4 space-y-2.5 ${card}`}>
-          <div className="text-[12px] font-extrabold uppercase tracking-wider" style={{ color: accentHex }}>
+          <div className="text-[12px] font-semibold uppercase tracking-wider" style={{ color: accentHex }}>
             Ситуационная задача
           </div>
           {ticket.task ? (
@@ -210,7 +210,7 @@ export const ExamSimulatorModal: React.FC<ExamSimulatorModalProps> = ({
 
         {/* Практика: 2 немых препарата + 1 ЭМ */}
         <div className={`rounded-[22px] p-4 space-y-3 ${card}`}>
-          <div className="text-[12px] font-extrabold uppercase tracking-wider" style={{ color: accentHex }}>
+          <div className="text-[12px] font-semibold uppercase tracking-wider" style={{ color: accentHex }}>
             Практические навыки (2 стекла + 1 ЭМ)
           </div>
 

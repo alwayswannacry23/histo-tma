@@ -366,82 +366,83 @@ export const GLOSSARY_TERMS: GlossaryTerm[] = [
 ];
 
 // Precompile pattern and map once at module initialization
-interface StemMapping {
-  regex: RegExp;
-  termObj: GlossaryTerm;
-}
+const COMPILED_GLOSSARY = (() => {
+  const stemToTerm: Array<{ regex: RegExp; termObj: GlossaryTerm }> = [];
+  const allPatterns: string[] = [];
 
-const stemToTerm: StemMapping[] = [];
-const allPatterns: string[] = [];
-
-GLOSSARY_TERMS.forEach((t) => {
-  t.stems.forEach((stem) => {
-    allPatterns.push(stem);
-    stemToTerm.push({
-      regex: new RegExp(`^(${stem})$`, 'i'),
-      termObj: t,
+  GLOSSARY_TERMS.forEach((t) => {
+    t.stems.forEach((stem) => {
+      allPatterns.push(stem);
+      stemToTerm.push({
+        regex: new RegExp(`^(${stem})$`, 'i'),
+        termObj: t,
+      });
     });
   });
-});
 
-allPatterns.sort((a, b) => b.length - a.length);
-stemToTerm.sort((a, b) => b.regex.source.length - a.regex.source.length);
+  allPatterns.sort((a, b) => b.length - a.length);
+  stemToTerm.sort((a, b) => b.regex.source.length - a.regex.source.length);
 
-const COMBINED_PATTERN = `(^|[^а-яА-ЯёЁa-zA-Z0-9_])(${allPatterns.join('|')})(?=$|[^а-яА-ЯёЁa-zA-Z0-9_])`;
-const COMBINED_REGEX = new RegExp(COMBINED_PATTERN, 'gi');
+  const combinedSource =
+    allPatterns.length > 0
+      ? `(^|[^а-яА-ЯёЁa-zA-Z0-9_])(${allPatterns.join('|')})(?=$|[^а-яА-ЯёЁa-zA-Z0-9_])`
+      : '';
 
-export interface RichGlossaryTextProps {
+  return { stemToTerm, combinedSource };
+})();
+
+interface RichGlossaryTextProps {
   text: string;
   onSelectTerm: (term: GlossaryTerm) => void;
   accentHex?: string;
 }
 
-export function parseGlossaryParts(text: string) {
-  if (!text) return [];
-  const nodes: Array<
-    { type: 'text'; value: string } | { type: 'term'; value: string; termObj: GlossaryTerm }
-  > = [];
-  
-  // Clone or reset global regex
-  const regex = new RegExp(COMBINED_REGEX.source, 'gi');
-  let lastIndex = 0;
-  let match: RegExpExecArray | null;
-
-  while ((match = regex.exec(text)) !== null) {
-    const prefix = match[1] || '';
-    const matchedWord = match[2];
-    const matchStart = match.index + prefix.length;
-
-    if (matchStart > lastIndex) {
-      nodes.push({ type: 'text', value: text.slice(lastIndex, matchStart) });
-    }
-
-    const found = stemToTerm.find((item) => item.regex.test(matchedWord));
-    if (found) {
-      nodes.push({ type: 'term', value: matchedWord, termObj: found.termObj });
-    } else {
-      nodes.push({ type: 'text', value: matchedWord });
-    }
-
-    lastIndex = matchStart + matchedWord.length;
-  }
-
-  if (lastIndex < text.length) {
-    nodes.push({ type: 'text', value: text.slice(lastIndex) });
-  }
-
-  return nodes;
-}
-
-export const RichGlossaryText: React.FC<RichGlossaryTextProps> = React.memo(({
+export const RichGlossaryText: React.FC<RichGlossaryTextProps> = ({
   text,
   onSelectTerm,
-  accentHex = '#2DD4BF',
+  accentHex = '#0F766E',
 }) => {
-  const parts = useMemo(() => parseGlossaryParts(text), [text]);
+  const parts = useMemo(() => {
+    if (!text || !COMPILED_GLOSSARY.combinedSource) {
+      return [{ type: 'text' as const, value: text || '' }];
+    }
+
+    const regex = new RegExp(COMPILED_GLOSSARY.combinedSource, 'gi');
+    const nodes: Array<
+      | { type: 'text'; value: string }
+      | { type: 'term'; value: string; termObj: GlossaryTerm }
+    > = [];
+    let lastIndex = 0;
+    let match: RegExpExecArray | null;
+
+    while ((match = regex.exec(text)) !== null) {
+      const prefix = match[1] || '';
+      const matchedWord = match[2];
+      const matchStart = match.index + prefix.length;
+
+      if (matchStart > lastIndex) {
+        nodes.push({ type: 'text', value: text.slice(lastIndex, matchStart) });
+      }
+
+      const found = COMPILED_GLOSSARY.stemToTerm.find((item) => item.regex.test(matchedWord));
+      if (found) {
+        nodes.push({ type: 'term', value: matchedWord, termObj: found.termObj });
+      } else {
+        nodes.push({ type: 'text', value: matchedWord });
+      }
+
+      lastIndex = matchStart + matchedWord.length;
+    }
+
+    if (lastIndex < text.length) {
+      nodes.push({ type: 'text', value: text.slice(lastIndex) });
+    }
+
+    return nodes;
+  }, [text]);
 
   return (
-    <span>
+    <>
       {parts.map((part, idx) => {
         if (part.type === 'text') {
           return <React.Fragment key={idx}>{part.value}</React.Fragment>;
@@ -452,20 +453,22 @@ export const RichGlossaryText: React.FC<RichGlossaryTextProps> = React.memo(({
             type="button"
             onClick={(e) => {
               e.stopPropagation();
-              (window as any).Telegram?.WebApp?.HapticFeedback?.impactOccurred('light');
+              (window as unknown as {
+                Telegram?: { WebApp?: { HapticFeedback?: { impactOccurred?: (s: string) => void } } };
+              }).Telegram?.WebApp?.HapticFeedback?.impactOccurred?.('light');
               onSelectTerm(part.termObj);
             }}
             style={{
-              backgroundColor: `${accentHex}1A`,
               color: accentHex,
-              borderBottomColor: `${accentHex}80`,
+              textDecorationColor: `${accentHex}88`,
+              backgroundColor: `${accentHex}14`,
             }}
-            className="inline px-1 py-0.5 mx-0.5 rounded-md font-medium border-b border-dashed transition active:scale-95 text-left"
+            className="inline px-1 rounded underline decoration-dotted underline-offset-[3px] font-medium transition-colors active:opacity-75 text-left"
           >
             {part.value}
           </button>
         );
       })}
-    </span>
+    </>
   );
-});
+};

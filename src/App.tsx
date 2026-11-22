@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, Suspense } from 'react';
-import { LazyMotion, domMax, m } from 'framer-motion';
+import { LazyMotion, domMax, m, AnimatePresence } from 'framer-motion';
 import {
   Search,
   Zap,
@@ -47,10 +47,12 @@ import { GoalHubView } from './components/GoalHubView';
 import { ExamSimulatorModal } from './components/ExamSimulatorModal';
 import { BottomSheet } from './components/BottomSheet';
 import { SectionPageView } from './components/SectionPageView';
-import { InteractiveLessonView } from './components/InteractiveLessonView';
 import { IOS_SPRING } from './utils/motion';
 
 const MicroscopeViewerModal = React.lazy(() => import('./components/MicroscopeViewerModal'));
+const TheoryReaderView = React.lazy(() =>
+  import('./components/TheoryReaderView').then((m) => ({ default: m.TheoryReaderView }))
+);
 
 const safeSetItem = (key: string, value: string) => {
   try {
@@ -161,6 +163,9 @@ export function App() {
   const [masteredIds, setMasteredIds] = useState<string[]>(() => readStoredIds('baza_mastered'));
   const [favoriteIds, setFavoriteIds] = useState<string[]>(() => readStoredIds('baza_favorites'));
   const [mistakeIds, setMistakeIds] = useState<string[]>(() => readStoredIds('baza_mistakes'));
+  const [completedTopicIds, setCompletedTopicIds] = useState<string[]>(() =>
+    readStoredIds('baza_completed_topics')
+  );
 
   const [searchQuery, setSearchQuery] = useState('');
   const [glossaryQuery, setGlossaryQuery] = useState('');
@@ -390,6 +395,18 @@ export function App() {
       }
       showToast('Добавлено в избранное');
       return [...prev, id];
+    });
+  };
+
+  const toggleTopicCompleted = (topicId: string) => {
+    haptic('medium');
+    setCompletedTopicIds((prev) => {
+      const next = prev.includes(topicId)
+        ? prev.filter((id) => id !== topicId)
+        : [...prev, topicId];
+      safeSetItem('baza_completed_topics', JSON.stringify(next));
+      showToast(next.includes(topicId) ? 'Тема отмечена изученной' : 'Отметка снята');
+      return next;
     });
   };
 
@@ -702,29 +719,65 @@ export function App() {
     );
   }
 
+  const activeSectionObj = useMemo(() => {
+    if (!activeLessonTopic) return selectedSection;
+    return (
+      THEORY_SECTIONS.find((s) => s.id === activeLessonTopic.sectionId) || selectedSection
+    );
+  }, [activeLessonTopic, selectedSection]);
+
+  const nextLessonTopic = useMemo(() => {
+    if (!activeLessonTopic || !activeSectionObj) return null;
+    const topics = activeSectionObj.topics;
+    const currentIdx = topics.findIndex((t) => t.id === activeLessonTopic.id);
+    if (currentIdx >= 0 && currentIdx < topics.length - 1) {
+      return topics[currentIdx + 1];
+    }
+    return null;
+  }, [activeLessonTopic, activeSectionObj]);
+
+  const activeLessonSlides = useMemo(() => {
+    if (!activeLessonTopic?.relatedSlideIds) return [];
+    return activeLessonTopic.relatedSlideIds
+      .map((id) => EXAM_SLIDES.find((s) => s.id === id))
+      .filter((s): s is HistSlide => Boolean(s));
+  }, [activeLessonTopic]);
+
   const hideDock = Boolean(activeLessonTopic || activeMicroscopeSlide || quizState);
 
   return (
     <LazyMotion features={domMax} strict>
       <div className={`min-h-screen ${ui.bg} transition-colors duration-200 font-sans select-none flex flex-col justify-between overflow-x-hidden`}>
-        {/* ==================== SCREEN 3: INTERACTIVE LESSON SLIDE-VIEW ==================== */}
-        {activeLessonTopic && (
-          <InteractiveLessonView
-            topic={activeLessonTopic}
-            isDark={isDark}
-            accentHex={activeAccentHex}
-            onClose={() => setActiveLessonTopic(null)}
-            onSelectTerm={setSelectedTerm}
-            onOpenQuestion={(qNum) => {
-              setActiveLessonTopic(null);
-              setSelectedSection(null);
-              setActiveTab('tickets');
-              const t = EXAM_TICKETS.find((tick) => tick.number === qNum);
-              if (t) setExpandedTicketId(t.id);
-            }}
-            onOpenSlide={(slide) => setActiveMicroscopeSlide(slide)}
-          />
-        )}
+        {/* ==================== SCREEN 3: THEORY READER VIEW ==================== */}
+        <AnimatePresence>
+          {activeLessonTopic && (
+            <Suspense fallback={null}>
+              <TheoryReaderView
+                topic={activeLessonTopic}
+                sectionTitle={activeSectionObj?.title}
+                nextTopic={nextLessonTopic}
+                relatedSlides={activeLessonSlides}
+                isDark={isDark}
+                accentHex={activeAccentHex}
+                textOnAccent={accentTextColor}
+                topInsetPx={topInsetPx}
+                isCompleted={completedTopicIds.includes(activeLessonTopic.id)}
+                onToggleCompleted={toggleTopicCompleted}
+                onSelectTerm={setSelectedTerm}
+                onOpenQuestion={(qNum) => {
+                  setActiveLessonTopic(null);
+                  setSelectedSection(null);
+                  setActiveTab('tickets');
+                  const t = EXAM_TICKETS.find((tick) => tick.number === qNum);
+                  if (t) setExpandedTicketId(t.id);
+                }}
+                onOpenSlide={(slide) => setActiveMicroscopeSlide(slide)}
+                onOpenNextTopic={(next) => setActiveLessonTopic(next)}
+                onClose={() => setActiveLessonTopic(null)}
+              />
+            </Suspense>
+          )}
+        </AnimatePresence>
 
         {/* ==================== SCREEN 2: SECTION PAGE VIEW ==================== */}
         {!activeLessonTopic && selectedSection && (
