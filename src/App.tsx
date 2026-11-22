@@ -47,6 +47,7 @@ import { GoalHubView } from './components/GoalHubView';
 import { ExamSimulatorModal } from './components/ExamSimulatorModal';
 import { BottomSheet } from './components/BottomSheet';
 import { SectionPageView } from './components/SectionPageView';
+import { SituationalTasksModal } from './components/SituationalTasksModal';
 import { IOS_SPRING } from './utils/motion';
 import { getReadableAccent, hexWithAlpha } from './utils/colorContrast';
 
@@ -758,7 +759,7 @@ export function App() {
     );
   }
 
-  const hideDock = Boolean(activeLessonTopic || activeMicroscopeSlide || quizState || selectedSection);
+  const hideDock = Boolean(activeLessonTopic || activeMicroscopeSlide || quizState || selectedSection || showTasksSheet);
   const selectedTermNote =
     selectedTerm?.examNote || (selectedTerm as { examTrap?: string } | null)?.examTrap;
 
@@ -1128,9 +1129,13 @@ export function App() {
 
                               {em.keyFeature && (
                                 <div
-                                  className={`p-3 rounded-xl space-y-1 ${ui.subCard}`}
-                                  style={{ borderLeftWidth: '3px', borderLeftColor: readableAccent }}
+                                  className={`relative overflow-hidden p-3 pl-4 rounded-xl space-y-1 ${ui.subCard}`}
                                 >
+                                  <span
+                                    aria-hidden="true"
+                                    className="absolute inset-y-0 left-0 w-[3px]"
+                                    style={{ backgroundColor: readableAccent }}
+                                  />
                                   <div className="text-[12px] font-semibold" style={{ color: readableAccent }}>
                                     Ключевой ультраструктурный признак
                                   </div>
@@ -1575,24 +1580,20 @@ export function App() {
           </div>
         </BottomSheet>
 
-        {/* ==================== ШТОРКА 55 ЗАДАЧ ==================== */}
-        <BottomSheet isOpen={showTasksSheet} onClose={() => setShowTasksSheet(false)}
-          title="Ситуационные задачи"
-          isDark={isDark}
-        >
-          <div className="space-y-3 py-4 text-center">
-            <div
-              className="w-11 h-11 rounded-2xl mx-auto flex items-center justify-center"
-              style={{ backgroundColor: accentSoftBg, color: readableAccent }}
-            >
-              <HelpCircle className="w-5 h-5" strokeWidth={1.5}/>
-            </div>
-            <h4 className="text-[15px] font-semibold">55 экзаменационных задач</h4>
-            <p className={`text-[13px] max-w-xs mx-auto leading-relaxed ${ui.muted}`}>
-              Задачи подключены к симулятору экзамена и распределяются по билетам кафедры НГМУ.
-            </p>
-          </div>
-        </BottomSheet>
+        {/* ==================== ЭКРАН 55 ЗАДАЧ ==================== */}
+        <AnimatePresence>
+          {showTasksSheet && (
+            <SituationalTasksModal
+              tasks={SITUATIONAL_TASKS}
+              isDark={isDark}
+              accentHex={activeAccentHex}
+              textOnAccent={accentTextColor}
+              topInsetPx={topInsetPx}
+              onSelectTerm={setSelectedTerm}
+              onClose={() => setShowTasksSheet(false)}
+            />
+          )}
+        </AnimatePresence>
 
         {/* ==================== ШТОРКА ИЗБРАННОЕ ==================== */}
         <BottomSheet isOpen={showFavoritesSheet} onClose={() => setShowFavoritesSheet(false)}
@@ -1663,7 +1664,7 @@ export function App() {
                       style={
                         isSelected
                           ? {
-                              backgroundColor: hexWithAlpha(readableAccent, isDark ? 0.16 : 0.12),
+                              backgroundColor: hexWithAlpha(readableAccent, isDark ? (accentId === 'mono' ? 0.14 : 0.16) : (accentId === 'mono' ? 0.08 : 0.12)),
                               borderColor: readableAccent,
                               color: isDark ? '#F4F4F5' : '#18181B',
                             }
@@ -1700,7 +1701,7 @@ export function App() {
                       style={
                         isSelected
                           ? {
-                              backgroundColor: hexWithAlpha(readableAccent, isDark ? 0.16 : 0.12),
+                              backgroundColor: hexWithAlpha(readableAccent, isDark ? (accentId === 'mono' ? 0.14 : 0.16) : (accentId === 'mono' ? 0.08 : 0.12)),
                               borderColor: readableAccent,
                               color: isDark ? '#F4F4F5' : '#18181B',
                             }
@@ -1725,13 +1726,13 @@ export function App() {
                   style={
                     accentId === 'custom'
                       ? {
-                          backgroundColor: hexWithAlpha(readableAccent, isDark ? 0.16 : 0.12),
+                          backgroundColor: hexWithAlpha(readableAccent, isDark ? 0.16 : 0.1),
                           borderColor: readableAccent,
                           color: isDark ? '#F4F4F5' : '#18181B',
                         }
                       : undefined
                   }
-                  className={`px-3 h-9 rounded-xl text-[12px] font-medium flex items-center gap-2 border cursor-pointer transition-colors ${
+                  className={`relative overflow-hidden px-3 h-9 rounded-xl text-[12px] font-medium flex items-center gap-2 border cursor-pointer transition-colors ${
                     accentId === 'custom' ? 'font-semibold' : ui.subCard
                   }`}
                 >
@@ -1742,7 +1743,11 @@ export function App() {
                       setCustomHex(e.target.value);
                       setAccentId('custom');
                     }}
-                    className="w-3.5 h-3.5 rounded-full border-0 p-0 cursor-pointer bg-transparent"
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                  />
+                  <span
+                    className={`w-3 h-3 rounded-full shrink-0 border ${ui.border}`}
+                    style={{ backgroundColor: customHex }}
                   />
                   <span>Свой</span>
                 </label>
@@ -1769,9 +1774,13 @@ export function App() {
 
               {selectedTermNote && (
                 <div
-                  className={`p-3 rounded-xl space-y-1 ${ui.subCard}`}
-                  style={{ borderLeftWidth: '3px', borderLeftColor: readableAccent }}
+                  className={`relative overflow-hidden p-3 pl-4 rounded-xl space-y-1 ${ui.subCard}`}
                 >
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-y-0 left-0 w-[3px]"
+                    style={{ backgroundColor: readableAccent }}
+                  />
                   <div className="text-[12px] font-semibold" style={{ color: readableAccent }}>
                     Важно на экзамене
                   </div>
@@ -1906,9 +1915,13 @@ export function App() {
 
                           {(currentSlide.killerFeature || currentSlide.examPlan?.killerFeature) && (
                             <div
-                              className="p-3.5 rounded-2xl bg-[#1D1810] border border-amber-500/20 space-y-1"
-                              style={{ borderLeftWidth: '3px', borderLeftColor: '#F59E0B' }}
+                              className="relative overflow-hidden p-3.5 pl-4 rounded-2xl bg-[#1D1810] border border-amber-500/20 space-y-1"
                             >
+                              <span
+                                aria-hidden="true"
+                                className="absolute inset-y-0 left-0 w-[3px]"
+                                style={{ backgroundColor: '#F59E0B' }}
+                              />
                               <span className="text-[12px] font-semibold text-amber-300">
                                 Главный признак
                               </span>

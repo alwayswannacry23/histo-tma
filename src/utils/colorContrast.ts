@@ -32,7 +32,7 @@ function relativeLuminance(r: number, g: number, b: number): number {
     const s = c / 255;
     return s <= 0.03928 ? s / 12.92 : Math.pow((s + 0.055) / 1.055, 2.4);
   });
-  return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.0722 * linear[2];
+  return 0.2126 * linear[0] + 0.7152 * linear[1] + 0.7152 * 0 + 0.0722 * linear[2];
 }
 
 function contrastRatio(l1: number, l2: number): number {
@@ -42,25 +42,23 @@ function contrastRatio(l1: number, l2: number): number {
 }
 
 /**
- * Возвращает оттенок акцента с гарантированным контрастом >= 4.5:1
- * для текста, ссылок и подчёркиваний в текущей теме.
+ * Возвращает оттенок акцента с гарантированным контрастом >= 4.6:1.
+ * Если выбран Монохром (серый/чёрный/белый), сохраняет чистый монохром без подмены на синий.
  */
 export function getReadableAccent(hex: string, isDark: boolean): string {
   const rgb = parseHex(hex);
-  if (!rgb) return isDark ? '#5EEAD4' : '#0F766E';
+  if (!rgb) return isDark ? '#F4F4F5' : '#18181B';
 
   let [r, g, b] = rgb;
-  const bgLum = isDark ? 0.008 : 0.94;
   const maxChannel = Math.max(r, g, b);
   const minChannel = Math.min(r, g, b);
   const isGrayscale = maxChannel - minChannel < 14;
 
-  // В монохромной теме даём чистый оптический сине-сланцевый тон для терминов,
-  // чтобы интерфейс не превращался в мёртвый вайрфрейм
   if (isGrayscale) {
-    return isDark ? '#93C5FD' : '#1D4ED8';
+    return isDark ? '#F4F4F5' : '#18181B';
   }
 
+  const bgLum = isDark ? 0.008 : 0.94;
   let lum = relativeLuminance(r, g, b);
   if (contrastRatio(lum, bgLum) >= 4.6) {
     return toHex(r, g, b);
@@ -87,6 +85,6 @@ export function getReadableAccent(hex: string, isDark: boolean): string {
 
 export function hexWithAlpha(hex: string, alpha: number): string {
   const rgb = parseHex(hex);
-  if (!rgb) return `rgba(15, 118, 110, ${alpha})`;
+  if (!rgb) return `rgba(24, 24, 27, ${alpha})`;
   return `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, ${alpha})`;
 }

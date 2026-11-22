@@ -11,7 +11,6 @@ import {
   List,
   Microscope,
   X,
-  Zap,
 } from 'lucide-react';
 import { ContentBlock, TheoryTopic } from '../data/curriculumTypes';
 import { GlossaryTerm, RichGlossaryText } from '../data/glossaryData';
@@ -20,6 +19,7 @@ import { getReadableAccent, hexWithAlpha } from '../utils/colorContrast';
 import { IOS_EASE, IOS_SPRING, PAGE_TRANSITION, SHEET_TRANSITION } from '../utils/motion';
 
 type ReaderMode = 'full' | 'brief';
+type NullableDiv = HTMLDivElement | null;
 
 const READER_MODE_KEY = 'baza_reader_mode';
 
@@ -103,7 +103,7 @@ export const TheoryReaderView: React.FC<TheoryReaderViewProps> = ({
   const [openQaKeys, setOpenQaKeys] = useState<Record<string, boolean>>({});
   const [expandedBriefRows, setExpandedBriefRows] = useState<Record<string, boolean>>({});
   const [brokenSlideImages, setBrokenSlideImages] = useState<Record<string, boolean>>({});
-  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const scrollRef = useRef<NullableDiv>(null);
 
   const isTelegramEnv = useMemo(() => {
     if (typeof window === 'undefined') return false;
@@ -112,8 +112,8 @@ export const TheoryReaderView: React.FC<TheoryReaderViewProps> = ({
   }, []);
 
   const accentInk = useMemo(() => getReadableAccent(accentHex, isDark), [accentHex, isDark]);
-  const accentSoftBg = useMemo(() => hexWithAlpha(accentInk, isDark ? 0.14 : 0.1), [accentInk, isDark]);
-  const accentBorder = useMemo(() => hexWithAlpha(accentInk, isDark ? 0.3 : 0.24), [accentInk, isDark]);
+  const accentSoftBg = useMemo(() => hexWithAlpha(accentInk, isDark ? 0.14 : 0.08), [accentInk, isDark]);
+  const accentBorder = useMemo(() => hexWithAlpha(accentInk, isDark ? 0.28 : 0.22), [accentInk, isDark]);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -215,6 +215,11 @@ export const TheoryReaderView: React.FC<TheoryReaderViewProps> = ({
   const secondaryText = isDark ? 'text-[#A1A1AA]' : 'text-[#52525B]';
   const mutedText = isDark ? 'text-[#71717A]' : 'text-[#71717A]';
   const hairline = isDark ? 'border-white/[0.08]' : 'border-black/[0.07]';
+  const amberBarColor = isDark ? '#F59E0B' : '#B45309';
+  const amberIconClass = isDark ? 'w-4 h-4 mt-1 shrink-0 text-amber-400' : 'w-4 h-4 mt-1 shrink-0 text-amber-700';
+  const mutedIconClass = `w-4 h-4 shrink-0 ${mutedText}`;
+  const secondaryIconClass = `w-4 h-4 shrink-0 ${secondaryText}`;
+  const emptyIconClass = `w-5 h-5 mx-auto ${mutedText}`;
 
   const renderQaBlock = (block: Extract<ContentBlock, { type: 'qa' }>, idx: number) => (
     <section key={idx} id={`reader-block-${idx}`} className="space-y-3">
@@ -225,6 +230,9 @@ export const TheoryReaderView: React.FC<TheoryReaderViewProps> = ({
         {block.items.map((item, qIdx) => {
           const qaKey = `${idx}_${qIdx}`;
           const isOpen = Boolean(openQaKeys[qaKey]);
+          const chevCls = isOpen
+            ? `w-4 h-4 mt-0.5 shrink-0 transition-transform duration-200 rotate-180 ${mutedText}`
+            : `w-4 h-4 mt-0.5 shrink-0 transition-transform duration-200 ${mutedText}`;
           return (
             <div key={qaKey} className={`rounded-2xl overflow-hidden ${surface}`}>
               <button
@@ -236,7 +244,7 @@ export const TheoryReaderView: React.FC<TheoryReaderViewProps> = ({
                 className="w-full p-4 text-left flex items-start justify-between gap-3"
               >
                 <span className="text-[14px] font-medium leading-snug">{item.q}</span>
-                <ChevronDown className={`w-4 h-4 shrink-0 mt-0.5 transition-transform duration-200 ${isOpen ? "rotate-180" : ""} ${mutedText}`} strokeWidth={1.5} />
+                <ChevronDown className={chevCls} strokeWidth={1.5} />
               </button>
               {isOpen && (
                 <div
@@ -256,14 +264,18 @@ export const TheoryReaderView: React.FC<TheoryReaderViewProps> = ({
     <section
       key={idx}
       id={`reader-block-${idx}`}
-      className={`rounded-2xl p-4 flex items-start gap-3 ${
+      className={`relative overflow-hidden rounded-2xl p-4 pl-5 flex items-start gap-3 ${
         isDark
           ? 'bg-[#1D1810] border border-amber-500/20'
           : 'bg-[#FFFBEB] border border-amber-600/20'
       }`}
-      style={{ borderLeftWidth: '3px', borderLeftColor: isDark ? '#F59E0B' : '#B45309' }}
     >
-      <AlertTriangle className={`w-4 h-4 mt-1 shrink-0 ${isDark ? "text-amber-400" : "text-amber-700"}`} strokeWidth={1.5} />
+      <span
+        aria-hidden="true"
+        className="absolute inset-y-0 left-0 w-[3px]"
+        style={{ backgroundColor: amberBarColor }}
+      />
+      <AlertTriangle className={amberIconClass} strokeWidth={1.5} />
       <div className="space-y-1 min-w-0">
         <div
           className={`text-[13px] font-semibold ${isDark ? 'text-amber-300' : 'text-amber-800'}`}
@@ -286,9 +298,13 @@ export const TheoryReaderView: React.FC<TheoryReaderViewProps> = ({
           <section
             key={idx}
             id={anchorId}
-            className={`rounded-2xl p-4 space-y-2 ${surface}`}
-            style={{ borderLeftWidth: '3px', borderLeftColor: accentInk }}
+            className={`relative overflow-hidden rounded-2xl p-4 pl-5 space-y-2 ${surface}`}
           >
+            <span
+              aria-hidden="true"
+              className="absolute inset-y-0 left-0 w-[3px]"
+              style={{ backgroundColor: accentInk }}
+            />
             <div className="text-[13px] font-semibold" style={{ color: accentInk }}>
               {block.title || 'Суть темы'}
             </div>
@@ -354,28 +370,31 @@ export const TheoryReaderView: React.FC<TheoryReaderViewProps> = ({
               </h2>
             )}
             <div className="space-y-3">
-              {block.rows.map((row, rIdx) => (
-                <div key={rIdx} className={`rounded-2xl p-4 space-y-2.5 ${surface}`}>
-                  <div className="text-[15px] font-semibold leading-snug">
-                    <RichGlossaryText text={row[0] || ""} accentHex={accentInk} onSelectTerm={onSelectTerm} />
-                  </div>
-                  <div className={`divide-y ${isDark ? 'divide-white/[0.06]' : 'divide-black/[0.06]'}`}>
-                    {row.slice(1).map((cell, cOffset) => {
-                      const colLabel = block.headers[cOffset + 1];
-                      return (
-                        <div key={cOffset} className="py-2 first:pt-0 last:pb-0 space-y-0.5">
-                          {colLabel && (
-                            <div className={`text-[12px] font-medium ${mutedText}`}>{colLabel}</div>
-                          )}
-                          <div className={`text-[14px] leading-[1.55] font-normal ${bodyText}`}>
-                            <RichGlossaryText text={cell} accentHex={accentInk} onSelectTerm={onSelectTerm} />
+              {block.rows.map((row, rIdx) => {
+                const rowHead = row[0] || '';
+                return (
+                  <div key={rIdx} className={`rounded-2xl p-4 space-y-2.5 ${surface}`}>
+                    <div className="text-[15px] font-semibold leading-snug">
+                      <RichGlossaryText text={rowHead} accentHex={accentInk} onSelectTerm={onSelectTerm} />
+                    </div>
+                    <div className={`divide-y ${isDark ? 'divide-white/[0.06]' : 'divide-black/[0.06]'}`}>
+                      {row.slice(1).map((cell, cOffset) => {
+                        const colLabel = block.headers[cOffset + 1];
+                        return (
+                          <div key={cOffset} className="py-2 first:pt-0 last:pb-0 space-y-0.5">
+                            {colLabel && (
+                              <div className={`text-[12px] font-medium ${mutedText}`}>{colLabel}</div>
+                            )}
+                            <div className={`text-[14px] leading-[1.55] font-normal ${bodyText}`}>
+                              <RichGlossaryText text={cell} accentHex={accentInk} onSelectTerm={onSelectTerm} />
+                            </div>
                           </div>
-                        </div>
-                      );
-                    })}
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </section>
         );
@@ -391,7 +410,6 @@ export const TheoryReaderView: React.FC<TheoryReaderViewProps> = ({
     }
   };
 
-  // Режим «Кратко» для тем без готового topic.briefPoints: реально сжимает ВСЕ типы блоков
   const renderBriefFallbackBlock = (block: ContentBlock, idx: number) => {
     const anchorId = `reader-block-${idx}`;
 
@@ -401,9 +419,13 @@ export const TheoryReaderView: React.FC<TheoryReaderViewProps> = ({
           <section
             key={idx}
             id={anchorId}
-            className={`rounded-2xl p-4 space-y-1.5 ${surface}`}
-            style={{ borderLeftWidth: '3px', borderLeftColor: accentInk }}
+            className={`relative overflow-hidden rounded-2xl p-4 pl-5 space-y-1.5 ${surface}`}
           >
+            <span
+              aria-hidden="true"
+              className="absolute inset-y-0 left-0 w-[3px]"
+              style={{ backgroundColor: accentInk }}
+            />
             <div className="text-[13px] font-semibold" style={{ color: accentInk }}>
               {block.title || 'Суть темы'}
             </div>
@@ -413,7 +435,8 @@ export const TheoryReaderView: React.FC<TheoryReaderViewProps> = ({
           </section>
         );
 
-      case 'text':
+      case 'text': {
+        const shortText = firstSentence(block.text, 130);
         return (
           <section key={idx} id={anchorId} className="space-y-1">
             {block.title && (
@@ -425,11 +448,12 @@ export const TheoryReaderView: React.FC<TheoryReaderViewProps> = ({
                 style={{ backgroundColor: accentInk }}
               />
               <div className={`text-[14px] leading-[1.5] ${bodyText}`}>
-                <RichGlossaryText text={firstSentence(block.text, 130)} accentHex={accentInk} onSelectTerm={onSelectTerm} />
+                <RichGlossaryText text={shortText} accentHex={accentInk} onSelectTerm={onSelectTerm} />
               </div>
             </div>
           </section>
         );
+      }
 
       case 'list': {
         const listKey = `list_${idx}`;
@@ -443,19 +467,22 @@ export const TheoryReaderView: React.FC<TheoryReaderViewProps> = ({
               <h2 className="text-[15px] font-semibold leading-snug">{block.title}</h2>
             )}
             <ul className="space-y-1.5">
-              {visibleItems.map((item, i) => (
-                <li key={i} className="flex items-start gap-2.5 text-[14px] leading-[1.45]">
-                  <span
-                    className="text-[12px] font-mono tabular-nums shrink-0 mt-0.5"
-                    style={{ color: accentInk }}
-                  >
-                    {block.ordered ? `${i + 1}.` : '·'}
-                  </span>
-                  <span className={bodyText}>
-                    <RichGlossaryText text={firstSentence(item, 110)} accentHex={accentInk} onSelectTerm={onSelectTerm} />
-                  </span>
-                </li>
-              ))}
+              {visibleItems.map((item, i) => {
+                const shortItem = firstSentence(item, 110);
+                return (
+                  <li key={i} className="flex items-start gap-2.5 text-[14px] leading-[1.45]">
+                    <span
+                      className="text-[12px] font-mono tabular-nums shrink-0 mt-0.5"
+                      style={{ color: accentInk }}
+                    >
+                      {block.ordered ? `${i + 1}.` : '·'}
+                    </span>
+                    <span className={bodyText}>
+                      <RichGlossaryText text={shortItem} accentHex={accentInk} onSelectTerm={onSelectTerm} />
+                    </span>
+                  </li>
+                );
+              })}
             </ul>
             {hiddenCount > 0 && (
               <button
@@ -483,6 +510,9 @@ export const TheoryReaderView: React.FC<TheoryReaderViewProps> = ({
               {block.rows.map((row, rIdx) => {
                 const rowKey = `tbl_${idx}_${rIdx}`;
                 const expanded = Boolean(expandedBriefRows[rowKey]);
+                const rowChevCls = expanded
+                  ? `w-3.5 h-3.5 shrink-0 transition-transform duration-150 rotate-180 ${mutedText}`
+                  : `w-3.5 h-3.5 shrink-0 transition-transform duration-150 ${mutedText}`;
                 return (
                   <button
                     key={rIdx}
@@ -495,7 +525,7 @@ export const TheoryReaderView: React.FC<TheoryReaderViewProps> = ({
                   >
                     <div className="flex items-center justify-between gap-2">
                       <span className="text-[13px] font-semibold leading-snug">{row[0]}</span>
-                      <ChevronDown className={`w-3.5 h-3.5 shrink-0 transition-transform duration-150 ${expanded ? "rotate-180" : ""} ${mutedText}`} strokeWidth={1.5} />
+                      <ChevronDown className={rowChevCls} strokeWidth={1.5} />
                     </div>
                     {!expanded ? (
                       <div className={`text-[12px] truncate ${secondaryText}`}>
@@ -544,7 +574,6 @@ export const TheoryReaderView: React.FC<TheoryReaderViewProps> = ({
       transition={PAGE_TRANSITION}
       className={`fixed inset-0 z-40 flex flex-col ${pageBg}`}
     >
-      {/* Липкая компактная шапка без дублирующего крестика */}
       <header
         style={{ paddingTop: `${stickyTopPad}px` }}
         className={`shrink-0 sticky top-0 z-20 backdrop-blur-md border-b ${headerBg}`}
@@ -631,7 +660,6 @@ export const TheoryReaderView: React.FC<TheoryReaderViewProps> = ({
         className="flex-1 overflow-y-auto overscroll-y-contain"
       >
         <article className="max-w-md mx-auto px-4 pt-5 pb-16">
-          {/* Заголовок и метаданные темы */}
           <div className={`space-y-3 pb-5 border-b mb-6 ${hairline}`}>
             <div className={`flex flex-wrap items-center gap-2 text-[12px] font-medium ${mutedText}`}>
               {topic.lessonNumber != null && (
@@ -674,27 +702,20 @@ export const TheoryReaderView: React.FC<TheoryReaderViewProps> = ({
                 ))}
               </div>
             )}
-
-            {mode === 'brief' && hasContent && (
-              <div
-                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[12px] font-medium"
-                style={{ backgroundColor: accentSoftBg, color: accentInk }}
-              >
-                <Zap className="w-3.5 h-3.5" strokeWidth={1.5} />
-                <span>Шпаргалка · только тезисы и ловушки</span>
-              </div>
-            )}
           </div>
 
-          {/* Тело конспекта */}
           {hasContent ? (
             mode === 'brief' && hasExplicitBriefPoints ? (
               <div className="space-y-6">
                 <section
                   id="reader-brief-points"
-                  className={`rounded-2xl p-4 space-y-3 ${surface}`}
-                  style={{ borderLeftWidth: '3px', borderLeftColor: accentInk }}
+                  className={`relative overflow-hidden rounded-2xl p-4 pl-5 space-y-3 ${surface}`}
                 >
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-y-0 left-0 w-[3px]"
+                    style={{ backgroundColor: accentInk }}
+                  />
                   <div className="text-[13px] font-semibold" style={{ color: accentInk }}>
                     Выжимка за 60 секунд
                   </div>
@@ -725,30 +746,35 @@ export const TheoryReaderView: React.FC<TheoryReaderViewProps> = ({
                   ? topic.blocks.map((block, idx) =>
                       mode === 'brief' ? renderBriefFallbackBlock(block, idx) : renderFullBlock(block, idx)
                     )
-                  : fallbackBlocks.map((fb) => (
-                      <section key={fb.id} className="space-y-2">
-                        <h2 className="text-[17px] font-semibold leading-snug">{fb.title}</h2>
-                        <div className={`text-[15px] leading-[1.65] whitespace-pre-line ${bodyText}`}>
-                          <RichGlossaryText text={mode === "brief" ? firstSentence(fb.summary, 140) : fb.summary} accentHex={accentInk} onSelectTerm={onSelectTerm} />
-                        </div>
-                        {fb.examTip && (
-                          <div
-                            className={`rounded-2xl p-4 text-[14px] leading-[1.55] ${surface}`}
-                            style={{ borderLeftWidth: '3px', borderLeftColor: accentInk }}
-                          >
-                            <span className="font-semibold" style={{ color: accentInk }}>
-                              На экзамене:{' '}
-                            </span>
-                            <RichGlossaryText text={fb.examTip} accentHex={accentInk} onSelectTerm={onSelectTerm} />
+                  : fallbackBlocks.map((fb) => {
+                      const fbText = mode === 'brief' ? firstSentence(fb.summary, 140) : fb.summary;
+                      return (
+                        <section key={fb.id} className="space-y-2">
+                          <h2 className="text-[17px] font-semibold leading-snug">{fb.title}</h2>
+                          <div className={`text-[15px] leading-[1.65] whitespace-pre-line ${bodyText}`}>
+                            <RichGlossaryText text={fbText} accentHex={accentInk} onSelectTerm={onSelectTerm} />
                           </div>
-                        )}
-                      </section>
-                    ))}
+                          {fb.examTip && (
+                            <div className={`relative overflow-hidden rounded-2xl p-4 pl-5 text-[14px] leading-[1.55] ${surface}`}>
+                              <span
+                                aria-hidden="true"
+                                className="absolute inset-y-0 left-0 w-[3px]"
+                                style={{ backgroundColor: accentInk }}
+                              />
+                              <span className="font-semibold" style={{ color: accentInk }}>
+                                На экзамене:{' '}
+                              </span>
+                              <RichGlossaryText text={fb.examTip} accentHex={accentInk} onSelectTerm={onSelectTerm} />
+                            </div>
+                          )}
+                        </section>
+                      );
+                    })}
               </div>
             )
           ) : (
             <div className={`rounded-2xl p-6 text-center space-y-2 ${surface}`}>
-              <BookOpen className={`w-5 h-5 mx-auto ${mutedText}`} strokeWidth={1.5} />
+              <BookOpen className={emptyIconClass} strokeWidth={1.5} />
               <div className="text-[15px] font-semibold">Конспект готовится</div>
               <p className={`text-[14px] leading-relaxed ${secondaryText}`}>
                 Раздел привязан к программе НГМУ и будет заполнен по кафедральным материалам.
@@ -756,7 +782,6 @@ export const TheoryReaderView: React.FC<TheoryReaderViewProps> = ({
             </div>
           )}
 
-          {/* Реальные препараты по теме */}
           {relatedSlides.length > 0 && (
             <section
               id="reader-related-slides"
@@ -797,7 +822,7 @@ export const TheoryReaderView: React.FC<TheoryReaderViewProps> = ({
                             className="w-full h-full object-cover"
                           />
                         ) : (
-                          <Microscope className={`w-4 h-4 ${mutedText}`} strokeWidth={1.5} />
+                          <Microscope className={mutedIconClass} strokeWidth={1.5} />
                         )}
                       </div>
 
@@ -814,7 +839,7 @@ export const TheoryReaderView: React.FC<TheoryReaderViewProps> = ({
                         <div className={`text-[12px] truncate ${mutedText}`}>{slide.stain}</div>
                       </div>
 
-                      <ChevronRight className={`w-4 h-4 shrink-0 ${mutedText}`} strokeWidth={1.5} />
+                      <ChevronRight className={mutedIconClass} strokeWidth={1.5} />
                     </m.button>
                   );
                 })}
@@ -822,7 +847,6 @@ export const TheoryReaderView: React.FC<TheoryReaderViewProps> = ({
             </section>
           )}
 
-          {/* Подвал статьи */}
           <footer className={`mt-10 pt-6 border-t space-y-3 ${hairline}`}>
             {onToggleCompleted && (
               <m.button
@@ -858,14 +882,13 @@ export const TheoryReaderView: React.FC<TheoryReaderViewProps> = ({
                   <div className={`text-[12px] font-medium ${mutedText}`}>Следующая тема</div>
                   <div className="text-[14px] font-medium truncate">{nextTopic.title}</div>
                 </div>
-                <ArrowRight className={`w-4 h-4 shrink-0 ${secondaryText}`} strokeWidth={1.5} />
+                <ArrowRight className={secondaryIconClass} strokeWidth={1.5} />
               </m.button>
             )}
           </footer>
         </article>
       </div>
 
-      {/* Шторка оглавления */}
       <AnimatePresence>
         {tocOpen && (
           <div className="fixed inset-0 z-50 flex items-end justify-center">

@@ -280,10 +280,8 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
             )}
 
             {(slide.killerFeature || slide.examPlan?.killerFeature) && (
-              <div
-                className="rounded-2xl p-4 bg-[#1D1810] border border-amber-500/20 space-y-1"
-                style={{ borderLeftWidth: '3px', borderLeftColor: '#F59E0B' }}
-              >
+              <div className="relative overflow-hidden rounded-2xl p-4 pl-5 bg-[#1D1810] border border-amber-500/20 space-y-1">
+                <span aria-hidden="true" className="absolute inset-y-0 left-0 w-[3px] bg-amber-500" />
                 <div className="text-[12px] font-semibold text-amber-300">Главный признак</div>
                 <div className="text-[14px] text-zinc-200 leading-relaxed">
                   {slide.killerFeature || slide.examPlan?.killerFeature}
@@ -657,10 +655,8 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
           )}
 
           {(slide.killerFeature || slide.examPlan?.killerFeature) && (
-            <div
-              className="rounded-2xl p-3.5 bg-[#1D1810] border border-amber-500/20 space-y-1"
-              style={{ borderLeftWidth: '3px', borderLeftColor: '#F59E0B' }}
-            >
+            <div className="relative overflow-hidden rounded-2xl p-3.5 pl-5 bg-[#1D1810] border border-amber-500/20 space-y-1">
+              <span aria-hidden="true" className="absolute inset-y-0 left-0 w-[3px] bg-amber-500" />
               <div className="text-[12px] font-semibold text-amber-300">Главный признак</div>
               <div className="text-zinc-200 leading-relaxed">
                 {slide.killerFeature || slide.examPlan?.killerFeature}
