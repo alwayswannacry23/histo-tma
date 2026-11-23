@@ -1,0 +1,12 @@
+# Атрибуция и лицензии микропрепаратов
+
+Все микропрепараты получены из открытых научных коллекций с верифицированными лицензиями (CC0, Public Domain, CC BY, CC BY-SA).
+
+| Препарат | Файл | Автор / Источник | Лицензия | Ссылка на источник |
+|---|---|---|---|---|
+| **#3. Мазок крови человека** | `public/slides/slide_03_main.webp` | Berkshire Community College Bioscience Image Library | [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/) (Public Domain) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Connective_Tissue_Human_Blood_Leukocyte_Survey_(39982280150).jpg) |
+| **#8. Гиалиновый хрящ ребра** (обзор) | `public/slides/slide_08_main.webp` | Berkshire Community College Bioscience Image Library | [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/) (Public Domain) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Connective_Tissue_Hyaline_Cartilage_(40958872915).jpg) |
+| **#8. Гиалиновый хрящ ребра** (деталь 200x) | `public/slides/slide_08_detail.webp` | Berkshire Community College Bioscience Image Library | [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/) (Public Domain) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Connective_Tissue_Hyaline_Cartilage_(26989336187).jpg) |
+| **#39. Трахея (поперечный срез)** (обзор) | `public/slides/slide_39_main.webp` | Berkshire Community College Bioscience Image Library | [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/) (Public Domain) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Epithelial_Tissues_Pseudostratified_Columnar_Epithelium_(40883906325).jpg) |
+| **#39. Трахея (поперечный срез)** (деталь 100x) | `public/slides/slide_39_detail.webp` | Berkshire Community College Bioscience Image Library | [CC0 1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/) (Public Domain) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Epithelial_Tissues_Pseudostratified_Columnar_Epithelium_(41783110841).jpg) |
+| **#59. Почка (корковое вещество)** | `public/slides/slide_59_main.webp` | Michael Bonert, MD | [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Benign_kidney_--_intermed_mag.jpg) |

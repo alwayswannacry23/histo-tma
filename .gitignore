@@ -41,6 +41,9 @@ raw_cafedra/
 # Audit screenshots
 audit_screenshots/
 
+# Pipeline
+pipeline/
+
 # Code dump
 CURRENT_CODE_DUMP.md
 
