@@ -15,6 +15,7 @@ import {
   Microscope,
   ChevronLeft,
   ChevronRight,
+  Crosshair,
 } from 'lucide-react';
 import { HistSlide, SlideLayer } from '../data/histoData';
 import { getReadableAccent, hexWithAlpha } from '../utils/colorContrast';
@@ -38,6 +39,55 @@ const PIN_COLORS = [
   { label: 'Бирюза', hex: '#2DD4BF' },
 ];
 
+function isPointInPolygon(px: number, py: number, polygon: [number, number][]): boolean {
+  let inside = false;
+  for (let i = 0, j = polygon.length - 1; i < polygon.length; j = i++) {
+    const xi = polygon[i][0];
+    const yi = polygon[i][1];
+    const xj = polygon[j][0];
+    const yj = polygon[j][1];
+    const intersect =
+      yi > py !== yj > py && px < ((xj - xi) * (py - yi)) / (yj - yi + 1e-9) + xi;
+    if (intersect) inside = !inside;
+  }
+  return inside;
+}
+
+function checkLayerHit(normX: number, normY: number, layer: SlideLayer): boolean {
+  if (Array.isArray(layer.polygon) && layer.polygon.length >= 3) {
+    if (isPointInPolygon(normX * 10, normY * 10, layer.polygon)) {
+      return true;
+    }
+  }
+  if (typeof layer.pin_x === 'number' && typeof layer.pin_y === 'number') {
+    const dist = Math.hypot(normX - layer.pin_x, normY - layer.pin_y);
+    if (dist <= 9.5) return true;
+  }
+  return false;
+}
+
+function triggerHaptic(type: 'light' | 'medium' | 'success' | 'error'): void {
+  try {
+    const hf = (window as unknown as {
+      Telegram?: {
+        WebApp?: {
+          HapticFeedback?: {
+            impactOccurred?: (s: string) => void;
+            notificationOccurred?: (t: string) => void;
+          };
+        };
+      };
+    }).Telegram?.WebApp?.HapticFeedback;
+    if (type === 'success' || type === 'error') {
+      hf?.notificationOccurred?.(type);
+    } else {
+      hf?.impactOccurred?.(type);
+    }
+  } catch {
+    // ignore
+  }
+}
+
 export const MicroscopeViewerModal: React.FC<Props> = ({
   slide,
   onClose,
@@ -50,7 +100,18 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
   const [activeSliceIndex, setActiveSliceIndex] = useState(0);
   const [imageFailed, setImageFailed] = useState(false);
   const [sliderOpacity, setSliderOpacity] = useState(100);
-  const [viewMode, setViewMode] = useState<'explore' | 'steps'>('explore');
+  const [viewMode, setViewMode] = useState<'explore' | 'steps' | 'spotter'>('explore');
+
+  // Spotter ("Найти на стекле") state
+  const [spotterOrder, setSpotterOrder] = useState<number[]>([]);
+  const [spotterPos, setSpotterPos] = useState(0);
+  const [spotterScore, setSpotterScore] = useState(0);
+  const [spotterFeedback, setSpotterFeedback] = useState<{
+    status: 'hit' | 'miss';
+    tapX: number;
+    tapY: number;
+  } | null>(null);
+  const [spotterDone, setSpotterDone] = useState(false);
 
   const [isAdmin, setIsAdmin] = useState<boolean>(() => window.location.search.includes('admin=1'));
   const [adminMode, setAdminMode] = useState<'pin' | 'polygon'>('pin');
@@ -62,8 +123,21 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
   const [copiedJson, setCopiedJson] = useState(false);
 
   const transformRef = useRef<ReactZoomPanPinchRef>(null);
-
   const darkAccentInk = useMemo(() => getReadableAccent(accentHex, true), [accentHex]);
+
+  const startSpotter = (sourceLayers: SlideLayer[]) => {
+    const indices = sourceLayers.map((_, i) => i);
+    for (let i = indices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [indices[i], indices[j]] = [indices[j], indices[i]];
+    }
+    setSpotterOrder(indices);
+    setSpotterPos(0);
+    setSpotterScore(0);
+    setSpotterFeedback(null);
+    setSpotterDone(false);
+    transformRef.current?.resetTransform(0);
+  };
 
   useEffect(() => {
     setActiveSliceIndex(0);
@@ -72,10 +146,15 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
     setLayers(slide.layers || []);
     setActiveLayerIdx(0);
     setPolygonDraft([]);
+    setSpotterFeedback(null);
+    setSpotterDone(false);
     transformRef.current?.resetTransform(0);
   }, [slide.id]);
 
   const activeLayer = layers.length > 0 ? layers[Math.min(activeLayerIdx, layers.length - 1)] : null;
+  const spotterTargetIdx =
+    spotterOrder.length > 0 ? spotterOrder[Math.min(spotterPos, spotterOrder.length - 1)] : 0;
+  const spotterTargetLayer = layers[spotterTargetIdx] || null;
 
   const activeImageUrl =
     slide.imageUrls && slide.imageUrls.length > activeSliceIndex
@@ -88,9 +167,22 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
 
   const hasImage = Boolean(activeImageUrl && activeImageUrl.trim()) && !imageFailed;
 
+  const handleModeSwitch = (nextMode: 'explore' | 'steps' | 'spotter') => {
+    setViewMode(nextMode);
+    if (nextMode === 'spotter') {
+      startSpotter(layers);
+    } else {
+      setSpotterFeedback(null);
+      setSpotterDone(false);
+    }
+  };
+
   const handleSliceChange = (idx: number) => {
     setActiveSliceIndex(idx);
     setImageFailed(false);
+    if (idx > 0 && viewMode === 'spotter') {
+      setViewMode('explore');
+    }
     transformRef.current?.resetTransform(0);
   };
 
@@ -99,19 +191,33 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
     if (next >= 5) {
       setIsAdmin((prev) => !prev);
       setTapCount(0);
-      (window as unknown as {
-        Telegram?: { WebApp?: { HapticFeedback?: { impactOccurred?: (s: string) => void } } };
-      }).Telegram?.WebApp?.HapticFeedback?.impactOccurred?.('medium');
+      triggerHaptic('medium');
     } else {
       setTapCount(next);
     }
   };
 
   const handleImageClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!isAdmin || activeSliceIndex > 0) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const normX = Number((((e.clientX - rect.left) / rect.width) * 100).toFixed(1));
     const normY = Number((((e.clientY - rect.top) / rect.height) * 100).toFixed(1));
+
+    // Режим «Найти на стекле» (Spotter)
+    if (viewMode === 'spotter' && activeSliceIndex === 0 && spotterTargetLayer && !spotterDone) {
+      if (spotterFeedback) return;
+      const isHit = checkLayerHit(normX, normY, spotterTargetLayer);
+      setSpotterFeedback({ status: isHit ? 'hit' : 'miss', tapX: normX, tapY: normY });
+      if (isHit) {
+        setSpotterScore((s) => s + 1);
+        triggerHaptic('success');
+      } else {
+        triggerHaptic('error');
+      }
+      return;
+    }
+
+    // Режим разметки (?admin=1)
+    if (!isAdmin || activeSliceIndex > 0) return;
 
     if (adminMode === 'polygon') {
       const pt: [number, number] = [Math.round(normX * 10), Math.round(normY * 10)];
@@ -130,6 +236,15 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
     };
     setLayers((prev) => [...prev, newPin]);
     setActiveLayerIdx(layers.length);
+  };
+
+  const handleSpotterNext = () => {
+    setSpotterFeedback(null);
+    if (spotterPos + 1 < spotterOrder.length) {
+      setSpotterPos((p) => p + 1);
+    } else {
+      setSpotterDone(true);
+    }
   };
 
   const finishPolygonDraft = () => {
@@ -170,9 +285,17 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
     }
   };
 
-  const opacityRatio = sliderOpacity / 100;
+  const isSpotterActive = viewMode === 'spotter' && activeSliceIndex === 0;
+  const opacityRatio = isSpotterActive ? (spotterFeedback || spotterDone ? 1 : 0) : sliderOpacity / 100;
   const canStep = hasImage && layers.length > 0 && activeSliceIndex === 0;
   const hasMultipleSlices = Boolean(hasImage && slide.imageUrls && slide.imageUrls.length > 1);
+
+  const visibleLayers = useMemo(() => {
+    if (!isSpotterActive) return layers;
+    if (spotterDone) return layers;
+    if (spotterFeedback && spotterTargetLayer) return [spotterTargetLayer];
+    return [];
+  }, [isSpotterActive, layers, spotterDone, spotterFeedback, spotterTargetLayer]);
 
   return (
     <div className="fixed inset-0 z-50 bg-[#09090B] text-[#F4F4F5] flex flex-col select-none">
@@ -212,7 +335,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
         </div>
       </div>
 
-      {/* 2. Вынесенная полоса переключения срезов (вне фото — не перекрывает препарат) */}
+      {/* 2. Вынесенная полоса переключения срезов */}
       {hasMultipleSlices && (
         <div className="px-4 py-2 bg-[#0F0F12] border-b border-white/[0.06] flex items-center gap-1.5 overflow-x-auto no-scrollbar shrink-0 z-20">
           {slide.imageUrls!.map((_, idx) => {
@@ -223,9 +346,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
                 type="button"
                 onClick={() => handleSliceChange(idx)}
                 className={`px-3 h-7 rounded-lg text-[12px] font-medium transition-colors whitespace-nowrap shrink-0 ${
-                  active
-                    ? 'bg-white text-zinc-900'
-                    : 'bg-white/[0.06] text-zinc-400'
+                  active ? 'bg-white text-zinc-900' : 'bg-white/[0.06] text-zinc-400'
                 }`}
               >
                 {slide.imageLabels?.[idx] || `Срез ${idx + 1}`}
@@ -380,9 +501,9 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
                     </button>
                   </div>
 
-                  {/* Ползунок «Разметка ↔ Слепое стекло» и кнопка Разбор */}
+                  {/* Ползунок разметки и кнопка Разбор */}
                   <div className="absolute left-3 top-3 z-20 flex items-center gap-2">
-                    {layers.length > 0 && activeSliceIndex === 0 && (
+                    {layers.length > 0 && activeSliceIndex === 0 && !isSpotterActive && (
                       <div className="flex items-center gap-1.5 px-2.5 h-8 rounded-lg bg-black/70 backdrop-blur-md border border-white/10 text-white">
                         <button
                           type="button"
@@ -424,7 +545,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
                     <div
                       onClick={handleImageClick}
                       className={`relative inline-block leading-none ${
-                        isAdmin && activeSliceIndex === 0 ? 'cursor-crosshair' : ''
+                        (isAdmin && activeSliceIndex === 0) || isSpotterActive ? 'cursor-crosshair' : ''
                       }`}
                     >
                       <img
@@ -436,7 +557,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
                         draggable={false}
                       />
 
-                      {/* Полигоны с точным 1:1 маппингом preserveAspectRatio="none" */}
+                      {/* SVG-полигоны */}
                       {opacityRatio > 0.02 && activeSliceIndex === 0 && (
                         <svg
                           viewBox="0 0 1000 1000"
@@ -444,18 +565,24 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
                           className="absolute inset-0 w-full h-full rounded-xl pointer-events-auto"
                           style={{ opacity: opacityRatio }}
                         >
-                          {layers.map((layer, idx) => {
+                          {visibleLayers.map((layer) => {
                             if (!layer.polygon || layer.polygon.length < 3) return null;
-                            const isSelected = activeLayer?.number === layer.number;
-                            const layerColor = layer.color || darkAccentInk;
+                            const origIdx = layers.findIndex((l) => l.number === layer.number);
+                            const isSelected = isSpotterActive || activeLayer?.number === layer.number;
+                            const layerColor = isSpotterActive
+                              ? spotterFeedback?.status === 'miss'
+                                ? '#F59E0B'
+                                : '#10B981'
+                              : layer.color || darkAccentInk;
                             const pointsStr = layer.polygon.map((p) => `${p[0]},${p[1]}`).join(' ');
                             return (
                               <polygon
                                 key={layer.number}
                                 points={pointsStr}
                                 onClick={(e) => {
+                                  if (isSpotterActive) return;
                                   e.stopPropagation();
-                                  setActiveLayerIdx(idx);
+                                  if (origIdx >= 0) setActiveLayerIdx(origIdx);
                                 }}
                                 fill={layerColor}
                                 fillOpacity={isSelected ? 0.34 : 0.14}
@@ -480,41 +607,58 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
                         </svg>
                       )}
 
-                      {/* HTML-пины: всегда идеально круглые, не искажаются на широких фото */}
-                      {opacityRatio > 0.02 && activeSliceIndex === 0 && (
-                        <div
-                          className="absolute inset-0 pointer-events-none"
-                          style={{ opacity: opacityRatio }}
-                        >
-                          {layers.map((layer, idx) => {
-                            if (typeof layer.pin_x !== 'number' || typeof layer.pin_y !== 'number') {
-                              return null;
-                            }
-                            const isSelected = activeLayer?.number === layer.number;
-                            const layerColor = layer.color || darkAccentInk;
-                            return (
-                              <button
-                                key={layer.number}
-                                type="button"
-                                onClick={(e) => {
-                                  e.stopPropagation();
-                                  setActiveLayerIdx(idx);
-                                }}
-                                style={{
-                                  left: `${layer.pin_x}%`,
-                                  top: `${layer.pin_y}%`,
-                                  backgroundColor: hexWithAlpha(layerColor, isSelected ? 0.94 : 0.72),
-                                  borderColor: '#FFFFFF',
-                                }}
-                                className={`pointer-events-auto absolute -translate-x-1/2 -translate-y-1/2 rounded-full border-2 text-white font-semibold tabular-nums flex items-center justify-center shadow-md transition-transform ${
-                                  isSelected ? 'w-7 h-7 text-[12px] scale-105 z-10' : 'w-6 h-6 text-[11px]'
-                                }`}
-                                aria-label={`${layer.number}. ${layer.name}`}
-                              >
-                                {layer.number}
-                              </button>
-                            );
-                          })}
+                      {/* HTML-пины и маркер касания Spotter */}
+                      {activeSliceIndex === 0 && (
+                        <div className="absolute inset-0 pointer-events-none">
+                          {opacityRatio > 0.02 &&
+                            visibleLayers.map((layer) => {
+                              if (typeof layer.pin_x !== 'number' || typeof layer.pin_y !== 'number') {
+                                return null;
+                              }
+                              const origIdx = layers.findIndex((l) => l.number === layer.number);
+                              const isSelected = isSpotterActive || activeLayer?.number === layer.number;
+                              const layerColor = isSpotterActive
+                                ? spotterFeedback?.status === 'miss'
+                                  ? '#F59E0B'
+                                  : '#10B981'
+                                : layer.color || darkAccentInk;
+                              return (
+                                <button
+                                  key={layer.number}
+                                  type="button"
+                                  onClick={(e) => {
+                                    if (isSpotterActive) return;
+                                    e.stopPropagation();
+                                    if (origIdx >= 0) setActiveLayerIdx(origIdx);
+                                  }}
+                                  style={{
+                                    left: `${layer.pin_x}%`,
+                                    top: `${layer.pin_y}%`,
+                                    backgroundColor: hexWithAlpha(layerColor, isSelected ? 0.94 : 0.72),
+                                    borderColor: '#FFFFFF',
+                                    opacity: opacityRatio,
+                                  }}
+                                  className={`pointer-events-auto absolute -translate-x-1/2 -translate-y-1/2 rounded-full border-2 text-white font-semibold tabular-nums flex items-center justify-center shadow-md transition-transform ${
+                                    isSelected ? 'w-7 h-7 text-[12px] scale-105 z-10' : 'w-6 h-6 text-[11px]'
+                                  }`}
+                                  aria-label={`${layer.number}. ${layer.name}`}
+                                >
+                                  {layer.number}
+                                </button>
+                              );
+                            })}
+
+                          {isSpotterActive && spotterFeedback && (
+                            <span
+                              style={{
+                                left: `${spotterFeedback.tapX}%`,
+                                top: `${spotterFeedback.tapY}%`,
+                              }}
+                              className={`absolute -translate-x-1/2 -translate-y-1/2 w-5 h-5 rounded-full border-2 border-white shadow-lg ${
+                                spotterFeedback.status === 'hit' ? 'bg-emerald-500' : 'bg-rose-500'
+                              }`}
+                            />
+                          )}
 
                           {polygonDraft.map((pt, i) => (
                             <span
@@ -532,7 +676,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
             </TransformWrapper>
           </div>
 
-          {/* 5. Нижняя панель слоёв (Обзор | По шагам) */}
+          {/* 5. Нижняя панель слоёв (Обзор | По шагам | Найти) */}
           <div className="bg-[#131316] border-t border-white/[0.08] px-4 pt-3 pb-7 space-y-2.5 z-20 shrink-0">
             {canStep && (
               <div className="flex items-center justify-between gap-2">
@@ -541,12 +685,13 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
                     [
                       { id: 'explore', label: 'Обзор' },
                       { id: 'steps', label: 'По шагам' },
+                      { id: 'spotter', label: 'Найти' },
                     ] as const
                   ).map((mTab) => (
                     <button
                       key={mTab.id}
                       type="button"
-                      onClick={() => setViewMode(mTab.id)}
+                      onClick={() => handleModeSwitch(mTab.id)}
                       className={`px-2.5 py-1 rounded-lg text-[12px] font-medium transition-colors ${
                         viewMode === mTab.id ? 'bg-[#27272D] text-white' : 'text-zinc-400'
                       }`}
@@ -561,94 +706,158 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
                     {activeLayerIdx + 1} / {layers.length}
                   </span>
                 )}
+
+                {viewMode === 'spotter' && !spotterDone && (
+                  <span className="text-[12px] font-mono tabular-nums text-zinc-400">
+                    {spotterPos + 1} / {spotterOrder.length}
+                  </span>
+                )}
               </div>
             )}
 
-            {canStep && viewMode === 'explore' && (
-              <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar">
-                {layers.map((l, idx) => {
-                  const isSelected = activeLayer?.number === l.number;
-                  return (
-                    <button
-                      key={l.number}
-                      type="button"
-                      onClick={() => setActiveLayerIdx(idx)}
-                      className={`px-2.5 py-1.5 rounded-lg text-[12px] font-medium flex items-center gap-1.5 whitespace-nowrap transition-colors ${
-                        isSelected
-                          ? 'bg-white text-zinc-900'
-                          : 'bg-white/[0.05] border border-white/[0.08] text-zinc-300'
-                      }`}
-                    >
-                      <span
-                        className="w-2 h-2 rounded-full shrink-0"
-                        style={{ backgroundColor: l.color || darkAccentInk }}
-                      />
-                      <span>
-                        {l.number}. {l.short_name || l.name}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-            )}
-
-            {activeLayer ? (
-              <div className="rounded-2xl p-3 bg-white/[0.04] border border-white/[0.08] space-y-2.5">
-                <div className="flex items-start justify-between gap-3">
-                  <div className="space-y-0.5 min-w-0">
-                    <div className="text-[13px] font-semibold text-white">
-                      {activeLayer.number}. {activeLayer.name}
+            {/* Режим «Найти на стекле» */}
+            {isSpotterActive ? (
+              spotterDone ? (
+                <div className="rounded-2xl p-3.5 bg-white/[0.04] border border-white/[0.08] flex items-center justify-between gap-3">
+                  <div>
+                    <div className="text-[14px] font-semibold text-white">Проверка завершена</div>
+                    <div className="text-[12px] text-zinc-400 tabular-nums mt-0.5">
+                      Найдено: {spotterScore} из {spotterOrder.length}
                     </div>
-                    {activeLayer.description && (
-                      <div className="text-[12px] text-zinc-400 leading-relaxed">
-                        {activeLayer.description}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => startSpotter(layers)}
+                    style={{ backgroundColor: accentHex, color: accentTextColor }}
+                    className="h-9 px-3.5 rounded-lg text-[12px] font-medium shrink-0"
+                  >
+                    Ещё раз
+                  </button>
+                </div>
+              ) : (
+                <div className="rounded-2xl p-3 bg-white/[0.04] border border-white/[0.08] space-y-2.5">
+                  <div className="flex items-start gap-2.5">
+                    <Crosshair className="w-4 h-4 mt-0.5 shrink-0" strokeWidth={1.5} style={{ color: darkAccentInk }} />
+                    <div className="min-w-0 flex-1">
+                      <div className="text-[11px] text-zinc-400">Нажмите на структуру на срезе</div>
+                      <div className="text-[14px] font-semibold text-white leading-snug mt-0.5">
+                        {spotterTargetLayer?.name}
+                      </div>
+                    </div>
+                  </div>
+
+                  {spotterFeedback && (
+                    <div className="flex items-center justify-between gap-2 pt-1 border-t border-white/[0.06]">
+                      <span
+                        className={`text-[12px] font-medium ${
+                          spotterFeedback.status === 'hit' ? 'text-emerald-400' : 'text-amber-300'
+                        }`}
+                      >
+                        {spotterFeedback.status === 'hit'
+                          ? 'Точно в цель'
+                          : 'Мимо — правильная зона подсвечена'}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={handleSpotterNext}
+                        style={{ backgroundColor: accentHex, color: accentTextColor }}
+                        className="h-8 px-3 rounded-lg text-[12px] font-medium shrink-0"
+                      >
+                        {spotterPos + 1 < spotterOrder.length ? 'Дальше' : 'Итог'}
+                      </button>
+                    </div>
+                  )}
+                </div>
+              )
+            ) : (
+              <>
+                {canStep && viewMode === 'explore' && (
+                  <div className="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar">
+                    {layers.map((l, idx) => {
+                      const isSelected = activeLayer?.number === l.number;
+                      return (
+                        <button
+                          key={l.number}
+                          type="button"
+                          onClick={() => setActiveLayerIdx(idx)}
+                          className={`px-2.5 py-1.5 rounded-lg text-[12px] font-medium flex items-center gap-1.5 whitespace-nowrap transition-colors ${
+                            isSelected
+                              ? 'bg-white text-zinc-900'
+                              : 'bg-white/[0.05] border border-white/[0.08] text-zinc-300'
+                          }`}
+                        >
+                          <span
+                            className="w-2 h-2 rounded-full shrink-0"
+                            style={{ backgroundColor: l.color || darkAccentInk }}
+                          />
+                          <span>
+                            {l.number}. {l.short_name || l.name}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                )}
+
+                {activeLayer ? (
+                  <div className="rounded-2xl p-3 bg-white/[0.04] border border-white/[0.08] space-y-2.5">
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="space-y-0.5 min-w-0">
+                        <div className="text-[13px] font-semibold text-white">
+                          {activeLayer.number}. {activeLayer.name}
+                        </div>
+                        {activeLayer.description && (
+                          <div className="text-[12px] text-zinc-400 leading-relaxed">
+                            {activeLayer.description}
+                          </div>
+                        )}
+                      </div>
+
+                      {isAdmin && (
+                        <button
+                          type="button"
+                          onClick={() => deletePin(activeLayer.number)}
+                          className="text-zinc-500 active:text-rose-400 p-1"
+                          aria-label="Удалить слой"
+                        >
+                          <Trash2 className="w-4 h-4" strokeWidth={1.5} />
+                        </button>
+                      )}
+                    </div>
+
+                    {canStep && viewMode === 'steps' && (
+                      <div className="flex items-center justify-between gap-2 pt-1">
+                        <button
+                          type="button"
+                          disabled={activeLayerIdx === 0}
+                          onClick={() => setActiveLayerIdx((i) => Math.max(0, i - 1))}
+                          className="h-9 px-3 rounded-lg bg-white/[0.06] text-zinc-200 disabled:opacity-35 text-[12px] font-medium flex items-center gap-1"
+                        >
+                          <ChevronLeft className="w-4 h-4" strokeWidth={1.5} />
+                          <span>Назад</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setActiveLayerIdx((i) => (i + 1 < layers.length ? i + 1 : 0))
+                          }
+                          style={{ backgroundColor: accentHex, color: accentTextColor }}
+                          className="h-9 px-4 rounded-lg text-[12px] font-medium flex items-center gap-1"
+                        >
+                          <span>{activeLayerIdx + 1 < layers.length ? 'Следующий слой' : 'Сначала'}</span>
+                          <ChevronRight className="w-4 h-4" strokeWidth={1.5} />
+                        </button>
                       </div>
                     )}
                   </div>
-
-                  {isAdmin && (
-                    <button
-                      type="button"
-                      onClick={() => deletePin(activeLayer.number)}
-                      className="text-zinc-500 active:text-rose-400 p-1"
-                      aria-label="Удалить слой"
-                    >
-                      <Trash2 className="w-4 h-4" strokeWidth={1.5} />
-                    </button>
-                  )}
-                </div>
-
-                {canStep && viewMode === 'steps' && (
-                  <div className="flex items-center justify-between gap-2 pt-1">
-                    <button
-                      type="button"
-                      disabled={activeLayerIdx === 0}
-                      onClick={() => setActiveLayerIdx((i) => Math.max(0, i - 1))}
-                      className="h-9 px-3 rounded-lg bg-white/[0.06] text-zinc-200 disabled:opacity-35 text-[12px] font-medium flex items-center gap-1"
-                    >
-                      <ChevronLeft className="w-4 h-4" strokeWidth={1.5} />
-                      <span>Назад</span>
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() =>
-                        setActiveLayerIdx((i) => (i + 1 < layers.length ? i + 1 : 0))
-                      }
-                      style={{ backgroundColor: accentHex, color: accentTextColor }}
-                      className="h-9 px-4 rounded-lg text-[12px] font-medium flex items-center gap-1"
-                    >
-                      <span>{activeLayerIdx + 1 < layers.length ? 'Следующий слой' : 'Сначала'}</span>
-                      <ChevronRight className="w-4 h-4" strokeWidth={1.5} />
-                    </button>
+                ) : (
+                  <div className="text-[12px] text-zinc-400 text-center py-1">
+                    {activeSliceIndex > 0
+                      ? 'Метки привязаны к основному срезу'
+                      : 'Откройте «Разбор», чтобы посмотреть план ответа'}
                   </div>
                 )}
-              </div>
-            ) : (
-              <div className="text-[12px] text-zinc-400 text-center py-1">
-                {activeSliceIndex > 0
-                  ? 'Метки привязаны к основному срезу'
-                  : 'Откройте «Разбор», чтобы посмотреть план ответа'}
-              </div>
+              </>
             )}
           </div>
         </>
