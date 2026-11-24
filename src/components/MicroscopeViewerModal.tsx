@@ -17,7 +17,7 @@ import {
   ChevronRight,
 } from 'lucide-react';
 import { HistSlide, SlideLayer } from '../data/histoData';
-import { getReadableAccent } from '../utils/colorContrast';
+import { getReadableAccent, hexWithAlpha } from '../utils/colorContrast';
 import { BottomSheet } from './BottomSheet';
 
 interface Props {
@@ -72,6 +72,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
     setLayers(slide.layers || []);
     setActiveLayerIdx(0);
     setPolygonDraft([]);
+    transformRef.current?.resetTransform(0);
   }, [slide.id]);
 
   const activeLayer = layers.length > 0 ? layers[Math.min(activeLayerIdx, layers.length - 1)] : null;
@@ -90,7 +91,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
   const handleSliceChange = (idx: number) => {
     setActiveSliceIndex(idx);
     setImageFailed(false);
-    transformRef.current?.resetTransform();
+    transformRef.current?.resetTransform(0);
   };
 
   const handleHeaderTap = () => {
@@ -98,8 +99,9 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
     if (next >= 5) {
       setIsAdmin((prev) => !prev);
       setTapCount(0);
-      (window as unknown as { Telegram?: { WebApp?: { HapticFeedback?: { impactOccurred?: (s: string) => void } } } })
-        .Telegram?.WebApp?.HapticFeedback?.impactOccurred?.('medium');
+      (window as unknown as {
+        Telegram?: { WebApp?: { HapticFeedback?: { impactOccurred?: (s: string) => void } } };
+      }).Telegram?.WebApp?.HapticFeedback?.impactOccurred?.('medium');
     } else {
       setTapCount(next);
     }
@@ -132,14 +134,16 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
 
   const finishPolygonDraft = () => {
     if (polygonDraft.length < 3) return;
+    const avgX = Math.round(polygonDraft.reduce((acc, p) => acc + p[0], 0) / polygonDraft.length / 10);
+    const avgY = Math.round(polygonDraft.reduce((acc, p) => acc + p[1], 0) / polygonDraft.length / 10);
     const newLayer: SlideLayer = {
       number: layers.length + 1,
       short_name: `Зона ${layers.length + 1}`,
       name: `Зона ${layers.length + 1}`,
       description: '',
       color: PIN_COLORS[layers.length % PIN_COLORS.length].hex,
-      pin_x: Math.round(polygonDraft[0][0] / 10),
-      pin_y: Math.round(polygonDraft[0][1] / 10),
+      pin_x: avgX,
+      pin_y: avgY,
       polygon: polygonDraft,
     };
     setLayers((prev) => [...prev, newLayer]);
@@ -168,13 +172,14 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
 
   const opacityRatio = sliderOpacity / 100;
   const canStep = hasImage && layers.length > 0 && activeSliceIndex === 0;
+  const hasMultipleSlices = Boolean(hasImage && slide.imageUrls && slide.imageUrls.length > 1);
 
   return (
     <div className="fixed inset-0 z-50 bg-[#09090B] text-[#F4F4F5] flex flex-col select-none">
       {/* 1. Шапка окуляра */}
       <div
         style={{ paddingTop: `${Math.max(topInsetPx, 12)}px` }}
-        className="px-4 pb-3 bg-[#09090B]/92 backdrop-blur-md border-b border-white/[0.08] flex items-center justify-between gap-3 z-20 shrink-0"
+        className="px-4 pb-3 bg-[#09090B]/95 backdrop-blur-md border-b border-white/[0.08] flex items-center justify-between gap-3 z-20 shrink-0"
       >
         <div onClick={handleHeaderTap} className="min-w-0 flex-1 cursor-pointer">
           <div className="text-[12px] font-mono tabular-nums text-zinc-400">
@@ -192,7 +197,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
             style={{ backgroundColor: accentHex, color: accentTextColor }}
             className="px-3 h-8 rounded-lg font-medium text-[12px] flex items-center gap-1.5 transition-transform active:scale-95"
           >
-            <Zap className="w-3.5 h-3.5" strokeWidth={1.5}/>
+            <Zap className="w-3.5 h-3.5" strokeWidth={1.5} />
             <span>Тест</span>
           </button>
 
@@ -202,14 +207,37 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
             className="w-8 h-8 rounded-lg bg-white/[0.08] text-zinc-300 flex items-center justify-center transition-transform active:scale-95"
             aria-label="Закрыть микроскоп"
           >
-            <X className="w-4 h-4" strokeWidth={1.5}/>
+            <X className="w-4 h-4" strokeWidth={1.5} />
           </button>
         </div>
       </div>
 
-      {/* 2. Панель разметки (?admin=1) */}
+      {/* 2. Вынесенная полоса переключения срезов (вне фото — не перекрывает препарат) */}
+      {hasMultipleSlices && (
+        <div className="px-4 py-2 bg-[#0F0F12] border-b border-white/[0.06] flex items-center gap-1.5 overflow-x-auto no-scrollbar shrink-0 z-20">
+          {slide.imageUrls!.map((_, idx) => {
+            const active = activeSliceIndex === idx;
+            return (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => handleSliceChange(idx)}
+                className={`px-3 h-7 rounded-lg text-[12px] font-medium transition-colors whitespace-nowrap shrink-0 ${
+                  active
+                    ? 'bg-white text-zinc-900'
+                    : 'bg-white/[0.06] text-zinc-400'
+                }`}
+              >
+                {slide.imageLabels?.[idx] || `Срез ${idx + 1}`}
+              </button>
+            );
+          })}
+        </div>
+      )}
+
+      {/* 3. Панель разметки (?admin=1) */}
       {isAdmin && hasImage && activeSliceIndex === 0 && (
-        <div className="px-4 py-2 bg-[#131316] border-b border-white/[0.08] flex items-center justify-between gap-2 text-[12px] z-20">
+        <div className="px-4 py-2 bg-[#131316] border-b border-white/[0.08] flex items-center justify-between gap-2 text-[12px] z-20 shrink-0">
           <div className="flex items-center gap-1.5">
             <button
               type="button"
@@ -249,20 +277,24 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
               onClick={copyLayersJson}
               className="px-2.5 py-1 rounded-lg bg-white/[0.06] text-zinc-300 flex items-center gap-1"
             >
-              {copiedJson ? <Check className="w-3.5 h-3.5 text-emerald-400" strokeWidth={1.5}/> : <Copy className="w-3.5 h-3.5" strokeWidth={1.5}/>}
+              {copiedJson ? (
+                <Check className="w-3.5 h-3.5 text-emerald-400" strokeWidth={1.5} />
+              ) : (
+                <Copy className="w-3.5 h-3.5" strokeWidth={1.5} />
+              )}
               <span>{copiedJson ? 'Готово' : 'JSON'}</span>
             </button>
           </div>
         </div>
       )}
 
-      {/* 3. Основное поле */}
+      {/* 4. Основное поле */}
       {!hasImage ? (
         <div className="flex-1 overflow-y-auto px-4 py-5">
           <div className="max-w-md mx-auto space-y-4">
             <div className="rounded-2xl p-4 bg-[#131316] border border-white/[0.08] flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-white/[0.05] flex items-center justify-center shrink-0">
-                <Microscope className="w-5 h-5 text-zinc-400" strokeWidth={1.5}/>
+                <Microscope className="w-5 h-5 text-zinc-400" strokeWidth={1.5} />
               </div>
               <div className="min-w-0">
                 <div className="text-[14px] font-semibold">Микрофотография готовится</div>
@@ -310,8 +342,14 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
         </div>
       ) : (
         <>
-          <div className="relative flex-1 overflow-hidden flex items-center justify-center bg-black">
-            <TransformWrapper ref={transformRef} initialScale={1} minScale={0.8} maxScale={6} centerOnInit>
+          <div className="relative flex-1 min-h-0 overflow-hidden bg-black">
+            <TransformWrapper
+              ref={transformRef}
+              initialScale={1}
+              minScale={0.9}
+              maxScale={6}
+              wheel={{ step: 0.15 }}
+            >
               {({ zoomIn, zoomOut, resetTransform }) => (
                 <>
                   {/* Кнопки зума */}
@@ -320,32 +358,32 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
                       type="button"
                       onClick={() => zoomIn(0.5)}
                       aria-label="Приблизить"
-                      className="w-8 h-8 rounded-lg bg-black/65 backdrop-blur-md border border-white/10 flex items-center justify-center text-zinc-300 active:scale-95 transition-transform"
+                      className="w-8 h-8 rounded-lg bg-black/70 backdrop-blur-md border border-white/10 flex items-center justify-center text-zinc-300 active:scale-95 transition-transform"
                     >
-                      <ZoomIn className="w-4 h-4" strokeWidth={1.5}/>
+                      <ZoomIn className="w-4 h-4" strokeWidth={1.5} />
                     </button>
                     <button
                       type="button"
                       onClick={() => zoomOut(0.5)}
                       aria-label="Отдалить"
-                      className="w-8 h-8 rounded-lg bg-black/65 backdrop-blur-md border border-white/10 flex items-center justify-center text-zinc-300 active:scale-95 transition-transform"
+                      className="w-8 h-8 rounded-lg bg-black/70 backdrop-blur-md border border-white/10 flex items-center justify-center text-zinc-300 active:scale-95 transition-transform"
                     >
-                      <ZoomOut className="w-4 h-4" strokeWidth={1.5}/>
+                      <ZoomOut className="w-4 h-4" strokeWidth={1.5} />
                     </button>
                     <button
                       type="button"
                       onClick={() => resetTransform()}
                       aria-label="Сброс зума"
-                      className="w-8 h-8 rounded-lg bg-black/65 backdrop-blur-md border border-white/10 flex items-center justify-center text-zinc-300 active:scale-95 transition-transform"
+                      className="w-8 h-8 rounded-lg bg-black/70 backdrop-blur-md border border-white/10 flex items-center justify-center text-zinc-300 active:scale-95 transition-transform"
                     >
-                      <RotateCcw className="w-3.5 h-3.5" strokeWidth={1.5}/>
+                      <RotateCcw className="w-3.5 h-3.5" strokeWidth={1.5} />
                     </button>
                   </div>
 
                   {/* Ползунок «Разметка ↔ Слепое стекло» и кнопка Разбор */}
                   <div className="absolute left-3 top-3 z-20 flex items-center gap-2">
                     {layers.length > 0 && activeSliceIndex === 0 && (
-                      <div className="flex items-center gap-1.5 px-2.5 h-8 rounded-lg bg-black/65 backdrop-blur-md border border-white/10 text-white">
+                      <div className="flex items-center gap-1.5 px-2.5 h-8 rounded-lg bg-black/70 backdrop-blur-md border border-white/10 text-white">
                         <button
                           type="button"
                           onClick={() => setSliderOpacity(sliderOpacity > 0 ? 0 : 100)}
@@ -353,9 +391,9 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
                           aria-label="Переключить разметку"
                         >
                           {sliderOpacity > 0 ? (
-                            <Eye className="w-3.5 h-3.5" strokeWidth={1.5}/>
+                            <Eye className="w-3.5 h-3.5" strokeWidth={1.5} />
                           ) : (
-                            <EyeOff className="w-3.5 h-3.5 text-zinc-500" strokeWidth={1.5}/>
+                            <EyeOff className="w-3.5 h-3.5 text-zinc-500" strokeWidth={1.5} />
                           )}
                         </button>
                         <input
@@ -366,7 +404,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
                           onChange={(e) => setSliderOpacity(Number(e.target.value))}
                           className="w-14 h-1 accent-white bg-white/20 rounded-lg cursor-pointer"
                         />
-                        <span className="text-[11px] font-mono tabular-nums text-zinc-300 min-w-[26px] text-right">
+                        <span className="text-[11px] font-mono tabular-nums text-zinc-300 min-w-[28px] text-right">
                           {sliderOpacity}%
                         </span>
                       </div>
@@ -375,37 +413,17 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
                     <button
                       type="button"
                       onClick={() => setShowInfoSheet(true)}
-                      className="px-2.5 h-8 rounded-lg bg-black/65 backdrop-blur-md border border-white/10 text-[12px] font-medium flex items-center gap-1.5 text-white/90 active:scale-95 transition-transform"
+                      className="px-2.5 h-8 rounded-lg bg-black/70 backdrop-blur-md border border-white/10 text-[12px] font-medium flex items-center gap-1.5 text-white/90 active:scale-95 transition-transform"
                     >
-                      <Info className="w-3.5 h-3.5 text-zinc-400" strokeWidth={1.5}/>
+                      <Info className="w-3.5 h-3.5 text-zinc-400" strokeWidth={1.5} />
                       <span>Разбор</span>
                     </button>
                   </div>
 
-                  {/* Переключатель срезов */}
-                  {slide.imageUrls && slide.imageUrls.length > 1 && (
-                    <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1 p-1 bg-black/75 backdrop-blur-md rounded-xl border border-white/10 max-w-[88vw] overflow-x-auto">
-                      {slide.imageUrls.map((_, idx) => (
-                        <button
-                          key={idx}
-                          type="button"
-                          onClick={() => handleSliceChange(idx)}
-                          className={`px-2.5 py-1 rounded-lg text-[11px] font-medium transition-colors whitespace-nowrap ${
-                            activeSliceIndex === idx
-                              ? 'bg-white text-zinc-900'
-                              : 'text-zinc-400'
-                          }`}
-                        >
-                          {slide.imageLabels?.[idx] || `Срез ${idx + 1}`}
-                        </button>
-                      ))}
-                    </div>
-                  )}
-
-                  <TransformComponent contentClass="relative flex items-center justify-center" wrapperClass="!w-full !h-full flex items-center justify-center">
+                  <TransformComponent contentClass="!w-full !h-full flex items-center justify-center p-2" wrapperClass="!w-full !h-full">
                     <div
                       onClick={handleImageClick}
-                      className={`relative inline-block ${
+                      className={`relative inline-block leading-none ${
                         isAdmin && activeSliceIndex === 0 ? 'cursor-crosshair' : ''
                       }`}
                     >
@@ -413,93 +431,99 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
                         src={activeImageUrl}
                         alt={slide.title}
                         onError={() => setImageFailed(true)}
-                        className="max-h-[68vh] w-auto max-w-[94vw] object-contain rounded-2xl select-none pointer-events-none"
+                        onLoad={() => transformRef.current?.resetTransform(0)}
+                        className="block max-h-[54vh] max-w-[94vw] w-auto h-auto rounded-xl select-none pointer-events-none"
                         draggable={false}
                       />
 
+                      {/* Полигоны с точным 1:1 маппингом preserveAspectRatio="none" */}
                       {opacityRatio > 0.02 && activeSliceIndex === 0 && (
                         <svg
                           viewBox="0 0 1000 1000"
-                          className="absolute inset-0 w-full h-full pointer-events-auto"
+                          preserveAspectRatio="none"
+                          className="absolute inset-0 w-full h-full rounded-xl pointer-events-auto"
                           style={{ opacity: opacityRatio }}
                         >
                           {layers.map((layer, idx) => {
+                            if (!layer.polygon || layer.polygon.length < 3) return null;
                             const isSelected = activeLayer?.number === layer.number;
                             const layerColor = layer.color || darkAccentInk;
-
-                            if (layer.polygon && layer.polygon.length > 2) {
-                              const pointsStr = layer.polygon.map((p) => `${p[0]},${p[1]}`).join(' ');
-                              return (
-                                <polygon
-                                  key={layer.number}
-                                  points={pointsStr}
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    setActiveLayerIdx(idx);
-                                  }}
-                                  fill={layerColor}
-                                  fillOpacity={isSelected ? 0.34 : 0.14}
-                                  stroke={layerColor}
-                                  strokeWidth={isSelected ? 3.5 : 2}
-                                  className="cursor-pointer transition-opacity duration-150"
-                                />
-                              );
-                            }
-
-                            if (typeof layer.pin_x === 'number' && typeof layer.pin_y === 'number') {
-                              const cx = layer.pin_x * 10;
-                              const cy = layer.pin_y * 10;
-                              return (
-                                <g
-                                  key={layer.number}
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    setActiveLayerIdx(idx);
-                                  }}
-                                  className="cursor-pointer"
-                                >
-                                  <circle
-                                    cx={cx}
-                                    cy={cy}
-                                    r={isSelected ? 20 : 15}
-                                    fill={layerColor}
-                                    fillOpacity={isSelected ? 0.95 : 0.72}
-                                    stroke="#FFFFFF"
-                                    strokeWidth={2}
-                                  />
-                                  <text
-                                    x={cx}
-                                    y={cy + 4.5}
-                                    fill="#FFFFFF"
-                                    fontSize="12"
-                                    fontWeight="600"
-                                    textAnchor="middle"
-                                    className="pointer-events-none select-none"
-                                  >
-                                    {layer.number}
-                                  </text>
-                                </g>
-                              );
-                            }
-
-                            return null;
+                            const pointsStr = layer.polygon.map((p) => `${p[0]},${p[1]}`).join(' ');
+                            return (
+                              <polygon
+                                key={layer.number}
+                                points={pointsStr}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setActiveLayerIdx(idx);
+                                }}
+                                fill={layerColor}
+                                fillOpacity={isSelected ? 0.34 : 0.14}
+                                stroke={layerColor}
+                                strokeWidth={isSelected ? 3 : 1.75}
+                                vectorEffect="non-scaling-stroke"
+                                className="cursor-pointer transition-opacity duration-150"
+                              />
+                            );
                           })}
 
                           {polygonDraft.length > 0 && (
-                            <g>
-                              <polyline
-                                points={polygonDraft.map((p) => `${p[0]},${p[1]}`).join(' ')}
-                                fill="none"
-                                stroke="#EC4899"
-                                strokeWidth={2}
-                                strokeDasharray="4 4"
-                              />
-                              {polygonDraft.map((p, idx) => (
-                                <circle key={idx} cx={p[0]} cy={p[1]} r={6} fill="#EC4899" />
-                              ))}
-                            </g>
+                            <polyline
+                              points={polygonDraft.map((p) => `${p[0]},${p[1]}`).join(' ')}
+                              fill="none"
+                              stroke="#EC4899"
+                              strokeWidth={2}
+                              strokeDasharray="4 4"
+                              vectorEffect="non-scaling-stroke"
+                            />
                           )}
                         </svg>
+                      )}
+
+                      {/* HTML-пины: всегда идеально круглые, не искажаются на широких фото */}
+                      {opacityRatio > 0.02 && activeSliceIndex === 0 && (
+                        <div
+                          className="absolute inset-0 pointer-events-none"
+                          style={{ opacity: opacityRatio }}
+                        >
+                          {layers.map((layer, idx) => {
+                            if (typeof layer.pin_x !== 'number' || typeof layer.pin_y !== 'number') {
+                              return null;
+                            }
+                            const isSelected = activeLayer?.number === layer.number;
+                            const layerColor = layer.color || darkAccentInk;
+                            return (
+                              <button
+                                key={layer.number}
+                                type="button"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setActiveLayerIdx(idx);
+                                }}
+                                style={{
+                                  left: `${layer.pin_x}%`,
+                                  top: `${layer.pin_y}%`,
+                                  backgroundColor: hexWithAlpha(layerColor, isSelected ? 0.94 : 0.72),
+                                  borderColor: '#FFFFFF',
+                                }}
+                                className={`pointer-events-auto absolute -translate-x-1/2 -translate-y-1/2 rounded-full border-2 text-white font-semibold tabular-nums flex items-center justify-center shadow-md transition-transform ${
+                                  isSelected ? 'w-7 h-7 text-[12px] scale-105 z-10' : 'w-6 h-6 text-[11px]'
+                                }`}
+                                aria-label={`${layer.number}. ${layer.name}`}
+                              >
+                                {layer.number}
+                              </button>
+                            );
+                          })}
+
+                          {polygonDraft.map((pt, i) => (
+                            <span
+                              key={i}
+                              style={{ left: `${pt[0] / 10}%`, top: `${pt[1] / 10}%` }}
+                              className="absolute -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-pink-500 border border-white"
+                            />
+                          ))}
+                        </div>
                       )}
                     </div>
                   </TransformComponent>
@@ -508,7 +532,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
             </TransformWrapper>
           </div>
 
-          {/* 4. Нижняя панель слоёв (Обзор | По шагам) */}
+          {/* 5. Нижняя панель слоёв (Обзор | По шагам) */}
           <div className="bg-[#131316] border-t border-white/[0.08] px-4 pt-3 pb-7 space-y-2.5 z-20 shrink-0">
             {canStep && (
               <div className="flex items-center justify-between gap-2">
@@ -524,9 +548,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
                       type="button"
                       onClick={() => setViewMode(mTab.id)}
                       className={`px-2.5 py-1 rounded-lg text-[12px] font-medium transition-colors ${
-                        viewMode === mTab.id
-                          ? 'bg-[#27272D] text-white'
-                          : 'text-zinc-400'
+                        viewMode === mTab.id ? 'bg-[#27272D] text-white' : 'text-zinc-400'
                       }`}
                     >
                       {mTab.label}
@@ -591,7 +613,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
                       className="text-zinc-500 active:text-rose-400 p-1"
                       aria-label="Удалить слой"
                     >
-                      <Trash2 className="w-4 h-4" strokeWidth={1.5}/>
+                      <Trash2 className="w-4 h-4" strokeWidth={1.5} />
                     </button>
                   )}
                 </div>
@@ -604,7 +626,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
                       onClick={() => setActiveLayerIdx((i) => Math.max(0, i - 1))}
                       className="h-9 px-3 rounded-lg bg-white/[0.06] text-zinc-200 disabled:opacity-35 text-[12px] font-medium flex items-center gap-1"
                     >
-                      <ChevronLeft className="w-4 h-4" strokeWidth={1.5}/>
+                      <ChevronLeft className="w-4 h-4" strokeWidth={1.5} />
                       <span>Назад</span>
                     </button>
                     <button
@@ -616,7 +638,7 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
                       className="h-9 px-4 rounded-lg text-[12px] font-medium flex items-center gap-1"
                     >
                       <span>{activeLayerIdx + 1 < layers.length ? 'Следующий слой' : 'Сначала'}</span>
-                      <ChevronRight className="w-4 h-4" strokeWidth={1.5}/>
+                      <ChevronRight className="w-4 h-4" strokeWidth={1.5} />
                     </button>
                   </div>
                 )}
@@ -632,8 +654,10 @@ export const MicroscopeViewerModal: React.FC<Props> = ({
         </>
       )}
 
-      {/* 5. Шторка полного разбора */}
-      <BottomSheet isOpen={showInfoSheet} onClose={() => setShowInfoSheet(false)}
+      {/* 6. Шторка полного разбора */}
+      <BottomSheet
+        isOpen={showInfoSheet}
+        onClose={() => setShowInfoSheet(false)}
         title={slide.title}
         isDark={true}
       >
